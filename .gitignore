@@ -1,0 +1,8 @@
+node_modules/
+web/.next/
+web/out/
+__pycache__/
+*.pyc
+.pytest_cache/
+web/next-env.d.ts
+web/tsconfig.tsbuildinfo

@@ -1,0 +1,14 @@
+{
+  "_about": "Hand corrections applied after ingestion. Every entry needs a reason; the admin panel will edit this file.",
+  "races": {
+    "2026-sen-AK": {
+      "incumbent_candidate": "Dan S. Sullivan",
+      "reason": "Two candidates named Dan Sullivan on the top-four ballot; the incumbent is Dan S. Sullivan. Polls naming 'Dan Sullivan' refer to the incumbent."
+    }
+  },
+  "independents_caucus": {
+    "_about": "Which party an independent winner would caucus with, when they've said so. Unlisted independents count as uncommitted.",
+    "Angus King": "D",
+    "Bernie Sanders": "D"
+  }
+}
