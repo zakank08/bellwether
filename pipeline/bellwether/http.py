@@ -12,6 +12,7 @@ import json
 import os
 import time
 from pathlib import Path
+import re
 from urllib.parse import urlparse
 
 import requests
@@ -36,6 +37,15 @@ def _mark(host: str, kind: str, url: str, age_s: float | None = None):
     if kind == "stale" and age_s is not None:
         h = round(age_s / 3600, 1)
         st["oldest_stale_h"] = max(st["oldest_stale_h"] or 0, h)
+
+
+_SECRET_PARAM = re.compile(r"([?&](?:api_key|apikey|key|token|access_token)=)[^&#]*", re.I)
+
+
+def redact(url: str) -> str:
+    """Hide API keys in a URL. Cache sidecars are committed to a public repo,
+    so anything written to disk or printed must go through this."""
+    return _SECRET_PARAM.sub(r"\1REDACTED", url)
 
 
 class FetchError(RuntimeError):
@@ -92,7 +102,7 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
                 continue
             r.raise_for_status()
             path.write_bytes(r.content)
-            _meta_path(url).write_text(json.dumps({"url": url, "fetched_at": time.time()}))
+            _meta_path(url).write_text(json.dumps({"url": redact(url), "fetched_at": time.time()}))
             _mark(host, "fresh", url)
             return r.content
         except requests.RequestException as e:  # network or HTTP error
@@ -101,7 +111,7 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
     if allow_stale and path.exists():
         _mark(host, "stale", url, cache_age(url))
         return path.read_bytes()
-    raise FetchError(f"could not fetch {url}: {last_err}")
+    raise FetchError(f"could not fetch {redact(url)}: {redact(str(last_err))}")
 
 
 def fetch_json(url: str, **kw):

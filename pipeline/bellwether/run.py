@@ -32,8 +32,14 @@ def main():
     fc = Forecast(inp, n_sims=a.sims)
     fc.build_polling()
     from .adapters.fec import FECFundraising
-    fc.load_fundraising(FECFundraising())
-    print(f"fundraising: {len(fc.fundraising)} races" if fc.fundraising else "fundraising: off (no FEC_API_KEY)")
+    fec = FECFundraising()
+    fc.load_fundraising(fec)
+    if not fec.enabled:
+        print("fundraising: off (no FEC_API_KEY)")
+    else:
+        print(f"fundraising: {len(fc.fundraising)} races ({fec.calls} FEC calls, {len(fec.errors)} errors)")
+        for e in fec.errors[:5]:
+            print("  FEC error:", e)
     fc.bios = {}
     if not a.no_bios:
         from .adapters.bios import fetch_bios

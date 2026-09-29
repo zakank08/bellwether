@@ -10,7 +10,7 @@ from __future__ import annotations
 import os
 import re
 
-from ..http import fetch_json
+from ..http import fetch_json, redact
 
 URL = ("https://api.open.fec.gov/v1/elections/?api_key={key}&cycle=2026&office={office}&state={state}"
        "{district}&election_full=true&per_page=50&sort=-total_receipts")
@@ -45,6 +45,8 @@ class FECFundraising:
 
     def __init__(self, key: str | None = None):
         self.key = key or os.environ.get("FEC_API_KEY")
+        self.calls = 0
+        self.errors: list[str] = []
 
     @property
     def enabled(self) -> bool:
@@ -54,9 +56,14 @@ class FECFundraising:
         if not self.enabled or office not in ("senate", "house"):
             return None
         dist = "" if office == "senate" else f"&district={district:02d}"
+        self.calls += 1
         try:
             data = fetch_json(URL.format(key=self.key, office=office, state=state, district=dist), max_age_s=8 * 3600)
-        except Exception:
+        except Exception as e:  # one bad race never stops the run, but it is reported
+            self.errors.append(f"{state}-{office}{dist and '-' + str(district)}: {redact(str(e))}")
+            return None
+        if "error" in data:
+            self.errors.append(f"{state}-{office}: {data['error'].get('code')}")
             return None
         res = data.get("results", [])
         out = {"d": match(res, d_name), "r": match(res, r_name)}
