@@ -37,7 +37,7 @@ export default function Methodology() {
           <li><strong>House effects.</strong> A pollster that consistently runs more Democratic or Republican than other pollsters of the same race is adjusted back toward the field. The estimate is shrunk toward zero (as if it had five extra neutral polls).</li>
           <li><strong>Timeline.</strong> An older poll is shifted by how much the national generic ballot has moved since it was taken (80% for Senate, 60% for governors, 100% for House).</li>
         </ul>
-        <p>Weights: recency (14-day half-life, stretched up to 60 days when a race has fewer than three recent polls, so one new poll can’t erase the others), sample size (square root, capped at 3,000), pollster rating (0.35×–1.4×), half weight for partisan or internal polls, and divided by the square root of how many polls a pollster has in the race so no single firm dominates.</p>
+        <p>Weights: recency (a poll’s age is counted from the middle of its field dates; 14-day half-life, stretched up to 60 days when a race has fewer than three recent polls, so one new poll can’t erase the others), sample size (square root, capped at 3,000), pollster rating (0.35×–1.4×), half weight for partisan or internal polls, and divided by the square root of how many polls a pollster has in the race so no single firm dominates.</p>
 
         <h2 className="display">3. Fundamentals</h2>
         <p>Before polls, a race’s expected margin is: twice the Cook PVI (PVI is a share-point lean; margin is about double) + the national environment + an incumbency bonus (Senate 3 points, governor 4, House 2.5) + the incumbent’s track record. Governors’ races follow national partisanship less closely, so their lean is scaled by 0.75.</p>
