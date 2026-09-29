@@ -24,6 +24,18 @@ CACHE_DIR = Path(os.environ.get("BELLWETHER_CACHE", Path(__file__).resolve().par
 MIN_INTERVAL = {"en.wikipedia.org": 6.0, "en.wikipedia.org/rest": 1.0, "www.wikidata.org": 1.0}
 DEFAULT_INTERVAL = 1.0
 _last_hit: dict[str, float] = {}
+# Per-host record of this run: fresh fetches, cache hits, and stale fallbacks
+# (a source was down and the last good copy was used). Published so the site
+# can say plainly when a source is out of date.
+STATUS: dict[str, dict] = {}
+
+
+def _mark(host: str, kind: str, url: str, age_s: float | None = None):
+    st = STATUS.setdefault(host, {"fresh": 0, "cached": 0, "stale": 0, "oldest_stale_h": None})
+    st[kind] += 1
+    if kind == "stale" and age_s is not None:
+        h = round(age_s / 3600, 1)
+        st["oldest_stale_h"] = max(st["oldest_stale_h"] or 0, h)
 
 
 class FetchError(RuntimeError):
@@ -43,17 +55,17 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
     """
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     path = _cache_path(url)
-    if path.exists() and time.time() - path.stat().st_mtime < max_age_s:
-        return path.read_bytes()
     host = urlparse(url).netloc
-    if "/api/rest_v1/" in url:
-        host += "/rest"   # Wikipedia's REST API has its own, looser limits
+    if path.exists() and time.time() - path.stat().st_mtime < max_age_s:
+        _mark(host, "cached", url)
+        return path.read_bytes()
+    throttle_key = host + ("/rest" if "/api/rest_v1/" in url else "")  # Wikipedia REST has looser limits
     last_err: Exception | None = None
     for attempt in range(retries):
-        wait = MIN_INTERVAL.get(host, DEFAULT_INTERVAL) - (time.time() - _last_hit.get(host, 0))
+        wait = MIN_INTERVAL.get(throttle_key, DEFAULT_INTERVAL) - (time.time() - _last_hit.get(throttle_key, 0))
         if wait > 0:
             time.sleep(wait)
-        _last_hit[host] = time.time()
+        _last_hit[throttle_key] = time.time()
         try:
             r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
             if r.status_code == 429:
@@ -62,11 +74,13 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
                 continue
             r.raise_for_status()
             path.write_bytes(r.content)
+            _mark(host, "fresh", url)
             return r.content
         except requests.RequestException as e:  # network or HTTP error
             last_err = e
             time.sleep(2 ** attempt)
     if allow_stale and path.exists():
+        _mark(host, "stale", url, time.time() - path.stat().st_mtime)
         return path.read_bytes()
     raise FetchError(f"could not fetch {url}: {last_err}")
 

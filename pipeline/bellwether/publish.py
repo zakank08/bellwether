@@ -207,12 +207,23 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     hist["points"] = [p for p in hist["points"] if p["date"] != fc.today.isoformat()] + [_hist_point(fc.today, res[DEFAULT_VERSION])]
     hist["points"].sort(key=lambda p: p["date"])
     _write(hist_path, hist)
-    # per-race chance-of-winning over time, written into each race's detail file
+    # per-race chance-of-winning over time, written into each race's detail file,
+    # plus a visible note when a race swung a lot since the previous point.
+    prev_pt = next((p for p in reversed(hist["points"]) if p["date"] < fc.today.isoformat()), None)
+    swings = []
     for rid in race_ids:
         path = out / "race" / f"{rid}.json"
         d = json.loads(path.read_text())
         d["odds_trend"] = [{"date": p["date"], "p": p["races"][rid]} for p in hist["points"] if rid in p.get("races", {})]
+        d.pop("swing", None)
+        if prev_pt and rid in prev_pt.get("races", {}) and d.get("kind") == "two_party":
+            a, b = prev_pt["races"][rid], d["p"][DEFAULT_VERSION]
+            if abs(b - a) >= SWING_FLAG:
+                new = sorted({p["pollster"] for p in d.get("polls", []) if p["end"] >= prev_pt["date"]})
+                d["swing"] = {"from": a, "to": b, "since": prev_pt["date"], "new_polls": new, "n_polls": d.get("n_polls", 0)}
+                swings.append({"id": rid, **d["swing"]})
         _write(path, d)
+
 
     # --- what changed ----------------------------------------------------------
     changes = _changes(prev, races_rows, fc) if prev else []
@@ -226,8 +237,9 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
                      "generic_avg": _r(g.margin, 2), "generic_weight": _r(env["generic_weight"], 2),
                      "approval_net": _r(env["approval"].margin, 2)},
         "chambers": {v: {k: res[v][k] for k in ("senate", "house", "governor")} for v in VERSIONS},
-        "markets": markets, "changes": changes,
+        "markets": markets, "changes": changes, "source_status": source_status(), "swings": swings,
         "counts": {o: sum(1 for x in races_rows if x["office"] == o) for o in ("senate", "house", "governor")},
+        "house_calibration": fc.house_cal,
         "sources": [
             {"name": "VoteHub Polling API", "url": "https://votehub.com/polls/api/", "use": "2026 race, generic-ballot and approval polls"},
             {"name": "Wikipedia 2026 election pages (CC BY-SA 4.0)", "url": "https://en.wikipedia.org/wiki/2026_United_States_elections", "use": "Races, candidates, Cook PVI on 2026 lines, published expert ratings"},
@@ -241,6 +253,14 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     export_whatif(fc, out)
     _write(out / "races.json", races_rows)
     _write(out / "schedule.json", poll_schedule(rows))
+    up = Path(__file__).resolve().parents[2] / "data" / "config" / "upcoming.json"
+    if up.exists():
+        _write(out / "upcoming.json", [e for e in json.loads(up.read_text())["elections"] if e["date"] >= fc.today.isoformat()])
+    try:
+        from .zipmap import build as build_zipmap
+        build_zipmap(out)
+    except Exception as e:
+        print("zip lookup skipped:", e)
     try:
         from .og import make_og
         make_og(summary, races_rows, out.parent / "og.png")
@@ -250,6 +270,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
 
 
 HISTORY_START = date(2025, 9, 1)
+SWING_FLAG = 0.15   # flag a race whose win probability moved 15+ points since the previous update
 
 
 def _series(fc, race_id, first: date):
@@ -360,12 +381,19 @@ def poll_schedule(rows) -> dict:
     table. Only states with a 2026 Senate race are listed there; the rest are
     reported as not yet listed rather than guessed."""
     import re
+    fb_path = Path(__file__).resolve().parents[2] / "data" / "config" / "poll_closing_fallback.json"
+    fb = json.loads(fb_path.read_text()) if fb_path.exists() else {"states": {}}
     by_state: dict[str, dict] = {}
     for row in rows:
         r = row["race"]
-        e = by_state.setdefault(r.state, {"state": r.state, "state_name": r.state_name, "close": None, "races": []})
+        e = by_state.setdefault(r.state, {"state": r.state, "state_name": r.state_name, "close": None, "races": [], "close_source": None})
         if r.poll_close_et:
             e["close"] = r.poll_close_et
+            e["close_source"] = "wikipedia"
+    for st, t in fb.get("states", {}).items():
+        if st in by_state and not by_state[st]["close"]:
+            by_state[st]["close"] = t
+            by_state[st]["close_source"] = "fallback"
         if r.office != "house" or row["kind"] == "two_party":
             e["races"].append(r.id)
     out = []
@@ -377,9 +405,25 @@ def poll_schedule(rows) -> dict:
         e["times"] = times
         out.append(e)
     out.sort(key=lambda e: (e["first"] is None, e["first"] or 0, e["state_name"]))
-    return {"source": "Wikipedia, 2026 United States Senate elections (poll-closing table)", "states": out,
+    return {"source": "Wikipedia, 2026 United States Senate elections (poll-closing table)",
+            "fallback_source": fb.get("source"), "fallback_url": fb.get("url"), "states": out,
             "key_dates": [
                 {"date": "2026-11-03", "label": "Election Day", "note": "Polls close from 6pm to 1am Eastern."},
                 {"date": "2026-12-01", "label": "Georgia runoff, if needed", "note": "Georgia requires a majority; a runoff is held four weeks after the general election."},
                 {"date": "2026-12-12", "label": "Louisiana House runoffs, if needed", "note": "After the Nov. 3 all-party House primary (The Green Papers)."},
             ]}
+
+
+HOST_NAMES = {"api.votehub.com": "VoteHub polls", "en.wikipedia.org": "Wikipedia (races, candidates, bios)",
+              "www.wikidata.org": "Wikidata (websites)", "api.open.fec.gov": "FEC fundraising",
+              "gamma-api.polymarket.com": "Polymarket", "api.elections.kalshi.com": "Kalshi"}
+
+
+def source_status() -> list[dict]:
+    from .http import STATUS
+    out = []
+    for host, st in STATUS.items():
+        state = "stale" if st["stale"] else "ok"
+        out.append({"source": HOST_NAMES.get(host, host), "state": state, "fresh": st["fresh"], "cached": st["cached"],
+                    "stale": st["stale"], "oldest_stale_h": st["oldest_stale_h"]})
+    return sorted(out, key=lambda x: (x["state"] != "stale", x["source"]))

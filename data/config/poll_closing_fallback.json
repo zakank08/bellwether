@@ -1,0 +1,9 @@
+{
+  "_about": "Poll-closing times (Eastern) for states without a 2026 Senate race, whose times aren't in the Wikipedia 2026 Senate table. Source: 270toWin poll closing times page (2024 general election; like 2026, held after the switch to standard time). State closing laws rarely change; confirm with state election offices before election night.",
+  "source": "270toWin, poll closing times (2024 general election)",
+  "url": "https://www.270towin.com/poll-closing-times/",
+  "states": {
+    "AZ": "9pm", "CA": "11pm", "CT": "8pm", "HI": "12am", "IN": "6pm and 7pm", "MD": "8pm", "MO": "8pm",
+    "NV": "10pm", "NY": "9pm", "ND": "8pm and 9pm", "PA": "8pm", "UT": "10pm", "VT": "7pm", "WA": "11pm", "WI": "9pm"
+  }
+}

@@ -94,6 +94,18 @@ class Forecast:
         self.matcher = Matcher(self.ratings)
         self.zs = _zscores(inputs.demographics)
         self.fundraising: dict[str, dict] = {}
+        # Calibrate House fundamentals against 2024 district results (unchanged-lines states).
+        self.house_cal = None
+        try:
+            from . import fundamentals as F
+            from .house_history import calibrate
+            cal = calibrate(inputs.races)
+            if cal["n"] >= 100:
+                self.house_cal = cal
+                F.INCUMBENCY["house"] = max(1.5, min(5.0, cal["incumbency"]))
+                F.FUND_SD["house"] = round((cal["resid_sd"] ** 2 + 3.5 ** 2) ** 0.5, 2)
+        except Exception as e:  # never block the forecast on a calibration source
+            print("house calibration skipped:", e)
 
     def load_fundraising(self, source, only_competitive: bool = True):
         """Fetch FEC totals for Senate races and House races within ~20 points."""
@@ -158,6 +170,9 @@ class Forecast:
                     dside_inc = 1 if c.name == pr.d_name else -1 if c.name == pr.r_name else 0
                     if dside_inc and r.office in ("senate", "governor") and c.party in ("D", "R"):
                         inc_eff = incumbent_effect(r.state, c.name, c.party)
+                    elif dside_inc and r.office == "house" and self.house_cal:
+                        from .house_history import incumbent_effect as house_effect
+                        inc_eff = house_effect(r, self.house_cal)
             money = self.fundraising.get(r.id)
             money_adj = fundraising_adjustment((money or {}).get("d", {}) and money["d"].get("receipts") if money and money.get("d") else None,
                                                money["r"].get("receipts") if money and money.get("r") else None)

@@ -48,9 +48,16 @@ def test_identical_polls_average_to_their_value():
 
 
 def test_newer_polls_count_more():
-    pts = [pt(10.0, "2026-06-01", pollster="Old"), pt(0.0, "2026-09-27", pollster="New")]
+    pts = [pt(10.0, "2026-06-01", pollster="Old")] + [pt(0.0, "2026-09-2%d" % i, pollster=f"New{i}") for i in (5, 6, 7)]
     a = weighted_average(pts, date(2026, 9, 28), window_days=200)
-    assert a.margin < 1.0
+    assert a.margin < 0.2
+
+
+def test_one_new_poll_does_not_erase_older_ones_in_sparse_races():
+    # Vermont-style: two older polls say R+11 and R+15, one new poll says D+6.
+    pts = [pt(-15.0, "2026-06-23", pollster="A"), pt(-11.0, "2026-07-20", pollster="B"), pt(6.0, "2026-09-21", pollster="C")]
+    a = weighted_average(pts, date(2026, 9, 28))
+    assert a.margin < 0  # with a fixed 14-day half-life this would be about D+5
 
 
 def test_prolific_pollster_is_downweighted():

@@ -15,11 +15,11 @@ APPROVAL_SLOPE = 0.4
 PRIOR_SD = 4.0
 GENERIC_SYSTEMATIC_SD = 2.5    # generic-ballot polling miss, historically ~2–3 pts
 
-INCUMBENCY = {"senate": 3.0, "governor": 4.0, "house": 2.5}
+INCUMBENCY = {"senate": 3.0, "governor": 4.0, "house": 2.5}   # House value is refit from 2024 results each run
 ELASTICITY = {"senate": 1.0, "governor": 0.75, "house": 1.0}
 # Fundamentals-only error. Senate/governor values come from the 2018–2022
-# backtest grid search (base 7.0 / 8.5 scaled by 1.6); House isn't backtestable
-# yet (no historical district leans on current lines), so it keeps 7.0.
+# backtest grid search (base 7.0 / 8.5 scaled by 1.6); House is refit each run
+# from 2024 district results (see house_history.py); 7.0 is the fallback.
 FUND_SD = {"senate": 11.2, "governor": 13.6, "house": 7.0}
 # Systematic polling error folded into each race's poll estimate (backtest: 3.0).
 SYSTEMATIC_SD = 3.0

@@ -1,7 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useMemo } from "react";
-import type { CompactRow, Mover } from "@/lib/data";
+import type { CompactRow, Mover, Upcoming } from "@/lib/data";
+import UpcomingList from "./Upcoming";
+import YourRaces from "./YourRaces";
+import { ZipBox } from "./ZipFinder";
 import Sparkline, { Delta } from "./Sparkline";
 import TimeChart from "./TimeChart";
 import { fmtDate, fmtUpdated, in100, partyMarginLabel, surname } from "@/lib/format";
@@ -22,7 +25,7 @@ import { BUCKET_LABEL, bucketVar, onBucket } from "@/lib/format";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 
 type History = { backcast_until: string | null; points: { date: string; senate: Record<string, number>; house: Record<string, number> }[] } | null;
-type Props = { forecast: Forecast; rows: CompactRow[]; history: History; sparks: Record<string, number[]>; movers: Mover[] };
+type Props = { forecast: Forecast; rows: CompactRow[]; history: History; sparks: Record<string, number[]>; movers: Mover[]; upcoming: Upcoming[] };
 
 export default function Dashboard(props: Props) {
   return (
@@ -36,7 +39,7 @@ export function mapItems(rows: CompactRow[], v: Version): MapItem[] {
   return rows.map((r) => ({ state: r.state, id: r.id, bucket: r.rating[v], title: r.title, tipLines: tipLinesFor(r.dside.name, r.dside.party, r.rside.name, r.rside.party, r.p[v]) }));
 }
 
-function Inner({ forecast: f, rows, history, sparks, movers }: Props) {
+function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) {
   const { v } = useVersion();
   const ch = f.chambers[v];
   const senate = useMemo(() => rows.filter((r) => r.office === "senate"), [rows]);
@@ -70,6 +73,11 @@ function Inner({ forecast: f, rows, history, sparks, movers }: Props) {
         </div>
       </section>
 
+      <div className="home-tools">
+        <div><h3 style={{ marginBottom: 8 }}>What’s on your ballot?</h3><ZipBox /></div>
+        <div style={{ flex: "1 1 320px", maxWidth: 520 }}><h3 style={{ marginBottom: 8 }}>Coming up</h3><UpcomingList items={upcoming} limit={3} /></div>
+      </div>
+      <YourRaces rows={rows} v={v} />
       <SectionNav items={[["watch", "Races to watch"], ["senate", "Senate"], ["house", "House"], ["governors", "Governors"], ["trends", "Trends"], ["markets", "Markets"], ["changes", "What changed"], ["environment", "National mood"]]} />
       <Reveal>
         <section className="block" aria-labelledby="watch-h" id="watch">

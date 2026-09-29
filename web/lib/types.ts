@@ -57,6 +57,9 @@ export interface Forecast {
   changes: { id: string; title: string; office: string; from: number; to: number; reason: string }[];
   counts: Record<string, number>;
   sources: { name: string; url: string; use: string }[];
+  house_calibration?: { n: number; intercept: number; elasticity: number; incumbency: number; resid_sd: number; resid_mad_sd: number } | null;
+  source_status?: { source: string; state: string; fresh: number; cached: number; stale: number; oldest_stale_h: number | null }[];
+  swings?: { id: string; from: number; to: number; since: string; new_polls: string[] }[];
 }
 
 export interface TrendPoint { date: string; margin: number; se: number }
@@ -71,6 +74,7 @@ export interface RaceDetail extends RaceRow {
     bio?: { title: string; description?: string | null; bio?: string; url?: string | null; website?: string | null } }[];
   dist?: number[];
   odds_trend?: { date: string; p: number }[];
+  swing?: { from: number; to: number; since: string; new_polls: string[]; n_polls: number };
   money?: { d: MoneySide | null; r: MoneySide | null } | null;
   notes: string[];
   poll_close_et: string | null;

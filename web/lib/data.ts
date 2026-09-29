@@ -3,7 +3,12 @@ import path from "node:path";
 import type { Forecast, RaceDetail, RaceRow } from "./types";
 
 const DIR = path.join(process.cwd(), "public", "data");
-const read = <T,>(f: string): T => JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8")) as T;
+const memo = new Map<string, unknown>();
+// Build-time reads are cached: 500+ race pages all read the same summary files.
+const read = <T,>(f: string): T => {
+  if (!memo.has(f)) memo.set(f, JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8")));
+  return memo.get(f) as T;
+};
 const readOpt = <T,>(f: string): T | null => (fs.existsSync(path.join(DIR, f)) ? read<T>(f) : null);
 
 export const getForecast = () => read<Forecast>("forecast.json");
@@ -52,7 +57,7 @@ export function movers(days = 7, n = 8) {
 }
 export type Mover = ReturnType<typeof movers>[number];
 
-export const getSchedule = () => readOpt<{ source: string; states: { state: string; state_name: string; close: string | null; first: number | null; last: number | null; times: string[]; races: string[] }[]; key_dates: { date: string; label: string; note: string }[] }>("schedule.json");
+export const getSchedule = () => readOpt<{ source: string; fallback_source?: string; fallback_url?: string; states: { state: string; state_name: string; close: string | null; close_source?: string | null; first: number | null; last: number | null; times: string[]; races: string[] }[]; key_dates: { date: string; label: string; note: string }[] }>("schedule.json");
 export const getGeneric = () => read<{ average: number; se: number; n_polls: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; raw: number; adjusted: number; url: string | null }[] }>("generic.json");
 export const getApproval = () => read<{ net: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; approve: number; disapprove: number; url: string | null }[] }>("approval.json");
 export const getPollsters = () => read<{ ratings: any[]; active: any[] }>("pollsters.json");
@@ -67,3 +72,6 @@ export function compactRows(rows: RaceRow[]) {
   }));
 }
 export type CompactRow = ReturnType<typeof compactRows>[number];
+
+export type Upcoming = { date: string; label: string; detail: string; href?: string; source: string };
+export const getUpcoming = () => readOpt<Upcoming[]>("upcoming.json") ?? [];
