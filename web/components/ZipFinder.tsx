@@ -65,8 +65,9 @@ export default function ZipFinder({ races }: { races: Lite[] }) {
           <div key={st} style={{ marginBottom: 32 }}>
             <h2 className="display">{inState[0]?.state_name ?? st}</h2>
             {statewide.length ? <div className="bio-grid" style={{ marginTop: 12 }}>{statewide.map((r) => card(r))}</div> : <p className="small muted">No Senate or governor race here this year.</p>}
-            <h3 style={{ marginTop: 20 }}>{redrawn ? "House races in the state" : house.length > 1 ? "Your House district (your ZIP spans more than one)" : "Your House district"}</h3>
+            <h3 style={{ marginTop: 20 }}>{redrawn ? "House races in the state" : dists.length > 1 ? "Your House district (your ZIP spans more than one)" : "Your House district"}</h3>
             {redrawn && <p className="small">{REDRAWN_NOTE}</p>}
+            {!house.length && <p className="small muted">No House race found for this ZIP code’s district.</p>}
             <div className="bio-grid" style={{ marginTop: 12 }}>
               {house.map((r) => card(r, !redrawn && dists.length > 1 ? `About ${Math.round((dists.find((h) => h[1] === r.district)?.[2] ?? 0) * 100)}% of the ZIP’s land area` : undefined))}
             </div>

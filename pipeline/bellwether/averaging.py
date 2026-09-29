@@ -174,8 +174,8 @@ class Average:
     points: list[PollPoint] = field(default_factory=list)
 
 
-def recency_weight(age_days: float, half_life: float = None) -> float:
-    return 0.5 ** (max(age_days, 0) / (half_life or HALF_LIFE_DAYS))
+def recency_weight(age_days: float, half_life: float | None = None) -> float:
+    return 0.5 ** (max(age_days, 0) / (HALF_LIFE_DAYS if half_life is None else half_life))
 
 
 def sample_weight(n: int | None) -> float:
@@ -193,12 +193,12 @@ def weighted_average(points: list[PollPoint], asof: date, window_days: int = 120
     # Adaptive half-life: in a thinly polled race one new poll shouldn't erase
     # the others, so the half-life stretches to cover the three most recent
     # polls (between 14 and 60 days). Well-polled races keep 14 days.
-    ages = sorted((asof - d(p.poll.end_date)).days for p in pts)
+    mids = {id(p): d(p.poll.start_date) + (d(p.poll.end_date) - d(p.poll.start_date)) / 2 for p in pts}
+    ages = sorted((asof - mids[id(p)]).days for p in pts)
     hl = min(MAX_HALF_LIFE_DAYS, max(HALF_LIFE_DAYS, ages[min(2, len(ages) - 1)]))
     ws = []
     for p in pts:
-        mid = d(p.poll.start_date) + (d(p.poll.end_date) - d(p.poll.start_date)) / 2
-        w = recency_weight((asof - mid).days, hl) * sample_weight(p.poll.sample_size) * p.quality
+        w = recency_weight((asof - mids[id(p)]).days, hl) * sample_weight(p.poll.sample_size) * p.quality
         if p.poll.partisan or p.poll.internal:
             w *= PARTISAN_SPONSOR_PENALTY
         w /= math.sqrt(per_pollster[p.poll.pollster])

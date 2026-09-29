@@ -36,7 +36,6 @@ def build(out_dir: Path):
             cd = int(geo[2:]) if geo[2:].isdigit() else None
             if cd in (98, 99):   # non-voting / undefined
                 continue
-            cd = 0 if cd == 0 else cd
             key = (st, None if st in REDRAWN_SINCE_2024 else cd)
             parts[z][key] += float(r["AREALAND_PART"] or 0)
     shards: dict[str, dict] = defaultdict(dict)
