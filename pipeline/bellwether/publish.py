@@ -77,6 +77,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     out = Path(out_dir) if out_dir else OUT
     now = datetime.now(timezone.utc)
     rows, env, res = fc.run()
+    main_draws = fc.last  # history runs below overwrite fc.last; keep today's draws
     prev = None
     if (out / "forecast.json").exists():
         try:
@@ -215,6 +216,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
         ],
     }
     _write(out / "forecast.json", summary)
+    fc.last = main_draws
     export_whatif(fc, out)
     _write(out / "races.json", races_rows)
     return summary
@@ -264,7 +266,7 @@ def export_whatif(fc: Forecast, out: Path):
     """Simulation draws for the what-if builder.
 
     whatif.bin holds WHATIF_SIMS rows x K races of int8 margins in half-point
-    units (margin * 2, clipped to +/-127, i.e. +/-63.5 points). Keeping the raw
+    units (floor(margin * 2), clipped to int8; decoded as (v + 0.5) / 2). Keeping the raw
     draws (not just odds) lets the browser condition on the reader's picks:
     if you hand Texas to Democrats, only simulations where that happened are
     kept, so correlated races (Iowa, Kansas...) move too.
@@ -291,9 +293,11 @@ def export_whatif(fc: Forecast, out: Path):
             entry["w"] = (pr.d_party if (med is None or med > 0) else pr.r_party)
         races.append(entry)
     sub = margins[:WHATIF_SIMS, cols] if cols else np.zeros((WHATIF_SIMS, 0))
-    q = np.clip(np.round(sub * 2), -127, 127).astype(np.int8)
+    # floor (not round) so the sign survives: m > 0  <=>  floor(2m) >= 0.
+    # The browser decodes a stored value v as (v + 0.5) / 2.
+    q = np.clip(np.floor(sub * 2), -128, 127).astype(np.int8)
     (out / "whatif.bin").write_bytes(q.tobytes(order="C"))
     from .forecast import HOUSE_MAJORITY, SENATE_MAJORITY, SENATE_NOT_UP
-    _write(out / "whatif.json", {"n": int(q.shape[0]), "k": int(q.shape[1]), "scale": 0.5, "races": races,
+    _write(out / "whatif.json", {"n": int(q.shape[0]), "k": int(q.shape[1]), "scale": 0.5, "offset": 0.5, "races": races,
                                  "senate_not_up": SENATE_NOT_UP, "senate_majority": SENATE_MAJORITY,
                                  "house_majority": HOUSE_MAJORITY, "vp": "R", "asof": fc.today.isoformat()})

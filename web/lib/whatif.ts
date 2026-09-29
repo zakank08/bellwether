@@ -6,7 +6,7 @@ export type WRace = {
   c?: number; el?: number; w?: string;
 };
 export type WMeta = {
-  n: number; k: number; scale: number; races: WRace[];
+  n: number; k: number; scale: number; offset?: number; races: WRace[];
   senate_not_up: { D: number; R: number; I_caucus_D: number };
   senate_majority: number; house_majority: number; vp: "R" | "D"; asof: string;
 };
@@ -22,6 +22,7 @@ export type Result = {
 
 export function compute(meta: WMeta, sims: Int8Array, picks: Picks, shift: number): Result {
   const { n, k, scale } = meta;
+  const off = meta.offset ?? 0;
   const pickCols: [number, number][] = []; // [col, sign] sign=+1 means D-side must win
   const forcedFixed: Record<string, Pick> = {};
   for (const r of meta.races) {
@@ -36,7 +37,7 @@ export function compute(meta: WMeta, sims: Int8Array, picks: Picks, shift: numbe
     let ok = 1;
     const base = i * k;
     for (const [c, sg] of pickCols) {
-      const m = sims[base + c] * scale + shift;
+      const m = (sims[base + c] + off) * scale + shift;
       if ((m > 0 ? 1 : -1) !== sg) { ok = 0; break; }
     }
     valid[i] = ok;
@@ -68,7 +69,7 @@ export function compute(meta: WMeta, sims: Int8Array, picks: Picks, shift: numbe
       let dWin: boolean;
       const pk = picks[r.id];
       if (mode === "forced" && pk) dWin = pk === "dside";
-      else dWin = sims[base + c] * scale + shift * (r.el ?? 1) > 0;
+      else dWin = (sims[base + c] + off) * scale + shift * (r.el ?? 1) > 0;
       if (dWin) winsD[c]++;
       const party = dWin ? r.dp : r.rp;
       if (party === "D") cnt[r.o].D[i]++;

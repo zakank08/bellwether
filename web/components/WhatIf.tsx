@@ -108,7 +108,7 @@ export default function WhatIf() {
             {ch.C >= 0.005 && <span className="small muted"><span className="num">{in100(ch.C)}</span> no majority</span>}
           </div>
           <div className="small muted" style={{ marginTop: 2 }}>
-            Chances out of 100.{" "}
+            Chances out of 100, from 4,000 of the forecast’s simulations (so they can differ from the main page by a point or two).{" "}
             {delta !== 0 ? <span style={{ color: delta > 0 ? "var(--dem)" : "var(--rep)" }}>Democrats {delta > 0 ? "+" : "−"}{Math.abs(delta)} vs. the forecast</span> : "Same as the forecast"}
             {res.mode === "forced" && <> · <span style={{ color: "var(--signal)" }}>Rare combination: other races aren’t adjusted for your picks.</span></>}
           </div>
