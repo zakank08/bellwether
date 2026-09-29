@@ -4,8 +4,9 @@ import { useMemo } from "react";
 import type { CompactRow } from "@/lib/data";
 import { fmtUpdated, in100, partyMarginLabel } from "@/lib/format";
 import type { Forecast, Version } from "@/lib/types";
-import Headline from "./Headline";
-import HouseWaffle from "./HouseWaffle";
+import Hero from "./Hero";
+import HouseHexMap from "./HouseHexMap";
+import SectionNav from "./SectionNav";
 import LineChart from "./LineChart";
 import RaceList from "./RaceList";
 import SeatDots from "./SeatDots";
@@ -48,18 +49,18 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
 
   return (
     <div className="wrap">
-      <section className="block" style={{ paddingTop: 32 }}>
+      <header className="masthead">
         <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
           <div>
-            <div className="kicker">2026 midterm forecast</div>
-            <p className="small muted" style={{ margin: "4px 0 0" }}>Updated {fmtUpdated(f.updated)} · {f.days_to_election} days until Nov. 3 · {f.n_sims.toLocaleString()} simulations</p>
+            <div className="kicker">2026 midterm forecast · {f.days_to_election} days to go</div>
+            <h1>Who will control Congress?</h1>
+            <p className="dek">Our model simulates the Nov. 3 election {f.n_sims.toLocaleString()} times using polls, each race’s partisan lean and the national mood. Updated {fmtUpdated(f.updated)}.</p>
           </div>
-          <VersionToggle />
+          <div style={{ paddingTop: 6 }}><VersionToggle /></div>
         </div>
-        <div className="grid-2" style={{ marginTop: 24 }}>
-          <Headline chamber="Senate" p={ch.senate.p_control} href="/senate/" />
-          <Headline chamber="House" p={ch.house.p_control} href="/house/" />
-        </div>
+      </header>
+      <Hero f={f} v={v} rows={rows.filter((r) => r.office !== "governor")} />
+      <section className="block" style={{ paddingTop: 16, borderTop: 0 }}>
         <div className="intro" aria-label="How to read this forecast">
           <div><div className="step">1</div><h3>Odds, not predictions <InfoTip term="odds" /></h3><p>We simulate the election {f.n_sims.toLocaleString()} times. “{in100(Math.max(ch.senate.p_control.D, ch.senate.p_control.R))} in 100” means that side won {in100(Math.max(ch.senate.p_control.D, ch.senate.p_control.R))} of every 100 runs — the other side still wins sometimes.</p></div>
           <div><div className="step">2</div><h3>Polls plus context <InfoTip term="fundamentals" /></h3><p>Each race blends its polling average with the state’s partisan lean and the national mood. The closer to Election Day, the more polls count.</p></div>
@@ -67,9 +68,10 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         </div>
       </section>
 
+      <SectionNav items={[["watch", "Races to watch"], ["senate", "Senate"], ["house", "House"], ["governors", "Governors"], ["trends", "Trends"], ["markets", "Markets"], ["changes", "What changed"], ["environment", "National mood"]]} />
       <Reveal>
-        <section className="block" aria-labelledby="watch-h">
-          <h2 id="watch-h" className="display">Races to watch</h2>
+        <section className="block" aria-labelledby="watch-h" id="watch">
+          <h2 id="watch-h" className="display big">Races to watch</h2>
           <p className="takeaway">The closest Senate and governor contests right now.</p>
           <div className="race-card-grid">
             {close([...senate, ...gov], 8).map((r) => {
@@ -101,8 +103,8 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         </section>
       </Reveal>
 
-      <section className="block" aria-labelledby="senate-h">
-        <h2 id="senate-h" className="display">Senate</h2>
+      <section className="block" aria-labelledby="senate-h" id="senate">
+        <h2 id="senate-h" className="display big">Senate</h2>
         <p className="takeaway">
           In a typical simulation Democrats and allied independents hold <strong className="num">{Math.round(sMed)}</strong> seats; in 80 of 100 they land between <span className="num">{ch.senate.p80[0]}</span> and <span className="num">{ch.senate.p80[1]}</span>. They need 51, since Vice President Vance breaks 50–50 ties for Republicans.
         </p>
@@ -138,15 +140,16 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         </div>
       </section>
 
-      <Reveal><section className="block" aria-labelledby="house-h">
-        <h2 id="house-h" className="display">House</h2>
+      <Reveal><section className="block" aria-labelledby="house-h" id="house">
+        <h2 id="house-h" className="display big">House</h2>
         <p className="takeaway">
           Democrats win a median of <strong className="num">{Math.round(hMed)}</strong> seats (218 is a majority); in 80 of 100 simulations they win <span className="num">{ch.house.p80[0]}</span>–<span className="num">{ch.house.p80[1]}</span>. District lines reflect the 2026 maps, including the ten states that redrew mid-decade.
         </p>
-        <div className="grid-2">
-          <div><HouseWaffle rows={house} v={v} /></div>
+        <HouseHexMap rows={house} v={v} />
+        <div style={{ marginTop: 8 }}><Legend showInd /></div>
+        <div className="grid-2" style={{ marginTop: 32 }}>
           <div>
-            <h3>100 simulated Houses</h3>
+            <h3>100 simulated Houses <InfoTip term="simulation" /></h3>
             <p className="takeaway small">Seats won by Democrats in each simulation. Blue dots reach 218.</p>
             <SeatDots key={v + "h"} hist={ch.house.seats_hist} majority={218} label="Distribution of Democratic House seats across simulations" partyAt={(s) => (s >= 218 ? "D" : "R")} />
             <h3 style={{ marginTop: 24 }}>Closest House races</h3>
@@ -157,16 +160,16 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         </div>
       </section></Reveal>
 
-      <Reveal><section className="block" aria-labelledby="gov-h">
-        <h2 id="gov-h" className="display">Governors</h2>
+      <Reveal><section className="block" aria-labelledby="gov-h" id="governors">
+        <h2 id="gov-h" className="display big">Governors</h2>
         <p className="takeaway">36 states elect governors. Democrats win an average of <strong className="num">{ch.governor.mean_won.D.toFixed(1)}</strong> of them and Republicans <strong className="num">{ch.governor.mean_won.R.toFixed(1)}</strong>.</p>
         <StateMap items={mapItems(gov, v)} title="Governor forecast map" notUpLabel="No governor’s race in 2026" />
         <div style={{ marginTop: 16 }}><RaceList rows={close(gov, 6)} v={v} caption="Closest governor races" /></div>
       </section></Reveal>
 
       {history && history.points.length > 1 && (
-        <section className="block" aria-labelledby="time-h">
-          <h2 id="time-h" className="display">How the odds have moved</h2>
+        <section className="block" aria-labelledby="time-h" id="trends">
+          <h2 id="time-h" className="display big">How the odds have moved</h2>
           <p className="takeaway">Chance of Democratic control, recalculated with only the polls available on each date (polls + fundamentals version).</p>
           <div className="grid-2">
             {(["senate", "house"] as const).map((c) => (
@@ -184,8 +187,8 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         </section>
       )}
 
-      <section className="block" aria-labelledby="mkt-h">
-        <h2 id="mkt-h" className="display">Model vs. markets</h2>
+      <section className="block" aria-labelledby="mkt-h" id="markets">
+        <h2 id="mkt-h" className="display big">Model vs. markets</h2>
         <p className="takeaway">Prediction markets are bets, not polls, and they are not an input to this forecast. They’re shown so you can see where traders disagree with the model.</p>
         <div className="table-wrap">
           <table className="data">
@@ -207,8 +210,8 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         <p className="small muted">Market prices normalized so both parties sum to 100. Fetched with the forecast.</p>
       </section>
 
-      <section className="block" aria-labelledby="chg-h">
-        <h2 id="chg-h" className="display">What changed</h2>
+      <section className="block" aria-labelledby="chg-h" id="changes">
+        <h2 id="chg-h" className="display big">What changed</h2>
         {f.changes.length ? (
           <ul style={{ paddingLeft: 18 }}>
             {f.changes.map((c) => (
@@ -220,8 +223,8 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
         ) : <p className="muted">No race moved by 3 or more points since the last update. The log fills in as daily runs accumulate.</p>}
       </section>
 
-      <section className="block" aria-labelledby="env-h">
-        <h2 id="env-h" className="display">The national environment</h2>
+      <section className="block" aria-labelledby="env-h" id="environment">
+        <h2 id="env-h" className="display big">The national environment</h2>
         <p className="takeaway">
           The generic-ballot average is <strong className="num">{partyMarginLabel(f.national.generic_avg)}</strong> and the president’s net approval is <strong className="num">{f.national.approval_net.toFixed(1)}</strong>. Blending the two, the model expects a national environment of <strong className="num">{partyMarginLabel(f.national.environment)}</strong>, give or take about <span className="num">{f.national.environment_sd.toFixed(1)}</span> points.{" "}
           <Link href="/polls/">See the trackers →</Link>

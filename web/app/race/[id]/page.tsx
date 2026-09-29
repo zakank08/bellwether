@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PollChart from "@/components/RaceCharts";
+import { Gauge, OutcomeDist } from "@/components/RaceVisuals";
 import InfoTip from "@/components/InfoTip";
 import { getForecast, getRace, getRaces } from "@/lib/data";
 import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel } from "@/lib/format";
@@ -40,41 +41,57 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         <h1 className="display" style={{ margin: "4px 0 12px" }}>{r.title}</h1>
         <span className="chip" style={{ background: bucketVar(b), color: onBucket(b) }}>{BUCKET_LABEL[b]}</span>
         {r.kind === "two_party" ? (
-          <div className="grid-2" style={{ marginTop: 20 }}>
-            <div>
-              <div className="display" style={{ fontSize: 56, lineHeight: "56px", color: partyInk(p >= 0.5 ? r.dside.party : r.rside.party) }}>
-                <span className="num">{in100(p >= 0.5 ? p : 1 - p)}</span><span style={{ fontSize: 24, color: "var(--ink-muted)" }}> in 100</span>
+          <>
+            <div className="faceoff">
+              <Cand side={r.dside} odds={p} race={r} />
+              <div className="gauge-wrap">
+                <Gauge p={p} dColor={sideColor(r.dside.party)} rColor={sideColor(r.rside.party)} label={`${r.dside.name} ${in100(p)} in 100, ${r.rside.name} ${in100(1 - p)} in 100`} />
+                <span className="small muted">chance of winning, out of 100</span>
               </div>
-              <p className="display" style={{ fontSize: 22, lineHeight: "28px", fontWeight: 500, margin: "8px 0" }}><span className="sr-only">Odds: </span>
-                {p >= 0.5 ? r.dside.name : r.rside.name} wins in <span className="num">{in100(p >= 0.5 ? p : 1 - p)}</span> of 100 simulations; {p >= 0.5 ? r.rside.name : r.dside.name} wins in <span className="num">{in100(p >= 0.5 ? 1 - p : p)}</span>.
-              </p>
-              <div className="bar" aria-hidden="true" style={{ maxWidth: 420 }}>
-                <div style={{ width: `${p * 100}%`, background: r.dside.party === "D" ? "var(--d-safe)" : "var(--ind-fill)" }} />
-                <div style={{ width: `${(1 - p) * 100}%`, background: r.rside.party === "R" ? "var(--r-safe)" : "var(--ind-fill)" }} />
+              <Cand side={r.rside} odds={1 - p} race={r} right />
+            </div>
+            <p className="display" style={{ fontSize: 22, lineHeight: "30px", fontWeight: 500, margin: "20px 0 8px", maxWidth: "42ch" }}>
+              {p >= 0.5 ? r.dside.name : r.rside.name} wins in <span className="num">{in100(p >= 0.5 ? p : 1 - p)}</span> of 100 simulations.
+            </p>
+            <p style={{ margin: 0, maxWidth: "70ch" }}>{r.summary}</p>
+            {r.p_runoff != null && r.rules.runoff && <p className="small">Chance no one clears 50% and the race goes to a December runoff: <strong className="num">{in100(r.p_runoff)} in 100</strong> (rough estimate from the projected margin).</p>}
+            {r.dist && (
+              <div style={{ marginTop: 28 }}>
+                <h3>Where the result could land <InfoTip term="odds" /></h3>
+                <p className="takeaway small">Every simulated outcome, grouped in 2-point steps. Projected margin {ml(r.interval.median)}; 80 in 100 fall between {ml(r.interval.p10)} and {ml(r.interval.p90)}.</p>
+                <OutcomeDist dist={r.dist} dName={lastName(r.dside.name)} rName={lastName(r.rside.name)} dColor={sideColor(r.dside.party)} rColor={sideColor(r.rside.party)} median={r.interval.median} />
               </div>
-              {r.p_runoff != null && r.rules.runoff && <p className="small">Chance no one clears 50% and the race goes to a December runoff: <strong className="num">{in100(r.p_runoff)} in 100</strong> (rough estimate from the projected margin).</p>}
-            </div>
-            <div>
-              <p style={{ marginTop: 0 }}>{r.summary}</p>
-              <p className="small muted">Projected margin {ml(r.interval.median)}; in 80 of 100 simulations the result falls between {ml(r.interval.p10)} and {ml(r.interval.p90)}.</p>
-            </div>
-          </div>
+            )}
+          </>
         ) : (
           <p style={{ marginTop: 16 }}>{r.summary}</p>
         )}
       </section>
 
       <section className="block">
-        <h2 className="display">Candidates</h2>
-        <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 8, gridTemplateColumns: "repeat(auto-fill,minmax(220px,1fr))" }}>
-          {r.candidates.map((c) => (
-            <li key={c.name} className="card" style={{ padding: 12 }}>
-              <strong style={{ color: partyInk(c.party) }}>{c.name}</strong>{c.incumbent ? <span className="chip" style={{ marginLeft: 6, background: "var(--uncalled)" }}>Incumbent</span> : null}
-              <div className="small muted">{c.party_label}</div>
-            </li>
-          ))}
-        </ul>
-        <p className="small muted">Ballot list from Wikipedia’s 2026 {r.office === "governor" ? "gubernatorial" : r.office} elections page. Candidate bios, campaign links, fundraising and endorsements are coming in a later phase.</p>
+        <h2 className="display">The candidates</h2>
+        <div className="bio-grid" style={{ marginTop: 12 }}>
+          {[...r.candidates].sort((a, b) => Number(b.name === r.dside.name || b.name === r.rside.name) - Number(a.name === r.dside.name || a.name === r.rside.name)).map((c) => {
+            const main = c.name === r.dside.name || c.name === r.rside.name;
+            const money = c.name === r.dside.name ? r.money?.d : c.name === r.rside.name ? r.money?.r : null;
+            return (
+              <article key={c.name} className="bio-card" style={main ? undefined : { opacity: 0.85 }}>
+                <div className="top">
+                  <div className="avatar" style={{ background: sideColor(c.party), width: 44, height: 44, fontSize: 16 }} aria-hidden="true">{initials(c.name)}</div>
+                  <div>
+                    <strong style={{ fontSize: 17 }}>{c.name}</strong>{c.incumbent && <span className="chip" style={{ marginLeft: 6, background: "var(--uncalled)" }}>Incumbent</span>}
+                    <div className="small muted">{c.party_label}{c.bio?.description ? ` · ${c.bio.description}` : ""}</div>
+                  </div>
+                </div>
+                {c.bio?.bio && <p className="small" style={{ margin: 0 }}>{c.bio.bio} {c.bio.url && <a href={c.bio.url} target="_blank" rel="noopener noreferrer" className="muted">Wikipedia</a>}</p>}
+                {money && <MoneyRows money={money} color={sideColor(c.party)} max={Math.max(r.money?.d?.receipts ?? 0, r.money?.r?.receipts ?? 0)} />}
+                {(c.bio?.website) && <a href={c.bio.website} target="_blank" rel="noopener noreferrer" className="small">Official website ↗</a>}
+                {!c.bio && main && <span className="small muted">No biography on file yet.</span>}
+              </article>
+            );
+          })}
+        </div>
+        <p className="small muted">Ballot list and short bios from Wikipedia (CC BY-SA); websites from Wikidata{r.money ? "; fundraising from the FEC (cycle-to-date, latest report)" : ""}.</p>
       </section>
 
       {(r.office === "senate" || r.office === "house") && (
@@ -158,6 +175,32 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
           {r.notes.map((n, i) => <li key={i}>{n}</li>)}
         </ul>
       </section>
+    </div>
+  );
+}
+
+const sideColor = (p: string | null) => (p === "D" ? "var(--d-safe)" : p === "R" ? "var(--r-safe)" : "var(--ind-fill)");
+const initials = (n: string | null) => (n ?? "?").split(" ").filter((w) => /^[A-Z]/.test(w) && !/^(Jr|Sr|II|III)\.?$/.test(w)).map((w) => w[0]).slice(0, 2).join("") || "?";
+const money$ = (n: number | null | undefined) => (n == null ? "—" : n >= 1e6 ? `$${(n / 1e6).toFixed(1)}M` : `$${Math.round(n / 1e3)}K`);
+
+function Cand({ side, odds, race, right }: { side: { name: string | null; party: string | null }; odds: number; race: RaceDetail; right?: boolean }) {
+  const c = race.candidates.find((x) => x.name === side.name);
+  return (
+    <div className={`cand${right ? " right" : ""}`}>
+      <div className="avatar" style={{ background: sideColor(side.party) }} aria-hidden="true">{initials(side.name)}</div>
+      <div className="name">{side.name}</div>
+      <div className="small muted">{c?.party_label ?? side.party}{c?.incumbent ? " · incumbent" : ""}</div>
+      <div className="odds num" style={{ color: side.party === "D" ? "var(--dem)" : side.party === "R" ? "var(--rep)" : "var(--ind)" }}>{in100(odds)}<span className="small muted" style={{ fontFamily: "var(--font-sans)", fontSize: 14 }}> in 100</span></div>
+    </div>
+  );
+}
+
+function MoneyRows({ money, color, max }: { money: { receipts: number | null; cash_on_hand: number | null; through: string }; color: string; max: number }) {
+  return (
+    <div>
+      <div className="money-row"><span className="muted">Raised</span><div className="money-bar" style={{ width: `${max ? ((money.receipts ?? 0) / max) * 100 : 0}%`, background: color }} /><strong className="num">{money$(money.receipts)}</strong></div>
+      <div className="money-row"><span className="muted">Cash on hand</span><div className="money-bar" style={{ width: `${max ? ((money.cash_on_hand ?? 0) / max) * 100 : 0}%`, background: color, opacity: 0.55 }} /><strong className="num">{money$(money.cash_on_hand)}</strong></div>
+      {money.through && <div className="small muted">Through {money.through}</div>}
     </div>
   );
 }

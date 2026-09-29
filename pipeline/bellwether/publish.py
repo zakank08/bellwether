@@ -78,6 +78,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     now = datetime.now(timezone.utc)
     rows, env, res = fc.run()
     main_draws = fc.last  # history runs below overwrite fc.last; keep today's draws
+    draw_idx = {r["race"].id: j for j, r in enumerate(main_draws["sim_rows"])}
     prev = None
     if (out / "forecast.json").exists():
         try:
@@ -115,10 +116,19 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
         race_ids.append(r.id)
         # detail file
         detail = dict(compact)
-        detail["candidates"] = [c.__dict__ for c in r.candidates]
+        bios = getattr(fc, "bios", {}) or {}
+        detail["candidates"] = [{**c.__dict__, **({"bio": bios[c.wiki]} if c.wiki in bios else {})} for c in r.candidates]
         detail["notes"] = r.notes
         detail["poll_close_et"] = r.poll_close_et
+        detail["money"] = row.get("money")
         detail["interval"] = {"p10": _r(base["p10"], 1), "p90": _r(base["p90"], 1), "median": _r(base["median"], 1)}
+        j = draw_idx.get(r.id)
+        if j is not None:
+            # Distribution of simulated margins, 2-point bins from -40 to +40 (tails clipped into the end bins).
+            import numpy as np
+            col = np.clip(main_draws["margins"][:, j], -39.99, 39.99)
+            h, _ = np.histogram(col, bins=40, range=(-40, 40))
+            detail["dist"] = [round(float(x), 4) for x in h / h.sum()]
         if row.get("est"):
             m, s, w = row["est"][DEFAULT_VERSION]
             detail["summary"] = driver_sentence(row, row["est"][DEFAULT_VERSION], env["days"])
@@ -128,6 +138,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
                 "national_env": _r(env["national"], 2), "pvi": r.pvi,
                 "incumbency": row["dside_inc"] * INCUMBENCY[r.office], "poll_weight": _r(w, 3),
                 "incumbent_history": row.get("inc_eff"),
+                "fundraising_adj": _r(row.get("money_adj"), 2),
                 "mean": _r(m, 2), "sd": _r(s, 2), "drift_sd": _r(poll_drift_sd(env["days"]), 2),
             }
             pts = row["avg"].points
@@ -219,6 +230,11 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     fc.last = main_draws
     export_whatif(fc, out)
     _write(out / "races.json", races_rows)
+    try:
+        from .og import make_og
+        make_og(summary, races_rows, out.parent / "og.png")
+    except Exception as e:  # never block a forecast on a picture
+        print("og image skipped:", e)
     return summary
 
 

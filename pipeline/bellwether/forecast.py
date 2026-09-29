@@ -11,7 +11,8 @@ import numpy as np
 from . import ELECTION_DATE
 from .candidate_history import incumbent_effect
 from .averaging import Average, PollingModel, PollPoint, principals, weighted_average, d as to_date
-from .fundamentals import (ELASTICITY, blend, expert_consensus, national_environment, race_fundamentals)
+from .fundamentals import (ELASTICITY, blend, expert_consensus, fundraising_adjustment, national_environment,
+                           race_fundamentals)
 from .pollster_ratings import Matcher, compute as compute_ratings
 from .schema import Poll, Race
 from .simulate import simulate
@@ -92,6 +93,23 @@ class Forecast:
         self.ratings = compute_ratings()
         self.matcher = Matcher(self.ratings)
         self.zs = _zscores(inputs.demographics)
+        self.fundraising: dict[str, dict] = {}
+
+    def load_fundraising(self, source, only_competitive: bool = True):
+        """Fetch FEC totals for Senate races and House races within ~20 points."""
+        if not getattr(source, "enabled", False):
+            return
+        rows, _ = self.race_inputs()
+        for row in rows:
+            r, pr = row["race"], row["pr"]
+            if row["kind"] != "two_party" or r.office not in ("senate", "house"):
+                continue
+            m = row["est"]["fundamentals"][0]
+            if only_competitive and r.office == "house" and (m is None or abs(m) > 20):
+                continue
+            got = source.race(r.office, r.state, r.district, pr.d_name, pr.r_name)
+            if got:
+                self.fundraising[r.id] = got
 
     # ------------------------------------------------------------------
     def build_polling(self):
@@ -140,8 +158,11 @@ class Forecast:
                     dside_inc = 1 if c.name == pr.d_name else -1 if c.name == pr.r_name else 0
                     if dside_inc and r.office in ("senate", "governor") and c.party in ("D", "R"):
                         inc_eff = incumbent_effect(r.state, c.name, c.party)
+            money = self.fundraising.get(r.id)
+            money_adj = fundraising_adjustment((money or {}).get("d", {}) and money["d"].get("receipts") if money and money.get("d") else None,
+                                               money["r"].get("receipts") if money and money.get("r") else None)
             fund, fsd = race_fundamentals(r.office, r.pvi, nat, dside_inc,
-                                          fundraising_adj=inc_eff["carry"] if inc_eff else 0.0)
+                                          fundraising_adj=(inc_eff["carry"] if inc_eff else 0.0) + money_adj)
             exp = expert_consensus(r.ratings)
             if exp is not None and pr.d_party not in ("D",) and pr.r_party == "R":
                 # ratings are D-vs-R; with an independent D-side, "Lean R" still means R-side ahead
@@ -154,7 +175,8 @@ class Forecast:
                 else:
                     m, s, w = blend(avg.margin, avg.se, days, fund, fsd, exp, use_experts=(v == "experts"))
                 ests[v] = (m, s, w)
-            row.update(avg=avg, fund=fund, fund_sd=fsd, expert=exp, est=ests, dside_inc=dside_inc, inc_eff=inc_eff)
+            row.update(avg=avg, fund=fund, fund_sd=fsd, expert=exp, est=ests, dside_inc=dside_inc, inc_eff=inc_eff,
+                       money=money, money_adj=money_adj)
             rows.append(row)
         return rows, {"national": nat, "national_sd": nat_sd_total, "generic": g, "approval": appr,
                       "generic_weight": nat_w, "days": days}

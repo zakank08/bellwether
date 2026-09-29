@@ -43,7 +43,7 @@ export default function Methodology() {
         <p>Before polls, a race’s expected margin is: twice the Cook PVI (PVI is a share-point lean; margin is about double) + the national environment + an incumbency bonus (Senate 3 points, governor 4, House 2.5) + the incumbent’s track record. Governors’ races follow national partisanship less closely, so their lean is scaled by 0.75.</p>
         <p><strong>Incumbent track record.</strong> Some incumbents consistently beat their state’s lean — Susan Collins won Maine by 8.6 points in 2020 while Biden carried it by 9. For a Senate or governor incumbent on the ballot, we take their last race in the historical file, compare the result with what the state’s lean and that year’s national environment predicted, and carry half the difference into this year (capped at 10 points either way). Added in model 0.2.0.</p>
         <p>The national environment blends the generic-ballot average with a structural midterm prior: the president’s party typically loses about 3 points of margin plus 0.4 points per point of net disapproval. Today the generic ballot gets {Math.round(f.national.generic_weight * 100)}% of that blend.</p>
-        <p><strong>Not yet included:</strong> FEC fundraising. The adapter is built and applies about a point per doubling of the money ratio (capped at ±3), but it needs an FEC API key to run at volume; until then it contributes nothing.</p>
+        <p><strong>Fundraising.</strong> For Senate races and House races within about 20 points, we pull each principal candidate’s cycle-to-date receipts and cash on hand from the FEC and add 0.75 points per doubling of the receipts ratio, capped at ±2.5, when both sides have raised at least $50,000. Money partly follows expected competitiveness, so its signal is mostly already in the polls; the effect is kept small on purpose.</p>
 
         <h2 className="display">4. Blending polls and fundamentals</h2>
         <p>Each estimate is weighted by how precise it is. A polling average’s uncertainty is its sampling error plus how much averages typically drift before Election Day (0.6 points × √days) plus a 3-point allowance for systematic polling error. Fundamentals carry an 11-point (Senate), 14-point (governor) or 7-point (House) typical error. As the election approaches, drift shrinks and polls automatically gain weight.</p>
@@ -79,7 +79,7 @@ export default function Methodology() {
         <p>We never invent polls, results or candidates. When a race has no polls, the page says so and the forecast rests on fundamentals.</p>
 
         <h2 className="display">8. What’s next</h2>
-        <p>Coming in later phases: district-level geographic maps for the 2026 lines, the what-if builder with shareable scenarios, fundraising, candidate bios and campaign links, live election-night results with a rehearsal mode, and 2028 and state-level coverage.</p>
+        <p>Coming in later phases: geographic district outlines for the 2026 lines (the Census hasn’t published them yet, so House maps use equal-size hexagons, one per district), live election-night results with a rehearsal mode, and 2028 and state-level coverage.</p>
       </section>
     </div>
   );

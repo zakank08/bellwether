@@ -27,6 +27,7 @@ class Candidate:
     party: str            # D, R, I, L, G, O
     party_label: str
     incumbent: bool = False
+    wiki: Optional[str] = None      # Wikipedia article title, when the candidate has one
 
 
 @dataclass

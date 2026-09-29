@@ -67,7 +67,10 @@ export interface PollRow {
   timeline_adj: number; weight: number;
 }
 export interface RaceDetail extends RaceRow {
-  candidates: { name: string; party: Party; party_label: string; incumbent: boolean }[];
+  candidates: { name: string; party: Party; party_label: string; incumbent: boolean; wiki?: string | null;
+    bio?: { title: string; description?: string | null; bio?: string; url?: string | null; website?: string | null } }[];
+  dist?: number[];
+  money?: { d: MoneySide | null; r: MoneySide | null } | null;
   notes: string[];
   poll_close_et: string | null;
   interval: { p10: number | null; p90: number | null; median: number | null };
@@ -81,3 +84,5 @@ export interface RaceDetail extends RaceRow {
   polls?: PollRow[];
   trend?: TrendPoint[];
 }
+
+export interface MoneySide { receipts: number | null; disbursements: number | null; cash_on_hand: number | null; through: string; fec_id?: string; fec_name?: string }

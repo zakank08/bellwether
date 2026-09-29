@@ -42,6 +42,31 @@ def tables(page: str) -> list[pd.DataFrame]:
     return pd.read_html(io.StringIO(page_html(page)))
 
 
+def link_map(page: str) -> dict[str, str]:
+    """Anchor text -> article title for every internal link on the page, so
+    candidates can be linked to their own Wikipedia articles."""
+    from urllib.parse import unquote
+    out: dict[str, str] = {}
+    for href, text in re.findall(r'<a href="/wiki/([^"#?]+)"[^>]*>([^<]{3,80})</a>', page_html(page)):
+        if ":" in href:
+            continue
+        t = clean(text)
+        if t and t not in out:
+            out[t] = unquote(href).replace("_", " ")
+    return out
+
+
+def attach_links(races, page: str):
+    lm = link_map(page)
+    for r in races:
+        for c in r.candidates:
+            t = lm.get(c.name)
+            # skip red links and links to the election page itself
+            if t and "election" not in t.lower():
+                c.wiki = t
+    return races
+
+
 def clean(s) -> str:
     if not isinstance(s, str):
         return ""
@@ -121,7 +146,8 @@ class WikipediaRaces(RaceSource):
     name = "wikipedia"
 
     def races(self) -> list[Race]:
-        return self.senate() + self.governors() + self.house()
+        return (attach_links(self.senate(), PAGES["senate"]) + attach_links(self.governors(), PAGES["governor"])
+                + attach_links(self.house(), PAGES["house"]))
 
     # ---- Senate -------------------------------------------------------------
     def senate(self) -> list[Race]:

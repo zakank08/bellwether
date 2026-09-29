@@ -25,7 +25,7 @@ export default function Search({ index }: { index: Item[] }) {
     <div className="search" role="search">
       <label className="sr-only" htmlFor="race-search">Find a race, candidate or state</label>
       <input
-        id="race-search" ref={ref} value={q} placeholder="Find a race or candidate" autoComplete="off"
+        id="race-search" ref={ref} value={q} placeholder="Search races" autoComplete="off"
         role="combobox" aria-expanded={hits.length > 0} aria-controls="race-search-list"
         onChange={(e) => { setQ(e.target.value); setSel(0); }}
         onKeyDown={(e) => {

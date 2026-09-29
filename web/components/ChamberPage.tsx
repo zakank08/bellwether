@@ -4,6 +4,7 @@ import type { CompactRow } from "@/lib/data";
 import type { Forecast } from "@/lib/types";
 import { mapItems } from "./Dashboard";
 import HouseWaffle from "./HouseWaffle";
+import HouseHexMap from "./HouseHexMap";
 import RaceList from "./RaceList";
 import { Legend } from "./MapBits";
 import StateMap from "./MapLazy";
@@ -24,6 +25,7 @@ function Inner({ office, rows }: { office: "senate" | "house" | "governor"; fore
   const { v } = useVersion();
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | "competitive">(office === "house" ? "competitive" : "all");
+  const [houseView, setHouseView] = useState<"map" | "grid">("map");
   const shown = useMemo(() => {
     const s = q.trim().toLowerCase();
     return rows
@@ -39,7 +41,15 @@ function Inner({ office, rows }: { office: "senate" | "house" | "governor"; fore
           <VersionToggle />
         </div>
         <p className="takeaway">{rows.length} races, closest first. Odds are the share of simulations each side wins.</p>
-        {office === "house" ? <HouseWaffle rows={rows} v={v} /> : <StateMap items={mapItems(rows, v)} title={`${TITLE[office]} map`} />}
+        {office === "house" ? (
+          <>
+            <div className="toggle" role="group" aria-label="House view" style={{ marginBottom: 12 }}>
+              <button aria-pressed={houseView === "map"} onClick={() => setHouseView("map")}>District map</button>
+              <button aria-pressed={houseView === "grid"} onClick={() => setHouseView("grid")}>Seat grid</button>
+            </div>
+            {houseView === "map" ? <HouseHexMap rows={rows} v={v} /> : <HouseWaffle rows={rows} v={v} />}
+          </>
+        ) : <StateMap items={mapItems(rows, v)} title={`${TITLE[office]} map`} />}
         <div style={{ marginTop: 12 }}><Legend showInd /></div>
       </section>
       <section className="block">

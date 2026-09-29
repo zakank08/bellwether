@@ -296,7 +296,7 @@ function Histogram({ hist, maj, reduce }: { hist: Map<number, number>; maj: numb
       {Array.from({ length: n }, (_, i) => {
         const s = lo + i, v = (m.get(s) ?? 0) / tot, h = (v / max) * H;
         return <motion.rect key={s} x={i * bw + 0.5} width={Math.max(bw - 1, 0.5)} rx={1} initial={false}
-          animate={{ y: H - h, height: h }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 180, damping: 24 }}
+          animate={{ y: H - h, height: h }} transition={reduce ? { duration: 0 } : { duration: 0.35, ease: [0.2, 0.8, 0.2, 1] }}
           fill={s >= maj ? "var(--d-likely)" : "var(--r-likely)"} />;
       })}
       <line x1={(maj - lo) * bw} x2={(maj - lo) * bw} y1={0} y2={H} stroke="var(--ink)" strokeDasharray="3 3" />

@@ -24,12 +24,29 @@ def main():
     ap.add_argument("--asof", default=None)
     ap.add_argument("--out", default=None)
     ap.add_argument("--history", action="store_true", help="also rebuild probability-over-time")
+    ap.add_argument("--no-bios", action="store_true", help="skip Wikipedia bio fetches")
     a = ap.parse_args()
     today = date.fromisoformat(a.asof) if a.asof else date.today()
     t0 = time.time()
     inp = load_inputs(today)
     fc = Forecast(inp, n_sims=a.sims)
     fc.build_polling()
+    from .adapters.fec import FECFundraising
+    fc.load_fundraising(FECFundraising())
+    print(f"fundraising: {len(fc.fundraising)} races" if fc.fundraising else "fundraising: off (no FEC_API_KEY)")
+    fc.bios = {}
+    if not a.no_bios:
+        from .adapters.bios import fetch_bios
+        rows, _ = fc.race_inputs()
+        titles = []
+        for row in rows:
+            r, pr = row["race"], row["pr"]
+            m = row["est"]["fundamentals"][0] if row.get("est") else None
+            if r.office == "house" and (m is None or abs(m) > 20):
+                continue
+            titles += [c.wiki for c in r.candidates if c.wiki and c.name in (pr.d_name, pr.r_name)]
+        fc.bios = fetch_bios(list(dict.fromkeys(titles)))
+        print(f"bios: {len(fc.bios)} of {len(set(titles))}")
     from .publish import publish
     publish(fc, out_dir=a.out, history=a.history)
     print(f"done in {time.time() - t0:.1f}s")

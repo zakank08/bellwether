@@ -21,7 +21,7 @@ USER_AGENT = os.environ.get(
     "BellwetherElectionTracker/0.1 (nonpartisan election forecast; set BELLWETHER_USER_AGENT to add contact info)",
 )
 CACHE_DIR = Path(os.environ.get("BELLWETHER_CACHE", Path(__file__).resolve().parents[2] / "data" / "cache"))
-MIN_INTERVAL = {"en.wikipedia.org": 6.0}
+MIN_INTERVAL = {"en.wikipedia.org": 6.0, "en.wikipedia.org/rest": 1.0, "www.wikidata.org": 1.0}
 DEFAULT_INTERVAL = 1.0
 _last_hit: dict[str, float] = {}
 
@@ -46,6 +46,8 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
     if path.exists() and time.time() - path.stat().st_mtime < max_age_s:
         return path.read_bytes()
     host = urlparse(url).netloc
+    if "/api/rest_v1/" in url:
+        host += "/rest"   # Wikipedia's REST API has its own, looser limits
     last_err: Exception | None = None
     for attempt in range(retries):
         wait = MIN_INTERVAL.get(host, DEFAULT_INTERVAL) - (time.time() - _last_hit.get(host, 0))

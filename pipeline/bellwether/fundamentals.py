@@ -81,11 +81,21 @@ def expert_consensus(ratings: dict[str, str]) -> float | None:
     return sum(vals) / len(vals) if vals else None
 
 
+FUNDRAISING_PER_DOUBLING = 0.75
+FUNDRAISING_CAP = 2.5
+
+
 def fundraising_adjustment(d_receipts: float | None, r_receipts: float | None) -> float:
-    """~1 point per doubling of the receipts ratio, capped at +/-3."""
-    if not d_receipts or not r_receipts or d_receipts <= 0 or r_receipts <= 0:
+    """~0.75 points per doubling of the receipts ratio, capped at +/-2.5.
+
+    Deliberately small: money partly follows expected competitiveness, so
+    much of its signal is already in the polls and partisan lean. Needs at
+    least $50k raised on each side so paper candidates don't swing it.
+    """
+    if not d_receipts or not r_receipts or d_receipts < 50_000 or r_receipts < 50_000:
         return 0.0
-    return max(-3.0, min(3.0, math.log2(d_receipts / r_receipts)))
+    v = FUNDRAISING_PER_DOUBLING * math.log2(d_receipts / r_receipts)
+    return max(-FUNDRAISING_CAP, min(FUNDRAISING_CAP, v))
 
 
 def poll_drift_sd(days_to_election: int) -> float:
