@@ -1,7 +1,7 @@
 "use client";
 import { scaleLinear, scaleTime } from "d3-scale";
 import { area, line, curveMonotoneX } from "d3-shape";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
 import { fmtDate } from "@/lib/format";
 
@@ -17,6 +17,7 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
   const reduce = useReducedMotion();
   const ref = useRef<SVGSVGElement>(null);
   const [hover, setHover] = useState<number | null>(null);
+  const seen = useInView(ref, { once: true, margin: "0px 0px -40px 0px" }) || !!reduce;
   const W = 720, H = height, m = { t: 12, r: 96, b: 28, l: 12 };
   const all = [...series.flatMap((s) => s.values.map((v) => v.date)), ...dots.map((d) => d.date)];
   const dmin = xDomain?.[0] ?? all.reduce((a, b) => (a < b ? a : b), all[0]);
@@ -51,16 +52,16 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
         {zeroLine && <line x1={m.l} x2={W - m.r} y1={y(zeroLine.y)} y2={y(zeroLine.y)} stroke="var(--ink-muted)" strokeWidth={1} />}
         {ticks.map((t) => <text key={+t} x={x(t)} y={H - 8} fontSize={12} textAnchor="middle" fill="var(--ink-muted)">{fmtDate(t.toISOString().slice(0, 10))}</text>)}
         {series.map((s) => s.values.some((v) => v.lo != null) && (
-          <motion.path key={s.key + "band"} d={ar(s.values) ?? ""} fill={s.color} initial={{ opacity: 0 }} animate={{ opacity: 0.14 }} transition={{ duration: reduce ? 0 : 0.6 }} />
+          <motion.path key={s.key + "band"} d={ar(s.values) ?? ""} fill={s.color} initial={{ opacity: 0 }} animate={{ opacity: seen ? 0.14 : 0 }} transition={{ duration: reduce ? 0 : 0.6 }} />
         ))}
         {dots.map((d, i) => (
           <motion.circle key={i} cx={x(new Date(d.date))} cy={y(Math.max(yDomain[0], Math.min(yDomain[1], d.y)))} r={d.r ?? 3.5}
             fill={d.color} fillOpacity={0.35} stroke={d.color} strokeWidth={1}
-            initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: reduce ? 0 : 0.3 + i * 0.012, duration: 0.3 }} />
+            initial={reduce ? false : { opacity: 0 }} animate={{ opacity: seen ? 1 : 0 }} transition={{ delay: reduce ? 0 : 0.3 + i * 0.012, duration: 0.3 }} />
         ))}
         {series.map((s) => (
           <motion.path key={s.key} d={ln(s.values) ?? ""} fill="none" stroke={s.color} strokeWidth={2.5} strokeLinecap="round"
-            initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: reduce ? 0 : 0.8, ease: "easeOut" }} />
+            initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: seen ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.8, ease: "easeOut" }} />
         ))}
         {hv && (
           <g pointerEvents="none">

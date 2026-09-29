@@ -5,7 +5,8 @@ import type { Forecast } from "@/lib/types";
 import { mapItems } from "./Dashboard";
 import HouseWaffle from "./HouseWaffle";
 import RaceList from "./RaceList";
-import StateMap, { Legend } from "./StateMap";
+import { Legend } from "./MapBits";
+import StateMap from "./MapLazy";
 import { TipProvider } from "./Tooltip";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 

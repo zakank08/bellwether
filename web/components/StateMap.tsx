@@ -1,12 +1,11 @@
 "use client";
 import { geoPath } from "d3-geo";
-import { motion, useReducedMotion } from "framer-motion";
-import Link from "next/link";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { feature, mesh } from "topojson-client";
 import us from "us-atlas/states-albers-10m.json";
-import { BUCKET_LABEL, bucketVar, in100, onBucket, PARTY_NAME } from "@/lib/format";
+import { BUCKET_LABEL, bucketVar, onBucket } from "@/lib/format";
 import { FIPS, TILES } from "@/lib/tiles";
 import type { Bucket } from "@/lib/types";
 import { useTip } from "./Tooltip";
@@ -32,6 +31,10 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
   const router = useRouter();
   const reduce = useReducedMotion();
   const tr = reduce ? { duration: 0 } : { duration: 0.4, ease: "easeOut" as const };
+  const box = useRef<HTMLDivElement>(null);
+  const seen = useInView(box, { once: true, margin: "0px 0px -80px 0px" }) || !!reduce;
+  const [swept, setSwept] = useState(false);
+  useEffect(() => { if (seen && !swept) { const t = setTimeout(() => setSwept(true), 1200); return () => clearTimeout(t); } }, [seen, swept]);
 
   const tipFor = (st: string) => {
     const its = byState[st];
@@ -41,9 +44,9 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
   const go = (st: string) => { const its = byState[st]; if (its?.length) router.push(`/race/${its[0].id}/`); };
 
   return (
-    <div>
+    <div ref={box}>
       <div className="row" style={{ justifyContent: "space-between", marginBottom: 8 }}>
-        <span className="small muted">Hover or tap a state for details; select it to open the race.</span>
+        <span className="small muted">Tap or hover a state for details; select it to open the race.</span>
         <div className="toggle" role="group" aria-label="Map style">
           <button aria-pressed={mode === "geo"} onClick={() => setMode("geo")}>Map</button>
           <button aria-pressed={mode === "tile"} onClick={() => setMode("tile")}>Tiles</button>
@@ -56,7 +59,8 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
             const its = byState[st];
             const fill = its ? bucketVar(its[0].bucket) : "var(--uncalled)";
             return (
-              <motion.path key={f.id} d={path(f as any) ?? ""} animate={{ fill }} transition={tr}
+              <motion.path key={f.id} d={path(f as any) ?? ""} initial={reduce ? false : { fill: "var(--uncalled)" }} animate={{ fill: seen ? fill : "var(--uncalled)" }}
+                transition={reduce ? tr : { duration: 0.5, delay: seen && !swept ? ((path.centroid(f as any)[0] || 0) / 975) * 0.6 : 0 }}
                 tabIndex={its ? 0 : -1} role={its ? "link" : undefined} aria-label={its ? `${its.map((i) => i.title + ": " + BUCKET_LABEL[i.bucket]).join("; ")}` : undefined}
                 onMouseMove={(e) => show(e, tipFor(st))} onMouseLeave={hide} onClick={() => go(st)}
                 onKeyDown={(e) => { if (e.key === "Enter") go(st); }}
@@ -100,29 +104,3 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
   );
 }
 
-export function Legend({ showInd = false }: { showInd?: boolean }) {
-  const steps: Bucket[] = ["d-safe", "d-likely", "d-lean", "tossup", "r-lean", "r-likely", "r-safe"];
-  return (
-    <div aria-label="Map legend" style={{ maxWidth: 560 }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2 }}>
-        {steps.map((b) => <div key={b} style={{ height: 12, background: bucketVar(b), borderRadius: 2 }} />)}
-      </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 2, fontSize: 12, lineHeight: "16px", color: "var(--ink-muted)", textAlign: "center", marginTop: 4 }}>
-        {steps.map((b) => <span key={b}>{BUCKET_LABEL[b]}</span>)}
-      </div>
-      <div className="small muted" style={{ marginTop: 6 }}>
-        Solid ≥95 in 100 · Likely 75–95 · Lean 60–75 · Toss-up under 60 for either side
-        {showInd && <> · <span style={{ display: "inline-block", width: 10, height: 10, background: "var(--ind-fill)", borderRadius: 2 }} /> Independent favored</>}
-      </div>
-    </div>
-  );
-}
-
-export function tipLinesFor(dName: string | null, dParty: string | null, rName: string | null, rParty: string | null, p: number) {
-  return (
-    <>
-      <span style={{ color: "var(--dem)" }}>{dName ?? "—"}{dParty && dParty !== "D" ? ` (${PARTY_NAME[dParty]})` : ""}</span>: <strong className="num">{in100(p)} in 100</strong><br />
-      {rName && <><span style={{ color: rParty === "R" ? "var(--rep)" : "var(--ind)" }}>{rName}</span>: <strong className="num">{in100(1 - p)} in 100</strong></>}
-    </>
-  );
-}

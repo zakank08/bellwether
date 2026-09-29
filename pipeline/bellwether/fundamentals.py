@@ -51,6 +51,7 @@ def national_environment(generic_margin, generic_se, net_approval, president_par
 
 def race_fundamentals(office: str, pvi: float | None, national: float, dside_incumbent: int,
                       fundraising_adj: float = 0.0) -> tuple[float | None, float]:
+    # fundraising_adj: extra adjustments (incumbent history, money), D-minus-R points
     """Expected margin from partisanship + environment + incumbency.
 
     dside_incumbent: +1 if the D-side principal is the incumbent, -1 if the

@@ -1,6 +1,6 @@
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
-import { useMemo } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useMemo, useRef } from "react";
 import type { Hist } from "@/lib/types";
 
 /** 100 simulated outcomes dropping into a seat histogram: each dot is one
@@ -9,6 +9,8 @@ export default function SeatDots({ hist, majority, label, partyAt }: {
   hist: Hist[]; majority: number; label: string; partyAt: (seats: number) => "D" | "R" | "C";
 }) {
   const reduce = useReducedMotion();
+  const ref = useRef<SVGSVGElement>(null);
+  const seen = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
   const { dots, bin } = useMemo(() => {
     const cum: { seats: number; c: number }[] = [];
     let c = 0;
@@ -47,7 +49,7 @@ export default function SeatDots({ hist, majority, label, partyAt }: {
   for (let t = majority - Math.floor((majority - lo) / step) * step; t <= hi; t += step) ticks.push(t);
   return (
     <figure style={{ margin: 0 }}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={label} style={{ display: "block", maxWidth: W }}>
+      <svg ref={ref} viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={label} style={{ display: "block", maxWidth: W }}>
         {majority >= lo && majority <= hi && (
           <g>
             <line x1={x(majority) - colW / 2} x2={x(majority) - colW / 2} y1={8} y2={H - 26} stroke="var(--ink)" strokeDasharray="2 3" />
@@ -57,7 +59,7 @@ export default function SeatDots({ hist, majority, label, partyAt }: {
         {dots.map((d, i) => (
           <motion.circle key={i} cx={x(d.s)} r={r} fill={fillFor(d.s)}
             initial={reduce ? false : { cy: -20, opacity: 0 }}
-            animate={{ cy: y(d.h), opacity: 1 }}
+            animate={seen || reduce ? { cy: y(d.h), opacity: 1 } : { cy: -20, opacity: 0 }}
             transition={reduce ? { duration: 0 } : { delay: d.rank * 0.011, duration: 0.45, ease: [0.3, 0.9, 0.4, 1] }} />
         ))}
         <line x1={pad} x2={W - pad} y1={H - 26} y2={H - 26} stroke="var(--line)" />

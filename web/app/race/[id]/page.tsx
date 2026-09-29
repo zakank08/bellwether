@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PollChart from "@/components/RaceCharts";
+import InfoTip from "@/components/InfoTip";
 import { getForecast, getRace, getRaces } from "@/lib/data";
 import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel } from "@/lib/format";
 import type { RaceDetail } from "@/lib/types";
@@ -44,7 +45,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
               <div className="display" style={{ fontSize: 56, lineHeight: "56px", color: partyInk(p >= 0.5 ? r.dside.party : r.rside.party) }}>
                 <span className="num">{in100(p >= 0.5 ? p : 1 - p)}</span><span style={{ fontSize: 24, color: "var(--ink-muted)" }}> in 100</span>
               </div>
-              <p className="display" style={{ fontSize: 22, lineHeight: "28px", fontWeight: 500, margin: "8px 0" }}>
+              <p className="display" style={{ fontSize: 22, lineHeight: "28px", fontWeight: 500, margin: "8px 0" }}><span className="sr-only">Odds: </span>
                 {p >= 0.5 ? r.dside.name : r.rside.name} wins in <span className="num">{in100(p >= 0.5 ? p : 1 - p)}</span> of 100 simulations; {p >= 0.5 ? r.rside.name : r.dside.name} wins in <span className="num">{in100(p >= 0.5 ? 1 - p : p)}</span>.
               </p>
               <div className="bar" aria-hidden="true" style={{ maxWidth: 420 }}>
@@ -76,9 +77,12 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         <p className="small muted">Ballot list from Wikipedia’s 2026 {r.office === "governor" ? "gubernatorial" : r.office} elections page. Candidate bios, campaign links, fundraising and endorsements are coming in a later phase.</p>
       </section>
 
+      {(r.office === "senate" || r.office === "house") && (
+        <p className="small" style={{ marginTop: -8 }}><Link href="/whatif/">What if this race flips? Try it in the map builder →</Link></p>
+      )}
       {r.kind === "two_party" && (
         <section className="block">
-          <h2 className="display">Polls</h2>
+          <h2 className="display">Polls <InfoTip term="house" /></h2>
           <p className="takeaway">
             {pollsPresent ? <>The polling average stands at <strong>{ml(m?.poll_avg)}</strong> across {r.n_polls} poll{r.n_polls === 1 ? "" : "s"} testing {r.dside.name} against {r.rside.name}.</> : <>No public polls have tested {r.dside.name ?? "the Democratic side"} against {r.rside.name ?? "the Republican side"} yet.</>}
           </p>
@@ -114,8 +118,9 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
             <table className="data">
               <tbody>
                 <tr><td>Polling average (after adjustments)</td><td className="r num">{ml(m.poll_avg)}</td><td className="small muted">{m.poll_se != null ? `±${(1.96 * m.poll_se).toFixed(1)} sampling range; effective ${m.n_eff} polls` : "no polls"}</td></tr>
-                <tr><td>Partisan lean (Cook PVI, 2026 lines)</td><td className="r num">{m.pvi == null ? "—" : partyMarginLabel(m.pvi)}</td><td className="small muted">roughly {Math.abs(2 * (m.pvi ?? 0)).toFixed(0)} points of margin vs. the nation</td></tr>
-                <tr><td>National environment</td><td className="r num">{partyMarginLabel(m.national_env)}</td><td className="small muted">generic ballot + presidential approval</td></tr>
+                <tr><td>Partisan lean (Cook PVI, 2026 lines) <InfoTip term="pvi" /></td><td className="r num">{m.pvi == null ? "—" : partyMarginLabel(m.pvi)}</td><td className="small muted">roughly {Math.abs(2 * (m.pvi ?? 0)).toFixed(0)} points of margin vs. the nation</td></tr>
+                <tr><td>National environment <InfoTip term="environment" /></td><td className="r num">{partyMarginLabel(m.national_env)}</td><td className="small muted">generic ballot + presidential approval</td></tr>
+                {m.incumbent_history && <tr><td>Incumbent’s track record <InfoTip term="fundamentals" /></td><td className="r num">{ml(m.incumbent_history.carry)}</td><td className="small muted">In {m.incumbent_history.cycle} they ran {Math.abs(m.incumbent_history.over).toFixed(1)} pts {m.incumbent_history.over >= 0 ? "more Democratic" : "more Republican"} than the state’s lean predicted; half carries over (max 10)</td></tr>}
                 <tr><td>Incumbency</td><td className="r num">{m.incumbency === 0 ? "none" : ml(m.incumbency)}</td><td className="small muted">{m.incumbency === 0 ? "open seat or incumbent not on ballot" : "incumbent’s side"}</td></tr>
                 <tr><td>Fundamentals estimate</td><td className="r num">{ml(m.fundamentals)}</td><td className="small muted">±{m.fund_sd.toFixed(0)} typical error</td></tr>
                 <tr><td>Expert ratings (average)</td><td className="r num">{ml(m.experts)}</td><td className="small muted">used only in the “+ Expert ratings” version</td></tr>

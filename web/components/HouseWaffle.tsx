@@ -6,7 +6,7 @@ import type { CompactRow } from "@/lib/data";
 import { BUCKET_LABEL, bucketVar, in100 } from "@/lib/format";
 import type { Bucket, Version } from "@/lib/types";
 import { useTip } from "./Tooltip";
-import { tipLinesFor } from "./StateMap";
+import { tipLinesFor } from "./MapBits";
 
 const ORDER: Bucket[] = ["d-safe", "i-safe", "d-likely", "i-likely", "d-lean", "i-lean", "tossup", "r-lean", "r-likely", "r-safe"];
 

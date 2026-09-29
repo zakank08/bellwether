@@ -23,7 +23,7 @@ from .forecast import DEFAULT_VERSION, VERSION_LABELS, VERSIONS, Forecast, appro
 from .fundamentals import INCUMBENCY, poll_drift_sd
 
 OUT = Path(__file__).resolve().parents[2] / "web" / "public" / "data"
-MODEL_VERSION = "0.1.0"
+MODEL_VERSION = "0.2.0"
 PARTY_NAME = {"D": "Democrat", "R": "Republican", "I": "Independent", "L": "Libertarian", "G": "Green", "O": "Other"}
 
 
@@ -126,6 +126,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
                 "fundamentals": _r(row["fund"], 2), "fund_sd": _r(row["fund_sd"], 1), "experts": _r(row["expert"], 1),
                 "national_env": _r(env["national"], 2), "pvi": r.pvi,
                 "incumbency": row["dside_inc"] * INCUMBENCY[r.office], "poll_weight": _r(w, 3),
+                "incumbent_history": row.get("inc_eff"),
                 "mean": _r(m, 2), "sd": _r(s, 2), "drift_sd": _r(poll_drift_sd(env["days"]), 2),
             }
             pts = row["avg"].points
@@ -214,6 +215,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
         ],
     }
     _write(out / "forecast.json", summary)
+    export_whatif(fc, out)
     _write(out / "races.json", races_rows)
     return summary
 
@@ -253,3 +255,45 @@ def _changes(prev, races_rows, fc):
         out.append({"id": x["id"], "title": x["title"], "office": x["office"], "from": o["p"][DEFAULT_VERSION],
                     "to": x["p"][DEFAULT_VERSION], "reason": reason})
     return sorted(out, key=lambda c: -abs(c["to"] - c["from"]))[:25]
+
+
+WHATIF_SIMS = 4000
+
+
+def export_whatif(fc: Forecast, out: Path):
+    """Simulation draws for the what-if builder.
+
+    whatif.bin holds WHATIF_SIMS rows x K races of int8 margins in half-point
+    units (margin * 2, clipped to +/-127, i.e. +/-63.5 points). Keeping the raw
+    draws (not just odds) lets the browser condition on the reader's picks:
+    if you hand Texas to Democrats, only simulations where that happened are
+    kept, so correlated races (Iowa, Kansas...) move too.
+    """
+    import numpy as np
+    last = fc.last
+    rows, sim_rows, margins = last["rows"], last["sim_rows"], last["margins"]
+    idx = {r["race"].id: j for j, r in enumerate(sim_rows)}
+    races, cols = [], []
+    for row in rows:
+        r, pr = row["race"], row["pr"]
+        if r.office not in ("senate", "house"):
+            continue
+        entry = {"id": r.id, "o": r.office[0], "st": r.state, "d": r.district, "t": race_title(r),
+                 "dn": pr.d_name, "dp": pr.d_party, "rn": pr.r_name, "rp": pr.r_party}
+        j = idx.get(r.id)
+        med = float(np.median(margins[:, j])) if j is not None else None
+        if j is not None and abs(med) < (30 if r.office == "senate" else 20):
+            entry["c"] = len(cols)
+            entry["el"] = 1.0
+            cols.append(j)
+        else:
+            # Settled for practical purposes: record the winner's party.
+            entry["w"] = (pr.d_party if (med is None or med > 0) else pr.r_party)
+        races.append(entry)
+    sub = margins[:WHATIF_SIMS, cols] if cols else np.zeros((WHATIF_SIMS, 0))
+    q = np.clip(np.round(sub * 2), -127, 127).astype(np.int8)
+    (out / "whatif.bin").write_bytes(q.tobytes(order="C"))
+    from .forecast import HOUSE_MAJORITY, SENATE_MAJORITY, SENATE_NOT_UP
+    _write(out / "whatif.json", {"n": int(q.shape[0]), "k": int(q.shape[1]), "scale": 0.5, "races": races,
+                                 "senate_not_up": SENATE_NOT_UP, "senate_majority": SENATE_MAJORITY,
+                                 "house_majority": HOUSE_MAJORITY, "vp": "R", "asof": fc.today.isoformat()})

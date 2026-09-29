@@ -76,6 +76,7 @@ export interface RaceDetail extends RaceRow {
     poll_avg: number | null; poll_se: number | null; n_eff: number | null; fundamentals: number | null; fund_sd: number;
     experts: number | null; national_env: number; pvi: number | null; incumbency: number; poll_weight: number;
     mean: number; sd: number; drift_sd: number;
+    incumbent_history?: { race: string; cycle: string; actual: number; expected: number; over: number; carry: number } | null;
   };
   polls?: PollRow[];
   trend?: TrendPoint[];

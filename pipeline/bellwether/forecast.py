@@ -9,6 +9,7 @@ from datetime import date
 import numpy as np
 
 from . import ELECTION_DATE
+from .candidate_history import incumbent_effect
 from .averaging import Average, PollingModel, PollPoint, principals, weighted_average, d as to_date
 from .fundamentals import (ELASTICITY, blend, expert_consensus, national_environment, race_fundamentals)
 from .pollster_ratings import Matcher, compute as compute_ratings
@@ -133,10 +134,14 @@ class Forecast:
                 continue
             avg = self.pm.race_average(r.id, asof)
             dside_inc = 0
+            inc_eff = None
             for c in r.candidates:
                 if c.incumbent:
                     dside_inc = 1 if c.name == pr.d_name else -1 if c.name == pr.r_name else 0
-            fund, fsd = race_fundamentals(r.office, r.pvi, nat, dside_inc)
+                    if dside_inc and r.office in ("senate", "governor") and c.party in ("D", "R"):
+                        inc_eff = incumbent_effect(r.state, c.name, c.party)
+            fund, fsd = race_fundamentals(r.office, r.pvi, nat, dside_inc,
+                                          fundraising_adj=inc_eff["carry"] if inc_eff else 0.0)
             exp = expert_consensus(r.ratings)
             if exp is not None and pr.d_party not in ("D",) and pr.r_party == "R":
                 # ratings are D-vs-R; with an independent D-side, "Lean R" still means R-side ahead
@@ -149,7 +154,7 @@ class Forecast:
                 else:
                     m, s, w = blend(avg.margin, avg.se, days, fund, fsd, exp, use_experts=(v == "experts"))
                 ests[v] = (m, s, w)
-            row.update(avg=avg, fund=fund, fund_sd=fsd, expert=exp, est=ests, dside_inc=dside_inc)
+            row.update(avg=avg, fund=fund, fund_sd=fsd, expert=exp, est=ests, dside_inc=dside_inc, inc_eff=inc_eff)
             rows.append(row)
         return rows, {"national": nat, "national_sd": nat_sd_total, "generic": g, "approval": appr,
                       "generic_weight": nat_w, "days": days}
@@ -169,6 +174,8 @@ class Forecast:
                              "poll_weight": w, "elasticity": ELASTICITY[race.office], "z": self.zs.get(race.state, {})})
             margins = simulate(spec, n_sims, env["national_sd"], seed=self.seed)
             results[v] = self._summarize(rows, sim_rows, margins)
+            if v == DEFAULT_VERSION:
+                self.last = {"rows": rows, "sim_rows": sim_rows, "margins": margins}
         return rows, env, results
 
     # ------------------------------------------------------------------
