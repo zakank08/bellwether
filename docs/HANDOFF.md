@@ -20,6 +20,16 @@ Built and working:
 - **Automation:** `.github/workflows/forecast.yml` at 7:15, 1:15, 7:15 ET. It was invalid
   until commit `fa1bee7` (Sept. 29); **the 1:15 p.m. Sept. 29 run is the first real one.**
 
+## 1b. National polls file (added Sept. 29)
+VoteHub stopped carrying most Trump-approval and generic-ballot polls after June 2026
+(0 approval polls in July, 7 in August, 0 in September). `data/config/national_polls.json`
+now holds those polls, read from each pollster's own release and linked (64 entries,
+July 3–Sept. 28: YouGov/Economist weekly, Reuters/Ipsos, Quinnipiac, Emerson, Marist,
+CNN/SSRS, Echelon, Verasight, AP-NORC, ARG, Fox). `adapters/curated.py` merges them and
+skips any poll VoteHub already has. **Keep it current weekly** until Nov. 3;
+`pipeline/tools/yougov_economist.py` reads the YouGov PDFs. The polls page says how many
+polls ended in the last 30 days and warns when there are fewer than 8.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

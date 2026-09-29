@@ -6,6 +6,23 @@ import { fmtDate, partyMarginLabel } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Generic ballot and approval" };
 
+// How many polls ended in the 30 days before the latest point on the chart, so a thin
+// or stale stretch is said plainly instead of hidden behind a smooth line.
+function Coverage({ polls, asof, what }: { polls: { end: string; src?: string }[]; asof: string; what: string }) {
+  const cutoff = new Date(new Date(asof).getTime() - 30 * 86400000).toISOString().slice(0, 10);
+  const recent = polls.filter((p) => p.end >= cutoff && p.end <= asof);
+  const latest = polls.reduce((m, p) => (p.end > m ? p.end : m), "");
+  const hand = recent.filter((p) => p.src === "Pollster release").length;
+  const thin = recent.length < 8;
+  return (
+    <p className={thin ? "small notice" : "small muted"} role={thin ? "status" : undefined}>
+      {recent.length} {what} polls ended in the last 30 days{latest ? `; the latest ended ${fmtDate(latest)}` : ""}.
+      {hand > 0 && ` ${hand} of them were entered from the pollsters’ own releases because our main poll feed doesn’t carry them.`}
+      {thin && " With this few recent polls the average leans on older ones and may be out of date."}
+    </p>
+  );
+}
+
 export default function Polls() {
   const g = getGeneric();
   const a = getApproval();
@@ -16,6 +33,7 @@ export default function Polls() {
         <div className="row" style={{ justifyContent: "space-between" }}><h1 className="display">Generic ballot</h1><Link href="/pollsters/" className="small">Pollster ratings →</Link></div>
         <p className="takeaway">Asked which party they’d back for Congress, voters favor <strong>{g.average >= 0 ? "Democrats" : "Republicans"}</strong> by <strong className="num">{Math.abs(g.average).toFixed(1)}</strong> points in the average of {g.n_polls} recent polls (adjusted for house effects and likely voters).</p>
         <GenericTracker trend={g.trend} polls={g.polls} />
+        <Coverage polls={g.polls} asof={g.trend[g.trend.length - 1]?.date ?? ""} what="generic-ballot" />
         <div className="table-wrap" style={{ marginTop: 16 }}>
           <table className="data cards">
             <thead><tr><th>Pollster</th><th>End date</th><th className="r">Sample</th><th className="r">Result</th><th className="r">Adjusted</th></tr></thead>
@@ -30,6 +48,7 @@ export default function Polls() {
         <h2 className="display">Presidential approval</h2>
         <p className="takeaway">President Trump’s net approval (approve minus disapprove) averages <strong className="num">{a.net.toFixed(1)}</strong>. Unpopular presidents usually cost their party seats in midterms; the model uses this as a weak prior on the national environment.</p>
         <ApprovalTracker trend={a.trend} polls={a.polls} />
+        <Coverage polls={a.polls} asof={a.trend[a.trend.length - 1]?.date ?? ""} what="approval" />
       </section>
     </div>
   );

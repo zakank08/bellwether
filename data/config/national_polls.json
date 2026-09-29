@@ -1,0 +1,1034 @@
+{
+ "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
+ "collected": "2026-09-29",
+ "polls": [
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-03",
+   "end_date": "2026-07-06",
+   "sample_size": 1603,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 35,
+    "Disapprove": 61
+   },
+   "url": "https://yougov.com/en-us/articles/55132-disapproval-of-supreme-court-trump-use-his-office-july-3-6-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Qxo6bev.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-03",
+   "end_date": "2026-07-06",
+   "sample_size": 1603,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 39,
+    "Rep": 35
+   },
+   "url": "https://yougov.com/en-us/articles/55132-disapproval-of-supreme-court-trump-use-his-office-july-3-6-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_Qxo6bev.pdf"
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-07-09",
+   "end_date": "2026-07-13",
+   "sample_size": 1004,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://echeloninsights.com/insights/july-2026-verified-voter-omnibus-1",
+   "answers": {
+    "Approve": 38.0,
+    "Disapprove": 61.0
+   }
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-07-09",
+   "end_date": "2026-07-13",
+   "sample_size": 1004,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://echeloninsights.com/insights/july-2026-verified-voter-omnibus-1",
+   "answers": {
+    "Dem": 50.0,
+    "Rep": 44.0
+   },
+   "note": "Includes leaners"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-10",
+   "end_date": "2026-07-13",
+   "sample_size": 1616,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 37,
+    "Disapprove": 59
+   },
+   "url": "https://yougov.com/en-us/articles/55175-war-iran-sexual-assault-accusations-against-candidates-nato-trump-july-10-13-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ie0SzVb.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-10",
+   "end_date": "2026-07-13",
+   "sample_size": 1616,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 39,
+    "Rep": 35
+   },
+   "url": "https://yougov.com/en-us/articles/55175-war-iran-sexual-assault-accusations-against-candidates-nato-trump-july-10-13-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ie0SzVb.pdf"
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-07-14",
+   "end_date": "2026-07-17",
+   "sample_size": 1514,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.gelliottmorris.com/p/2026-07-21-july-strength-in-numbers-verasight-poll",
+   "answers": {
+    "Approve": 38.0,
+    "Disapprove": 59.0
+   }
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-07-14",
+   "end_date": "2026-07-17",
+   "sample_size": null,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.gelliottmorris.com/p/2026-07-21-july-strength-in-numbers-verasight-poll",
+   "answers": {
+    "Dem": 50.0,
+    "Rep": 43.0
+   },
+   "note": "Registered-voter subsample; size not stated"
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-07-19",
+   "end_date": "2026-07-20",
+   "sample_size": 1100,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://emersoncollegepolling.com/july-2026-national-poll-democrats-with-11-point-generic-ballot-advantage/",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 57.0
+   }
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-07-19",
+   "end_date": "2026-07-20",
+   "sample_size": 1100,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://emersoncollegepolling.com/july-2026-national-poll-democrats-with-11-point-generic-ballot-advantage/",
+   "answers": {
+    "Dem": 53.0,
+    "Rep": 42.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-17",
+   "end_date": "2026-07-20",
+   "sample_size": 1602,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 36,
+    "Disapprove": 60
+   },
+   "url": "https://yougov.com/en-us/articles/55210-donald-trump-unpopularity-low-confidence-ice-socialism-july-17-20-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ESdiNMa.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-17",
+   "end_date": "2026-07-20",
+   "sample_size": 1602,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 39,
+    "Rep": 33
+   },
+   "url": "https://yougov.com/en-us/articles/55210-donald-trump-unpopularity-low-confidence-ice-socialism-july-17-20-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ESdiNMa.pdf"
+  },
+  {
+   "pollster": "AP-NORC",
+   "sponsors": [
+    "Associated Press"
+   ],
+   "start_date": "2026-07-23",
+   "end_date": "2026-07-27",
+   "sample_size": 1165,
+   "population": "a",
+   "question": "approval",
+   "url": "https://apnorc.org/wp-content/uploads/2026/08/July-2026-Topline-Final.pdf",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 66.0
+   }
+  },
+  {
+   "pollster": "CNN/SSRS",
+   "sponsors": [
+    "CNN"
+   ],
+   "start_date": "2026-07-23",
+   "end_date": "2026-07-27",
+   "sample_size": 1225,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.documentcloud.org/documents/28520039-cnn-july-poll-conducted-by-ssrs/",
+   "answers": {
+    "Approve": 34.0,
+    "Disapprove": 66.0
+   }
+  },
+  {
+   "pollster": "CNN/SSRS",
+   "sponsors": [
+    "CNN"
+   ],
+   "start_date": "2026-07-23",
+   "end_date": "2026-07-27",
+   "sample_size": null,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.documentcloud.org/documents/28676959-trump-midterms-economy-conducted-september-16-17-2026/",
+   "answers": {
+    "Dem": 47.0,
+    "Rep": 39.0
+   },
+   "note": "Includes leaners; from the trend table in CNN's Sept. 16-17 release; RV subsample size not stated"
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-07-23",
+   "end_date": "2026-07-27",
+   "sample_size": 963,
+   "population": "rv",
+   "question": "approval",
+   "url": "https://poll.qu.edu/poll-release?releaseid=3964",
+   "answers": {
+    "Approve": 32.0,
+    "Disapprove": 58.0
+   }
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-07-23",
+   "end_date": "2026-07-27",
+   "sample_size": 963,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://poll.qu.edu/poll-release?releaseid=3964",
+   "answers": {
+    "Dem": 48.0,
+    "Rep": 41.0
+   },
+   "note": "Question: which party would you want to win control of the House"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-25",
+   "end_date": "2026-07-27",
+   "sample_size": 1559,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 34,
+    "Disapprove": 62
+   },
+   "url": "https://yougov.com/en-us/articles/55261-new-low-donald-trump-approval-close-2026-house-race-netanyahu-july-25-27-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_0t0YpHo.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-25",
+   "end_date": "2026-07-27",
+   "sample_size": 1559,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 40,
+    "Rep": 34
+   },
+   "url": "https://yougov.com/en-us/articles/55261-new-low-donald-trump-approval-close-2026-house-race-netanyahu-july-25-27-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_0t0YpHo.pdf"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-07-29",
+   "end_date": "2026-08-03",
+   "sample_size": 4505,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%20Large%20Sample%20Topline%20Full.pdf",
+   "answers": {
+    "Approve": 35.0,
+    "Disapprove": 63.0
+   }
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-07-29",
+   "end_date": "2026-08-03",
+   "sample_size": 3542,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%20Large%20Sample%20Topline%20Full.pdf",
+   "answers": {
+    "Dem": 42.0,
+    "Rep": 37.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-31",
+   "end_date": "2026-08-03",
+   "sample_size": 1609,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 36,
+    "Disapprove": 60
+   },
+   "url": "https://yougov.com/en-us/articles/55299-swing-district-voters-feminism-and-more-july-31-august-3-2026-economistyougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_2NFOXQ5.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-07-31",
+   "end_date": "2026-08-03",
+   "sample_size": 1609,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 41,
+    "Rep": 33
+   },
+   "url": "https://yougov.com/en-us/articles/55299-swing-district-voters-feminism-and-more-july-31-august-3-2026-economistyougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_2NFOXQ5.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-07",
+   "end_date": "2026-08-10",
+   "sample_size": 1589,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 33,
+    "Disapprove": 62
+   },
+   "url": "https://yougov.com/en-us/articles/55343-trumps-job-approval-immigration-and-assimilation-vaccines-and-more-august-7-10-2026-economistyougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_pKJG0WT.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-07",
+   "end_date": "2026-08-10",
+   "sample_size": 1589,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 40,
+    "Rep": 32
+   },
+   "url": "https://yougov.com/en-us/articles/55343-trumps-job-approval-immigration-and-assimilation-vaccines-and-more-august-7-10-2026-economistyougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_pKJG0WT.pdf"
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-08-13",
+   "end_date": "2026-08-17",
+   "sample_size": 1002,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://echeloninsights.com/insights/august-2026-verified-voter-omnibus",
+   "answers": {
+    "Approve": 40.0,
+    "Disapprove": 59.0
+   }
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-08-13",
+   "end_date": "2026-08-17",
+   "sample_size": 1002,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://echeloninsights.com/insights/august-2026-verified-voter-omnibus",
+   "answers": {
+    "Dem": 50.0,
+    "Rep": 45.0
+   },
+   "note": "Includes leaners"
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-08-16",
+   "end_date": "2026-08-17",
+   "sample_size": 1000,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://emersoncollegepolling.com/august-2026-national-poll/",
+   "answers": {
+    "Approve": 40.0,
+    "Disapprove": 56.0
+   }
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-08-16",
+   "end_date": "2026-08-17",
+   "sample_size": 1000,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://emersoncollegepolling.com/august-2026-national-poll/",
+   "answers": {
+    "Dem": 51.0,
+    "Rep": 43.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-17",
+   "sample_size": 1611,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 35,
+    "Disapprove": 61
+   },
+   "url": "https://yougov.com/en-us/articles/55390-democrats-midterms-lead-war-military-iran-cuba-august-14-17-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_jNjXIL6.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-17",
+   "sample_size": 1611,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 39,
+    "Rep": 32
+   },
+   "url": "https://yougov.com/en-us/articles/55390-democrats-midterms-lead-war-military-iran-cuba-august-14-17-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_jNjXIL6.pdf"
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-19",
+   "sample_size": 1514,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.gelliottmorris.com/p/2026-08-25-august-strength-in-numbers-verasight-poll-release",
+   "answers": {
+    "Approve": 37.0,
+    "Disapprove": 60.0
+   }
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-19",
+   "sample_size": null,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.gelliottmorris.com/p/2026-08-25-august-strength-in-numbers-verasight-poll-release",
+   "answers": {
+    "Dem": 49.0,
+    "Rep": 43.0
+   },
+   "note": "Registered-voter subsample; size not stated"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-21",
+   "end_date": "2026-08-24",
+   "sample_size": 1536,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 36,
+    "Disapprove": 57
+   },
+   "url": "https://yougov.com/en-us/articles/55436-likely-voters-data-centers-woke-and-more-august-21-24-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_v7iliA1.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-21",
+   "end_date": "2026-08-24",
+   "sample_size": 1536,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 37,
+    "Rep": 31
+   },
+   "url": "https://yougov.com/en-us/articles/55436-likely-voters-data-centers-woke-and-more-august-21-24-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_v7iliA1.pdf"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-28",
+   "end_date": "2026-08-31",
+   "sample_size": 1167,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/Reuters%20Ipsos%20August%202026%20Poll%20Topline%20FULL%208.31.pdf",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 63.0
+   }
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-28",
+   "end_date": "2026-08-31",
+   "sample_size": 924,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/Reuters%20Ipsos%20August%202026%20Poll%20Topline%20FULL%208.31.pdf",
+   "answers": {
+    "Dem": 43.0,
+    "Rep": 38.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-28",
+   "end_date": "2026-08-31",
+   "sample_size": 1592,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 36,
+    "Disapprove": 60
+   },
+   "url": "https://yougov.com/en-us/articles/55476-democrats-midterms-2026-election-canada-tariffs-data-centers-august-28-31-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_yVe1kKt.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-08-28",
+   "end_date": "2026-08-31",
+   "sample_size": 1592,
+   "population": "a",
+   "question": "generic",
+   "answers": {
+    "Dem": 36,
+    "Rep": 31
+   },
+   "url": "https://yougov.com/en-us/articles/55476-democrats-midterms-2026-election-canada-tariffs-data-centers-august-28-31-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_yVe1kKt.pdf"
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-09-03",
+   "end_date": "2026-09-06",
+   "sample_size": 970,
+   "population": "rv",
+   "question": "approval",
+   "url": "https://poll.qu.edu/poll-release?releaseid=3965",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 59.0
+   }
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-09-03",
+   "end_date": "2026-09-06",
+   "sample_size": 970,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://poll.qu.edu/poll-release?releaseid=3965",
+   "answers": {
+    "Dem": 49.0,
+    "Rep": 38.0
+   },
+   "note": "Question: which party would you want to win control of the House"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-04",
+   "end_date": "2026-09-08",
+   "sample_size": 1469,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 37,
+    "Disapprove": 61
+   },
+   "url": "https://yougov.com/en-us/articles/55535-the-supreme-court-gender-equality-and-more-september-4-8-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_HGAKAIQ.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-04",
+   "end_date": "2026-09-08",
+   "sample_size": 1469,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 42,
+    "Rep": 35
+   },
+   "url": "https://yougov.com/en-us/articles/55535-the-supreme-court-gender-equality-and-more-september-4-8-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_HGAKAIQ.pdf"
+  },
+  {
+   "pollster": "Beacon Research/Shaw & Co. Research",
+   "sponsors": [
+    "Fox News"
+   ],
+   "start_date": "2026-09-11",
+   "end_date": "2026-09-14",
+   "sample_size": 1211,
+   "population": "rv",
+   "question": "approval",
+   "url": "https://www.foxnews.com/politics/fox-news-poll-squeezed-costs-frustrated-voters-turn-democrats",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 61.0
+   }
+  },
+  {
+   "pollster": "Beacon Research/Shaw & Co. Research",
+   "sponsors": [
+    "Fox News"
+   ],
+   "start_date": "2026-09-11",
+   "end_date": "2026-09-14",
+   "sample_size": 1211,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.foxnews.com/politics/fox-news-poll-squeezed-costs-frustrated-voters-turn-democrats",
+   "answers": {
+    "Dem": 51.0,
+    "Rep": 44.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-11",
+   "end_date": "2026-09-14",
+   "sample_size": 1461,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 40,
+    "Disapprove": 58
+   },
+   "url": "https://yougov.com/en-us/articles/55566-2026-election-midterms-donald-trump-terrorism-september-11-14-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ZmVljW6.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-11",
+   "end_date": "2026-09-14",
+   "sample_size": 1461,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 44,
+    "Rep": 39
+   },
+   "url": "https://yougov.com/en-us/articles/55566-2026-election-midterms-donald-trump-terrorism-september-11-14-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ZmVljW6.pdf"
+  },
+  {
+   "pollster": "Marist College",
+   "sponsors": [
+    "NPR",
+    "PBS News"
+   ],
+   "start_date": "2026-09-14",
+   "end_date": "2026-09-15",
+   "sample_size": 1280,
+   "population": "rv",
+   "question": "approval",
+   "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-september-2026/",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 59.0
+   }
+  },
+  {
+   "pollster": "Marist College",
+   "sponsors": [
+    "NPR",
+    "PBS News"
+   ],
+   "start_date": "2026-09-14",
+   "end_date": "2026-09-15",
+   "sample_size": 1280,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-september-2026/",
+   "answers": {
+    "Dem": 53.0,
+    "Rep": 41.0
+   }
+  },
+  {
+   "pollster": "CNN/SSRS",
+   "sponsors": [
+    "CNN"
+   ],
+   "start_date": "2026-09-16",
+   "end_date": "2026-09-17",
+   "sample_size": 1206,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.documentcloud.org/documents/28676959-trump-midterms-economy-conducted-september-16-17-2026/",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 67.0
+   }
+  },
+  {
+   "pollster": "CNN/SSRS",
+   "sponsors": [
+    "CNN"
+   ],
+   "start_date": "2026-09-16",
+   "end_date": "2026-09-17",
+   "sample_size": 867,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.documentcloud.org/documents/28676959-trump-midterms-economy-conducted-september-16-17-2026/",
+   "answers": {
+    "Dem": 49.0,
+    "Rep": 41.0
+   },
+   "note": "Includes leaners"
+  },
+  {
+   "pollster": "American Research Group",
+   "sponsors": [],
+   "start_date": "2026-09-16",
+   "end_date": "2026-09-20",
+   "sample_size": 1100,
+   "population": "a",
+   "question": "approval",
+   "url": "https://americanresearchgroup.com/economy/",
+   "answers": {
+    "Approve": 29.0,
+    "Disapprove": 68.0
+   }
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-09-17",
+   "end_date": "2026-09-20",
+   "sample_size": 1277,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/Reuters%20Ipsos%20September%20Core%20Political%20Topline.pdf",
+   "answers": {
+    "Approve": 32.0,
+    "Disapprove": 66.0
+   }
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-09-17",
+   "end_date": "2026-09-20",
+   "sample_size": 979,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-09/Reuters%20Ipsos%20September%20Core%20Political%20Topline.pdf",
+   "answers": {
+    "Dem": 43.0,
+    "Rep": 35.0
+   }
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-09-17",
+   "end_date": "2026-09-21",
+   "sample_size": 1002,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://echeloninsights.com/insights/september-2026-verified-voter-omnibus",
+   "answers": {
+    "Approve": 36.0,
+    "Disapprove": 64.0
+   }
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-09-17",
+   "end_date": "2026-09-21",
+   "sample_size": 1002,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://echeloninsights.com/insights/september-2026-verified-voter-omnibus",
+   "answers": {
+    "Dem": 51.0,
+    "Rep": 43.0
+   },
+   "note": "Includes leaners"
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-09-16",
+   "end_date": "2026-09-21",
+   "sample_size": 1528,
+   "population": "a",
+   "question": "approval",
+   "url": "https://www.gelliottmorris.com/p/2026-09-23-september-strength-in-numbers-verasight-poll-release",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 63.0
+   }
+  },
+  {
+   "pollster": "Verasight",
+   "sponsors": [
+    "Strength In Numbers"
+   ],
+   "start_date": "2026-09-16",
+   "end_date": "2026-09-21",
+   "sample_size": null,
+   "population": "rv",
+   "question": "generic",
+   "url": "https://www.gelliottmorris.com/p/2026-09-23-september-strength-in-numbers-verasight-poll-release",
+   "answers": {
+    "Dem": 50.0,
+    "Rep": 42.0
+   },
+   "note": "Registered-voter subsample of 1,528 adults; subsample size not stated"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-18",
+   "end_date": "2026-09-21",
+   "sample_size": 1401,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 35,
+    "Disapprove": 62
+   },
+   "url": "https://yougov.com/en-us/articles/55603-congressional-election-2026-midterms-donald-trump-september-18-21-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_5WiMaRX.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-18",
+   "end_date": "2026-09-21",
+   "sample_size": 1401,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 45,
+    "Rep": 36
+   },
+   "url": "https://yougov.com/en-us/articles/55603-congressional-election-2026-midterms-donald-trump-september-18-21-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_5WiMaRX.pdf"
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-09-21",
+   "end_date": "2026-09-22",
+   "sample_size": 1000,
+   "population": "lv",
+   "question": "approval",
+   "url": "https://emersoncollegepolling.com/september-2026-national-poll-democrats/",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 58.0
+   }
+  },
+  {
+   "pollster": "Emerson College",
+   "sponsors": [],
+   "start_date": "2026-09-21",
+   "end_date": "2026-09-22",
+   "sample_size": 1000,
+   "population": "lv",
+   "question": "generic",
+   "url": "https://emersoncollegepolling.com/september-2026-national-poll-democrats/",
+   "answers": {
+    "Dem": 53.0,
+    "Rep": 42.0
+   }
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-25",
+   "end_date": "2026-09-28",
+   "sample_size": 1429,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 36,
+    "Disapprove": 62
+   },
+   "url": "https://yougov.com/en-us/articles/55649-democrats-big-lead-independents-lean-and-more-september-25-28-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_CCphJ5Q.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-09-25",
+   "end_date": "2026-09-28",
+   "sample_size": 1429,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 45,
+    "Rep": 37
+   },
+   "url": "https://yougov.com/en-us/articles/55649-democrats-big-lead-independents-lean-and-more-september-25-28-2026-economist-yougov-poll",
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_CCphJ5Q.pdf"
+  }
+ ]
+}

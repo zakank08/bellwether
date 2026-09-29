@@ -5,6 +5,7 @@ import argparse
 import time
 from datetime import date
 
+from .adapters import curated
 from .adapters.demographics import state_demographics
 from .adapters.votehub import VoteHubPolls
 from .adapters.wikipedia import WikipediaRaces
@@ -14,7 +15,11 @@ from . import overrides
 
 def load_inputs(today: date) -> Inputs:
     vh = VoteHubPolls()
-    return Inputs(races=overrides.apply(WikipediaRaces().races()), polls=list(vh.polls()), approval_polls=list(vh.approval()),
+    extra = curated.load()
+    polls, n_g = curated.merge(list(vh.polls()), [p for p in extra if p.race_key == "generic"])
+    approval, n_a = curated.merge(list(vh.approval()), [p for p in extra if p.race_key == "approval:trump"])
+    print(f"national polls from pollster releases: {n_g} generic ballot, {n_a} approval added")
+    return Inputs(races=overrides.apply(WikipediaRaces().races()), polls=polls, approval_polls=approval,
                   demographics=state_demographics(), today=today)
 
 

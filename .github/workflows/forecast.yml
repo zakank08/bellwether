@@ -5,6 +5,11 @@ on:
   schedule:
     - cron: "15 11,17,23 * * *"   # 7:15am, 1:15pm, 7:15pm ET (EDT)
   workflow_dispatch:
+    inputs:
+      history:
+        description: "Also rebuild the odds-over-time history (about 5 more minutes)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -28,7 +33,8 @@ jobs:
           BELLWETHER_USER_AGENT: ${{ vars.BELLWETHER_USER_AGENT }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
-        run: cd pipeline && python -m bellwether.run --sims 40000
+          HISTORY: ${{ inputs.history && '--history' || '' }}
+        run: cd pipeline && python -m bellwether.run --sims 40000 $HISTORY
       - name: Commit snapshot
         run: |
           git config user.name "bellwether-bot"

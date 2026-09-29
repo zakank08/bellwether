@@ -164,7 +164,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
                "trend": _series(fc, None, gstart),
                "polls": [{"pollster": p.poll.pollster, "end": p.poll.end_date, "n": p.poll.sample_size,
                           "pop": p.poll.population, "raw": _r(p.raw_margin, 1), "adjusted": _r(p.raw_margin + p.pop_adj - p.house_effect, 1),
-                          "url": p.poll.url} for p in fc.pm.generic_points if to_date(p.poll.end_date) >= gstart]}
+                          "url": p.poll.url, "src": p.poll.source} for p in fc.pm.generic_points if to_date(p.poll.end_date) >= gstart]}
     _write(out / "generic.json", generic)
     ap = []
     term_start = date(2025, 1, 20)   # second Trump term; the feed also holds first-term polls
@@ -176,7 +176,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
             ap.append({"date": t.isoformat(), "margin": _r(a.margin, 2), "se": _r(a.se, 2)})
         t += timedelta(days=1 if (fc.today - t).days <= 90 else 3)
     appr_polls = [{"pollster": p.pollster, "end": p.end_date, "n": p.sample_size, "pop": p.population,
-                   "approve": p.answers.get("Approve"), "disapprove": p.answers.get("Disapprove"), "url": p.url}
+                   "approve": p.answers.get("Approve"), "disapprove": p.answers.get("Disapprove"), "url": p.url, "src": p.source}
                   for p in fc.inp.approval_polls if to_date(p.end_date) >= term_start]
     _write(out / "approval.json", {"net": _r(env["approval"].margin, 2), "trend": ap, "polls": appr_polls})
 
@@ -242,6 +242,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
         "house_calibration": fc.house_cal,
         "sources": [
             {"name": "VoteHub Polling API", "url": "https://votehub.com/polls/api/", "use": "2026 race, generic-ballot and approval polls"},
+            {"name": "Pollsters' own releases (collected by Bellwether)", "url": "https://github.com/zakank08/bellwether/blob/main/data/config/national_polls.json", "use": "Generic-ballot and approval polls from July 2026 on that VoteHub doesn't carry; each links to its release"},
             {"name": "Wikipedia 2026 election pages (CC BY-SA 4.0)", "url": "https://en.wikipedia.org/wiki/2026_United_States_elections", "use": "Races, candidates, Cook PVI on 2026 lines, published expert ratings"},
             {"name": "FiveThirtyEight raw polls (CC BY 4.0, ABC News)", "url": "https://github.com/fivethirtyeight/data/tree/master/pollster-ratings", "use": "Historical polls for pollster ratings and the backtest"},
             {"name": "Polymarket and Kalshi public APIs", "url": "https://docs.polymarket.com", "use": "Market odds shown for comparison only"},
