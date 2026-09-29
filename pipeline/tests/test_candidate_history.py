@@ -5,7 +5,7 @@ def test_collins_overperformance_is_capped_and_halved():
     e = incumbent_effect("ME", "Susan Collins", "R")
     assert e["cycle"] == "2020"
     assert e["over"] < -15          # ran far ahead of Maine's Democratic lean
-    assert e["carry"] == round(e["over"] * 0.5, 2)
+    assert abs(e["carry"] - e["over"] * 0.5) < 0.05  # "over" is rounded for display
 
 
 def test_cap_applies():
