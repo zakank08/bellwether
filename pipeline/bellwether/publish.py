@@ -152,31 +152,32 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
             } for p in sorted(fc.pm.race_points[r.id], key=lambda p: p.poll.end_date, reverse=True)]
             if fc.pm.race_points[r.id]:
                 first = min(to_date(p.poll.end_date) for p in fc.pm.race_points[r.id])
-                start = max(first, fc.today - timedelta(days=240))
-                detail["trend"] = fc.pm.series(r.id, start, fc.today, step=3 if (fc.today - start).days > 90 else 1)
+                detail["trend"] = _series(fc, r.id, first)
         else:
             detail["summary"] = driver_sentence(row, (None, None, 0), env["days"])
         _write(out / "race" / f"{r.id}.json", detail)
 
     # --- national series ------------------------------------------------------
     g = env["generic"]
-    gstart = fc.today - timedelta(days=270)
+    gstart = min(to_date(p.poll.end_date) for p in fc.pm.generic_points) if fc.pm.generic_points else fc.today
     generic = {"average": _r(g.margin, 2), "se": _r(g.se, 2), "n_polls": g.n_polls,
-               "trend": fc.pm.series(None, gstart, fc.today, step=2),
+               "trend": _series(fc, None, gstart),
                "polls": [{"pollster": p.poll.pollster, "end": p.poll.end_date, "n": p.poll.sample_size,
                           "pop": p.poll.population, "raw": _r(p.raw_margin, 1), "adjusted": _r(p.raw_margin + p.pop_adj - p.house_effect, 1),
                           "url": p.poll.url} for p in fc.pm.generic_points if to_date(p.poll.end_date) >= gstart]}
     _write(out / "generic.json", generic)
     ap = []
-    t = fc.today - timedelta(days=270)
+    term_start = date(2025, 1, 20)   # second Trump term; the feed also holds first-term polls
+    t = term_start + timedelta(days=7)
+    term_polls = sorted((p for p in fc.inp.approval_polls if to_date(p.end_date) >= term_start), key=lambda p: p.end_date)
     while t <= fc.today:
-        a = approval_average([p for p in fc.inp.approval_polls if to_date(p.end_date) <= t], fc.matcher, t)
+        a = approval_average([p for p in term_polls if to_date(p.end_date) <= t], fc.matcher, t)
         if a.margin is not None:
             ap.append({"date": t.isoformat(), "margin": _r(a.margin, 2), "se": _r(a.se, 2)})
-        t += timedelta(days=3)
+        t += timedelta(days=1 if (fc.today - t).days <= 90 else 3)
     appr_polls = [{"pollster": p.pollster, "end": p.end_date, "n": p.sample_size, "pop": p.population,
                    "approve": p.answers.get("Approve"), "disapprove": p.answers.get("Disapprove"), "url": p.url}
-                  for p in fc.inp.approval_polls if to_date(p.end_date) >= fc.today - timedelta(days=270)]
+                  for p in fc.inp.approval_polls if to_date(p.end_date) >= term_start]
     _write(out / "approval.json", {"net": _r(env["approval"].margin, 2), "trend": ap, "polls": appr_polls})
 
     # --- pollsters ------------------------------------------------------------
@@ -193,16 +194,25 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     hist_path = out / "history.json"
     hist = json.loads(hist_path.read_text()) if hist_path.exists() else {"points": []}
     if history:
+        # Backcast: rerun the model with only the data available on each date
+        # (weekly from a year before the election, daily for the last 60 days).
         pts = []
-        t = date(2026, 8, 1)
+        t = HISTORY_START
         while t < fc.today:
             _, _, hr = fc.run(asof=t, n_sims=n_history_sims, versions=(DEFAULT_VERSION,))
             pts.append(_hist_point(t, hr[DEFAULT_VERSION]))
-            t += timedelta(days=7 if (fc.today - t).days > 21 else 2)
+            t += timedelta(days=7 if (fc.today - t).days > 60 else 1)
         hist["points"] = pts
+        hist["backcast_until"] = fc.today.isoformat()
     hist["points"] = [p for p in hist["points"] if p["date"] != fc.today.isoformat()] + [_hist_point(fc.today, res[DEFAULT_VERSION])]
     hist["points"].sort(key=lambda p: p["date"])
     _write(hist_path, hist)
+    # per-race chance-of-winning over time, written into each race's detail file
+    for rid in race_ids:
+        path = out / "race" / f"{rid}.json"
+        d = json.loads(path.read_text())
+        d["odds_trend"] = [{"date": p["date"], "p": p["races"][rid]} for p in hist["points"] if rid in p.get("races", {})]
+        _write(path, d)
 
     # --- what changed ----------------------------------------------------------
     changes = _changes(prev, races_rows, fc) if prev else []
@@ -230,6 +240,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     fc.last = main_draws
     export_whatif(fc, out)
     _write(out / "races.json", races_rows)
+    _write(out / "schedule.json", poll_schedule(rows))
     try:
         from .og import make_og
         make_og(summary, races_rows, out.parent / "og.png")
@@ -238,8 +249,22 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     return summary
 
 
+HISTORY_START = date(2025, 9, 1)
+
+
+def _series(fc, race_id, first: date):
+    """Polling-average series: every 3 days until 90 days ago, then daily."""
+    split = fc.today - timedelta(days=90)
+    out = []
+    if first < split:
+        out += fc.pm.series(race_id, first, split - timedelta(days=1), step=3)
+    out += fc.pm.series(race_id, max(first, split), fc.today, step=1)
+    return out
+
+
 def _hist_point(t, r):
     return {"date": t.isoformat(),
+            "races": {k: round(v["p_dside"], 3) for k, v in r["races"].items() if not v.get("fixed")},
             "senate": {k: _r(v, 4) for k, v in r["senate"]["p_control"].items()},
             "house": {k: _r(v, 4) for k, v in r["house"]["p_control"].items()},
             "senate_seats": _r(r["senate"]["mean_seats"]["D"], 2), "house_seats": _r(r["house"]["mean_seats"]["D"], 2)}
@@ -317,3 +342,44 @@ def export_whatif(fc: Forecast, out: Path):
     _write(out / "whatif.json", {"n": int(q.shape[0]), "k": int(q.shape[1]), "scale": 0.5, "offset": 0.5, "races": races,
                                  "senate_not_up": SENATE_NOT_UP, "senate_majority": SENATE_MAJORITY,
                                  "house_majority": HOUSE_MAJORITY, "vp": "R", "asof": fc.today.isoformat()})
+
+
+def _close_minutes(t: str) -> int | None:
+    """'8:30pm' -> minutes after noon ET; '12am'/'1am' roll past midnight."""
+    import re
+    m = re.match(r"(\d{1,2})(?::(\d{2}))?\s*(am|pm)", t.strip().lower())
+    if not m:
+        return None
+    h, mi, ap = int(m.group(1)), int(m.group(2) or 0), m.group(3)
+    h = h % 12 + (12 if ap == "pm" else 24)
+    return (h - 12) * 60 + mi
+
+
+def poll_schedule(rows) -> dict:
+    """Poll-closing times (Eastern) by state, from the Senate election page's
+    table. Only states with a 2026 Senate race are listed there; the rest are
+    reported as not yet listed rather than guessed."""
+    import re
+    by_state: dict[str, dict] = {}
+    for row in rows:
+        r = row["race"]
+        e = by_state.setdefault(r.state, {"state": r.state, "state_name": r.state_name, "close": None, "races": []})
+        if r.poll_close_et:
+            e["close"] = r.poll_close_et
+        if r.office != "house" or row["kind"] == "two_party":
+            e["races"].append(r.id)
+    out = []
+    for e in by_state.values():
+        times = re.findall(r"\d{1,2}(?::\d{2})?\s*[ap]m", e["close"] or "")
+        mins = [m for m in (_close_minutes(t) for t in times) if m is not None]
+        e["first"] = min(mins) if mins else None
+        e["last"] = max(mins) if mins else None
+        e["times"] = times
+        out.append(e)
+    out.sort(key=lambda e: (e["first"] is None, e["first"] or 0, e["state_name"]))
+    return {"source": "Wikipedia, 2026 United States Senate elections (poll-closing table)", "states": out,
+            "key_dates": [
+                {"date": "2026-11-03", "label": "Election Day", "note": "Polls close from 6pm to 1am Eastern."},
+                {"date": "2026-12-01", "label": "Georgia runoff, if needed", "note": "Georgia requires a majority; a runoff is held four weeks after the general election."},
+                {"date": "2026-12-12", "label": "Louisiana House runoffs, if needed", "note": "After the Nov. 3 all-party House primary (The Green Papers)."},
+            ]}

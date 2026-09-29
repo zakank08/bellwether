@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useMemo } from "react";
-import type { CompactRow } from "@/lib/data";
-import { fmtUpdated, in100, partyMarginLabel } from "@/lib/format";
+import type { CompactRow, Mover } from "@/lib/data";
+import Sparkline, { Delta } from "./Sparkline";
+import TimeChart from "./TimeChart";
+import { fmtDate, fmtUpdated, in100, partyMarginLabel, surname } from "@/lib/format";
 import type { Forecast, Version } from "@/lib/types";
 import Hero from "./Hero";
 import HouseHexMap from "./HouseHexMap";
 import SectionNav from "./SectionNav";
-import LineChart from "./LineChart";
 import RaceList from "./RaceList";
 import SeatDots from "./SeatDots";
 import SnakeChart from "./SnakeChart";
@@ -20,9 +21,10 @@ import Reveal from "./Reveal";
 import { BUCKET_LABEL, bucketVar, onBucket } from "@/lib/format";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 
-type History = { points: { date: string; senate: Record<string, number>; house: Record<string, number> }[] } | null;
+type History = { backcast_until: string | null; points: { date: string; senate: Record<string, number>; house: Record<string, number> }[] } | null;
+type Props = { forecast: Forecast; rows: CompactRow[]; history: History; sparks: Record<string, number[]>; movers: Mover[] };
 
-export default function Dashboard(props: { forecast: Forecast; rows: CompactRow[]; history: History }) {
+export default function Dashboard(props: Props) {
   return (
     <VersionProvider initial={props.forecast.default_version}>
       <TipProvider><Inner {...props} /></TipProvider>
@@ -34,7 +36,7 @@ export function mapItems(rows: CompactRow[], v: Version): MapItem[] {
   return rows.map((r) => ({ state: r.state, id: r.id, bucket: r.rating[v], title: r.title, tipLines: tipLinesFor(r.dside.name, r.dside.party, r.rside.name, r.rside.party, r.p[v]) }));
 }
 
-function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: CompactRow[]; history: History }) {
+function Inner({ forecast: f, rows, history, sparks, movers }: Props) {
   const { v } = useVersion();
   const ch = f.chambers[v];
   const senate = useMemo(() => rows.filter((r) => r.office === "senate"), [rows]);
@@ -85,13 +87,19 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
                   </div>
                   <div style={{ fontWeight: 600, fontSize: 18, margin: "6px 0 8px" }}>{r.title}</div>
                   <div className="row small" style={{ justifyContent: "space-between" }}>
-                    <span style={{ color: r.dside.party === "D" ? "var(--dem)" : "var(--ind)" }}>{r.dside.name?.split(" ").slice(-1)} <strong className="num">{in100(pl)}</strong></span>
-                    <span style={{ color: "var(--rep)" }}><strong className="num">{in100(1 - pl)}</strong> {r.rside.name?.split(" ").slice(-1)}</span>
+                    <span style={{ color: r.dside.party === "D" ? "var(--dem)" : "var(--ind)" }}>{surname(r.dside.name)} <strong className="num">{in100(pl)}</strong></span>
+                    <span style={{ color: "var(--rep)" }}><strong className="num">{in100(1 - pl)}</strong> {surname(r.rside.name)}</span>
                   </div>
                   <div className="bar" style={{ marginTop: 6 }} aria-hidden="true">
                     <div style={{ width: `${pl * 100}%`, background: r.dside.party === "D" ? "var(--d-safe)" : "var(--ind-fill)", transition: "width .6s" }} />
                     <div style={{ flex: 1, background: "var(--r-safe)" }} />
                   </div>
+                  {sparks[r.id] && (
+                    <div className="row" style={{ justifyContent: "space-between", marginTop: 8 }}>
+                      <Sparkline values={sparks[r.id]} dParty={r.dside.party} rParty={r.rside.party} w={96} h={24} label={`${r.title}: ${r.dside.name}'s chance over the last month`} />
+                      {sparks[r.id].length >= 8 && <Delta from={sparks[r.id][sparks[r.id].length - 8]} to={sparks[r.id][sparks[r.id].length - 1]} dName={r.dside.name} rName={r.rside.name} dParty={r.dside.party} rParty={r.rside.party} />}
+                    </div>
+                  )}
                 </Link>
               );
             })}
@@ -154,7 +162,7 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
             <SeatDots key={v + "h"} hist={ch.house.seats_hist} majority={218} label="Distribution of Democratic House seats across simulations" partyAt={(s) => (s >= 218 ? "D" : "R")} />
             <h3 style={{ marginTop: 24 }}>Closest House races</h3>
             <ul style={{ paddingLeft: 18, margin: "8px 0 0" }}>
-              {close(house, 8).map((r) => <li key={r.id}><Link href={`/race/${r.id}/`}>{r.title}</Link> <span className="small muted num">{r.dside.name?.split(" ").slice(-1)} {in100(r.p[v])} · {r.rside.name?.split(" ").slice(-1)} {in100(1 - r.p[v])}</span></li>)}
+              {close(house, 8).map((r) => <li key={r.id}><Link href={`/race/${r.id}/`}>{r.title}</Link> <span className="small muted num">{surname(r.dside.name)} {in100(r.p[v])} · {surname(r.rside.name)} {in100(1 - r.p[v])}</span></li>)}
             </ul>
           </div>
         </div>
@@ -170,13 +178,14 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
       {history && history.points.length > 1 && (
         <section className="block" aria-labelledby="time-h" id="trends">
           <h2 id="time-h" className="display big">How the odds have moved</h2>
-          <p className="takeaway">Chance of Democratic control, recalculated with only the polls available on each date (polls + fundamentals version).</p>
+          <p className="takeaway">Chance of Democratic control (polls + fundamentals). Use the buttons to zoom in or out, like a stock chart.{history.backcast_until && <> Points before {fmtDate(history.backcast_until, { month: "short", day: "numeric", year: "numeric" })} are recomputed from the polls available on each date, since the site launched then.</>}</p>
           <div className="grid-2">
             {(["senate", "house"] as const).map((c) => (
               <div key={c}>
                 <h3 style={{ textTransform: "capitalize" }}>{c}</h3>
-                <LineChart title={`Chance of ${c} control over time`} yDomain={[0, 100]} yFormat={(n) => `${Math.round(n)}`} height={220}
-                  zeroLine={{ y: 50 }}
+                <TimeChart title={`Chance of ${c} control over time`} yDomain={[0, 100]} yFormat={(n) => `${Math.round(n)}`} height={230}
+                  zeroLine={{ y: 50 }} defaultRange="3M"
+                  deltaFormat={(d) => Math.abs(d) < 0.5 ? { text: "No change", color: "var(--ink-muted)" } : { text: `${d > 0 ? "Democrats" : "Republicans"} +${Math.abs(d).toFixed(0)}`, color: d > 0 ? "var(--dem)" : "var(--rep)" }}
                   series={[
                     { key: "D", label: "Democrats", color: "var(--dem)", values: history.points.map((p) => ({ date: p.date, y: p[c].D * 100 })) },
                     { key: "R", label: "Republicans", color: "var(--rep)", values: history.points.map((p) => ({ date: p.date, y: p[c].R * 100 })) },
@@ -212,6 +221,25 @@ function Inner({ forecast: f, rows, history }: { forecast: Forecast; rows: Compa
 
       <section className="block" aria-labelledby="chg-h" id="changes">
         <h2 id="chg-h" className="display big">What changed</h2>
+        {movers.length > 0 && (
+          <>
+            <p className="takeaway">Biggest movers over the past week, by change in win probability.</p>
+            <div className="race-card-grid" style={{ marginBottom: 24 }}>
+              {movers.map((m) => (
+                <Link key={m.id} href={`/race/${m.id}/`} className="race-card">
+                  <div className="kicker">{m.office === "senate" ? "Senate" : m.office === "house" ? "House" : "Governor"}</div>
+                  <div style={{ fontWeight: 600, margin: "4px 0 6px" }}>{m.title}</div>
+                  <div className="row" style={{ justifyContent: "space-between" }}>
+                    {sparks[m.id] ? <Sparkline values={sparks[m.id]} dParty={m.dside.party} rParty={m.rside.party} w={96} h={24} /> : <span />}
+                    <Delta from={m.from} to={m.to} dName={m.dside.name} rName={m.rside.name} dParty={m.dside.party} rParty={m.rside.party} />
+                  </div>
+                  <div className="small muted num" style={{ marginTop: 4 }}>{surname(m.dside.name)} {in100(m.from)} → {in100(m.to)} in 100</div>
+                </Link>
+              ))}
+            </div>
+            <h3>Update log</h3>
+          </>
+        )}
         {f.changes.length ? (
           <ul style={{ paddingLeft: 18 }}>
             {f.changes.map((c) => (

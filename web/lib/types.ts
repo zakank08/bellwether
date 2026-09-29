@@ -70,6 +70,7 @@ export interface RaceDetail extends RaceRow {
   candidates: { name: string; party: Party; party_label: string; incumbent: boolean; wiki?: string | null;
     bio?: { title: string; description?: string | null; bio?: string; url?: string | null; website?: string | null } }[];
   dist?: number[];
+  odds_trend?: { date: string; p: number }[];
   money?: { d: MoneySide | null; r: MoneySide | null } | null;
   notes: string[];
   poll_close_et: string | null;

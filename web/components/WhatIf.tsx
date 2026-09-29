@@ -2,7 +2,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { BUCKET_LABEL, bucketVar, in100, onBucket } from "@/lib/format";
+import { BUCKET_LABEL, bucketVar, in100, onBucket, surname } from "@/lib/format";
 import { TILES } from "@/lib/tiles";
 import type { Bucket } from "@/lib/types";
 import { compute, decode, encode, pathTo, type Pick, type Picks, type WMeta, type WRace } from "@/lib/whatif";
@@ -18,7 +18,7 @@ const bucketOf = (p: number, dp: string | null, rp: string | null): Bucket => {
   return "tossup";
 };
 const partyFill = (party: string | null) => (party === "D" ? "var(--d-safe)" : party === "R" ? "var(--r-safe)" : "var(--ind-fill)");
-const last = (s: string | null) => (s ?? "").split(" ").slice(-1)[0];
+const last = (s: string | null) => surname(s);
 
 export default function WhatIf() {
   const [meta, setMeta] = useState<WMeta | null>(null);

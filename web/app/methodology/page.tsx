@@ -74,11 +74,15 @@ export default function Methodology() {
           </>
         ) : <p>The backtest report hasn’t been generated yet.</p>}
 
-        <h2 className="display">7. Sources</h2>
+        <h2 className="display">7. Charts over time</h2>
+        <p>Odds-over-time charts go back to September 2025. The site launched on Sept. 28, 2026, so earlier points are a <strong>backcast</strong>: the same model rerun with only the polls that had been released by each date (weekly, then daily for the last 60 days, using fewer simulations per point). They use today’s candidate list and district lines, so they show how the evidence evolved rather than what a forecast published at the time would have said. From launch on, each point is the live forecast as published. Polling-average charts go back to each race’s first poll; presidential approval starts with the second Trump term.</p>
+        <p>Use the range buttons (1W to 1Y, All, or Custom dates) to zoom. There’s no one-day view: forecasts update three times a day and polls arrive a few times a week, so a day is too short to show movement. Election night will get its own minute-by-minute view.</p>
+
+        <h2 className="display">8. Sources</h2>
         <ul>{f.sources.map((s) => <li key={s.name}><a href={s.url} rel="noopener noreferrer" target="_blank">{s.name}</a> — {s.use}</li>)}</ul>
         <p>We never invent polls, results or candidates. When a race has no polls, the page says so and the forecast rests on fundamentals.</p>
 
-        <h2 className="display">8. What’s next</h2>
+        <h2 className="display">9. What’s next</h2>
         <p>Coming in later phases: geographic district outlines for the 2026 lines (the Census hasn’t published them yet, so House maps use equal-size hexagons, one per district), live election-night results with a rehearsal mode, and 2028 and state-level coverage.</p>
       </section>
     </div>

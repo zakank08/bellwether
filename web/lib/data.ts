@@ -9,7 +9,50 @@ const readOpt = <T,>(f: string): T | null => (fs.existsSync(path.join(DIR, f)) ?
 export const getForecast = () => read<Forecast>("forecast.json");
 export const getRaces = () => read<RaceRow[]>("races.json");
 export const getRace = (id: string) => read<RaceDetail>(`race/${id}.json`);
-export const getHistory = () => readOpt<{ points: { date: string; senate: Record<string, number>; house: Record<string, number>; senate_seats: number; house_seats: number }[] }>("history.json");
+export type HistPoint = { date: string; senate: Record<string, number>; house: Record<string, number>; senate_seats: number; house_seats: number; races?: Record<string, number> };
+export const getHistory = () => readOpt<{ points: HistPoint[]; backcast_until?: string }>("history.json");
+
+/** Chamber odds over time only (the per-race detail stays server-side). */
+export function chamberHistory() {
+  const h = getHistory();
+  if (!h) return null;
+  return { backcast_until: h.backcast_until ?? null, points: h.points.map(({ date, senate, house, senate_seats, house_seats }) => ({ date, senate, house, senate_seats, house_seats })) };
+}
+
+/** Last `days` of each listed race's D-side chance, for sparklines. */
+export function sparks(ids: string[], days = 30): Record<string, number[]> {
+  const h = getHistory();
+  if (!h?.points.length) return {};
+  const endDate = h.points[h.points.length - 1].date;
+  const start = new Date(new Date(endDate + "T12:00:00Z").getTime() - days * 864e5).toISOString().slice(0, 10);
+  const pts = h.points.filter((p) => p.date >= start);
+  const out: Record<string, number[]> = {};
+  for (const id of ids) {
+    const v = pts.map((p) => p.races?.[id]).filter((x): x is number => x != null);
+    if (v.length >= 2) out[id] = v;
+  }
+  return out;
+}
+
+/** Races whose D-side chance moved most over the last `days`. */
+export function movers(days = 7, n = 8) {
+  const h = getHistory();
+  if (!h || h.points.length < 2) return [];
+  const last = h.points[h.points.length - 1];
+  const target = new Date(new Date(last.date + "T12:00:00Z").getTime() - days * 864e5).toISOString().slice(0, 10);
+  const prev = [...h.points].reverse().find((p) => p.date <= target);
+  if (!prev?.races || !last.races) return [];
+  const rows = Object.fromEntries(getRaces().map((r) => [r.id, r]));
+  return Object.entries(last.races)
+    .filter(([id]) => prev.races![id] != null && rows[id]?.kind === "two_party")
+    .map(([id, p]) => ({ id, title: rows[id].title, office: rows[id].office, dside: rows[id].dside, rside: rows[id].rside, from: prev.races![id], to: p, since: prev.date }))
+    .filter((m) => Math.abs(m.to - m.from) >= 0.02)
+    .sort((a, b) => Math.abs(b.to - b.from) - Math.abs(a.to - a.from))
+    .slice(0, n);
+}
+export type Mover = ReturnType<typeof movers>[number];
+
+export const getSchedule = () => readOpt<{ source: string; states: { state: string; state_name: string; close: string | null; first: number | null; last: number | null; times: string[]; races: string[] }[]; key_dates: { date: string; label: string; note: string }[] }>("schedule.json");
 export const getGeneric = () => read<{ average: number; se: number; n_polls: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; raw: number; adjusted: number; url: string | null }[] }>("generic.json");
 export const getApproval = () => read<{ net: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; approve: number; disapprove: number; url: string | null }[] }>("approval.json");
 export const getPollsters = () => read<{ ratings: any[]; active: any[] }>("pollsters.json");

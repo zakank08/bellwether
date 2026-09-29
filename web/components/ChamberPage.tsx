@@ -11,7 +11,7 @@ import StateMap from "./MapLazy";
 import { TipProvider } from "./Tooltip";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 
-export default function ChamberPage(props: { office: "senate" | "house" | "governor"; forecast: Forecast; rows: CompactRow[] }) {
+export default function ChamberPage(props: { office: "senate" | "house" | "governor"; forecast: Forecast; rows: CompactRow[]; sparks?: Record<string, number[]> }) {
   return (
     <VersionProvider initial={props.forecast.default_version}>
       <TipProvider><Inner {...props} /></TipProvider>
@@ -21,7 +21,7 @@ export default function ChamberPage(props: { office: "senate" | "house" | "gover
 
 const TITLE = { senate: "Senate", house: "House", governor: "Governor" };
 
-function Inner({ office, rows }: { office: "senate" | "house" | "governor"; forecast: Forecast; rows: CompactRow[] }) {
+function Inner({ office, rows, sparks }: { office: "senate" | "house" | "governor"; forecast: Forecast; rows: CompactRow[]; sparks?: Record<string, number[]> }) {
   const { v } = useVersion();
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | "competitive">(office === "house" ? "competitive" : "all");
@@ -63,7 +63,7 @@ function Inner({ office, rows }: { office: "senate" | "house" | "governor"; fore
           </div>
           <span className="small muted">{shown.length} shown</span>
         </div>
-        <RaceList rows={shown} v={v} caption={`${TITLE[office]} races`} />
+        <RaceList rows={shown} v={v} caption={`${TITLE[office]} races`} sparks={sparks} />
       </section>
     </div>
   );

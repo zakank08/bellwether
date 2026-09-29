@@ -3,8 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  ["/", "Forecast"], ["/whatif/", "What if?"], ["/senate/", "Senate"], ["/house/", "House"], ["/governor/", "Governors"],
-  ["/polls/", "Polls"], ["/pollsters/", "Pollster ratings"], ["/methodology/", "Methodology"],
+  ["/", "Forecast"], ["/whatif/", "What if?"], ["/senate/", "Senate"], ["/house/", "House"], ["/governor/", "Governors"], ["/schedule/", "Election night"],
+  ["/polls/", "Polls"], ["/pollsters/", "Pollsters"], ["/methodology/", "How it works"],
 ] as const;
 
 export default function Nav() {

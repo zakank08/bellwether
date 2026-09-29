@@ -56,3 +56,9 @@ export function fmtUpdated(iso: string) {
 }
 
 export const leaderOf = (p: number, d: Party | null, r: Party | null): Party | null => (p >= 0.5 ? d : r);
+
+/** Last name for compact labels: "Tom Kean Jr." -> "Kean", "Clyde Jones Jr." -> "Jones". */
+export function surname(name: string | null | undefined): string {
+  const parts = (name ?? "").trim().split(/\s+/).filter((w) => !/^(jr|sr|ii|iii|iv)\.?,?$/i.test(w));
+  return parts[parts.length - 1] ?? "";
+}

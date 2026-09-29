@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import ChamberPage from "@/components/ChamberPage";
-import { compactRows, getForecast, getRaces } from "@/lib/data";
+import { compactRows, getForecast, getRaces, sparks } from "@/lib/data";
 
 export const metadata: Metadata = { title: "House races" };
 
 export default function Page() {
-  return <ChamberPage office="house" forecast={getForecast()} rows={compactRows(getRaces().filter((r) => r.office === "house"))} />;
+  const rows = getRaces().filter((r) => r.office === "house");
+  const ids = rows.filter((r) => r.kind === "two_party" && (r.office !== "house" || (r.p.fundamentals > 0.03 && r.p.fundamentals < 0.97))).map((r) => r.id);
+  return <ChamberPage office="house" forecast={getForecast()} rows={compactRows(rows)} sparks={sparks(ids)} />;
 }

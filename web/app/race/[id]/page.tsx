@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PollChart from "@/components/RaceCharts";
+import PollChart, { OddsChart } from "@/components/RaceCharts";
 import { Gauge, OutcomeDist } from "@/components/RaceVisuals";
 import InfoTip from "@/components/InfoTip";
 import { getForecast, getRace, getRaces } from "@/lib/data";
-import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel } from "@/lib/format";
+import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel, surname } from "@/lib/format";
 import type { RaceDetail } from "@/lib/types";
 
 export function generateStaticParams() {
@@ -28,7 +28,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
   const b = r.rating[v];
   const p = r.p[v];
   const m = r.model;
-  const lastName = (s: string | null) => (s ?? "").split(" ").slice(-1)[0];
+  const lastName = (s: string | null) => surname(s);
   const ml = (x: number | null | undefined) => (x == null ? "—" : `${x >= 0 ? lastName(r.dside.name) : lastName(r.rside.name)} +${Math.abs(x).toFixed(1)}`);
   const pollsPresent = (r.polls?.length ?? 0) > 0;
   return (
@@ -124,6 +124,14 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
               {r.polls!.length > 40 && <p className="small muted">Showing the 40 most recent of {r.polls!.length} polls.</p>}
             </div>
           )}
+        </section>
+      )}
+
+      {r.kind === "two_party" && (
+        <section className="block">
+          <h2 className="display">Chance of winning over time</h2>
+          <p className="takeaway">How this race’s odds have moved as polls and the national environment changed.</p>
+          <OddsChart race={r} />
         </section>
       )}
 

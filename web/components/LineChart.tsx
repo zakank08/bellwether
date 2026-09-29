@@ -2,7 +2,7 @@
 import { scaleLinear, scaleTime } from "d3-scale";
 import { area, line, curveMonotoneX } from "d3-shape";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fmtDate } from "@/lib/format";
 
 export type Series = { key: string; color: string; values: { date: string; y: number; lo?: number; hi?: number }[]; label: string };
@@ -18,16 +18,29 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
   const ref = useRef<SVGSVGElement>(null);
   const [hover, setHover] = useState<number | null>(null);
   const seen = useInView(ref, { once: true, margin: "0px 0px -40px 0px" }) || !!reduce;
-  const W = 720, H = height, m = { t: 12, r: 96, b: 28, l: 12 };
+  // Draw at the real container width so text stays 12px on phones.
+  const box = useRef<HTMLDivElement>(null);
+  const [W, setW] = useState(720);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setW(Math.max(300, Math.round(e.contentRect.width))));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const H = W < 500 ? Math.round(height * 0.85) : height;
+  const m = { t: 12, r: W < 500 ? 76 : 96, b: 28, l: W < 500 ? 18 : 12 };
   const all = [...series.flatMap((s) => s.values.map((v) => v.date)), ...dots.map((d) => d.date)];
   const dmin = xDomain?.[0] ?? all.reduce((a, b) => (a < b ? a : b), all[0]);
   const dmax = xDomain?.[1] ?? all.reduce((a, b) => (a > b ? a : b), all[0]);
-  const x = useMemo(() => scaleTime().domain([new Date(dmin), new Date(dmax)]).range([m.l, W - m.r]), [dmin, dmax]);
+  const x = useMemo(() => scaleTime().domain([new Date(dmin), new Date(dmax)]).range([m.l, W - m.r]), [dmin, dmax, W, m.l, m.r]);
   const y = useMemo(() => scaleLinear().domain(yDomain).range([H - m.b, m.t]).nice(), [yDomain, H]);
   const ln = line<{ date: string; y: number }>().x((d) => x(new Date(d.date))).y((d) => y(d.y)).curve(curveMonotoneX);
   const ar = area<{ date: string; lo?: number; hi?: number }>().x((d) => x(new Date(d.date))).y0((d) => y(d.lo ?? 0)).y1((d) => y(d.hi ?? 0)).curve(curveMonotoneX);
   const ticks = x.ticks(W > 600 ? 6 : 4);
-  const yt = y.ticks(5);
+  const spanDays = (new Date(dmax).getTime() - new Date(dmin).getTime()) / 864e5;
+  const tickFmt = (t: Date) => fmtDate(t.toISOString().slice(0, 10), spanDays > 240 ? { month: "short", year: "2-digit" } : { month: "short", day: "numeric" });
+  const yt = y.ticks(W < 500 ? 4 : 5);
   const base = series[0]?.values ?? [];
   const onMove = (e: React.PointerEvent) => {
     const svg = ref.current; if (!svg || !base.length) return;
@@ -40,8 +53,8 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
   };
   const hv = hover != null ? base[hover] : null;
   return (
-    <div style={{ position: "relative" }}>
-      <svg ref={ref} viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label={title} style={{ display: "block", touchAction: "pan-y" }}
+    <div ref={box} style={{ position: "relative" }}>
+      <svg ref={ref} viewBox={`0 0 ${W} ${H}`} width="100%" height={H} role="img" aria-label={title} style={{ display: "block", touchAction: "pan-y" }}
         onPointerMove={onMove} onPointerLeave={() => setHover(null)}>
         {yt.map((t) => (
           <g key={t}>
@@ -50,7 +63,7 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
           </g>
         ))}
         {zeroLine && <line x1={m.l} x2={W - m.r} y1={y(zeroLine.y)} y2={y(zeroLine.y)} stroke="var(--ink-muted)" strokeWidth={1} />}
-        {ticks.map((t) => <text key={+t} x={x(t)} y={H - 8} fontSize={12} textAnchor="middle" fill="var(--ink-muted)">{fmtDate(t.toISOString().slice(0, 10))}</text>)}
+        {ticks.map((t) => <text key={+t} x={x(t)} y={H - 8} fontSize={12} textAnchor="middle" fill="var(--ink-muted)">{tickFmt(t)}</text>)}
         {series.map((s) => s.values.some((v) => v.lo != null) && (
           <motion.path key={s.key + "band"} d={ar(s.values) ?? ""} fill={s.color} initial={{ opacity: 0 }} animate={{ opacity: seen ? 0.14 : 0 }} transition={{ duration: reduce ? 0 : 0.6 }} />
         ))}
@@ -61,7 +74,7 @@ export default function LineChart({ series, dots = [], yDomain, yFormat, height 
         ))}
         {series.map((s) => (
           <motion.path key={s.key} d={ln(s.values) ?? ""} fill="none" stroke={s.color} strokeWidth={2.5} strokeLinecap="round"
-            initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: seen ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.8, ease: "easeOut" }} />
+            initial={reduce ? false : { pathLength: 0 }} animate={{ pathLength: seen ? 1 : 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: [0.2, 0.7, 0.2, 1] }} />
         ))}
         {hv && (
           <g pointerEvents="none">

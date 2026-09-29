@@ -158,8 +158,8 @@ class WikipediaRaces(RaceSource):
         close_map = {}
         if close is not None:
             for _, r in close.iterrows():
-                st = STATES.get(clean(r[_col(close, "State")]))
-                if st:
+                st = STATES.get(re.sub(r"\s*\(.*?\)", "", clean(r[_col(close, "State")])).strip())
+                if st and st not in close_map:
                     close_map[st] = clean(r[_col(close, "Poll closing")])
         rat_map = {}
         for _, r in ratings.iterrows():
