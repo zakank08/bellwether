@@ -46,6 +46,23 @@ def _cache_path(url: str) -> Path:
     return CACHE_DIR / (hashlib.sha1(url.encode()).hexdigest() + ".body")
 
 
+def _meta_path(url: str) -> Path:
+    return _cache_path(url).with_suffix(".meta")
+
+
+def cache_age(url: str) -> float | None:
+    """Seconds since this URL was actually fetched. Stored in a sidecar file,
+    not the file's mtime: a fresh git checkout resets every mtime to "now",
+    which would make a days-old cached copy look brand new in CI."""
+    m = _meta_path(url)
+    if m.exists():
+        try:
+            return time.time() - json.loads(m.read_text())["fetched_at"]
+        except (ValueError, KeyError):
+            return None
+    return None
+
+
 def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retries: int = 3) -> bytes:
     """Fetch a URL with caching, per-host throttling and backoff.
 
@@ -56,7 +73,8 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     path = _cache_path(url)
     host = urlparse(url).netloc
-    if path.exists() and time.time() - path.stat().st_mtime < max_age_s:
+    age = cache_age(url) if path.exists() else None
+    if age is not None and age < max_age_s:
         _mark(host, "cached", url)
         return path.read_bytes()
     throttle_key = host + ("/rest" if "/api/rest_v1/" in url else "")  # Wikipedia REST has looser limits
@@ -74,13 +92,14 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
                 continue
             r.raise_for_status()
             path.write_bytes(r.content)
+            _meta_path(url).write_text(json.dumps({"url": url, "fetched_at": time.time()}))
             _mark(host, "fresh", url)
             return r.content
         except requests.RequestException as e:  # network or HTTP error
             last_err = e
             time.sleep(2 ** attempt)
     if allow_stale and path.exists():
-        _mark(host, "stale", url, time.time() - path.stat().st_mtime)
+        _mark(host, "stale", url, cache_age(url))
         return path.read_bytes()
     raise FetchError(f"could not fetch {url}: {last_err}")
 
