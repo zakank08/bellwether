@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NJ&district=07&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1790699902.3668594}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NJ&district=07&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1790734092.0365899}

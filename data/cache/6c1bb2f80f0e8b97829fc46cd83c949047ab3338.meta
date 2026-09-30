@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=MI&district=07&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1790699883.358885}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=MI&district=07&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1790734073.0006895}
