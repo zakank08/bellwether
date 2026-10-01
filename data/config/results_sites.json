@@ -1,0 +1,172 @@
+{
+ "_about": "Each state's official election-results pages, used by pipeline/tools/probe_results_sites.py to check from GitHub's servers which sites answer automated requests. Sites were found Sept. 30\u2013Oct. 1, 2026; see docs/results-sources.md for what each one is. A URL listed here is a place to look, not a promise it has data.",
+ "states": {
+  "AL": [
+   "https://www.alabamavotes.gov/",
+   "https://www.sos.alabama.gov/alabama-votes/voter/election-information/2024"
+  ],
+  "AK": [
+   "https://www.elections.alaska.gov/election-results/e/?id=24genr",
+   "https://www.elections.alaska.gov/results/24GENR/ENRbyPrecinct.csv"
+  ],
+  "AZ": [
+   "https://results.arizona.vote/"
+  ],
+  "AR": [
+   "https://www.sos.arkansas.gov/elections/research/election-results",
+   "https://results.enr.clarityelections.com/AR/"
+  ],
+  "CA": [
+   "https://electionresults.sos.ca.gov/",
+   "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-nov-5-2024/statement-vote"
+  ],
+  "CO": [
+   "https://results.enr.clarityelections.com/CO/",
+   "https://results.enr.clarityelections.com/CO/122598/current_ver.txt"
+  ],
+  "CT": [
+   "https://ctemspublic.pcctg.net/",
+   "https://electionhistory.ct.gov/"
+  ],
+  "DE": [
+   "https://electionresults.delaware.gov/",
+   "https://elections.delaware.gov/reports/GE2024.csv"
+  ],
+  "FL": [
+   "https://results.elections.myflorida.com/"
+  ],
+  "GA": [
+   "https://results.sos.ga.gov/results/public/Georgia",
+   "https://results.sos.ga.gov/results/public/api/elections/Georgia/2024NovGen"
+  ],
+  "HI": [
+   "https://elections.hawaii.gov/election-results/"
+  ],
+  "ID": [
+   "https://voteidaho.gov/"
+  ],
+  "IL": [
+   "https://elections.il.gov/electionoperations/electionvotetotals.aspx"
+  ],
+  "IN": [
+   "https://enr.indianavoters.in.gov/site/index.html"
+  ],
+  "IA": [
+   "https://electionresults.iowa.gov/",
+   "https://sos.iowa.gov/iowans/election-results-statistics"
+  ],
+  "KS": [
+   "https://sos.ks.gov/elections/election-results.html"
+  ],
+  "KY": [
+   "https://results.enr.clarityelections.com/KY/",
+   "https://elect.ky.gov/Results/Pages/default.aspx"
+  ],
+  "LA": [
+   "https://voterportal.sos.la.gov/static/",
+   "https://voterportal.sos.la.gov/graphical"
+  ],
+  "ME": [
+   "https://www.maine.gov/sos/elections-voting/election-results-data"
+  ],
+  "MD": [
+   "https://elections.maryland.gov/elections/2024/general_Results/index.html"
+  ],
+  "MA": [
+   "https://electionstats.state.ma.us/"
+  ],
+  "MI": [
+   "https://mvic.sos.state.mi.us/votehistory/Index?type=C&electionDate=11-5-2024",
+   "https://mielections.us/election/results/"
+  ],
+  "MN": [
+   "https://electionresults.sos.mn.gov/",
+   "https://electionresultsfiles.sos.state.mn.us/20241105/ushouse.txt"
+  ],
+  "MS": [
+   "https://www.sos.ms.gov/elections-voting/election-results"
+  ],
+  "MO": [
+   "https://enr.sos.mo.gov/"
+  ],
+  "MT": [
+   "https://sosmt.gov/elections/results/"
+  ],
+  "NE": [
+   "https://electionresults.nebraska.gov/"
+  ],
+  "NV": [
+   "https://silverstateelection.nv.gov/"
+  ],
+  "NH": [
+   "https://www.sos.nh.gov/2024-general-election-results"
+  ],
+  "NJ": [
+   "https://nj.gov/state/elections/election-night-results.shtml"
+  ],
+  "NM": [
+   "https://electionresults.sos.nm.gov/"
+  ],
+  "NY": [
+   "https://nyenr.elections.ny.gov/",
+   "https://results.elections.ny.gov/contest/5591"
+  ],
+  "NC": [
+   "https://er.ncsbe.gov/",
+   "https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2024_11_05/results_pct_20241105.zip"
+  ],
+  "ND": [
+   "https://results.sos.nd.gov/"
+  ],
+  "OH": [
+   "https://liveresults.ohiosos.gov/"
+  ],
+  "OK": [
+   "https://results.okelections.us/"
+  ],
+  "OR": [
+   "https://results.oregonvotes.gov/"
+  ],
+  "PA": [
+   "https://www.electionreturns.pa.gov/"
+  ],
+  "RI": [
+   "https://www.ri.gov/election/results/2024/general_election/"
+  ],
+  "SC": [
+   "https://www.enr-scvotes.org/SC/"
+  ],
+  "SD": [
+   "https://electionresults.sd.gov/"
+  ],
+  "TN": [
+   "https://tnmap.tn.gov/electionresults/",
+   "https://sos.tn.gov/elections/results"
+  ],
+  "TX": [
+   "https://results.texas-election.com/"
+  ],
+  "UT": [
+   "https://electionresults.utah.gov/results/public/Utah"
+  ],
+  "VT": [
+   "https://electionresults.vermont.gov/",
+   "https://electionarchive.vermont.gov/"
+  ],
+  "VA": [
+   "https://results.elections.virginia.gov/"
+  ],
+  "WA": [
+   "https://results.votewa.gov/results/public/washington"
+  ],
+  "WV": [
+   "https://results.wvsos.gov/"
+  ],
+  "WI": [
+   "https://elections.wi.gov/wisconsin-county-election-websites"
+  ],
+  "WY": [
+   "https://sos.wyo.gov/Elections/Docs/2024/2024GeneralResults.aspx"
+  ]
+ }
+}

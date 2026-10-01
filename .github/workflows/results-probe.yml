@@ -1,0 +1,36 @@
+# Daily: ask each state's election-results site for a page from GitHub's servers and record who answers.
+# Many state sites use bot protection; this shows which ones the election-night worker can read from here.
+# Writes docs/results-probe-latest.json (only commits when something changed).
+name: results-probe
+on:
+  schedule:
+    - cron: "41 15 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: results-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Probe state results sites
+        run: python pipeline/tools/probe_results_sites.py --write | tee probe.txt
+      - name: Summary
+        run: |
+          { echo "### State results sites, as seen from GitHub's servers"; echo '```'; cat probe.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit result if it changed
+        run: |
+          git config user.name "bellwether-bot"
+          git config user.email "bellwether-bot@users.noreply.github.com"
+          git add docs/results-probe-latest.json
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "Results-site probe: update (automatic)"
+          git pull --rebase origin main
+          git push origin HEAD:main
