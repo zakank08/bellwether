@@ -7,16 +7,10 @@ import csv
 import io
 from collections import defaultdict
 
-from .model import Cand, RaceResult, house_id, party_side, senate_id
+from .contests import classify
+from .model import Cand, RaceResult, party_side
 
 SOURCE = "Alaska Division of Elections"
-CONTESTS = {  # contest title -> how to build the race id
-    "U.S. Representative": lambda y: house_id(y, "AK", 0),
-    "U.S. Senator": lambda y: senate_id(y, "AK"),
-    "U.S. Senate": lambda y: senate_id(y, "AK"),
-}
-
-
 def _flip_name(n: str) -> str:
     """'Begich, Nick' -> 'Nick Begich'."""
     if "," in n:
@@ -30,12 +24,12 @@ def parse(text: str, year: int = 2026, url: str = "") -> list[RaceResult]:
     votes: dict[str, dict[tuple[str, str], int]] = defaultdict(lambda: defaultdict(int))
     units: dict[str, dict[str, bool]] = defaultdict(dict)
     for r in rows:
-        mk = CONTESTS.get((r.get("Contest_title") or "").strip())
-        if not mk:
+        rid = classify((r.get("Contest_title") or "").strip(), "AK", year)
+        if not rid:
             continue
-        rid = mk(year)
         v = int(r.get("total_votes") or 0)
-        votes[rid][(_flip_name(r["candidate_name"]), party_side(r.get("Party_Code", "")))] += v
+        nm = r["candidate_name"].split("/")[0] if "-gov-" in rid else r["candidate_name"]  # governor rows list the ticket
+        votes[rid][(_flip_name(nm), party_side(r.get("Party_Code", "")))] += v
         pr = r.get("Precinct_name", "")
         reported = r.get("Reporting_flag") == "1" or int(r.get("total_ballots") or 0) > 0
         units[rid][pr] = units[rid].get(pr, False) or reported

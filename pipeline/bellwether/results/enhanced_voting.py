@@ -6,10 +6,15 @@ from __future__ import annotations
 import json
 import re
 
-from .model import Cand, RaceResult, house_id, party_side, senate_id
+from .contests import classify, ticket_name
+from .model import Cand, RaceResult, party_side
 
 SITES = {
     "GA": ("Georgia Secretary of State", "https://results.sos.ga.gov/results/public/api/elections/Georgia/{election}/ballot-items"),
+    # Same platform, same address pattern. NOT yet tested: the 2024 election ids were not found from outside the site.
+    "UT": ("Utah Elections Office", "https://electionresults.utah.gov/results/public/api/elections/Utah/{election}/ballot-items"),
+    "WA": ("Washington Secretary of State", "https://results.votewa.gov/results/public/api/elections/Washington/{election}/ballot-items"),
+    "ID": ("Idaho Secretary of State", "https://voteidaho.gov/results/public/api/elections/Idaho/{election}/ballot-items"),
 }
 _NAME_PARTY = re.compile(r"\s*\(([A-Za-z .-]+)\)\s*$")
 _TRAILING = re.compile(r"(\s*\([A-Za-z .-]+\))+\s*$")
@@ -20,13 +25,7 @@ def _text(x) -> str:
 
 
 def race_id_for(state: str, title: str, year: int) -> str | None:
-    t = title.lower()
-    m = re.search(r"u\.?s\.? house of representatives\s*-\s*district\s*(\d+)", t) or re.search(r"u\.?s\.? house.*district\s*(\d+)", t)
-    if m:
-        return house_id(year, state, int(m.group(1)))
-    if re.fullmatch(r"(us|u\.s\.) senat(e|or)( .*)?", t) and "state" not in t:
-        return senate_id(year, state, special="special" in t)
-    return None
+    return classify(title, state, year)
 
 
 def parse(data: dict, state: str, year: int = 2026, url: str = "") -> list[RaceResult]:
@@ -43,7 +42,8 @@ def parse(data: dict, state: str, year: int = 2026, url: str = "") -> list[RaceR
             name = _text(o["name"])
             m = _NAME_PARTY.search(name)
             party = (o.get("party") or {}).get("abbreviation") or (m.group(1) if m else "")
-            cands.append(Cand(_TRAILING.sub("", name), party_side(party), int(o.get("voteCount") or 0)))
+            clean = _TRAILING.sub("", name)
+            cands.append(Cand(ticket_name(clean) if "-gov-" in rid else clean, party_side(party), int(o.get("voteCount") or 0)))
         cands.sort(key=lambda c: -c.votes)
         rs = item.get("reportingStatus") or {}
         out.append(RaceResult(rid, state, cands, int(rs.get("reportingUnits") or 0), int(rs.get("totalUnits") or 0),

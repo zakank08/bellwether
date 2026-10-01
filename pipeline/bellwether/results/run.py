@@ -13,7 +13,7 @@ import os
 import time
 from pathlib import Path
 
-from . import alaska, enhanced_voting, north_carolina, worker
+from . import alaska, clarity, enhanced_voting, minnesota, north_carolina, worker
 from .replay import Replay
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -33,6 +33,10 @@ def readers_from_config() -> dict:
             out[st] = lambda c=c: alaska.fetch(c["election"], cfg["year"])
         elif kind == "north_carolina":
             out[st] = lambda c=c: north_carolina.fetch(c["election"], cfg["year"])
+        elif kind == "minnesota":
+            out[st] = lambda c=c: minnesota.fetch(c["election"], cfg["year"])
+        elif kind == "clarity":
+            out[st] = lambda st=st, c=c: clarity.fetch(st, c["election"], cfg["year"])
         elif kind == "enhanced_voting":
             out[st] = lambda st=st, c=c: enhanced_voting.fetch(st, c["election"], cfg["year"])
     return out

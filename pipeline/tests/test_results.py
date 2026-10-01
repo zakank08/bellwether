@@ -97,3 +97,34 @@ def test_nc_county_detail_only_for_statewide_races():
     out = {r.race_id: r for r in north_carolina.parse(head + rows, 2026)}
     assert out["2026-sen-NC"].counties == {"Buncombe": [60, 40, 0]}
     assert out["2026-house-NC-11"].counties is None
+
+
+def test_contest_names_map_to_race_ids():
+    from bellwether.results.contests import classify
+    c = lambda t: classify(t, "CO", 2026)
+    assert c("Representative to the 119th United States Congress - District 8 (Vote For 1)") == "2026-house-CO-08"
+    assert c("United States Senator") == "2026-sen-CO" and c("US Senate - Special") == "2026-sen-CO-sp"
+    assert c("Governor/Lieutenant Governor") == "2026-gov-CO" and c("Governor & Lt Governor") == "2026-gov-CO"
+    for no in ("Lieutenant Governor", "State Senate - District 1", "State Representative District 4", "Presidential Electors (Vote For 1)"):
+        assert c(no) is None
+
+
+def test_colorado_clarity_2024():
+    from bellwether.results import clarity
+    rows = {r.race_id: r for r in clarity.parse((FX / "co_2024_summary.csv").read_text(), "CO", 2024)}
+    d1 = rows["2024-house-CO-01"]
+    assert d1.cands[0].name == "Diana DeGette" and d1.cands[0].party == "D" and d1.cands[0].votes == 264606
+    assert (d1.units_reporting, d1.units_total) == (3, 3)
+    assert "2024-house-CO-08" in rows
+
+
+def test_minnesota_2024_and_governor_2022():
+    from bellwether.results import minnesota
+    s = {r.race_id: r for r in minnesota.parse((FX / "mn_2024_ussenate.txt").read_text(), 2024)}
+    assert s["2024-sen-MN"].cands[0].name == "Amy Klobuchar" and s["2024-sen-MN"].cands[0].party == "D"
+    assert s["2024-sen-MN"].units_total == 4103
+    h = {r.race_id: r for r in minnesota.parse((FX / "mn_2024_ushouse.txt").read_text(), 2024)}
+    assert len(h) == 8 and "2024-house-MN-01" in h
+    g = {r.race_id: r for r in minnesota.parse((FX / "mn_2022_governor.txt").read_text(), 2022)}
+    top = g["2022-gov-MN"].cands[0]
+    assert top.name == "Tim Walz" and top.party == "D"

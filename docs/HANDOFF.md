@@ -72,7 +72,8 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - Which feeds run: `data/config/live_sources.json` (a state runs once its 2026 `election` code is filled in).
 - `.github/workflows/election-night.yml`: two chained 5.4-hour jobs; start by hand. Needs the four R2 secrets (see `docs/live-storage-setup.md`, Revaz's click-by-click steps + traffic numbers).
 - `docs/correction-guide.md`: one-page guide for Revaz. Site banner `LiveFeedBanner` shows delayed states / hand entries / override typos once `NEXT_PUBLIC_LIVE_URL` is set.
-- **Not done:** the other ~45 states' readers (next easiest: MN, HI, IL, MD, LA, ME, DE, then Clarity: CO/SC/KY/AR/NJ; UT/WA/ID via Enhanced Voting), matching Georgia/Utah special contests, expected-vote estimates, browser live panels reading `results.json`, load test.
+- **Update (later Oct. 1):** added `minnesota` and `clarity` readers (CO tested on 2024 data; SC/KY/AR/NJ use it untested), shared contest-name matching (`results/contests.py`, also covers governors), UT/WA/ID entries for `enhanced_voting` (address unconfirmed). Status of every state: `docs/reader-status.md`.
+- **Not done (older note):** the other ~45 states' readers (next easiest: MN, HI, IL, MD, LA, ME, DE, then Clarity: CO/SC/KY/AR/NJ; UT/WA/ID via Enhanced Voting), matching Georgia/Utah special contests, expected-vote estimates, browser live panels reading `results.json`, load test.
 - Lessons: NC puts one-stop and mail votes in county "pseudo precincts" (`Real Precinct` = N); they must count as votes but not as precincts.
 
 ## 1g. Latest / news (added Oct. 1)

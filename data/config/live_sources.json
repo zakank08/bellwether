@@ -1,9 +1,66 @@
 {
- "_about": "Which official feeds the election-night worker reads. A state is read only when its 'election' is filled in (the code the state uses for the Nov. 3, 2026 general election; it appears when the state publishes its results page). Sources for every state: docs/results-sources.md. Readers built so far: alaska (CSV by precinct), north_carolina (ZIP of precinct results), enhanced_voting (Georgia now; Utah, Washington and Idaho use the same platform).",
+ "_about": "Which official feeds the election-night worker reads. A state is read only when its 'election' is filled in (the id/date/code the state uses for the Nov. 3, 2026 general election; it appears when the state publishes its results page). Sources for every state: docs/results-sources.md. Reader status for every state: docs/reader-status.md. Readers: alaska (CSV by precinct), north_carolina (ZIP), minnesota (text files; election = date like 20261103), clarity (election = the id in the Clarity address, e.g. 122598), enhanced_voting (Georgia verified; Utah/Washington/Idaho untested).",
  "year": 2026,
  "states": {
-  "AK": {"reader": "alaska", "election": null, "note": "2024 code was 24GENR; the 2026 general code is usually 26GENR"},
-  "NC": {"reader": "north_carolina", "election": null, "note": "date like 2026_11_03; 2024 was 2024_11_05"},
-  "GA": {"reader": "enhanced_voting", "election": null, "note": "2024 id was 2024NovGen; expect 2026NovGen"}
+  "AK": {
+   "reader": "alaska",
+   "election": null,
+   "note": "2024 code was 24GENR; the 2026 general code is usually 26GENR"
+  },
+  "NC": {
+   "reader": "north_carolina",
+   "election": null,
+   "note": "date like 2026_11_03; 2024 was 2024_11_05"
+  },
+  "GA": {
+   "reader": "enhanced_voting",
+   "election": null,
+   "note": "2024 id was 2024NovGen; expect 2026NovGen"
+  },
+  "MN": {
+   "reader": "minnesota",
+   "election": null,
+   "note": "date like 20261103; 2024 was 20241105"
+  },
+  "CO": {
+   "reader": "clarity",
+   "election": null,
+   "note": "id from results.enr.clarityelections.com/CO/ once the 2026 general is listed (2024 was 122598)"
+  },
+  "SC": {
+   "reader": "clarity",
+   "election": null,
+   "note": "Clarity at enr-scvotes.org/SC/; same format as Colorado, not yet tested on SC"
+  },
+  "KY": {
+   "reader": "clarity",
+   "election": null,
+   "note": "Clarity believed; the probe got a 403, so may need hand entry"
+  },
+  "AR": {
+   "reader": "clarity",
+   "election": null,
+   "note": "Arkansas moved to a new site; check on election day"
+  },
+  "NJ": {
+   "reader": "clarity",
+   "election": null,
+   "note": "Clarity referenced on nj.gov; untested"
+  },
+  "UT": {
+   "reader": "enhanced_voting",
+   "election": null,
+   "note": "id from electionresults.utah.gov; same platform as Georgia, address pattern untested"
+  },
+  "WA": {
+   "reader": "enhanced_voting",
+   "election": null,
+   "note": "id from results.votewa.gov; same platform as Georgia, address pattern untested"
+  },
+  "ID": {
+   "reader": "enhanced_voting",
+   "election": null,
+   "note": "id from voteidaho.gov; unconfirmed platform; same platform as Georgia, address pattern untested"
+  }
  }
 }
