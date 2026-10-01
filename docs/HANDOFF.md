@@ -79,6 +79,11 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - Header bar on every page (`NewsBar`), a "Latest" strip on the home page (`NewsStrip`), and `/news/` with filters (`NewsFeed`). Built by `web/lib/news.ts` at build time from forecast data (chamber odds vs. a week ago, biggest movers, newest polls, dates within 35 days) plus hand-written notes in `web/content/news.json` (each needs a date, headline and **source**; `pinned` keeps one first for `pin_days`). Wording is symmetric (both parties' odds always shown). `lib/newstypes.ts` holds types/labels so client components never import `fs`.
 - Ideas not built: a "breaking" level for notes, election-night live items (calls by state feed, chamber crossings) once live results exist.
 
+## 1h. More new features (Oct. 1)
+- `/state/<st>/` hub for each state (statewide races, House table, poll-close time, flips) and `/states/` index; race pages link to them.
+- `/polls/explorer/`: searchable table of all race polls (built from the race JSON files at build time).
+- `/glossary/` (definitions now live in `web/lib/glossary.ts`, shared with the "?" tips) and `/downloads/dates.ics` (calendar file from `upcoming.json`).
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

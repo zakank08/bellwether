@@ -395,3 +395,9 @@ button.demo-state { font: inherit; font-size: 12px; font-weight: 600; border: 0;
 .news-head { font-weight: 600; } .news-head a { color: var(--ink); text-decoration: none; } .news-head a:hover { text-decoration: underline; }
 .news-item p { margin: 3px 0 0; }
 @media (max-width: 559px) { .news-item { grid-template-columns: 1fr; gap: 6px; } .news-chip { justify-self: start; padding-inline: 10px; } }
+
+/* ---- state hubs, explorer ---- */
+.state-grid { list-style: none; padding: 0; margin: 0 0 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.state-grid a { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); color: var(--ink); text-decoration: none; min-height: 72px; }
+.state-grid a:hover { border-color: var(--ink-muted); }
+input[type="search"] { font: inherit; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); color: var(--ink); }

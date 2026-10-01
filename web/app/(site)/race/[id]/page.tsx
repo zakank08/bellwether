@@ -50,7 +50,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         <Link href="/">Forecast</Link> / <Link href={`/${r.office}/`}>{OFFICE[r.office]}</Link> / {r.state_name}
       </nav>
       <section className="block" style={{ paddingTop: 16 }}>
-        <div className="kicker">{OFFICE[r.office]}{r.special ? " · special election" : ""}{r.open ? " · open seat" : ""}</div>
+        <div className="kicker">{OFFICE[r.office]}{r.special ? " · special election" : ""}{r.open ? " · open seat" : ""} · <Link href={`/state/${r.state.toLowerCase()}/`}>All {r.state_name} races</Link></div>
         <h1 className="display" style={{ margin: "4px 0 12px" }}>{r.title}</h1>
         <div className="row" style={{ justifyContent: "space-between" }}>
           <span className="row" style={{ gap: 8 }}>

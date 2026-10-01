@@ -11,6 +11,7 @@ export default function Upcoming({ items, limit = 3, showSource = false }: { ite
   const list = items.filter((e) => !today || e.date >= today).slice(0, limit);
   const days = (d: string) => today ? Math.round((new Date(d + "T12:00:00Z").getTime() - new Date(today + "T12:00:00Z").getTime()) / 864e5) : null;
   return (
+    <>
     <ul className="upcoming">
       {list.map((e) => {
         const n = days(e.date);
@@ -25,5 +26,7 @@ export default function Upcoming({ items, limit = 3, showSource = false }: { ite
         );
       })}
     </ul>
+    <p className="small" style={{ marginTop: 8 }}><a href="/downloads/dates.ics">Add these dates to your calendar</a></p>
+    </>
   );
 }
