@@ -91,6 +91,10 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - County maps (`CountySection`/`CountyMap`) on state pages and statewide race pages: 2024 presidential margin by county (`pipeline/tools/county_2024.py` -> `web/public/data/county2024.json`, source = Fox News results compiled by T. McGovern, **not authoritative**; AK and CT omitted because they report by House district/town). Switches to a live county count when the results row carries `counties` (only the North Carolina reader provides it so far; other readers need county detail added).
 - Tested locally with a rehearsal feed served next to a build made with `NEXT_PUBLIC_LIVE_URL` set (panel, hand labels, county overlay all rendered). Not yet tested against a real 2026 feed.
 
+## 1j. Motion and friendliness pass (Oct. 1)
+- `ScrollFX` (in the site layout): below-the-fold sections and card groups ease in as they scroll into view (staggered), the header becomes frosted glass once scrolled, "Back to top" button. Only things that start off-screen are hidden (no flash on refresh); reduced-motion users get none. Tokens/classes in `globals.css` ("motion and polish"). Elements inside `Reveal` are skipped to avoid double animation.
+- `QuickLinks` on the home page (six big doors: find my races, what-if, compare, states, election night, latest). Phone nav has an edge fade and bigger tap targets.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

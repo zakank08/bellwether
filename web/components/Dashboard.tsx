@@ -9,6 +9,7 @@ import Sparkline, { Delta } from "./Sparkline";
 import TimeChart from "./TimeChart";
 import { fmtDate, fmtUpdated, in100, partyMarginLabel, surname } from "@/lib/format";
 import type { Forecast, Version } from "@/lib/types";
+import QuickLinks from "./QuickLinks";
 import NewsStrip from "./NewsStrip";
 import type { NewsItem } from "@/lib/newstypes";
 import Hero from "./Hero";
@@ -72,6 +73,7 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming, news }: P
         </div>
       </header>
       <Hero f={f} v={v} rows={rows.filter((r) => r.office !== "governor")} />
+      <QuickLinks />
       <NewsStrip items={news} />
       <section className="block" style={{ paddingTop: 16, borderTop: 0 }}>
         <div className="intro" aria-label="How to read this forecast">

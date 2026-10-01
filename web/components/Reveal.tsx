@@ -6,7 +6,7 @@ import { useReveal } from "./useReveal";
 export default function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, hidden, animate, reduce } = useReveal<HTMLDivElement>(80);
   return (
-    <div ref={ref} style={{
+    <div ref={ref} className="reveal-wrap" style={{
       opacity: hidden ? 0 : 1, transform: hidden ? "translateY(16px)" : "none",
       transition: reduce || !animate ? "none" : `opacity .5s cubic-bezier(.2,.7,.2,1) ${delay}s, transform .5s cubic-bezier(.2,.7,.2,1) ${delay}s`,
     }}>
