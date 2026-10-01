@@ -43,7 +43,7 @@ def problems(new: RaceResult, old: RaceResult | None) -> list[str]:
 def _from_json(d: dict) -> RaceResult:
     return RaceResult(d["race_id"], d["state"], [Cand(c["name"], c["party"], int(c["votes"])) for c in d["cands"]],
                       d.get("units_reporting", 0), d.get("units_total", 0), d.get("source", ""), d.get("source_url", ""),
-                      d.get("as_of"), d.get("by_hand"))
+                      d.get("as_of"), d.get("by_hand"), d.get("counties"))
 
 
 def check_overrides(ov: dict) -> tuple[list[RaceResult], dict[str, dict], list[str]]:

@@ -87,3 +87,13 @@ def test_north_carolina_2024():
     r = rows["2024-house-NC-13"]
     assert [c.name for c in r.cands] == ["Brad Knott", "Frank Pierce"]
     assert r.cands[0].votes == 243655 and r.cands[1].party == "D" and r.units_total > 50
+
+
+def test_nc_county_detail_only_for_statewide_races():
+    from bellwether.results import north_carolina
+    head = "County\tPrecinct\tContest Name\tChoice\tChoice Party\tTotal Votes\tReal Precinct\n"
+    rows = ("BUNCOMBE\t01\tUS SENATE\tAnn A\tDEM\t60\tY\nBUNCOMBE\t01\tUS SENATE\tBob B\tREP\t40\tY\n"
+            "BUNCOMBE\t01\tUS HOUSE OF REPRESENTATIVES DISTRICT 11\tAnn A\tDEM\t60\tY\n")
+    out = {r.race_id: r for r in north_carolina.parse(head + rows, 2026)}
+    assert out["2026-sen-NC"].counties == {"Buncombe": [60, 40, 0]}
+    assert out["2026-house-NC-11"].counties is None

@@ -23,6 +23,7 @@ class RaceResult:
     source_url: str = ""
     as_of: Optional[str] = None       # the feed's own timestamp when it has one
     by_hand: Optional[str] = None     # set when a person entered or corrected the numbers
+    counties: Optional[dict[str, list[int]]] = None   # statewide races only: county name -> [Democratic, Republican, other] votes
 
     @property
     def total(self) -> int:

@@ -4,6 +4,8 @@ import PollChart, { OddsChart } from "@/components/RaceCharts";
 import { Gauge, OutcomeDist } from "@/components/RaceVisuals";
 import InfoTip from "@/components/InfoTip";
 import FollowButton from "@/components/FollowButton";
+import LiveRacePanel from "@/components/LiveRacePanel";
+import CountySection from "@/components/CountySection";
 import EmbedCode from "@/components/EmbedCode";
 import { getForecast, getRace, getRaces } from "@/lib/data";
 import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel, surname } from "@/lib/format";
@@ -57,7 +59,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
             <span className="chip" style={{ background: bucketVar(b), color: onBucket(b) }}>{BUCKET_LABEL[b]}</span>
             {flipOf(r, v) && <span className={`flip-chip${flipOf(r, v)!.tier === "could" ? " could" : ""}`}>{flipShort(flipOf(r, v)!)}</span>}
           </span>
-          {r.kind === "two_party" && <div className="row" style={{ gap: 8 }}><FollowButton id={r.id} p={p} title={r.title} /><EmbedCode id={r.id} title={r.title} /></div>}
+          {r.kind === "two_party" && <div className="row" style={{ gap: 8 }}><Link className="btn" href={`/compare/?a=${r.id}`} style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>Compare</Link><FollowButton id={r.id} p={p} title={r.title} /><EmbedCode id={r.id} title={r.title} /></div>}
         </div>
         {flipOf(r, v) && <p className="small" style={{ margin: "10px 0 0" }}>{flipLong(flipOf(r, v)!, in100, isRedrawnHouse(r))}</p>}
         {r.kind === "two_party" ? (
@@ -96,6 +98,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         )}
       </section>
 
+      {r.kind === "two_party" && <LiveRacePanel raceId={r.id} title={r.title} dside={r.dside} rside={r.rside} mu0={r.margin[v] ?? null} sd0={r.interval?.p10 != null && r.interval?.p90 != null ? Math.max(2, (r.interval.p90 - r.interval.p10) / 2.563) : 8} rules={r.rules ?? {}} state={r.state} pBefore={p} />}
       <section className="block">
         <h2 className="display">The candidates</h2>
         <div className="bio-grid" style={{ marginTop: 12 }}>
@@ -198,6 +201,7 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         </section>
       )}
 
+      {r.office !== "house" && <CountySection state={r.state} stateName={r.state_name} raceId={r.id} />}
       <section className="block">
         <h2 className="display">Rules and notes</h2>
         <ul>

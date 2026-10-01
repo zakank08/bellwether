@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CountySection from "@/components/CountySection";
 import RaceList from "@/components/RaceList";
 import { compactRows, getForecast, getRaces, getSchedule, sparks } from "@/lib/data";
 import { flipOf } from "@/lib/flips";
-import { BUCKET_LABEL, bucketVar, in100, onBucket } from "@/lib/format";
+import { BUCKET_LABEL, bucketVar, in100, onBucket, surname } from "@/lib/format";
 
 export function generateStaticParams() {
   return [...new Set(getRaces().map((r) => r.state))].map((st) => ({ st: st.toLowerCase() }));
@@ -44,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ st: string }>
                 <div className="kicker">{r.office === "senate" ? "U.S. Senate" : "Governor"}{r.special ? " · special" : ""}</div>
                 <div style={{ fontWeight: 600, margin: "4px 0 6px" }}>{r.dside.name ?? "—"} vs. {r.rside.name ?? "—"}</div>
                 <span className="chip" style={{ background: bucketVar(r.rating[v]), color: onBucket(r.rating[v]) }}>{BUCKET_LABEL[r.rating[v]]}</span>
-                {r.kind === "two_party" && <div className="small muted num" style={{ marginTop: 6 }}>{in100(r.p[v])} in 100 for {r.dside.name?.split(" ").pop()} · {in100(1 - r.p[v])} in 100 for {r.rside.name?.split(" ").pop()}</div>}
+                {r.kind === "two_party" && <div className="small muted num" style={{ marginTop: 6 }}>{in100(r.p[v])} in 100 for {surname(r.dside.name)} · {in100(1 - r.p[v])} in 100 for {surname(r.rside.name)}</div>}
               </Link>
             ))}
           </div>
@@ -54,6 +55,7 @@ export default async function Page({ params }: { params: Promise<{ st: string }>
         <h2 className="display">U.S. House</h2>
         <RaceList rows={compactRows(house)} v={v} caption={`${name(ST)} U.S. House races`} sparks={sparks(ids)} />
       </section>
+      <CountySection state={ST} stateName={name(ST)} />
       <p className="small muted">Also: <Link href="/find/">find the races on your ballot by ZIP code</Link> · <Link href="/schedule/">election-night schedule</Link>. Odds are the share of simulations each side wins.</p>
     </div>
   );

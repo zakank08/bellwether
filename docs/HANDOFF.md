@@ -84,6 +84,12 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - `/polls/explorer/`: searchable table of all race polls (built from the race JSON files at build time).
 - `/glossary/` (definitions now live in `web/lib/glossary.ts`, shared with the "?" tips) and `/downloads/dates.ics` (calendar file from `upcoming.json`).
 
+## 1i. Live race panels, compare view, county maps (Oct. 1)
+- `LiveRacePanel` on every two-party race page: candidate votes/share, precincts reporting, "Decided" (rule in `lib/live.ts`, never a projection), live odds from the pre-election forecast, stale/by-hand/held labels. Renders nothing until `NEXT_PUBLIC_LIVE_URL` is set; one shared 15-second poll (`useLive`). "Expected vote" is estimated from share of precincts reporting until real turnout estimates exist (see 3d).
+- `/compare/?a=&b=`: two races side by side with an odds-over-time overlay (client-side, shareable URL).
+- County maps (`CountySection`/`CountyMap`) on state pages and statewide race pages: 2024 presidential margin by county (`pipeline/tools/county_2024.py` -> `web/public/data/county2024.json`, source = Fox News results compiled by T. McGovern, **not authoritative**; AK and CT omitted because they report by House district/town). Switches to a live county count when the results row carries `counties` (only the North Carolina reader provides it so far; other readers need county detail added).
+- Tested locally with a rehearsal feed served next to a build made with `NEXT_PUBLIC_LIVE_URL` set (panel, hand labels, county overlay all rendered). Not yet tested against a real 2026 feed.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

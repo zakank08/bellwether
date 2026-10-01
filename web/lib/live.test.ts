@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { decide, liveChamber, liveOdds, normCdf, reportingFraction } from "./live.ts";
+import { sideOf } from "./livefeed.ts";
 
 test("normal CDF is right at known points", () => {
   assert.ok(Math.abs(normCdf(0) - 0.5) < 1e-6);
@@ -85,4 +86,11 @@ test("a leading-but-not-decided race tilts the odds without removing any draws",
   const r = liveChamber(meta as never, sims, "h", {}, [{ id: "a", margin: 8, sd: 3 }], 1);
   assert.equal(r.kept, 4);
   assert.ok(r.D > 0.25 && r.D < 0.5);
+});
+
+test("candidates are matched to race sides by surname (ignoring Jr./III), then by party", () => {
+  const d = { name: "Mary Peltola", party: "D" }, r = { name: "Nick Begich III", party: "R" };
+  assert.equal(sideOf({ name: "Nick Begich", party: "R", votes: 1 }, d, r), "r");
+  assert.equal(sideOf({ name: "M. Peltola", party: "D", votes: 1 }, d, r), "d");
+  assert.equal(sideOf({ name: "Someone Else", party: "O", votes: 1 }, d, r), "o");
 });

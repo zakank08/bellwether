@@ -27,18 +27,23 @@ def _race_id(contest: str, year: int) -> str | None:
 def parse(text: str, year: int = 2026, url: str = "") -> list[RaceResult]:
     votes: dict[str, dict[tuple[str, str], int]] = defaultdict(lambda: defaultdict(int))
     seen: dict[str, dict[tuple[str, str], int]] = defaultdict(lambda: defaultdict(int))
+    county: dict[str, dict[str, list[int]]] = defaultdict(lambda: defaultdict(lambda: [0, 0, 0]))
     for r in csv.DictReader(io.StringIO(text), delimiter="\t"):
         rid = _race_id(r.get("Contest Name", ""), year)
         if not rid:
             continue
         v = int(r.get("Total Votes") or 0)
-        votes[rid][(r["Choice"].strip(), party_side(r.get("Choice Party", "")))] += v
+        side = party_side(r.get("Choice Party", ""))
+        votes[rid][(r["Choice"].strip(), side)] += v
+        if "-sen-" in rid:  # county detail only for statewide races
+            county[rid][r["County"].strip().title()]["DRO".index(side)] += v
         if r.get("Real Precinct", "Y") != "N":  # one-stop and mail votes sit in county-level pseudo precincts: they count as votes, not as precincts
             seen[rid][(r["County"], r["Precinct"])] += v
     out = []
     for rid, cs in votes.items():
         cands = [Cand(n, p, v) for (n, p), v in sorted(cs.items(), key=lambda kv: -kv[1])]
-        out.append(RaceResult(rid, "NC", cands, sum(1 for v in seen[rid].values() if v > 0), len(seen[rid]), SOURCE, url))
+        out.append(RaceResult(rid, "NC", cands, sum(1 for v in seen[rid].values() if v > 0), len(seen[rid]), SOURCE, url,
+                              counties={k: v for k, v in county[rid].items()} if rid in county else None))
     return out
 
 

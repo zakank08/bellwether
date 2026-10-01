@@ -401,3 +401,10 @@ button.demo-state { font: inherit; font-size: 12px; font-weight: 600; border: 0;
 .state-grid a { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); color: var(--ink); text-decoration: none; min-height: 72px; }
 .state-grid a:hover { border-color: var(--ink-muted); }
 input[type="search"] { font: inherit; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); color: var(--ink); }
+
+/* ---- county map ---- */
+.county-map { margin: 0; } .county-map path { transition: fill .2s; }
+.county-map path:hover { stroke: var(--ink); stroke-width: 1.4; }
+.county-key { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; margin-top: 8px; }
+.county-key .sw { width: 22px; height: 12px; display: inline-block; } .county-key .muted { margin-left: 8px; }
+@media (prefers-reduced-motion: reduce) { .county-map path { transition: none; } }
