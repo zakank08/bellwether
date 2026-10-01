@@ -1,0 +1,496 @@
+{
+ "_about": "Written by .github/workflows/results-probe.yml from GitHub's servers. 'result' is what an automated request got.",
+ "by_state": {
+  "AK": [
+   {
+    "url": "https://www.elections.alaska.gov/election-results/e/?id=24genr",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://www.elections.alaska.gov/results/24GENR/ENRbyPrecinct.csv",
+    "result": "ok",
+    "http": 200,
+    "type": "text/csv"
+   }
+  ],
+  "AL": [
+   {
+    "url": "https://www.alabamavotes.gov/",
+    "result": "unreachable",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unabl"
+   },
+   {
+    "url": "https://www.sos.alabama.gov/alabama-votes/voter/election-information/2024",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "AR": [
+   {
+    "url": "https://www.sos.arkansas.gov/elections/research/election-results",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://results.enr.clarityelections.com/AR/",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   }
+  ],
+  "AZ": [
+   {
+    "url": "https://results.arizona.vote/",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "CA": [
+   {
+    "url": "https://electionresults.sos.ca.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://www.sos.ca.gov/elections/prior-elections/statewide-election-results/general-election-nov-5-2024/statement-vote",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "CO": [
+   {
+    "url": "https://results.enr.clarityelections.com/CO/",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   },
+   {
+    "url": "https://results.enr.clarityelections.com/CO/122598/current_ver.txt",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   }
+  ],
+  "CT": [
+   {
+    "url": "https://ctemspublic.pcctg.net/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://electionhistory.ct.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "DE": [
+   {
+    "url": "https://electionresults.delaware.gov/",
+    "result": "unreachable",
+    "error": "<urlopen error [Errno -2] Name or service not known>"
+   },
+   {
+    "url": "https://elections.delaware.gov/reports/GE2024.csv",
+    "result": "ok",
+    "http": 200,
+    "type": "text/csv"
+   }
+  ],
+  "FL": [
+   {
+    "url": "https://results.elections.myflorida.com/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "GA": [
+   {
+    "url": "https://results.sos.ga.gov/results/public/Georgia",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://results.sos.ga.gov/results/public/api/elections/Georgia/2024NovGen",
+    "result": "ok",
+    "http": 200,
+    "type": "application/json"
+   }
+  ],
+  "HI": [
+   {
+    "url": "https://elections.hawaii.gov/election-results/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "IA": [
+   {
+    "url": "https://electionresults.iowa.gov/",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   },
+   {
+    "url": "https://sos.iowa.gov/iowans/election-results-statistics",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "ID": [
+   {
+    "url": "https://voteidaho.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "IL": [
+   {
+    "url": "https://elections.il.gov/electionoperations/electionvotetotals.aspx",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "IN": [
+   {
+    "url": "https://enr.indianavoters.in.gov/site/index.html",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "KS": [
+   {
+    "url": "https://sos.ks.gov/elections/election-results.html",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "KY": [
+   {
+    "url": "https://results.enr.clarityelections.com/KY/",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   },
+   {
+    "url": "https://elect.ky.gov/Results/Pages/default.aspx",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "LA": [
+   {
+    "url": "https://voterportal.sos.la.gov/static/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://voterportal.sos.la.gov/graphical",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "MA": [
+   {
+    "url": "https://electionstats.state.ma.us/",
+    "result": "blocked",
+    "http": 500
+   }
+  ],
+  "MD": [
+   {
+    "url": "https://elections.maryland.gov/elections/2024/general_Results/index.html",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "ME": [
+   {
+    "url": "https://www.maine.gov/sos/elections-voting/election-results-data",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "MI": [
+   {
+    "url": "https://mvic.sos.state.mi.us/votehistory/Index?type=C&electionDate=11-5-2024",
+    "result": "challenge",
+    "http": 403
+   },
+   {
+    "url": "https://mielections.us/election/results/",
+    "result": "unreachable",
+    "error": "<urlopen error timed out>"
+   }
+  ],
+  "MN": [
+   {
+    "url": "https://electionresults.sos.mn.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://electionresultsfiles.sos.state.mn.us/20241105/ushouse.txt",
+    "result": "ok",
+    "http": 200,
+    "type": "text/plain"
+   }
+  ],
+  "MO": [
+   {
+    "url": "https://enr.sos.mo.gov/",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "MS": [
+   {
+    "url": "https://www.sos.ms.gov/elections-voting/election-results",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "MT": [
+   {
+    "url": "https://sosmt.gov/elections/results/",
+    "result": "blocked",
+    "http": 403
+   }
+  ],
+  "NC": [
+   {
+    "url": "https://er.ncsbe.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2024_11_05/results_pct_20241105.zip",
+    "result": "ok",
+    "http": 200,
+    "type": "application/x-zip-compressed"
+   }
+  ],
+  "ND": [
+   {
+    "url": "https://results.sos.nd.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "NE": [
+   {
+    "url": "https://electionresults.nebraska.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "NH": [
+   {
+    "url": "https://www.sos.nh.gov/2024-general-election-results",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "NJ": [
+   {
+    "url": "https://nj.gov/state/elections/election-night-results.shtml",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "NM": [
+   {
+    "url": "https://electionresults.sos.nm.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "NV": [
+   {
+    "url": "https://silverstateelection.nv.gov/",
+    "result": "challenge",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "NY": [
+   {
+    "url": "https://nyenr.elections.ny.gov/",
+    "result": "challenge",
+    "http": 403
+   },
+   {
+    "url": "https://results.elections.ny.gov/contest/5591",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "OH": [
+   {
+    "url": "https://liveresults.ohiosos.gov/",
+    "result": "blocked",
+    "http": 403
+   }
+  ],
+  "OK": [
+   {
+    "url": "https://results.okelections.us/",
+    "result": "blocked",
+    "http": 403
+   }
+  ],
+  "OR": [
+   {
+    "url": "https://results.oregonvotes.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "PA": [
+   {
+    "url": "https://www.electionreturns.pa.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "RI": [
+   {
+    "url": "https://www.ri.gov/election/results/2024/general_election/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "SC": [
+   {
+    "url": "https://www.enr-scvotes.org/SC/",
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
+   }
+  ],
+  "SD": [
+   {
+    "url": "https://electionresults.sd.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "TN": [
+   {
+    "url": "https://tnmap.tn.gov/electionresults/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://sos.tn.gov/elections/results",
+    "result": "blocked",
+    "http": 403
+   }
+  ],
+  "TX": [
+   {
+    "url": "https://results.texas-election.com/",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "UT": [
+   {
+    "url": "https://electionresults.utah.gov/results/public/Utah",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "VA": [
+   {
+    "url": "https://results.elections.virginia.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "VT": [
+   {
+    "url": "https://electionresults.vermont.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   },
+   {
+    "url": "https://electionarchive.vermont.gov/",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "WA": [
+   {
+    "url": "https://results.votewa.gov/results/public/washington",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ],
+  "WI": [
+   {
+    "url": "https://elections.wi.gov/wisconsin-county-election-websites",
+    "result": "challenge",
+    "http": 403
+   }
+  ],
+  "WV": [
+   {
+    "url": "https://results.wvsos.gov/",
+    "result": "unreachable",
+    "error": "<urlopen error [Errno -2] Name or service not known>"
+   }
+  ],
+  "WY": [
+   {
+    "url": "https://sos.wyo.gov/Elections/Docs/2024/2024GeneralResults.aspx",
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
+   }
+  ]
+ },
+ "summary": {
+  "ok": 37,
+  "challenge": 8,
+  "blocked": 4,
+  "unreachable": 1
+ }
+}
