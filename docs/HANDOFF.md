@@ -46,6 +46,9 @@ polls ended in the last 30 days and warns when there are fewer than 8.
 - **`/status` page**: last refresh, national poll coverage, races with thin polling, source health.
 - **Poll-closing times for the 15 non-Senate states confirmed** with each state's election office (Sept. 30); sources are
   in `data/config/poll_closing_fallback.json`. North Dakota counties pick their own closing time (7–9pm local).
+- **Deploy gotcha**: if the same commit is pushed to `main` and to another branch at once, Vercel can build it only as a
+  *Preview* and the live site doesn't change (seen Oct. 1). Push to `main` alone, confirm "Production" in the repo's
+  Deployments list, then update any other branch.
 
 ## 2. Do first (today)
 
