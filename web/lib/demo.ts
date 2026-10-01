@@ -171,3 +171,29 @@ export function clock(t: number) {
   const h = ((h24 + 11) % 12) + 1;
   return `${h}:${String(m).padStart(2, "0")} ${h24 < 12 ? "AM" : "PM"}`;
 }
+
+// ---- display helpers -------------------------------------------------------------------
+/** Votes counted so far for each side, from the counted margin (D minus R, in points of all votes) and the
+ * share going to other candidates. */
+export function candidateVotes(s: Snap) {
+  const c = s.counted, T = s.row.third, m = s.margin ?? 0;
+  const d = Math.round((c * (100 - T + m)) / 200), r = Math.round((c * (100 - T - m)) / 200), o = Math.max(0, c - d - r);
+  const pct = (v: number) => (c > 0 ? (v / c) * 100 : 0);
+  return { d, r, o, total: c, dPct: pct(d), rPct: pct(r), oPct: pct(o) };
+}
+
+/** "2026-house-PA-07" -> "PA-7" key used by the hex layout (at-large districts count as 1). */
+export function hexKey(id: string): string | null {
+  const m = /^2026-house-([A-Z]{2})-(\d{2})$/.exec(id);
+  return m ? `${m[1]}-${parseInt(m[2], 10) || 1}` : null;
+}
+
+export type MapStatus = "closed" | "waiting" | "counting" | "close" | "decided" | "special";
+export function mapStatus(s: Snap): MapStatus {
+  const st = s.decision.state;
+  if (st === "decided") return "decided";
+  if (st === "runoff" || st === "rcv" || st === "primary") return "special";
+  if (st === "close") return "close";
+  if (s.feed.tEff == null) return s.feed.status === "closed" ? "closed" : "waiting";
+  return st === "waiting" ? "waiting" : "counting";
+}
