@@ -1,9 +1,16 @@
-# Refresh data and the forecast three times a day. Committing the new data to
+# Refresh data and the forecast several times a day. Committing the new data to
 # main makes Vercel redeploy the site automatically.
+#
+# GitHub starts scheduled runs late (sometimes hours) and sometimes skips them,
+# so there are six slots a day at off-peak minutes instead of three on the hour.
+# A run that overlaps another waits (concurrency), and watchdog.yml opens an issue
+# if the published data ever goes stale anyway.
 name: forecast
 on:
   schedule:
-    - cron: "15 11,17,23 * * *"   # 7:15am, 1:15pm, 7:15pm ET (EDT)
+    - cron: "37 6 * * *"          # 2:37am ET: also rebuilds the odds-over-time history
+    - cron: "17 11,17,23 * * *"   # 7:17am, 1:17pm, 7:17pm ET (EDT)
+    - cron: "37 14,20 * * *"      # 10:37am, 4:37pm ET (EDT)
   workflow_dispatch:
     inputs:
       history:
@@ -12,6 +19,7 @@ on:
         default: false
 permissions:
   contents: write
+  issues: write
 concurrency:
   group: forecast
   cancel-in-progress: false
@@ -20,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Install
@@ -33,7 +41,8 @@ jobs:
           BELLWETHER_USER_AGENT: ${{ vars.BELLWETHER_USER_AGENT }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
           FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
-          HISTORY: ${{ inputs.history && '--history' || '' }}
+          # manual runs: the checkbox; the 2:37am ET schedule: always
+          HISTORY: ${{ (inputs.history || github.event.schedule == '37 6 * * *') && '--history' || '' }}
         run: cd pipeline && python -m bellwether.run --sims 40000 $HISTORY
       - name: Commit snapshot
         run: |
@@ -44,3 +53,13 @@ jobs:
           git commit -m "Forecast update $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase origin main
           git push origin HEAD:main
+      - name: Open an issue if the run failed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Forecast update failed"
+          if [ -z "$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')" ]; then
+            gh issue create --title "$title" \
+              --body "The scheduled forecast run failed, so the site may be showing older data. Details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi

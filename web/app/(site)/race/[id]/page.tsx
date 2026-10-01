@@ -16,7 +16,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const r = getRace((await params).id);
   const office = { senate: "Senate", house: "House", governor: "Governor" }[r.office];
-  return { title: `${r.title} ${office} forecast`, description: r.summary };
+  const image = { url: `/og/race/${r.id}.png`, width: 1200, height: 630, alt: `${r.title} ${office}: chance of winning, out of 100` };
+  return {
+    title: `${r.title} ${office} forecast`, description: r.summary,
+    openGraph: { type: "website", siteName: "Bellwether", title: `${r.title} ${office} forecast`, description: r.summary, images: [image] },
+    twitter: { card: "summary_large_image", title: `${r.title} ${office} forecast`, description: r.summary, images: [image.url] },
+  };
 }
 
 const OFFICE = { senate: "U.S. Senate", house: "U.S. House", governor: "Governor" } as const;

@@ -1,0 +1,49 @@
+# Checks hourly that the live site's data is fresh. If the forecast hasn't updated
+# in 14 hours (runs failed, were skipped, or the deploy broke) it opens an issue,
+# which GitHub emails to the repo owner. Closes the issue itself once data is fresh.
+name: watchdog
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SITE: https://bellwether-zak.vercel.app
+    steps:
+      - name: Check how old the published forecast is
+        run: |
+          updated=$(curl -fsS --retry 3 "$SITE/data/forecast.json?cb=$(date +%s)" | python3 -c "import json,sys;print(json.load(sys.stdin)['updated'])") || { echo "could not read forecast.json"; updated=""; }
+          if [ -n "$updated" ]; then
+            age_h=$(python3 -c "from datetime import datetime,timezone;import sys;print(round((datetime.now(timezone.utc)-datetime.fromisoformat(sys.argv[1])).total_seconds()/3600,1))" "$updated")
+          else
+            age_h=999
+          fi
+          echo "forecast age: ${age_h}h (updated: ${updated:-unknown})"
+          title="Site data is stale"
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq '.[0].number')
+          if python3 -c "import sys;sys.exit(0 if float(sys.argv[1])>14 else 1)" "$age_h"; then
+            if [ -z "$open" ]; then
+              gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" \
+                --body "The published forecast was last updated ${updated:-at an unknown time} (${age_h} hours ago). Check the forecast workflow runs: ${{ github.server_url }}/${{ github.repository }}/actions/workflows/forecast.yml  — you can start one with 'Run workflow'."
+            fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --repo "$GITHUB_REPOSITORY" --comment "Data is fresh again (${age_h}h old)."
+          fi
+      - name: Look for the official 2026 congressional district shapes
+        run: |
+          # The Census Bureau hasn't published the 120th-Congress (2026) district boundaries yet; the 10 redrawn
+          # states can't be drawn from older files. When the folder appears, say so once.
+          code=$(curl -s -o /dev/null -w "%{http_code}" -A "Mozilla/5.0 (Bellwether watchdog)" https://www2.census.gov/geo/tiger/TIGER2026/CD/)
+          title="Official 2026 district shapes are available"
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "$title in:title" --json number --jq '.[0].number')
+          echo "census TIGER2026/CD status: $code"
+          if [ "$code" = "200" ] && [ -z "$open" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" \
+              --body "The Census Bureau has published https://www2.census.gov/geo/tiger/TIGER2026/CD/ (120th Congress). The House map can now draw real district outlines for all 50 states, including the 10 that were redrawn (AL, CA, FL, LA, MO, NC, OH, TN, TX, UT)."
+          fi

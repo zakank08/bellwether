@@ -2,23 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ApprovalTracker, GenericTracker } from "@/components/Trackers";
 import { getApproval, getGeneric } from "@/lib/data";
+import { coverage } from "@/lib/coverage";
 import { fmtDate, partyMarginLabel } from "@/lib/format";
 
 export const metadata: Metadata = { title: "Generic ballot and approval" };
 
-// How many polls ended in the 30 days before the latest point on the chart, so a thin
-// or stale stretch is said plainly instead of hidden behind a smooth line.
 function Coverage({ polls, asof, what }: { polls: { end: string; src?: string }[]; asof: string; what: string }) {
-  const cutoff = new Date(new Date(asof).getTime() - 30 * 86400000).toISOString().slice(0, 10);
-  const recent = polls.filter((p) => p.end >= cutoff && p.end <= asof);
-  const latest = polls.reduce((m, p) => (p.end > m ? p.end : m), "");
-  const hand = recent.filter((p) => p.src === "Pollster release").length;
-  const thin = recent.length < 8;
+  const c = coverage(polls, asof);
   return (
-    <p className={thin ? "small notice" : "small muted"} role={thin ? "status" : undefined}>
-      {recent.length} {what} polls ended in the last 30 days{latest ? `; the latest ended ${fmtDate(latest)}` : ""}.
-      {hand > 0 && ` ${hand} of them were entered from the pollsters’ own releases because our main poll feed doesn’t carry them.`}
-      {thin && " With this few recent polls the average leans on older ones and may be out of date."}
+    <p className={c.thin ? "small notice" : "small muted"} role={c.thin ? "status" : undefined}>
+      {c.recent} {what} polls ended in the last 30 days{c.latest ? `; the latest ended ${fmtDate(c.latest)}` : ""}.
+      {c.fromReleases > 0 && ` ${c.fromReleases} of them were entered from the pollsters’ own releases because our main poll feed doesn’t carry them.`}
+      {c.thin && " With this few recent polls the average leans on older ones and may be out of date."}
     </p>
   );
 }

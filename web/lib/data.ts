@@ -57,7 +57,7 @@ export function movers(days = 7, n = 8) {
 }
 export type Mover = ReturnType<typeof movers>[number];
 
-export const getSchedule = () => readOpt<{ source: string; fallback_source?: string; fallback_url?: string; states: { state: string; state_name: string; close: string | null; close_source?: string | null; first: number | null; last: number | null; times: string[]; races: string[] }[]; key_dates: { date: string; label: string; note: string }[] }>("schedule.json");
+export const getSchedule = () => readOpt<{ source: string; fallback_source?: string; fallback_url?: string; states: { state: string; state_name: string; close: string | null; close_source?: string | null; first: number | null; last: number | null; times: string[]; races: string[]; note?: string | null }[]; key_dates: { date: string; label: string; note: string }[] }>("schedule.json");
 export const getGeneric = () => read<{ average: number; se: number; n_polls: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; raw: number; adjusted: number; url: string | null; src?: string }[] }>("generic.json");
 export const getApproval = () => read<{ net: number; trend: { date: string; margin: number; se: number }[]; polls: { pollster: string; end: string; n: number | null; pop: string | null; approve: number; disapprove: number; url: string | null; src?: string }[] }>("approval.json");
 export const getPollsters = () => read<{ ratings: any[]; active: any[] }>("pollsters.json");

@@ -1,6 +1,6 @@
 {
  "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
- "collected": "2026-09-29",
+ "collected": "2026-10-01",
  "polls": [
   {
    "pollster": "YouGov",
@@ -193,6 +193,24 @@
    },
    "url": "https://yougov.com/en-us/articles/55210-donald-trump-unpopularity-low-confidence-ice-socialism-july-17-20-2026-economist-yougov-poll",
    "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_ESdiNMa.pdf"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-07-24",
+   "end_date": "2026-07-26",
+   "sample_size": 1003,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 40.0,
+    "Rep": 38.0
+   },
+   "url": "https://www.ipsos.com/en-us/americans-unimpressed-ideas-both-major-parties",
+   "auto": true,
+   "document": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-07/Reuters%20Ipsos%20July%20Core%20Political%20Topline%207.27.26.pdf"
   },
   {
    "pollster": "AP-NORC",
@@ -464,6 +482,42 @@
    }
   },
   {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-17",
+   "sample_size": 1166,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 64.0
+   },
+   "url": "https://www.ipsos.com/en-us/majority-americans-say-corruption-influences-decisions-federal-government",
+   "auto": true,
+   "document": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%202026%20Poll%20Topline%20Full.pdf"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-14",
+   "end_date": "2026-08-17",
+   "sample_size": 876,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 41.0,
+    "Rep": 36.0
+   },
+   "url": "https://www.ipsos.com/en-us/majority-americans-say-corruption-influences-decisions-federal-government",
+   "auto": true,
+   "document": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%202026%20Poll%20Topline%20Full.pdf"
+  },
+  {
    "pollster": "YouGov",
    "sponsors": [
     "The Economist"
@@ -529,6 +583,42 @@
     "Rep": 43.0
    },
    "note": "Registered-voter subsample; size not stated"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-21",
+   "end_date": "2026-08-24",
+   "sample_size": 1215,
+   "population": "a",
+   "question": "approval",
+   "answers": {
+    "Approve": 33.0,
+    "Disapprove": 65.0
+   },
+   "url": "https://www.ipsos.com/en-us/americans-continue-expect-extended-us-military-involvement-iran",
+   "auto": true,
+   "document": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%20Core%20Political%20Topline.pdf"
+  },
+  {
+   "pollster": "Ipsos",
+   "sponsors": [
+    "Reuters"
+   ],
+   "start_date": "2026-08-21",
+   "end_date": "2026-08-24",
+   "sample_size": 951,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 41.0,
+    "Rep": 35.0
+   },
+   "url": "https://www.ipsos.com/en-us/americans-continue-expect-extended-us-military-involvement-iran",
+   "auto": true,
+   "document": "https://www.ipsos.com/sites/default/files/ct/news/documents/2026-08/Reuters%20Ipsos%20August%20Core%20Political%20Topline.pdf"
   },
   {
    "pollster": "YouGov",
@@ -995,6 +1085,37 @@
     "Dem": 53.0,
     "Rep": 42.0
    }
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-09-24",
+   "end_date": "2026-09-27",
+   "sample_size": 1032,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 34.0,
+    "Disapprove": 61.0
+   },
+   "url": "https://poll.qu.edu/poll-release?releaseid=3968",
+   "auto": true
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "sponsors": [],
+   "start_date": "2026-09-24",
+   "end_date": "2026-09-27",
+   "sample_size": 1032,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 51.0,
+    "Rep": 39.0
+   },
+   "url": "https://poll.qu.edu/poll-release?releaseid=3968",
+   "auto": true,
+   "note": "Question: which party would you want to win control of the House"
   },
   {
    "pollster": "YouGov",

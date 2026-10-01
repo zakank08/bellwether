@@ -32,3 +32,21 @@ def test_every_curated_poll_is_complete_and_sourced():
         assert p.population in ("lv", "rv", "a")
         vals = list(p.answers.values())
         assert len(vals) == 2 and all(0 < v < 100 for v in vals) and sum(vals) <= 101, p
+
+
+def _ap(pollster, end, approve, disapprove, pop="rv"):
+    return Poll(id=f"{pollster}:{end}", source="t", race_key="approval:trump", pollster=pollster, start_date=end, end_date=end,
+                sample_size=1000, population=pop, answers={"Approve": approve, "Disapprove": disapprove})
+
+
+def test_approval_house_effects_find_a_consistently_mild_pollster():
+    from datetime import date, timedelta
+    from bellwether.forecast import approval_house_effects
+    polls = []
+    for i in range(20):
+        end = (date(2026, 8, 1) + timedelta(days=i)).isoformat()
+        polls += [_ap("A", end, 38, 60), _ap("B", end, 37, 61), _ap("C", end, 38, 60), _ap("Mild", end, 46, 52)]
+    eff = approval_house_effects(polls)
+    assert eff["Mild|rv"] > 5            # runs ~+8 net above peers, shrunk a little
+    assert eff["Mild|rv"] > 2 * abs(eff["A|rv"])   # the outlier stands out from the ordinary pollsters
+    assert eff["A|rv"] < 0 and eff["B|rv"] < 0     # and the others sit slightly below the field that includes it

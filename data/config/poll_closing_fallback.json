@@ -1,9 +1,102 @@
 {
-  "_about": "Poll-closing times (Eastern) for states without a 2026 Senate race, whose times aren't in the Wikipedia 2026 Senate table. Source: 270toWin poll closing times page (2024 general election; like 2026, held after the switch to standard time). State closing laws rarely change; confirm with state election offices before election night.",
-  "source": "270toWin, poll closing times (2024 general election)",
+  "_about": "Poll-closing times (Eastern) for states without a 2026 Senate race, whose times aren't in the Wikipedia 2026 Senate table. Started from 270toWin's 2024 list; every state below was checked on Sept. 30, 2026 against its Secretary of State / elections office (see 'confirmed'). Only North Dakota differed from the 270toWin list in substance: its counties choose their own closing time between 7 and 9pm local, so the time shown is the usual 7pm local close.",
+  "source": "270toWin poll closing times (2024 general election list), each confirmed against the state's own election office on Sept. 30, 2026",
   "url": "https://www.270towin.com/poll-closing-times/",
   "states": {
-    "AZ": "9pm", "CA": "11pm", "CT": "8pm", "HI": "12am", "IN": "6pm and 7pm", "MD": "8pm", "MO": "8pm",
-    "NV": "10pm", "NY": "9pm", "ND": "8pm and 9pm", "PA": "8pm", "UT": "10pm", "VT": "7pm", "WA": "11pm", "WI": "9pm"
+    "AZ": "9pm",
+    "CA": "11pm",
+    "CT": "8pm",
+    "HI": "12am",
+    "IN": "6pm and 7pm",
+    "MD": "8pm",
+    "MO": "8pm",
+    "NV": "10pm",
+    "NY": "9pm",
+    "ND": "8pm and 9pm",
+    "PA": "8pm",
+    "UT": "10pm",
+    "VT": "7pm",
+    "WA": "11pm",
+    "WI": "9pm"
+  },
+  "confirmed": {
+    "AZ": {
+      "checked": "2026-09-30",
+      "official_hours": "6am–7pm MST. Arizona stays on standard time, so 7pm MST = 9pm Eastern.",
+      "url": "https://azsos.gov/elections/about-elections/elections-procedures/election-day-operations"
+    },
+    "CA": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–8pm PT.",
+      "url": "https://voterguide.sos.ca.gov/voter-info/quick-facts.htm"
+    },
+    "CT": {
+      "checked": "2026-09-30",
+      "official_hours": "6am–8pm ET.",
+      "url": "https://portal.ct.gov/sots/election-services/voter-information/where-and-how-do-i-vote"
+    },
+    "HI": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–7pm HST (all-mail state; voter service centers close 7pm HST = midnight Eastern).",
+      "url": "https://elections.hawaii.gov/voting/"
+    },
+    "IN": {
+      "checked": "2026-09-30",
+      "official_hours": "6am–6pm local time: Eastern-time counties 6pm ET, Central-time counties 6pm CT = 7pm ET.",
+      "url": "https://www.in.gov/sos/elections/voter-information/files/2026-Election-Day-Handbook.pdf"
+    },
+    "MD": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–8pm ET.",
+      "url": "https://elections.maryland.gov/voting/election_day_questions.html"
+    },
+    "MO": {
+      "checked": "2026-09-30",
+      "official_hours": "6am–7pm CT = 8pm ET.",
+      "url": "https://www.sos.mo.gov/elections/goVoteMissouri/electionday"
+    },
+    "NV": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–7pm PT = 10pm ET.",
+      "url": "https://www.nvsos.gov/elections/election-information/2026-election-information"
+    },
+    "NY": {
+      "checked": "2026-09-30",
+      "official_hours": "6am–9pm ET.",
+      "url": "https://elections.ny.gov/election-information"
+    },
+    "ND": {
+      "checked": "2026-09-30",
+      "official_hours": "Counties set their own hours: polls open between 7 and 9am and close between 7 and 9pm local time (most close 7pm). Central-time counties 7pm CT = 8pm ET; Mountain-time counties 7pm MT = 9pm ET. A county that stays open later closes later.",
+      "url": "https://www.sos.nd.gov/elections/voter/elections-currentpast"
+    },
+    "PA": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–8pm ET.",
+      "url": "https://www.pa.gov/agencies/vote/voter-support/elections-faqs"
+    },
+    "UT": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–8pm MT (vote-by-mail state; ballots must arrive by 8pm MT = 10pm ET).",
+      "url": "https://vote.utah.gov/current-election-information/"
+    },
+    "VT": {
+      "checked": "2026-09-30",
+      "official_hours": "Each town opens between 5 and 10am; all close 7pm ET.",
+      "url": "https://sos.vermont.gov/elections/voters/polling-places"
+    },
+    "WA": {
+      "checked": "2026-09-30",
+      "official_hours": "Drop boxes and voting centers close 8pm PT = 11pm ET; mailed ballots need an Election Day postmark.",
+      "url": "https://www.sos.wa.gov/elections/elections-calendar/dates-and-deadlines"
+    },
+    "WI": {
+      "checked": "2026-09-30",
+      "official_hours": "7am–8pm CT = 9pm ET.",
+      "url": "https://elections.wi.gov/election-day-voting"
+    }
+  },
+  "notes": {
+    "ND": "Counties choose their own closing time (7–9pm local); the time shown is the usual 7pm local close, so a county can close later."
   }
 }

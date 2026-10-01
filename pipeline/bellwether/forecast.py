@@ -1,6 +1,8 @@
 """Run the full forecast: ingest -> average -> blend -> simulate -> summarize."""
 from __future__ import annotations
 
+from bisect import bisect_left, bisect_right
+
 import math
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -10,7 +12,7 @@ import numpy as np
 
 from . import ELECTION_DATE
 from .candidate_history import incumbent_effect
-from .averaging import Average, PollingModel, PollPoint, principals, weighted_average, d as to_date
+from .averaging import HOUSE_EFFECT_K, Average, PollingModel, PollPoint, principals, weighted_average, d as to_date
 from .fundamentals import (ELASTICITY, blend, expert_consensus, fundraising_adjustment, national_environment,
                            race_fundamentals)
 from .pollster_ratings import Matcher, compute as compute_ratings
@@ -70,7 +72,38 @@ def _zscores(demo: dict) -> dict:
     return out
 
 
-def approval_average(polls: list[Poll], matcher, today: date) -> Average:
+def _approval_key(p: Poll) -> str:
+    """Pollsters differ by who they ask (adults vs registered vs likely voters) as well as by lean."""
+    return f"{p.pollster}|{(p.population or 'a').lower()}"
+
+
+def approval_house_effects(polls: list[Poll], k: float = HOUSE_EFFECT_K, window_days: int = 14, iterations: int = 3) -> dict[str, float]:
+    """How far above/below its peers each pollster (and population) runs on net approval.
+
+    Each poll is compared with the average of other pollsters' polls within
+    `window_days`; the mean gap is shrunk toward zero by k phantom polls, and the
+    comparison is repeated using already-corrected peers. Mirrors the generic-ballot
+    house effects, which is why a run of unusually mild polls no longer drags the line."""
+    pts = []
+    for p in polls:
+        a, dis = p.answers.get("Approve"), p.answers.get("Disapprove")
+        if a is not None and dis is not None:
+            pts.append((to_date(p.end_date).toordinal(), a - dis, _approval_key(p), p.pollster))
+    pts.sort()
+    days = [x[0] for x in pts]
+    he: dict[str, float] = defaultdict(float)
+    for _ in range(iterations):
+        resid = defaultdict(list)
+        for i, (t, m, key, pollster) in enumerate(pts):
+            lo, hi = bisect_left(days, t - window_days), bisect_right(days, t + window_days)
+            peers = [q[1] - he[q[2]] for q in pts[lo:hi] if q[3] != pollster]
+            if len(peers) >= 3:
+                resid[key].append(m - sum(peers) / len(peers))
+        he = defaultdict(float, {key: sum(v) / (len(v) + k) for key, v in resid.items()})
+    return dict(he)
+
+
+def approval_average(polls: list[Poll], matcher, today: date, effects: dict[str, float] | None = None) -> Average:
     pts = []
     for p in polls:
         a, dis = p.answers.get("Approve"), p.answers.get("Disapprove")
@@ -78,7 +111,8 @@ def approval_average(polls: list[Poll], matcher, today: date) -> Average:
             continue
         q, rated = matcher.weight(p.pollster)
         pt = PollPoint(poll=p, raw_margin=a - dis, quality=q, rated_as=rated)
-        pt.margin = pt.raw_margin
+        pt.house_effect = (effects or {}).get(_approval_key(p), 0.0)
+        pt.margin = pt.raw_margin - pt.house_effect
         pts.append(pt)
     return weighted_average(pts, today, window_days=45)
 
@@ -93,6 +127,7 @@ class Forecast:
         self.ratings = compute_ratings()
         self.matcher = Matcher(self.ratings)
         self.zs = _zscores(inputs.demographics)
+        self.approval_effects = approval_house_effects([p for p in inputs.approval_polls if to_date(p.end_date) <= self.today])
         self.fundraising: dict[str, dict] = {}
         # Calibrate House fundamentals against 2024 district results (unchanged-lines states).
         self.house_cal = None
@@ -151,7 +186,7 @@ class Forecast:
         asof = asof or self.today
         days = (to_date(ELECTION_DATE) - asof).days
         g = self.pm.generic_average(asof)
-        appr = approval_average([p for p in self.inp.approval_polls if to_date(p.end_date) <= asof], self.matcher, asof)
+        appr = approval_average([p for p in self.inp.approval_polls if to_date(p.end_date) <= asof], self.matcher, asof, self.approval_effects)
         nat, nat_sd, nat_w = national_environment(g.margin, g.se, appr.margin, PRESIDENT_PARTY)
         from .fundamentals import poll_drift_sd
         nat_sd_total = math.sqrt(nat_sd ** 2 + (0.4 * poll_drift_sd(days)) ** 2)

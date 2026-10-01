@@ -52,7 +52,7 @@ export default function Schedule() {
                 <div className="tl-body">
                   {states.map((s) => (
                     <div key={s.state} className="tl-state">
-                      <div className="tl-state-name"><strong>{s.state_name}</strong>{s.close_source === "fallback" && <sup className="muted" title="Time from the 2024 general election; being confirmed with the state">*</sup>}{s.times.length > 1 && <span className="small muted"> · rest of state {s.times.slice(1).join(", ")}</span>}</div>
+                      <div className="tl-state-name"><strong>{s.state_name}</strong>{s.close_source === "fallback" && <sup className="muted" title="Confirmed with the state’s election office on Sept. 30, 2026">*</sup>}{s.times.length > 1 && <span className="small muted"> · rest of state {s.times.slice(1).join(", ")}</span>}{s.note && <span className="small muted"> · {s.note}</span>}</div>
                       <div className="tl-chips">
                         {chips(s.races).map((r) => (
                           <Link key={r.id} href={`/race/${r.id}/`} className="tl-chip" style={{ background: bucketVar(r.rating[v]), color: onBucket(r.rating[v]) }}
@@ -86,7 +86,7 @@ export default function Schedule() {
       <section className="block">
         <h2 className="display">Upcoming elections</h2>
         <div style={{ marginTop: 12 }}><UpcomingList items={getUpcoming()} limit={10} showSource /></div>
-        <p className="small muted">Closing times: {sch.source}.{sch.fallback_source && <> * States without a Senate race: <a href={sch.fallback_url} target="_blank" rel="noopener noreferrer">{sch.fallback_source}</a>; state closing laws rarely change, and we’re confirming each with its election office.</>} Live results on this page are coming before election night.</p>
+        <p className="small muted">Closing times: {sch.source}.{sch.fallback_source && <> * States without a Senate race: <a href={sch.fallback_url} target="_blank" rel="noopener noreferrer">{sch.fallback_source}</a>; each was checked against the state’s own election office on Sept. 30.</>} Live results on this page are coming before election night.</p>
       </section>
     </div>
   );

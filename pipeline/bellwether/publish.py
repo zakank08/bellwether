@@ -171,12 +171,13 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
     t = term_start + timedelta(days=7)
     term_polls = sorted((p for p in fc.inp.approval_polls if to_date(p.end_date) >= term_start), key=lambda p: p.end_date)
     while t <= fc.today:
-        a = approval_average([p for p in term_polls if to_date(p.end_date) <= t], fc.matcher, t)
+        a = approval_average([p for p in term_polls if to_date(p.end_date) <= t], fc.matcher, t, fc.approval_effects)
         if a.margin is not None:
             ap.append({"date": t.isoformat(), "margin": _r(a.margin, 2), "se": _r(a.se, 2)})
         t += timedelta(days=1 if (fc.today - t).days <= 90 else 3)
     appr_polls = [{"pollster": p.pollster, "end": p.end_date, "n": p.sample_size, "pop": p.population,
-                   "approve": p.answers.get("Approve"), "disapprove": p.answers.get("Disapprove"), "url": p.url, "src": p.source}
+                   "approve": p.answers.get("Approve"), "disapprove": p.answers.get("Disapprove"), "url": p.url, "src": p.source,
+                   "adjusted": _r((p.answers.get("Approve") or 0) - (p.answers.get("Disapprove") or 0) - fc.approval_effects.get(f"{p.pollster}|{(p.population or 'a').lower()}", 0.0), 1)}
                   for p in fc.inp.approval_polls if to_date(p.end_date) >= term_start]
     _write(out / "approval.json", {"net": _r(env["approval"].margin, 2), "trend": ap, "polls": appr_polls})
 
@@ -404,6 +405,7 @@ def poll_schedule(rows) -> dict:
         e["first"] = min(mins) if mins else None
         e["last"] = max(mins) if mins else None
         e["times"] = times
+        e["note"] = fb.get("notes", {}).get(e["state"])
         out.append(e)
     out.sort(key=lambda e: (e["first"] is None, e["first"] or 0, e["state_name"]))
     return {"source": "Wikipedia, 2026 United States Senate elections (poll-closing table)",

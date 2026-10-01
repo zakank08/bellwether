@@ -54,7 +54,8 @@ def crosstab(out,t):
     if g: out["dem"],out["rep"]=g
     return out
 
-for a in sys.argv[1:]:
-    try:
-        for r in parse(a): print(json.dumps(r))
-    except Exception as e: print(json.dumps({"article":a,"error":str(e)}))
+if __name__ == "__main__":
+    for a in sys.argv[1:]:
+        try:
+            for r in parse(a): print(json.dumps(r))
+        except Exception as e: print(json.dumps({"article":a,"error":str(e)}))

@@ -1,0 +1,59 @@
+# Twice a week: look for new national Trump-approval and generic-ballot polls from the pollsters whose
+# releases can be read reliably (YouGov/Economist, Reuters/Ipsos, Echelon, Quinnipiac) and add the ones
+# that pass every check to data/config/national_polls.json. The next forecast run picks them up.
+# Anything it can't verify, or any hand-checked pollster that has gone quiet for 5 weeks, opens an issue.
+name: national-polls
+on:
+  schedule:
+    - cron: "23 13 * * 2,5"       # Tuesdays and Fridays, 9:23am ET
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: national-polls
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -r pipeline/tools/requirements.txt
+      - name: Check the reader still matches polls already in the file
+        run: python pipeline/tools/update_national_polls.py --selftest
+      - name: Look for new polls
+        id: run
+        run: |
+          set +e
+          python pipeline/tools/update_national_polls.py --write | tee polls.log
+          echo "code=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+      - name: Commit new polls
+        run: |
+          git config user.name "bellwether-bot"
+          git config user.email "bellwether-bot@users.noreply.github.com"
+          git add data/config/national_polls.json
+          if git diff --cached --quiet; then echo "no new polls"; exit 0; fi
+          git commit -m "Add new national polls (automatic)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Open an issue if a person is needed
+        if: steps.run.outputs.code == '3'
+        run: |
+          title="National polls need a look"
+          body="$(sed -n '/NEEDS A PERSON/,$p' polls.log)"
+          open=$(gh issue list --state open --search "$title in:title" --json number --jq '.[0].number')
+          if [ -z "$open" ]; then
+            gh issue create --title "$title" --body "$body"
+          else
+            gh issue comment "$open" --body "$body"
+          fi
+      - name: Fail the run if the reader itself broke
+        if: steps.run.outputs.code != '0' && steps.run.outputs.code != '3'
+        run: exit 1

@@ -30,6 +30,23 @@ skips any poll VoteHub already has. **Keep it current weekly** until Nov. 3;
 `pipeline/tools/yougov_economist.py` reads the YouGov PDFs. The polls page says how many
 polls ended in the last 30 days and warns when there are fewer than 8.
 
+## 1c. Automation and tools added Oct. 1
+- **Forecast workflow** (`forecast.yml`) now has six slots a day at off-peak minutes (GitHub starts scheduled runs late
+  and sometimes skips them). The 2:37am ET run also rebuilds the odds-over-time history. A failed run opens a GitHub issue.
+- **`watchdog.yml`** (hourly): opens an issue if the published forecast is more than 14 hours old, closes it when fresh,
+  and opens one when the Census publishes the official 2026 district shapes (not out yet as of Oct. 1; the 10 redrawn
+  states can't be drawn from the old files).
+- **`national-polls.yml`** (Tue/Fri): `pipeline/tools/update_national_polls.py` reads new YouGov/Economist, Reuters/Ipsos,
+  Echelon and Quinnipiac polls from their own PDFs/tables, checks every number, and adds the ones that pass to
+  `data/config/national_polls.json`. Anything it can't verify, and Emerson/Marist/CNN/Verasight/Fox/ARG/AP-NORC when
+  they've gone 35 days with no entry, opens an issue "National polls need a look" — those are added by hand.
+- **Approval average** is now corrected for each pollster's usual lean (and for adults vs registered vs likely voters),
+  like the generic ballot. Net approval -25.1 -> -23.5; chamber odds moved under 1 point.
+- **Race share images**: `/og/race/<id>.png`, drawn at build time from `web/app/og/race/[file]/route.tsx` (nothing committed).
+- **`/status` page**: last refresh, national poll coverage, races with thin polling, source health.
+- **Poll-closing times for the 15 non-Senate states confirmed** with each state's election office (Sept. 30); sources are
+  in `data/config/poll_closing_fallback.json`. North Dakota counties pick their own closing time (7–9pm local).
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a
