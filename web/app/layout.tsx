@@ -7,6 +7,7 @@ const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], 
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400"], variable: "--font-plex-mono", display: "swap" });
 
 export const metadata: Metadata = {
+  alternates: { types: { "application/atom+xml": "/feed.xml" } },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://bellwether-zak.vercel.app"),
   title: { default: "Bellwether — 2026 midterm forecast", template: "%s · Bellwether" },
   description: "A nonpartisan forecast of the 2026 Senate, House and governor races: polling averages, a probabilistic model and a what-if map.",

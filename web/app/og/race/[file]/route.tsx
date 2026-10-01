@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getForecast, getRace, getRaces } from "@/lib/data";
+import { flipOf } from "@/lib/flips";
 import { BUCKET_LABEL, fmtDate, in100, surname } from "@/lib/format";
 
 // Social-share card for each race, drawn at build time and served as /og/race/<race id>.png (no image files are committed).
@@ -31,6 +32,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
   const f = getForecast();
   const v = f.default_version;
   const twoParty = r.kind === "two_party";
+  const flip = flipOf(r, v);
   return new ImageResponse(
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: PAPER, padding: "56px 64px", fontFamily: "sans-serif" }}>
@@ -38,7 +40,10 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
           <div style={{ display: "flex", fontSize: 30, color: MUTED, letterSpacing: 1 }}>
             {OFFICE[r.office].toUpperCase()}{r.special ? " · SPECIAL ELECTION" : ""}{r.open ? " · OPEN SEAT" : ""}
           </div>
-          <div style={{ display: "flex", fontSize: 76, fontWeight: 700, color: INK, marginTop: 6 }}>{r.title}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 6 }}>
+            <div style={{ display: "flex", fontSize: 76, fontWeight: 700, color: INK }}>{r.title}</div>
+            {flip && <div style={{ display: "flex", fontSize: 28, fontWeight: 700, color: INK, background: "#f6c744", borderRadius: 999, padding: "6px 22px" }}>{flip.tier === "likely" ? "LIKELY FLIP" : "COULD FLIP"} · {flip.from} → {flip.to}</div>}
+          </div>
         </div>
         {twoParty ? (
           <div style={{ display: "flex", gap: 56 }}>

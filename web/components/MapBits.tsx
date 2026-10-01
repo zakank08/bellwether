@@ -1,7 +1,7 @@
 import { BUCKET_LABEL, bucketVar, in100, PARTY_NAME } from "@/lib/format";
 import type { Bucket } from "@/lib/types";
 
-export function Legend({ showInd = false }: { showInd?: boolean }) {
+export function Legend({ showInd = false, flips = true }: { showInd?: boolean; flips?: boolean }) {
   const steps: Bucket[] = ["d-safe", "d-likely", "d-lean", "tossup", "r-lean", "r-likely", "r-safe"];
   return (
     <div aria-label="Map legend" style={{ maxWidth: 560 }}>
@@ -14,6 +14,7 @@ export function Legend({ showInd = false }: { showInd?: boolean }) {
       <div className="small muted" style={{ marginTop: 6 }}>
         Solid ≥95 in 100 · Likely 75–95 · Lean 60–75 · Toss-up under 60 for either side
         {showInd && <> · <span style={{ display: "inline-block", width: 10, height: 10, background: "var(--ind-fill)", borderRadius: 2 }} /> Independent favored</>}
+        {flips && <> · <span className="flip-key"><i /> Likely to flip (50+ in 100 to change parties)</span> · <span className="flip-key"><i className="could" /> Could flip (25–49)</span></>}
       </div>
     </div>
   );

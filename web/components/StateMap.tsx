@@ -1,16 +1,17 @@
 "use client";
 import { geoPath } from "d3-geo";
-import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { feature, mesh } from "topojson-client";
 import us from "us-atlas/states-albers-10m.json";
 import { BUCKET_LABEL, bucketVar, onBucket } from "@/lib/format";
 import { FIPS, TILES } from "@/lib/tiles";
 import type { Bucket } from "@/lib/types";
 import { useTip } from "./Tooltip";
+import { useReveal } from "./useReveal";
 
-export type MapItem = { state: string; id: string; bucket: Bucket; title: string; tipLines: React.ReactNode; label?: string };
+export type MapItem = { state: string; id: string; bucket: Bucket; title: string; tipLines: React.ReactNode; label?: string; flip?: "likely" | "could" };
+const topFlip = (its?: MapItem[]) => (its?.some((i) => i.flip === "likely") ? "likely" : its?.some((i) => i.flip === "could") ? "could" : null);
 
 const path = geoPath();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,12 +30,7 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
   }, [items]);
   const { show, hide } = useTip();
   const router = useRouter();
-  const reduce = useReducedMotion();
-  const tr = reduce ? { duration: 0 } : { duration: 0.4, ease: "easeOut" as const };
-  const box = useRef<HTMLDivElement>(null);
-  const seen = useInView(box, { once: true, margin: "0px 0px -80px 0px" }) || !!reduce;
-  const [swept, setSwept] = useState(false);
-  useEffect(() => { if (seen && !swept) { const t = setTimeout(() => setSwept(true), 1200); return () => clearTimeout(t); } }, [seen, swept]);
+  const { ref: box, hidden, animate, reduce } = useReveal<HTMLDivElement>(80);
 
   const tipFor = (st: string) => {
     const its = byState[st];
@@ -59,15 +55,17 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
             const its = byState[st];
             const fill = its ? bucketVar(its[0].bucket) : "var(--uncalled)";
             return (
-              <motion.path key={f.id} d={path(f as any) ?? ""} initial={reduce ? false : { fill: "var(--uncalled)" }} animate={{ fill: seen ? fill : "var(--uncalled)" }}
-                transition={reduce ? tr : { duration: 0.5, delay: seen && !swept ? ((path.centroid(f as any)[0] || 0) / 975) * 0.6 : 0 }}
-                tabIndex={its ? 0 : -1} role={its ? "link" : undefined} aria-label={its ? `${its.map((i) => i.title + ": " + BUCKET_LABEL[i.bucket]).join("; ")}` : undefined}
+              <path key={f.id} d={path(f as any) ?? ""}
+                tabIndex={its ? 0 : -1} role={its ? "link" : undefined} aria-label={its ? `${its.map((i) => i.title + ": " + BUCKET_LABEL[i.bucket] + (i.flip ? (i.flip === "likely" ? ", likely to flip" : ", could flip") : "")).join("; ")}` : undefined}
                 onMouseMove={(e) => show(e, tipFor(st))} onMouseLeave={hide} onClick={() => go(st)}
                 onKeyDown={(e) => { if (e.key === "Enter") go(st); }}
-                style={{ cursor: its ? "pointer" : "default", outline: "none" }} />
+                style={{ fill: hidden ? "var(--uncalled)" : fill, cursor: its ? "pointer" : "default", outline: "none",
+                  transition: reduce ? "none" : animate ? `fill .5s ease ${Math.round(((path.centroid(f as any)[0] || 0) / 975) * 600)}ms` : "fill .4s" }} />
             );
           })}
           <path d={borders} fill="none" stroke="var(--surface)" strokeWidth={1} strokeLinejoin="round" pointerEvents="none" />
+          {/* yellow outline: a race in this state is likely (thick) or could be (thin) to change parties */}
+          {states.map((f) => { const t = topFlip(byState[FIPS[f.id]]); return t ? <path key={"fl" + f.id} d={path(f as any) ?? ""} fill="none" stroke="var(--flip)" strokeWidth={t === "likely" ? 3.2 : 1.8} strokeLinejoin="round" pointerEvents="none" /> : null; })}
           {/* specials: a ring marks states with two races */}
           {Object.entries(byState).filter(([, v]) => v.length > 1).map(([st]) => {
             const f = states.find((s) => FIPS[s.id] === st);
@@ -87,12 +85,13 @@ export default function StateMap({ items, title, notUpLabel = "No race this cycl
                 aria-label={its ? its.map((i) => `${i.title}: ${BUCKET_LABEL[i.bucket]}`).join("; ") : `${st}: ${notUpLabel}`}>
                 {its && its.length > 1 ? (
                   <>
-                    <motion.rect width={0.92} height={0.46} rx={0.03} animate={{ fill: bucketVar(its[0].bucket) }} transition={tr} />
-                    <motion.rect y={0.46} width={0.92} height={0.46} rx={0.03} animate={{ fill: bucketVar(its[1].bucket) }} transition={tr} />
+                    <rect width={0.92} height={0.46} rx={0.03} style={{ fill: bucketVar(its[0].bucket), transition: reduce ? "none" : "fill .4s" }} />
+                    <rect y={0.46} width={0.92} height={0.46} rx={0.03} style={{ fill: bucketVar(its[1].bucket), transition: reduce ? "none" : "fill .4s" }} />
                   </>
                 ) : (
-                  <motion.rect width={0.92} height={0.92} rx={0.03} animate={{ fill: its ? bucketVar(its[0].bucket) : "var(--uncalled)" }} transition={tr} />
+                  <rect width={0.92} height={0.92} rx={0.03} style={{ fill: its ? bucketVar(its[0].bucket) : "var(--uncalled)", transition: reduce ? "none" : "fill .4s" }} />
                 )}
+                {topFlip(its) && <rect x={-0.02} y={-0.02} width={0.96} height={0.96} rx={0.05} fill="none" stroke="var(--flip)" strokeWidth={topFlip(its) === "likely" ? 0.09 : 0.05} pointerEvents="none" />}
                 <text x={0.46} y={0.52} textAnchor="middle" fontSize={0.26} fontWeight={600}
                   fill={its ? onBucket(its[0].bucket) : "var(--ink-muted)"} pointerEvents="none">{st}</text>
               </g>

@@ -1,16 +1,14 @@
 "use client";
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import type { Hist } from "@/lib/types";
+import { useReveal } from "./useReveal";
 
 /** 100 simulated outcomes dropping into a seat histogram: each dot is one
  * "in 100" outcome, so the reader can count uncertainty. */
 export default function SeatDots({ hist, majority, label, partyAt }: {
   hist: Hist[]; majority: number; label: string; partyAt: (seats: number) => "D" | "R" | "C";
 }) {
-  const reduce = useReducedMotion();
-  const ref = useRef<SVGSVGElement>(null);
-  const seen = useInView(ref, { once: true, margin: "0px 0px -60px 0px" });
+  const { ref, hidden, animate, reduce } = useReveal<SVGSVGElement>();
   const { dots, bin } = useMemo(() => {
     const cum: { seats: number; c: number }[] = [];
     let c = 0;
@@ -57,10 +55,11 @@ export default function SeatDots({ hist, majority, label, partyAt }: {
           </g>
         )}
         {dots.map((d, i) => (
-          <motion.circle key={i} cx={x(d.s)} r={r} fill={fillFor(d.s)}
-            initial={reduce ? false : { cy: -20, opacity: 0 }}
-            animate={seen || reduce ? { cy: y(d.h), opacity: 1 } : { cy: -20, opacity: 0 }}
-            transition={reduce ? { duration: 0 } : { delay: d.rank * 0.011, duration: 0.45, ease: [0.3, 0.9, 0.4, 1] }} />
+          <circle key={i} cx={x(d.s)} cy={y(d.h)} r={r} fill={fillFor(d.s)}
+            style={{
+              opacity: hidden ? 0 : 1, transform: hidden ? `translateY(${-20 - y(d.h)}px)` : "none",
+              transition: reduce || !animate ? "none" : `opacity .2s ${Math.round(d.rank * 11)}ms, transform .45s cubic-bezier(.3,.9,.4,1) ${Math.round(d.rank * 11)}ms`,
+            }} />
         ))}
         <line x1={pad} x2={W - pad} y1={H - 26} y2={H - 26} stroke="var(--line)" />
         {ticks.map((t) => <text key={t} x={x(t) - colW / 2} y={H - 10} fontSize={12} textAnchor="middle" fill="var(--ink-muted)">{t}</text>)}

@@ -50,6 +50,17 @@ polls ended in the last 30 days and warns when there are fewer than 8.
   *Preview* and the live site doesn't change (seen Oct. 1). Push to `main` alone, confirm "Production" in the repo's
   Deployments list, then update any other branch.
 
+## 1d. Added Oct. 1 (second batch)
+- **Yellow "likely to flip" markers** (`web/lib/flips.ts`): thick = 50+ in 100 to change parties, thin = 25–49; either direction. On the seat arcs
+  (with a tally under each), House hex map, Senate/governor maps, race tables and cards, race pages, share images, a "Likely to flip" home
+  section, and a "Likely to flip" filter on the chamber pages. Redrawn-map states use the sitting member's party (disclosed on the page).
+- **Flicker fix**: server HTML now shows finished charts (`components/useReveal.ts`); only things that start below the screen animate in
+  when scrolled to. The page-transition wrapper no longer starts at opacity 0 on first load; CountUp no longer counts up from 0.
+- **New pages/files**: `/ratings` (Bellwether vs expert ratings, Senate + governor), `/open-data` with `/downloads/races.csv` and
+  `/downloads/chambers.csv`, chamber embeds `/embed/chamber/{senate,house}` (Embed button on those pages), Atom feed `/feed.xml`,
+  `sitemap.xml`, `robots.txt`.
+- Open question for Revaz: choose a license for the open data (the page currently only asks for credit and a link).
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

@@ -4,6 +4,7 @@
   --dem: #1f4f94; --rep: #a3302a; --ind: #6a4a9e;
   --d-safe: #1f4f94; --d-likely: #4d7dc3; --d-lean: #a3c0e6; --tossup: #d8d2c4;
   --r-lean: #eea79d; --r-likely: #d05a4c; --r-safe: #9b2b24; --ind-fill: #8a6cc0;
+  --flip: #c98a00; --flip-fill: #f6c744; --on-flip: #1a1916;
   --uncalled: #efece5; --on-strong: #ffffff; --signal: #9a5700; --signal-soft: #fbefd9; --focus: var(--ink);
   --shadow-pop: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.10);
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
@@ -20,6 +21,7 @@
     --dem: #8fb5ef; --rep: #f29c90; --ind: #c3a9f0;
     --d-safe: #8fb5ef; --d-likely: #4f81c7; --d-lean: #2c4670; --tossup: #5e5a52;
     --r-lean: #6e332d; --r-likely: #c65b4d; --r-safe: #f29c90; --ind-fill: #8f73c4;
+    --flip: #f6c744; --flip-fill: #f6c744; --on-flip: #1a1916;
     --uncalled: #26282a; --on-strong: #121314; --signal: #f0b456; --signal-soft: #3a2a10;
     --shadow-pop: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
     color-scheme: dark;
@@ -30,6 +32,7 @@
   --dem: #8fb5ef; --rep: #f29c90; --ind: #c3a9f0;
   --d-safe: #8fb5ef; --d-likely: #4f81c7; --d-lean: #2c4670; --tossup: #5e5a52;
   --r-lean: #6e332d; --r-likely: #c65b4d; --r-safe: #f29c90; --ind-fill: #8f73c4;
+    --flip: #f6c744; --flip-fill: #f6c744; --on-flip: #1a1916;
   --uncalled: #26282a; --on-strong: #121314; --signal: #f0b456; --signal-soft: #3a2a10;
   --shadow-pop: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.5);
   color-scheme: dark;
@@ -299,3 +302,24 @@ h2.display.big { font-size: 36px; line-height: 40px; }
 .embed { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface-raised); max-width: 520px; margin: 0 auto; }
 
 .embed-pop { position: absolute; right: 0; top: 46px; z-index: 30; width: min(380px, 90vw); background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-pop); padding: 12px; }
+
+/* Likely-to-flip markers: yellow, used the same way for a seat moving in either direction. */
+.flip-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--flip-fill); color: var(--on-flip); border-radius: 999px; padding: 1px 9px 1px 7px; font-size: 12px; font-weight: 600; line-height: 18px; white-space: nowrap; }
+.flip-chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--on-flip); opacity: .75; }
+.flip-chip.could { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--flip); }
+.flip-chip.could::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--flip); opacity: 1; }
+table.data tr.flip > td:first-child { box-shadow: inset 3px 0 0 var(--flip); }
+.race-card.flip { box-shadow: inset 0 0 0 2px var(--flip); }
+.flip-key { display: inline-flex; align-items: center; gap: 6px; }
+.flip-key i { width: 11px; height: 11px; border-radius: 50%; box-sizing: border-box; border: 2.5px solid var(--flip); display: inline-block; }
+.flip-key i.could { border-width: 1.5px; opacity: .85; }
+.flip-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px 32px; margin-top: 12px; }
+.flip-groups h3 { margin: 0 0 8px; }
+.flip-list { list-style: none; margin: 0; padding: 0; }
+.flip-list li { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.flip-line { margin: 6px 0 0; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.ratings-wrap { overflow-x: auto; }
+table.ratings { min-width: 980px; }
+table.ratings th, table.ratings td { vertical-align: top; }
+table.ratings td:first-child, table.ratings th:first-child { position: sticky; left: 0; background: var(--surface); z-index: 1; }
+ul.plain { padding-left: 20px; display: grid; gap: 8px; max-width: 75ch; }

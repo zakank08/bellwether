@@ -7,6 +7,7 @@ import FollowButton from "@/components/FollowButton";
 import EmbedCode from "@/components/EmbedCode";
 import { getForecast, getRace, getRaces } from "@/lib/data";
 import { BUCKET_LABEL, bucketVar, fmtDate, in100, onBucket, PARTY_NAME, partyInk, partyMarginLabel, surname } from "@/lib/format";
+import { flipLong, flipOf, flipShort, isRedrawnHouse } from "@/lib/flips";
 import type { RaceDetail } from "@/lib/types";
 
 export function generateStaticParams() {
@@ -52,9 +53,13 @@ export default async function RacePage({ params }: { params: Promise<{ id: strin
         <div className="kicker">{OFFICE[r.office]}{r.special ? " · special election" : ""}{r.open ? " · open seat" : ""}</div>
         <h1 className="display" style={{ margin: "4px 0 12px" }}>{r.title}</h1>
         <div className="row" style={{ justifyContent: "space-between" }}>
-          <span className="chip" style={{ background: bucketVar(b), color: onBucket(b) }}>{BUCKET_LABEL[b]}</span>
+          <span className="row" style={{ gap: 8 }}>
+            <span className="chip" style={{ background: bucketVar(b), color: onBucket(b) }}>{BUCKET_LABEL[b]}</span>
+            {flipOf(r, v) && <span className={`flip-chip${flipOf(r, v)!.tier === "could" ? " could" : ""}`}>{flipShort(flipOf(r, v)!)}</span>}
+          </span>
           {r.kind === "two_party" && <div className="row" style={{ gap: 8 }}><FollowButton id={r.id} p={p} title={r.title} /><EmbedCode id={r.id} title={r.title} /></div>}
         </div>
+        {flipOf(r, v) && <p className="small" style={{ margin: "10px 0 0" }}>{flipLong(flipOf(r, v)!, in100, isRedrawnHouse(r))}</p>}
         {r.kind === "two_party" ? (
           <>
             <div className="faceoff">

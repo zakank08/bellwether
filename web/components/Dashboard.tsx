@@ -22,6 +22,7 @@ import { TipProvider } from "./Tooltip";
 import InfoTip from "./InfoTip";
 import Reveal from "./Reveal";
 import { BUCKET_LABEL, bucketVar, onBucket } from "@/lib/format";
+import { flipLong, flipOf, flipShort, isRedrawnHouse } from "@/lib/flips";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 
 type History = { backcast_until: string | null; points: { date: string; senate: Record<string, number>; house: Record<string, number> }[] } | null;
@@ -36,7 +37,11 @@ export default function Dashboard(props: Props) {
 }
 
 export function mapItems(rows: CompactRow[], v: Version): MapItem[] {
-  return rows.map((r) => ({ state: r.state, id: r.id, bucket: r.rating[v], title: r.title, tipLines: tipLinesFor(r.dside.name, r.dside.party, r.rside.name, r.rside.party, r.p[v]) }));
+  return rows.map((r) => {
+    const f = flipOf(r, v);
+    return { state: r.state, id: r.id, bucket: r.rating[v], title: r.title, flip: f?.tier,
+      tipLines: <>{tipLinesFor(r.dside.name, r.dside.party, r.rside.name, r.rside.party, r.p[v])}{f && <><br /><span className="flip-chip">{flipShort(f)}</span></>}</> };
+  });
 }
 
 function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) {
@@ -78,7 +83,7 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) 
         <div style={{ flex: "1 1 320px", maxWidth: 520 }}><h3 style={{ marginBottom: 8 }}>Coming up</h3><UpcomingList items={upcoming} limit={3} /></div>
       </div>
       <YourRaces rows={rows} v={v} />
-      <SectionNav items={[["watch", "Races to watch"], ["senate", "Senate"], ["house", "House"], ["governors", "Governors"], ["trends", "Trends"], ["markets", "Markets"], ["changes", "What changed"], ["environment", "National mood"]]} />
+      <SectionNav items={[["watch", "Races to watch"], ["flips", "Likely to flip"], ["senate", "Senate"], ["house", "House"], ["governors", "Governors"], ["trends", "Trends"], ["markets", "Markets"], ["changes", "What changed"], ["environment", "National mood"]]} />
       <Reveal>
         <section className="block" aria-labelledby="watch-h" id="watch">
           <h2 id="watch-h" className="display big">Races to watch</h2>
@@ -88,11 +93,12 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) 
               const b = r.rating[v];
               const pl = r.p[v];
               return (
-                <Link key={r.id} href={`/race/${r.id}/`} className="race-card">
+                <Link key={r.id} href={`/race/${r.id}/`} className={`race-card${flipOf(r, v) ? " flip" : ""}`}>
                   <div className="row" style={{ justifyContent: "space-between" }}>
                     <span className="kicker">{r.office === "senate" ? "Senate" : "Governor"}</span>
                     <span className="chip" style={{ background: bucketVar(b), color: onBucket(b) }}>{BUCKET_LABEL[b]}</span>
                   </div>
+                  {flipOf(r, v) && <div style={{ marginTop: 6 }}><span className={`flip-chip${flipOf(r, v)!.tier === "could" ? " could" : ""}`}>{flipShort(flipOf(r, v)!)}</span></div>}
                   <div style={{ fontWeight: 600, fontSize: 18, margin: "6px 0 8px" }}>{r.title}</div>
                   <div className="row small" style={{ justifyContent: "space-between" }}>
                     <span style={{ color: r.dside.party === "D" ? "var(--dem)" : "var(--ind)" }}>{surname(r.dside.name)} <strong className="num">{in100(pl)}</strong></span>
@@ -118,6 +124,8 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) 
           </div>
         </section>
       </Reveal>
+
+      <FlipSection rows={rows} v={v} />
 
       <section className="block" aria-labelledby="senate-h" id="senate">
         <h2 id="senate-h" className="display big">Senate</h2>
@@ -267,5 +275,49 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) 
         </p>
       </section>
     </div>
+  );
+}
+
+/** Seats that the model expects to change parties, closest-to-certain first, in both directions. */
+function FlipSection({ rows, v }: { rows: CompactRow[]; v: Version }) {
+  const items = rows.map((r) => ({ r, f: flipOf(r, v) })).filter((x): x is { r: CompactRow; f: NonNullable<ReturnType<typeof flipOf>> } => !!x.f && x.f.tier === "likely")
+    .sort((a, b) => b.f.p - a.f.p);
+  const could = rows.map((r) => flipOf(r, v)).filter((f) => f?.tier === "could").length;
+  const groups = [["senate", "Senate"], ["governor", "Governors"], ["house", "House"]] as const;
+  return (
+    <Reveal>
+      <section className="block" aria-labelledby="flips-h" id="flips">
+        <h2 id="flips-h" className="display big">Likely to flip</h2>
+        <p className="takeaway">
+          Seats where the party favored to win is not the party that holds the seat today, listed in the order the model is surest.
+          {" "}<strong className="num">{items.length}</strong> are likely to change parties (50 in 100 or better); <strong className="num">{could}</strong> more could (25–49 in 100). The count covers both directions.
+        </p>
+        <div className="flip-groups">
+          {groups.map(([o, label]) => {
+            const g = items.filter((x) => x.r.office === o);
+            return (
+              <div key={o}>
+                <h3>{label} <span className="small muted">({g.length})</span></h3>
+                {g.length === 0 ? <p className="small muted">None at 50 in 100 or better.</p> : (
+                  <ul className="flip-list">
+                    {g.slice(0, o === "house" ? 12 : 10).map(({ r, f }) => (
+                      <li key={r.id}>
+                        <Link href={`/race/${r.id}/`}><strong>{r.title}</strong></Link>
+                        <span className="flip-chip" title={flipLong(f, in100, isRedrawnHouse(r))}>{f.from} → {f.to}</span>
+                        <span className="small muted num">{in100(f.p)} in 100</span>
+                      </li>
+                    ))}
+                    {g.length > (o === "house" ? 12 : 10) && <li className="small muted">and {g.length - (o === "house" ? 12 : 10)} more — <Link href={`/${o}/`}>see all {label.toLowerCase()}</Link></li>}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <p className="small muted" style={{ marginTop: 12 }}>
+          “Holds the seat today” is the party of the current officeholder. In the ten states with new House maps (AL, CA, FL, LA, MO, NC, OH, TN, TX, UT) it is the party of the sitting member, whose district lines have changed.
+        </p>
+      </section>
+    </Reveal>
   );
 }
