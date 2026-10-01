@@ -323,3 +323,32 @@ table.ratings { min-width: 980px; }
 table.ratings th, table.ratings td { vertical-align: top; }
 table.ratings td:first-child, table.ratings th:first-child { position: sticky; left: 0; background: var(--surface); z-index: 1; }
 ul.plain { padding-left: 20px; display: grid; gap: 8px; max-width: 75ch; }
+
+/* Election-night rehearsal demo */
+.demo-banner { background: var(--ink); color: var(--surface); padding: 10px 0; font-size: 14px; line-height: 20px; background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(128,128,128,.18) 14px 28px); }
+.demo-controls { position: sticky; top: 0; z-index: 30; background: var(--surface-raised); border-bottom: 1px solid var(--line); padding: 10px 0; }
+.demo-clock { font-size: 22px; min-width: 150px; } .demo-clock small { font-size: 13px; font-weight: 400; color: var(--ink-muted); }
+.demo-select { font: inherit; font-size: 14px; height: 38px; padding: 0 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-raised); color: var(--ink); max-width: 100%; }
+.demo-drills { border: 1px solid var(--line); border-radius: 12px; padding: 8px 14px 10px; margin: 12px 0 0; display: grid; gap: 6px; font-size: 14px; }
+.demo-drills label { display: flex; gap: 8px; align-items: center; }
+.demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.demo-panel { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: var(--surface-raised); }
+.seatbar { position: relative; display: flex; height: 22px; border-radius: 6px; overflow: hidden; margin: 10px 0 6px; background: var(--uncalled); }
+.seatbar i { display: block; height: 100%; transition: width .4s ease; } .seatbar b { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); }
+.demo-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-bottom: 6px; }
+.demo-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.demo-card { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: var(--surface-raised); }
+.meter { height: 6px; background: var(--line); border-radius: 3px; margin: 6px 0 4px; overflow: hidden; } .meter div { height: 100%; background: var(--ink-muted); transition: width .4s; }
+.demo-note { margin-top: 6px; padding: 6px 8px; border-radius: 8px; background: var(--signal-soft); }
+.chip.demo-decided { background: var(--ink); color: var(--surface); }
+.chip.demo-counting, .chip.demo-close, .chip.demo-waiting { background: var(--uncalled); color: var(--ink); }
+.chip.demo-runoff, .chip.demo-rcv, .chip.demo-primary { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
+.chip.demo-warn { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--signal); } .chip.demo-manual { background: var(--signal-soft); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--signal); }
+.demo-timeline { display: grid; gap: 10px; } .demo-hour { display: grid; grid-template-columns: 74px 1fr; gap: 10px; align-items: start; }
+.demo-states { display: flex; flex-wrap: wrap; gap: 5px; }
+.demo-state { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--line); color: var(--ink-muted); }
+.demo-state.wait { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink-muted); }
+.demo-state.live { background: var(--uncalled); color: var(--ink); } .demo-state.done { background: var(--ink); color: var(--surface); }
+.demo-state.bad { box-shadow: 0 0 0 2px var(--signal); }
+.demo-panel .kicker { margin-bottom: 10px; } .demo-panel .display { line-height: 1.15; }
+@media (max-width: 560px) { .demo-hour { grid-template-columns: 58px 1fr; } .demo-clock { min-width: 0; } }

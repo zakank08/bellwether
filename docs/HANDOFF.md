@@ -61,6 +61,11 @@ polls ended in the last 30 days and warns when there are fewer than 8.
   `sitemap.xml`, `robots.txt`.
 - Open question for Revaz: choose a license for the open data (the page currently only asks for credit and a link).
 
+## 1e. Election-night rehearsal (Oct. 1)
+`/election-night-demo/` plays a pretend night (clearly labeled, noindex). `web/lib/live.ts` (live odds, "Decided" rule, special rules,
+chamber odds) is the code the real live pages will reuse; `web/lib/demo.ts` makes the pretend night; `npm run test:live` runs 26 tests,
+including a replay of three nights. What it showed needs fixing is in `docs/election-night-review.md`.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a
