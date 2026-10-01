@@ -4,6 +4,8 @@ import Nav from "@/components/Nav";
 import Search from "@/components/Search";
 import StaleBanner from "@/components/StaleBanner";
 import LiveFeedBanner from "@/components/LiveFeedBanner";
+import NewsBar from "@/components/NewsBar";
+import { topNews } from "@/lib/news";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -30,13 +32,14 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </div>
       </div>
     </header>
+    <NewsBar items={topNews(3)} />
     <StaleBanner updated={getForecast().updated} />
     <LiveFeedBanner />
     <main id="main">{children}</main>
     <footer className="site-foot">
       <div className="wrap">
         <div className="cols">
-          <div><h4>Forecast</h4><ul><li><Link href="/">Overview</Link></li><li><Link href="/senate/">Senate</Link></li><li><Link href="/house/">House</Link></li><li><Link href="/governor/">Governors</Link></li><li><Link href="/whatif/">Build your own map</Link></li><li><Link href="/schedule/">Election night schedule</Link></li><li><Link href="/ratings/">Vs. expert ratings</Link></li></ul></div>
+          <div><h4>Forecast</h4><ul><li><Link href="/">Overview</Link></li><li><Link href="/senate/">Senate</Link></li><li><Link href="/house/">House</Link></li><li><Link href="/governor/">Governors</Link></li><li><Link href="/whatif/">Build your own map</Link></li><li><Link href="/schedule/">Election night schedule</Link></li><li><Link href="/ratings/">Vs. expert ratings</Link></li><li><Link href="/news/">Latest updates</Link></li></ul></div>
           <div><h4>Polls</h4><ul><li><Link href="/polls/">Generic ballot</Link></li><li><Link href="/polls/">Presidential approval</Link></li><li><Link href="/pollsters/">Pollster ratings</Link></li><li><Link href="/find/">Find my races</Link></li></ul></div>
           <div><h4>About</h4><ul><li><Link href="/methodology/">How the model works</Link></li><li><Link href="/methodology/">Backtest and calibration</Link></li><li><Link href="/status/">Data status</Link></li><li><Link href="/open-data/">Open data</Link></li><li><a href="/feed.xml">Feed of changes</a></li><li><a href="https://github.com/zakank08/bellwether" rel="noopener noreferrer" target="_blank">Source code</a></li></ul></div>
         </div>

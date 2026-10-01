@@ -9,6 +9,8 @@ import Sparkline, { Delta } from "./Sparkline";
 import TimeChart from "./TimeChart";
 import { fmtDate, fmtUpdated, in100, partyMarginLabel, surname } from "@/lib/format";
 import type { Forecast, Version } from "@/lib/types";
+import NewsStrip from "./NewsStrip";
+import type { NewsItem } from "@/lib/newstypes";
 import Hero from "./Hero";
 import HouseHexMap from "./HouseHexMap";
 import SectionNav from "./SectionNav";
@@ -26,7 +28,7 @@ import { flipLong, flipOf, flipShort, isRedrawnHouse } from "@/lib/flips";
 import { useVersion, VersionProvider, VersionToggle } from "./VersionContext";
 
 type History = { backcast_until: string | null; points: { date: string; senate: Record<string, number>; house: Record<string, number> }[] } | null;
-type Props = { forecast: Forecast; rows: CompactRow[]; history: History; sparks: Record<string, number[]>; movers: Mover[]; upcoming: Upcoming[] };
+type Props = { forecast: Forecast; rows: CompactRow[]; history: History; sparks: Record<string, number[]>; movers: Mover[]; upcoming: Upcoming[]; news: NewsItem[] };
 
 export default function Dashboard(props: Props) {
   return (
@@ -44,7 +46,7 @@ export function mapItems(rows: CompactRow[], v: Version): MapItem[] {
   });
 }
 
-function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) {
+function Inner({ forecast: f, rows, history, sparks, movers, upcoming, news }: Props) {
   const { v } = useVersion();
   const ch = f.chambers[v];
   const senate = useMemo(() => rows.filter((r) => r.office === "senate"), [rows]);
@@ -70,6 +72,7 @@ function Inner({ forecast: f, rows, history, sparks, movers, upcoming }: Props) 
         </div>
       </header>
       <Hero f={f} v={v} rows={rows.filter((r) => r.office !== "governor")} />
+      <NewsStrip items={news} />
       <section className="block" style={{ paddingTop: 16, borderTop: 0 }}>
         <div className="intro" aria-label="How to read this forecast">
           <div><div className="step">1</div><h3>Odds, not predictions <InfoTip term="odds" /></h3><p>We simulate the election {f.n_sims.toLocaleString()} times. “{in100(Math.max(ch.senate.p_control.D, ch.senate.p_control.R))} in 100” means that side won {in100(Math.max(ch.senate.p_control.D, ch.senate.p_control.R))} of every 100 runs — the other side still wins sometimes.</p></div>

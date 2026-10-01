@@ -1,0 +1,4 @@
+{
+ "_about": "Editor's notes for the Latest feed (site-wide headline bar, home strip and /news/). Add a note by adding an object to 'notes' in the GitHub web editor: date (YYYY-MM-DD), headline (plain facts, no adjectives about candidates), optional detail, optional href (site path like /race/2026-sen-GA/ or a full link), and a required source. 'pinned': true keeps it first for 'pin_days' (default 3). Nothing here is shown unless it is filled in; everything else in the feed is generated from the forecast data.",
+ "notes": []
+}

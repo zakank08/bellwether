@@ -75,6 +75,10 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - **Not done:** the other ~45 states' readers (next easiest: MN, HI, IL, MD, LA, ME, DE, then Clarity: CO/SC/KY/AR/NJ; UT/WA/ID via Enhanced Voting), matching Georgia/Utah special contests, expected-vote estimates, browser live panels reading `results.json`, load test.
 - Lessons: NC puts one-stop and mail votes in county "pseudo precincts" (`Real Precinct` = N); they must count as votes but not as precincts.
 
+## 1g. Latest / news (added Oct. 1)
+- Header bar on every page (`NewsBar`), a "Latest" strip on the home page (`NewsStrip`), and `/news/` with filters (`NewsFeed`). Built by `web/lib/news.ts` at build time from forecast data (chamber odds vs. a week ago, biggest movers, newest polls, dates within 35 days) plus hand-written notes in `web/content/news.json` (each needs a date, headline and **source**; `pinned` keeps one first for `pin_days`). Wording is symmetric (both parties' odds always shown). `lib/newstypes.ts` holds types/labels so client components never import `fs`.
+- Ideas not built: a "breaking" level for notes, election-night live items (calls by state feed, chamber crossings) once live results exist.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a
