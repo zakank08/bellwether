@@ -24,7 +24,7 @@ Owner: Revaz (non-developer; explain choices in plain language, keep him informe
 
 ## Commands
 ```bash
-cd pipeline && python -m pytest -q                       # must pass (46 tests)
+cd pipeline && python -m pytest -q                       # must pass (53 tests)
 cd pipeline && python -m bellwether.run --sims 40000      # add --history to rebuild the odds backcast (~5 min)
 cd pipeline && python -m bellwether.backtest              # after any model change
 cd web && npm install && npx next build                   # ~1,000 static pages; must build clean

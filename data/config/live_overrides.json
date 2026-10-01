@@ -1,0 +1,6 @@
+{
+ "_about": "Hand corrections for election night. Edit this file in the GitHub web editor (see docs/correction-guide.md). The worker re-reads it every loop. Every entry needs a reason; hand-entered numbers show on the site as 'Entered by hand from <source>'.",
+ "pause_states": [],
+ "results": [],
+ "holds": []
+}

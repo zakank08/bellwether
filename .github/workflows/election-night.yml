@@ -1,0 +1,61 @@
+name: election-night
+# Runs the results worker for election night (Nov. 3-4). Start it by hand: Actions -> election-night -> Run workflow.
+# One job lasts at most 6 hours, so two are chained: 5.5 hours each, covering about 11 hours (about 5 p.m. to 4 a.m. ET).
+on:
+  workflow_dispatch:
+    inputs:
+      rehearsal:
+        description: "Rehearsal: replay old 2024 files instead of reading live feeds"
+        type: boolean
+        default: false
+
+concurrency:
+  group: election-night
+  cancel-in-progress: false
+
+jobs:
+  part1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+      - run: pip install -r pipeline/requirements.txt boto3
+      - name: Worker
+        working-directory: pipeline
+        env:
+          BELLWETHER_USER_AGENT: ${{ vars.BELLWETHER_USER_AGENT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          if [ "${{ inputs.rehearsal }}" = "true" ]; then
+            python -m bellwether.results.run --rehearse --out live
+          else
+            python -m bellwether.results.run --loop --upload --hours 5.4 --out live
+          fi
+  part2:
+    needs: part1
+    if: ${{ always() && inputs.rehearsal != true }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r pipeline/requirements.txt boto3
+      - name: Worker
+        working-directory: pipeline
+        env:
+          BELLWETHER_USER_AGENT: ${{ vars.BELLWETHER_USER_AGENT }}
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: python -m bellwether.results.run --loop --upload --hours 5.4 --out live

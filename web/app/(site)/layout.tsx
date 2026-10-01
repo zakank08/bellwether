@@ -3,6 +3,7 @@ import { getForecast, getRaces } from "@/lib/data";
 import Nav from "@/components/Nav";
 import Search from "@/components/Search";
 import StaleBanner from "@/components/StaleBanner";
+import LiveFeedBanner from "@/components/LiveFeedBanner";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -30,6 +31,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       </div>
     </header>
     <StaleBanner updated={getForecast().updated} />
+    <LiveFeedBanner />
     <main id="main">{children}</main>
     <footer className="site-foot">
       <div className="wrap">

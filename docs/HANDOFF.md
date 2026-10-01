@@ -66,6 +66,15 @@ polls ended in the last 30 days and warns when there are fewer than 8.
 chamber odds) is the code the real live pages will reuse; `web/lib/demo.ts` makes the pretend night; `npm run test:live` runs 26 tests,
 including a replay of three nights. What it showed needs fixing is in `docs/election-night-review.md`.
 
+## 1f. Election-night worker (added Oct. 1, third batch)
+- `pipeline/bellwether/results/`: readers for **Alaska** (CSV), **North Carolina** (ZIP) and **Enhanced Voting** (Georgia now; Utah, Washington, Idaho use the same platform; add one line to `SITES`), each tested offline against real 2024 files in `pipeline/tests/fixtures/results/`.
+  `worker.py` runs the readers, rejects bad numbers (votes going down, empty feed, negatives), keeps last good numbers, writes `results.json` + `status.json`, applies hand corrections from `data/config/live_overrides.json`. `replay.py` + `--rehearse` replay a 2024 file through the same path, with feed-down / junk / decreasing-vote drills.
+- Which feeds run: `data/config/live_sources.json` (a state runs once its 2026 `election` code is filled in).
+- `.github/workflows/election-night.yml`: two chained 5.4-hour jobs; start by hand. Needs the four R2 secrets (see `docs/live-storage-setup.md`, Revaz's click-by-click steps + traffic numbers).
+- `docs/correction-guide.md`: one-page guide for Revaz. Site banner `LiveFeedBanner` shows delayed states / hand entries / override typos once `NEXT_PUBLIC_LIVE_URL` is set.
+- **Not done:** the other ~45 states' readers (next easiest: MN, HI, IL, MD, LA, ME, DE, then Clarity: CO/SC/KY/AR/NJ; UT/WA/ID via Enhanced Voting), matching Georgia/Utah special contests, expected-vote estimates, browser live panels reading `results.json`, load test.
+- Lessons: NC puts one-stop and mail votes in county "pseudo precincts" (`Real Precinct` = N); they must count as votes but not as precincts.
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

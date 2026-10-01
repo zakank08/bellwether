@@ -1,0 +1,9 @@
+{
+ "_about": "Which official feeds the election-night worker reads. A state is read only when its 'election' is filled in (the code the state uses for the Nov. 3, 2026 general election; it appears when the state publishes its results page). Sources for every state: docs/results-sources.md. Readers built so far: alaska (CSV by precinct), north_carolina (ZIP of precinct results), enhanced_voting (Georgia now; Utah, Washington and Idaho use the same platform).",
+ "year": 2026,
+ "states": {
+  "AK": {"reader": "alaska", "election": null, "note": "2024 code was 24GENR; the 2026 general code is usually 26GENR"},
+  "NC": {"reader": "north_carolina", "election": null, "note": "date like 2026_11_03; 2024 was 2024_11_05"},
+  "GA": {"reader": "enhanced_voting", "election": null, "note": "2024 id was 2024NovGen; expect 2026NovGen"}
+ }
+}

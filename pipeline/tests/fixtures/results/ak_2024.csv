@@ -1,0 +1,2093 @@
+Precinct_name,Reporting_flag,Contest_title,candidate_name,Party_Code,total_ballots,total_votes
+01-600 Ketchikan No. 1,0,U.S. Representative,"Begich, Nick",REP,561,208
+01-600 Ketchikan No. 1,0,U.S. Representative,"Hafner, Eric",DEM,561,7
+01-600 Ketchikan No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,561,33
+01-600 Ketchikan No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,561,305
+01-610 Ketchikan No. 2,0,U.S. Representative,"Begich, Nick",REP,846,362
+01-610 Ketchikan No. 2,0,U.S. Representative,"Hafner, Eric",DEM,846,6
+01-610 Ketchikan No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,846,45
+01-610 Ketchikan No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,846,406
+01-620 Ketchikan No. 3,0,U.S. Representative,"Begich, Nick",REP,561,303
+01-620 Ketchikan No. 3,0,U.S. Representative,"Hafner, Eric",DEM,561,7
+01-620 Ketchikan No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,561,37
+01-620 Ketchikan No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,561,200
+01-640 North Tongass No. 1,0,U.S. Representative,"Begich, Nick",REP,413,258
+01-640 North Tongass No. 1,0,U.S. Representative,"Hafner, Eric",DEM,413,3
+01-640 North Tongass No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,413,17
+01-640 North Tongass No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,413,129
+01-650 North Tongass No. 2,0,U.S. Representative,"Begich, Nick",REP,740,467
+01-650 North Tongass No. 2,0,U.S. Representative,"Hafner, Eric",DEM,740,3
+01-650 North Tongass No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,740,28
+01-650 North Tongass No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,740,228
+01-660 Saxman,0,U.S. Representative,"Begich, Nick",REP,114,30
+01-660 Saxman,0,U.S. Representative,"Hafner, Eric",DEM,114,3
+01-660 Saxman,0,U.S. Representative,"Howe, John Wayne",AIP,114,5
+01-660 Saxman,0,U.S. Representative,"Peltola, Mary S.",DEM,114,74
+01-670 South Tongass,0,U.S. Representative,"Begich, Nick",REP,629,353
+01-670 South Tongass,0,U.S. Representative,"Hafner, Eric",DEM,629,2
+01-670 South Tongass,0,U.S. Representative,"Howe, John Wayne",AIP,629,22
+01-670 South Tongass,0,U.S. Representative,"Peltola, Mary S.",DEM,629,247
+01-675 Coffman Cove,0,U.S. Representative,"Begich, Nick",REP,110,64
+01-675 Coffman Cove,0,U.S. Representative,"Hafner, Eric",DEM,110,1
+01-675 Coffman Cove,0,U.S. Representative,"Howe, John Wayne",AIP,110,9
+01-675 Coffman Cove,0,U.S. Representative,"Peltola, Mary S.",DEM,110,27
+01-680 Metlakatla,0,U.S. Representative,"Begich, Nick",REP,457,135
+01-680 Metlakatla,0,U.S. Representative,"Hafner, Eric",DEM,457,9
+01-680 Metlakatla,0,U.S. Representative,"Howe, John Wayne",AIP,457,24
+01-680 Metlakatla,0,U.S. Representative,"Peltola, Mary S.",DEM,457,276
+01-690 Wrangell,0,U.S. Representative,"Begich, Nick",REP,677,383
+01-690 Wrangell,0,U.S. Representative,"Hafner, Eric",DEM,677,2
+01-690 Wrangell,0,U.S. Representative,"Howe, John Wayne",AIP,677,42
+01-690 Wrangell,0,U.S. Representative,"Peltola, Mary S.",DEM,677,233
+02-700 Angoon,0,U.S. Representative,"Begich, Nick",REP,113,19
+02-700 Angoon,0,U.S. Representative,"Hafner, Eric",DEM,113,3
+02-700 Angoon,0,U.S. Representative,"Howe, John Wayne",AIP,113,9
+02-700 Angoon,0,U.S. Representative,"Peltola, Mary S.",DEM,113,80
+02-705 Craig,0,U.S. Representative,"Begich, Nick",REP,396,205
+02-705 Craig,0,U.S. Representative,"Hafner, Eric",DEM,396,8
+02-705 Craig,0,U.S. Representative,"Howe, John Wayne",AIP,396,21
+02-705 Craig,0,U.S. Representative,"Peltola, Mary S.",DEM,396,130
+02-720 Hoonah,0,U.S. Representative,"Begich, Nick",REP,264,95
+02-720 Hoonah,0,U.S. Representative,"Hafner, Eric",DEM,264,4
+02-720 Hoonah,0,U.S. Representative,"Howe, John Wayne",AIP,264,15
+02-720 Hoonah,0,U.S. Representative,"Peltola, Mary S.",DEM,264,139
+02-725 Hydaburg,0,U.S. Representative,"Begich, Nick",REP,98,12
+02-725 Hydaburg,0,U.S. Representative,"Hafner, Eric",DEM,98,2
+02-725 Hydaburg,0,U.S. Representative,"Howe, John Wayne",AIP,98,5
+02-725 Hydaburg,0,U.S. Representative,"Peltola, Mary S.",DEM,98,75
+02-730 Kake,0,U.S. Representative,"Begich, Nick",REP,181,48
+02-730 Kake,0,U.S. Representative,"Hafner, Eric",DEM,181,7
+02-730 Kake,0,U.S. Representative,"Howe, John Wayne",AIP,181,9
+02-730 Kake,0,U.S. Representative,"Peltola, Mary S.",DEM,181,110
+02-735 Kasaan,0,U.S. Representative,"Begich, Nick",REP,25,10
+02-735 Kasaan,0,U.S. Representative,"Hafner, Eric",DEM,25,0
+02-735 Kasaan,0,U.S. Representative,"Howe, John Wayne",AIP,25,4
+02-735 Kasaan,0,U.S. Representative,"Peltola, Mary S.",DEM,25,10
+02-740 Klawock,0,U.S. Representative,"Begich, Nick",REP,345,154
+02-740 Klawock,0,U.S. Representative,"Hafner, Eric",DEM,345,9
+02-740 Klawock,0,U.S. Representative,"Howe, John Wayne",AIP,345,23
+02-740 Klawock,0,U.S. Representative,"Peltola, Mary S.",DEM,345,142
+02-750 Pelican-Elfin Cove,0,U.S. Representative,"Begich, Nick",REP,40,16
+02-750 Pelican-Elfin Cove,0,U.S. Representative,"Hafner, Eric",DEM,40,0
+02-750 Pelican-Elfin Cove,0,U.S. Representative,"Howe, John Wayne",AIP,40,0
+02-750 Pelican-Elfin Cove,0,U.S. Representative,"Peltola, Mary S.",DEM,40,20
+02-755 Petersburg-Kupreanof,0,U.S. Representative,"Begich, Nick",REP,843,401
+02-755 Petersburg-Kupreanof,0,U.S. Representative,"Hafner, Eric",DEM,843,6
+02-755 Petersburg-Kupreanof,0,U.S. Representative,"Howe, John Wayne",AIP,843,48
+02-755 Petersburg-Kupreanof,0,U.S. Representative,"Peltola, Mary S.",DEM,843,344
+02-760 Port Alexander,0,U.S. Representative,"Begich, Nick",REP,11,3
+02-760 Port Alexander,0,U.S. Representative,"Hafner, Eric",DEM,11,1
+02-760 Port Alexander,0,U.S. Representative,"Howe, John Wayne",AIP,11,0
+02-760 Port Alexander,0,U.S. Representative,"Peltola, Mary S.",DEM,11,6
+02-765 Sitka No. 1,0,U.S. Representative,"Begich, Nick",REP,966,387
+02-765 Sitka No. 1,0,U.S. Representative,"Hafner, Eric",DEM,966,5
+02-765 Sitka No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,966,49
+02-765 Sitka No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,966,494
+02-770 Sitka No. 2,0,U.S. Representative,"Begich, Nick",REP,905,313
+02-770 Sitka No. 2,0,U.S. Representative,"Hafner, Eric",DEM,905,16
+02-770 Sitka No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,905,44
+02-770 Sitka No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,905,499
+02-775 Tenakee Springs,0,U.S. Representative,"Begich, Nick",REP,42,10
+02-775 Tenakee Springs,0,U.S. Representative,"Hafner, Eric",DEM,42,1
+02-775 Tenakee Springs,0,U.S. Representative,"Howe, John Wayne",AIP,42,3
+02-775 Tenakee Springs,0,U.S. Representative,"Peltola, Mary S.",DEM,42,27
+02-780 Thorne Bay,0,U.S. Representative,"Begich, Nick",REP,190,125
+02-780 Thorne Bay,0,U.S. Representative,"Hafner, Eric",DEM,190,0
+02-780 Thorne Bay,0,U.S. Representative,"Howe, John Wayne",AIP,190,18
+02-780 Thorne Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,190,35
+02-785 Yakutat,0,U.S. Representative,"Begich, Nick",REP,226,71
+02-785 Yakutat,0,U.S. Representative,"Hafner, Eric",DEM,226,5
+02-785 Yakutat,0,U.S. Representative,"Howe, John Wayne",AIP,226,19
+02-785 Yakutat,0,U.S. Representative,"Peltola, Mary S.",DEM,226,125
+03-300 Auke Bay,0,U.S. Representative,"Begich, Nick",REP,484,163
+03-300 Auke Bay,0,U.S. Representative,"Hafner, Eric",DEM,484,3
+03-300 Auke Bay,0,U.S. Representative,"Howe, John Wayne",AIP,484,22
+03-300 Auke Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,484,292
+03-305 Lynn Canal,0,U.S. Representative,"Begich, Nick",REP,431,157
+03-305 Lynn Canal,0,U.S. Representative,"Hafner, Eric",DEM,431,1
+03-305 Lynn Canal,0,U.S. Representative,"Howe, John Wayne",AIP,431,6
+03-305 Lynn Canal,0,U.S. Representative,"Peltola, Mary S.",DEM,431,259
+03-310 Melvin Park,0,U.S. Representative,"Begich, Nick",REP,576,233
+03-310 Melvin Park,0,U.S. Representative,"Hafner, Eric",DEM,576,2
+03-310 Melvin Park,0,U.S. Representative,"Howe, John Wayne",AIP,576,28
+03-310 Melvin Park,0,U.S. Representative,"Peltola, Mary S.",DEM,576,303
+03-315 Mendenhall Glacier,0,U.S. Representative,"Begich, Nick",REP,924,405
+03-315 Mendenhall Glacier,0,U.S. Representative,"Hafner, Eric",DEM,924,5
+03-315 Mendenhall Glacier,0,U.S. Representative,"Howe, John Wayne",AIP,924,44
+03-315 Mendenhall Glacier,0,U.S. Representative,"Peltola, Mary S.",DEM,924,461
+03-320 Thunder Mountain,0,U.S. Representative,"Begich, Nick",REP,802,314
+03-320 Thunder Mountain,0,U.S. Representative,"Hafner, Eric",DEM,802,9
+03-320 Thunder Mountain,0,U.S. Representative,"Howe, John Wayne",AIP,802,39
+03-320 Thunder Mountain,0,U.S. Representative,"Peltola, Mary S.",DEM,802,425
+03-325 Gustavus,0,U.S. Representative,"Begich, Nick",REP,189,62
+03-325 Gustavus,0,U.S. Representative,"Hafner, Eric",DEM,189,1
+03-325 Gustavus,0,U.S. Representative,"Howe, John Wayne",AIP,189,11
+03-325 Gustavus,0,U.S. Representative,"Peltola, Mary S.",DEM,189,113
+03-330 Haines No. 1,0,U.S. Representative,"Begich, Nick",REP,649,256
+03-330 Haines No. 1,0,U.S. Representative,"Hafner, Eric",DEM,649,1
+03-330 Haines No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,649,51
+03-330 Haines No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,649,332
+03-335 Haines No. 2,0,U.S. Representative,"Begich, Nick",REP,109,49
+03-335 Haines No. 2,0,U.S. Representative,"Hafner, Eric",DEM,109,0
+03-335 Haines No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,109,2
+03-335 Haines No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,109,54
+03-340 Klukwan,0,U.S. Representative,"Begich, Nick",REP,41,5
+03-340 Klukwan,0,U.S. Representative,"Hafner, Eric",DEM,41,0
+03-340 Klukwan,0,U.S. Representative,"Howe, John Wayne",AIP,41,4
+03-340 Klukwan,0,U.S. Representative,"Peltola, Mary S.",DEM,41,31
+03-345 Skagway,0,U.S. Representative,"Begich, Nick",REP,412,98
+03-345 Skagway,0,U.S. Representative,"Hafner, Eric",DEM,412,5
+03-345 Skagway,0,U.S. Representative,"Howe, John Wayne",AIP,412,32
+03-345 Skagway,0,U.S. Representative,"Peltola, Mary S.",DEM,412,265
+04-100 Douglas,0,U.S. Representative,"Begich, Nick",REP,529,102
+04-100 Douglas,0,U.S. Representative,"Hafner, Eric",DEM,529,1
+04-100 Douglas,0,U.S. Representative,"Howe, John Wayne",AIP,529,16
+04-100 Douglas,0,U.S. Representative,"Peltola, Mary S.",DEM,529,405
+04-105 Juneau Airport Area,0,U.S. Representative,"Begich, Nick",REP,299,133
+04-105 Juneau Airport Area,0,U.S. Representative,"Hafner, Eric",DEM,299,1
+04-105 Juneau Airport Area,0,U.S. Representative,"Howe, John Wayne",AIP,299,19
+04-105 Juneau Airport Area,0,U.S. Representative,"Peltola, Mary S.",DEM,299,140
+04-110 Juneau No. 1,0,U.S. Representative,"Begich, Nick",REP,433,102
+04-110 Juneau No. 1,0,U.S. Representative,"Hafner, Eric",DEM,433,3
+04-110 Juneau No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,433,17
+04-110 Juneau No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,433,305
+04-115 Juneau No. 2,0,U.S. Representative,"Begich, Nick",REP,461,64
+04-115 Juneau No. 2,0,U.S. Representative,"Hafner, Eric",DEM,461,5
+04-115 Juneau No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,461,7
+04-115 Juneau No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,461,384
+04-120 Juneau No. 3,0,U.S. Representative,"Begich, Nick",REP,258,66
+04-120 Juneau No. 3,0,U.S. Representative,"Hafner, Eric",DEM,258,0
+04-120 Juneau No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,258,5
+04-120 Juneau No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,258,183
+04-125 Lemon Creek,0,U.S. Representative,"Begich, Nick",REP,571,184
+04-125 Lemon Creek,0,U.S. Representative,"Hafner, Eric",DEM,571,5
+04-125 Lemon Creek,0,U.S. Representative,"Howe, John Wayne",AIP,571,32
+04-125 Lemon Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,571,337
+04-130 Glacier Valley Area,0,U.S. Representative,"Begich, Nick",REP,388,151
+04-130 Glacier Valley Area,0,U.S. Representative,"Hafner, Eric",DEM,388,5
+04-130 Glacier Valley Area,0,U.S. Representative,"Howe, John Wayne",AIP,388,16
+04-130 Glacier Valley Area,0,U.S. Representative,"Peltola, Mary S.",DEM,388,211
+04-135 North Douglas,0,U.S. Representative,"Begich, Nick",REP,445,99
+04-135 North Douglas,0,U.S. Representative,"Hafner, Eric",DEM,445,1
+04-135 North Douglas,0,U.S. Representative,"Howe, John Wayne",AIP,445,6
+04-135 North Douglas,0,U.S. Representative,"Peltola, Mary S.",DEM,445,333
+05-800 Chiniak,0,U.S. Representative,"Begich, Nick",REP,54,29
+05-800 Chiniak,0,U.S. Representative,"Hafner, Eric",DEM,54,1
+05-800 Chiniak,0,U.S. Representative,"Howe, John Wayne",AIP,54,2
+05-800 Chiniak,0,U.S. Representative,"Peltola, Mary S.",DEM,54,21
+05-810 Flats,0,U.S. Representative,"Begich, Nick",REP,562,321
+05-810 Flats,0,U.S. Representative,"Hafner, Eric",DEM,562,1
+05-810 Flats,0,U.S. Representative,"Howe, John Wayne",AIP,562,34
+05-810 Flats,0,U.S. Representative,"Peltola, Mary S.",DEM,562,195
+05-815 Kodiak Island South,0,U.S. Representative,"Begich, Nick",REP,17,3
+05-815 Kodiak Island South,0,U.S. Representative,"Hafner, Eric",DEM,17,0
+05-815 Kodiak Island South,0,U.S. Representative,"Howe, John Wayne",AIP,17,1
+05-815 Kodiak Island South,0,U.S. Representative,"Peltola, Mary S.",DEM,17,13
+05-820 Kodiak No. 1,0,U.S. Representative,"Begich, Nick",REP,649,306
+05-820 Kodiak No. 1,0,U.S. Representative,"Hafner, Eric",DEM,649,8
+05-820 Kodiak No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,649,26
+05-820 Kodiak No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,649,292
+05-825 Kodiak No. 2,0,U.S. Representative,"Begich, Nick",REP,696,304
+05-825 Kodiak No. 2,0,U.S. Representative,"Hafner, Eric",DEM,696,6
+05-825 Kodiak No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,696,46
+05-825 Kodiak No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,696,324
+05-830 Mission Road,0,U.S. Representative,"Begich, Nick",REP,1408,725
+05-830 Mission Road,0,U.S. Representative,"Hafner, Eric",DEM,1408,8
+05-830 Mission Road,0,U.S. Representative,"Howe, John Wayne",AIP,1408,71
+05-830 Mission Road,0,U.S. Representative,"Peltola, Mary S.",DEM,1408,577
+05-835 Old Harbor,0,U.S. Representative,"Begich, Nick",REP,30,7
+05-835 Old Harbor,0,U.S. Representative,"Hafner, Eric",DEM,30,0
+05-835 Old Harbor,0,U.S. Representative,"Howe, John Wayne",AIP,30,2
+05-835 Old Harbor,0,U.S. Representative,"Peltola, Mary S.",DEM,30,20
+05-840 Ouzinkie,0,U.S. Representative,"Begich, Nick",REP,57,13
+05-840 Ouzinkie,0,U.S. Representative,"Hafner, Eric",DEM,57,1
+05-840 Ouzinkie,0,U.S. Representative,"Howe, John Wayne",AIP,57,3
+05-840 Ouzinkie,0,U.S. Representative,"Peltola, Mary S.",DEM,57,39
+05-845 Port Lions,0,U.S. Representative,"Begich, Nick",REP,67,42
+05-845 Port Lions,0,U.S. Representative,"Hafner, Eric",DEM,67,0
+05-845 Port Lions,0,U.S. Representative,"Howe, John Wayne",AIP,67,4
+05-845 Port Lions,0,U.S. Representative,"Peltola, Mary S.",DEM,67,21
+05-860 Cordova,0,U.S. Representative,"Begich, Nick",REP,487,196
+05-860 Cordova,0,U.S. Representative,"Hafner, Eric",DEM,487,2
+05-860 Cordova,0,U.S. Representative,"Howe, John Wayne",AIP,487,20
+05-860 Cordova,0,U.S. Representative,"Peltola, Mary S.",DEM,487,257
+05-865 Seward-Lowell Point,0,U.S. Representative,"Begich, Nick",REP,481,194
+05-865 Seward-Lowell Point,0,U.S. Representative,"Hafner, Eric",DEM,481,7
+05-865 Seward-Lowell Point,0,U.S. Representative,"Howe, John Wayne",AIP,481,25
+05-865 Seward-Lowell Point,0,U.S. Representative,"Peltola, Mary S.",DEM,481,244
+05-870 Tatitlek,0,U.S. Representative,"Begich, Nick",REP,19,5
+05-870 Tatitlek,0,U.S. Representative,"Hafner, Eric",DEM,19,1
+05-870 Tatitlek,0,U.S. Representative,"Howe, John Wayne",AIP,19,1
+05-870 Tatitlek,0,U.S. Representative,"Peltola, Mary S.",DEM,19,12
+06-200 Anchor Point,0,U.S. Representative,"Begich, Nick",REP,991,648
+06-200 Anchor Point,0,U.S. Representative,"Hafner, Eric",DEM,991,7
+06-200 Anchor Point,0,U.S. Representative,"Howe, John Wayne",AIP,991,60
+06-200 Anchor Point,0,U.S. Representative,"Peltola, Mary S.",DEM,991,251
+06-210 Diamond Ridge,0,U.S. Representative,"Begich, Nick",REP,349,142
+06-210 Diamond Ridge,0,U.S. Representative,"Hafner, Eric",DEM,349,2
+06-210 Diamond Ridge,0,U.S. Representative,"Howe, John Wayne",AIP,349,15
+06-210 Diamond Ridge,0,U.S. Representative,"Peltola, Mary S.",DEM,349,181
+06-220 Fox River,0,U.S. Representative,"Begich, Nick",REP,258,164
+06-220 Fox River,0,U.S. Representative,"Hafner, Eric",DEM,258,2
+06-220 Fox River,0,U.S. Representative,"Howe, John Wayne",AIP,258,8
+06-220 Fox River,0,U.S. Representative,"Peltola, Mary S.",DEM,258,75
+06-230 Homer No. 1,0,U.S. Representative,"Begich, Nick",REP,555,235
+06-230 Homer No. 1,0,U.S. Representative,"Hafner, Eric",DEM,555,8
+06-230 Homer No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,555,24
+06-230 Homer No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,555,278
+06-240 Homer No. 2,0,U.S. Representative,"Begich, Nick",REP,548,258
+06-240 Homer No. 2,0,U.S. Representative,"Hafner, Eric",DEM,548,7
+06-240 Homer No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,548,21
+06-240 Homer No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,548,251
+06-250 Kachemak-Fritz Creek,0,U.S. Representative,"Begich, Nick",REP,680,266
+06-250 Kachemak-Fritz Creek,0,U.S. Representative,"Hafner, Eric",DEM,680,5
+06-250 Kachemak-Fritz Creek,0,U.S. Representative,"Howe, John Wayne",AIP,680,27
+06-250 Kachemak-Fritz Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,680,371
+06-260 Kasilof,0,U.S. Representative,"Begich, Nick",REP,1089,705
+06-260 Kasilof,0,U.S. Representative,"Hafner, Eric",DEM,1089,12
+06-260 Kasilof,0,U.S. Representative,"Howe, John Wayne",AIP,1089,65
+06-260 Kasilof,0,U.S. Representative,"Peltola, Mary S.",DEM,1089,282
+06-270 Ninilchik,0,U.S. Representative,"Begich, Nick",REP,634,404
+06-270 Ninilchik,0,U.S. Representative,"Hafner, Eric",DEM,634,2
+06-270 Ninilchik,0,U.S. Representative,"Howe, John Wayne",AIP,634,40
+06-270 Ninilchik,0,U.S. Representative,"Peltola, Mary S.",DEM,634,174
+06-280 Seldovia-Kachemak Bay,0,U.S. Representative,"Begich, Nick",REP,161,63
+06-280 Seldovia-Kachemak Bay,0,U.S. Representative,"Hafner, Eric",DEM,161,2
+06-280 Seldovia-Kachemak Bay,0,U.S. Representative,"Howe, John Wayne",AIP,161,3
+06-280 Seldovia-Kachemak Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,161,82
+07-005 Central,0,U.S. Representative,"Begich, Nick",REP,747,475
+07-005 Central,0,U.S. Representative,"Hafner, Eric",DEM,747,8
+07-005 Central,0,U.S. Representative,"Howe, John Wayne",AIP,747,56
+07-005 Central,0,U.S. Representative,"Peltola, Mary S.",DEM,747,190
+07-010 K Beach,0,U.S. Representative,"Begich, Nick",REP,901,590
+07-010 K Beach,0,U.S. Representative,"Hafner, Eric",DEM,901,4
+07-010 K Beach,0,U.S. Representative,"Howe, John Wayne",AIP,901,55
+07-010 K Beach,0,U.S. Representative,"Peltola, Mary S.",DEM,901,235
+07-015 Kenai No. 1,0,U.S. Representative,"Begich, Nick",REP,754,422
+07-015 Kenai No. 1,0,U.S. Representative,"Hafner, Eric",DEM,754,5
+07-015 Kenai No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,754,66
+07-015 Kenai No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,754,236
+07-020 Kenai No. 2,0,U.S. Representative,"Begich, Nick",REP,448,284
+07-020 Kenai No. 2,0,U.S. Representative,"Hafner, Eric",DEM,448,3
+07-020 Kenai No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,448,29
+07-020 Kenai No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,448,126
+07-025 Kenai No. 3,0,U.S. Representative,"Begich, Nick",REP,342,198
+07-025 Kenai No. 3,0,U.S. Representative,"Hafner, Eric",DEM,342,0
+07-025 Kenai No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,342,17
+07-025 Kenai No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,342,118
+07-030 Soldotna,0,U.S. Representative,"Begich, Nick",REP,846,489
+07-030 Soldotna,0,U.S. Representative,"Hafner, Eric",DEM,846,11
+07-030 Soldotna,0,U.S. Representative,"Howe, John Wayne",AIP,846,65
+07-030 Soldotna,0,U.S. Representative,"Peltola, Mary S.",DEM,846,253
+08-035 Bear Creek,0,U.S. Representative,"Begich, Nick",REP,597,292
+08-035 Bear Creek,0,U.S. Representative,"Hafner, Eric",DEM,597,6
+08-035 Bear Creek,0,U.S. Representative,"Howe, John Wayne",AIP,597,28
+08-035 Bear Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,597,262
+08-040 Cooper Landing,0,U.S. Representative,"Begich, Nick",REP,147,69
+08-040 Cooper Landing,0,U.S. Representative,"Hafner, Eric",DEM,147,1
+08-040 Cooper Landing,0,U.S. Representative,"Howe, John Wayne",AIP,147,2
+08-040 Cooper Landing,0,U.S. Representative,"Peltola, Mary S.",DEM,147,75
+08-045 Funny River No. 1,0,U.S. Representative,"Begich, Nick",REP,340,231
+08-045 Funny River No. 1,0,U.S. Representative,"Hafner, Eric",DEM,340,0
+08-045 Funny River No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,340,21
+08-045 Funny River No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,340,86
+08-050 Funny River No. 2,0,U.S. Representative,"Begich, Nick",REP,274,195
+08-050 Funny River No. 2,0,U.S. Representative,"Hafner, Eric",DEM,274,0
+08-050 Funny River No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,274,12
+08-050 Funny River No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,274,56
+08-055 Hope,0,U.S. Representative,"Begich, Nick",REP,69,20
+08-055 Hope,0,U.S. Representative,"Hafner, Eric",DEM,69,0
+08-055 Hope,0,U.S. Representative,"Howe, John Wayne",AIP,69,1
+08-055 Hope,0,U.S. Representative,"Peltola, Mary S.",DEM,69,46
+08-060 Mackey Lake,0,U.S. Representative,"Begich, Nick",REP,539,369
+08-060 Mackey Lake,0,U.S. Representative,"Hafner, Eric",DEM,539,4
+08-060 Mackey Lake,0,U.S. Representative,"Howe, John Wayne",AIP,539,17
+08-060 Mackey Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,539,134
+08-065 Moose Pass,0,U.S. Representative,"Begich, Nick",REP,161,74
+08-065 Moose Pass,0,U.S. Representative,"Hafner, Eric",DEM,161,0
+08-065 Moose Pass,0,U.S. Representative,"Howe, John Wayne",AIP,161,7
+08-065 Moose Pass,0,U.S. Representative,"Peltola, Mary S.",DEM,161,78
+08-070 Nikiski,0,U.S. Representative,"Begich, Nick",REP,803,577
+08-070 Nikiski,0,U.S. Representative,"Hafner, Eric",DEM,803,2
+08-070 Nikiski,0,U.S. Representative,"Howe, John Wayne",AIP,803,54
+08-070 Nikiski,0,U.S. Representative,"Peltola, Mary S.",DEM,803,152
+08-075 Salamatof,0,U.S. Representative,"Begich, Nick",REP,768,536
+08-075 Salamatof,0,U.S. Representative,"Hafner, Eric",DEM,768,2
+08-075 Salamatof,0,U.S. Representative,"Howe, John Wayne",AIP,768,66
+08-075 Salamatof,0,U.S. Representative,"Peltola, Mary S.",DEM,768,148
+08-080 Sterling No. 1,0,U.S. Representative,"Begich, Nick",REP,707,501
+08-080 Sterling No. 1,0,U.S. Representative,"Hafner, Eric",DEM,707,4
+08-080 Sterling No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,707,39
+08-080 Sterling No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,707,151
+08-085 Sterling No. 2,0,U.S. Representative,"Begich, Nick",REP,818,600
+08-085 Sterling No. 2,0,U.S. Representative,"Hafner, Eric",DEM,818,5
+08-085 Sterling No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,818,34
+08-085 Sterling No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,818,159
+09-105 Girdwood,0,U.S. Representative,"Begich, Nick",REP,830,174
+09-105 Girdwood,0,U.S. Representative,"Hafner, Eric",DEM,830,10
+09-105 Girdwood,0,U.S. Representative,"Howe, John Wayne",AIP,830,14
+09-105 Girdwood,0,U.S. Representative,"Peltola, Mary S.",DEM,830,615
+09-110 Indian,0,U.S. Representative,"Begich, Nick",REP,131,42
+09-110 Indian,0,U.S. Representative,"Hafner, Eric",DEM,131,1
+09-110 Indian,0,U.S. Representative,"Howe, John Wayne",AIP,131,6
+09-110 Indian,0,U.S. Representative,"Peltola, Mary S.",DEM,131,78
+09-115 South Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,1140,572
+09-115 South Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1140,12
+09-115 South Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1140,31
+09-115 South Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1140,516
+09-120 South Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,1216,677
+09-120 South Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,1216,8
+09-120 South Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,1216,29
+09-120 South Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,1216,489
+09-125 South Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,1035,529
+09-125 South Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,1035,7
+09-125 South Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,1035,29
+09-125 South Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,1035,460
+09-130 South Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,1129,586
+09-130 South Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,1129,8
+09-130 South Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,1129,12
+09-130 South Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,1129,510
+09-135 South Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,500,248
+09-135 South Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,500,3
+09-135 South Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,500,8
+09-135 South Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,500,239
+09-140 Stuckagain Heights,0,U.S. Representative,"Begich, Nick",REP,159,62
+09-140 Stuckagain Heights,0,U.S. Representative,"Hafner, Eric",DEM,159,1
+09-140 Stuckagain Heights,0,U.S. Representative,"Howe, John Wayne",AIP,159,0
+09-140 Stuckagain Heights,0,U.S. Representative,"Peltola, Mary S.",DEM,159,94
+09-145 Whittier,0,U.S. Representative,"Begich, Nick",REP,83,43
+09-145 Whittier,0,U.S. Representative,"Hafner, Eric",DEM,83,0
+09-145 Whittier,0,U.S. Representative,"Howe, John Wayne",AIP,83,1
+09-145 Whittier,0,U.S. Representative,"Peltola, Mary S.",DEM,83,34
+10-150 Dimond,0,U.S. Representative,"Begich, Nick",REP,824,354
+10-150 Dimond,0,U.S. Representative,"Hafner, Eric",DEM,824,22
+10-150 Dimond,0,U.S. Representative,"Howe, John Wayne",AIP,824,35
+10-150 Dimond,0,U.S. Representative,"Peltola, Mary S.",DEM,824,387
+10-155 Oceanview No. 1,0,U.S. Representative,"Begich, Nick",REP,1045,502
+10-155 Oceanview No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1045,12
+10-155 Oceanview No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1045,18
+10-155 Oceanview No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1045,494
+10-160 Oceanview No. 2,0,U.S. Representative,"Begich, Nick",REP,718,330
+10-160 Oceanview No. 2,0,U.S. Representative,"Hafner, Eric",DEM,718,5
+10-160 Oceanview No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,718,24
+10-160 Oceanview No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,718,329
+10-165 Oceanview No. 3,0,U.S. Representative,"Begich, Nick",REP,961,458
+10-165 Oceanview No. 3,0,U.S. Representative,"Hafner, Eric",DEM,961,14
+10-165 Oceanview No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,961,27
+10-165 Oceanview No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,961,440
+10-170 Oceanview No. 4,0,U.S. Representative,"Begich, Nick",REP,834,407
+10-170 Oceanview No. 4,0,U.S. Representative,"Hafner, Eric",DEM,834,7
+10-170 Oceanview No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,834,12
+10-170 Oceanview No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,834,396
+10-175 Oceanview No. 5,0,U.S. Representative,"Begich, Nick",REP,675,324
+10-175 Oceanview No. 5,0,U.S. Representative,"Hafner, Eric",DEM,675,12
+10-175 Oceanview No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,675,25
+10-175 Oceanview No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,675,301
+11-205 Hillside No. 1,0,U.S. Representative,"Begich, Nick",REP,631,286
+11-205 Hillside No. 1,0,U.S. Representative,"Hafner, Eric",DEM,631,7
+11-205 Hillside No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,631,39
+11-205 Hillside No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,631,288
+11-210 Hillside No. 2,0,U.S. Representative,"Begich, Nick",REP,1211,582
+11-210 Hillside No. 2,0,U.S. Representative,"Hafner, Eric",DEM,1211,12
+11-210 Hillside No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,1211,45
+11-210 Hillside No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,1211,559
+11-215 Hillside No. 3,0,U.S. Representative,"Begich, Nick",REP,640,338
+11-215 Hillside No. 3,0,U.S. Representative,"Hafner, Eric",DEM,640,2
+11-215 Hillside No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,640,13
+11-215 Hillside No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,640,268
+11-220 Hillside No. 4,0,U.S. Representative,"Begich, Nick",REP,685,385
+11-220 Hillside No. 4,0,U.S. Representative,"Hafner, Eric",DEM,685,7
+11-220 Hillside No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,685,12
+11-220 Hillside No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,685,274
+11-225 Hillside No. 5,0,U.S. Representative,"Begich, Nick",REP,751,361
+11-225 Hillside No. 5,0,U.S. Representative,"Hafner, Eric",DEM,751,6
+11-225 Hillside No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,751,23
+11-225 Hillside No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,751,358
+11-230 Hillside No. 6,0,U.S. Representative,"Begich, Nick",REP,781,382
+11-230 Hillside No. 6,0,U.S. Representative,"Hafner, Eric",DEM,781,4
+11-230 Hillside No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,781,14
+11-230 Hillside No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,781,373
+11-235 Hillside No. 7,0,U.S. Representative,"Begich, Nick",REP,648,305
+11-235 Hillside No. 7,0,U.S. Representative,"Hafner, Eric",DEM,648,2
+11-235 Hillside No. 7,0,U.S. Representative,"Howe, John Wayne",AIP,648,11
+11-235 Hillside No. 7,0,U.S. Representative,"Peltola, Mary S.",DEM,648,327
+12-250 Southeast Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,880,409
+12-250 Southeast Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,880,17
+12-250 Southeast Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,880,35
+12-250 Southeast Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,880,400
+12-255 Southeast Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,488,257
+12-255 Southeast Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,488,4
+12-255 Southeast Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,488,14
+12-255 Southeast Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,488,211
+12-260 Southeast Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,799,370
+12-260 Southeast Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,799,10
+12-260 Southeast Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,799,29
+12-260 Southeast Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,799,380
+12-265 Southeast Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,809,367
+12-265 Southeast Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,809,6
+12-265 Southeast Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,809,29
+12-265 Southeast Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,809,392
+12-270 Southeast Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,968,460
+12-270 Southeast Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,968,9
+12-270 Southeast Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,968,24
+12-270 Southeast Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,968,462
+12-275 Southeast Anchorage No. 6,0,U.S. Representative,"Begich, Nick",REP,802,328
+12-275 Southeast Anchorage No. 6,0,U.S. Representative,"Hafner, Eric",DEM,802,2
+12-275 Southeast Anchorage No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,802,15
+12-275 Southeast Anchorage No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,802,451
+13-305 South Midtown No. 1,0,U.S. Representative,"Begich, Nick",REP,223,118
+13-305 South Midtown No. 1,0,U.S. Representative,"Hafner, Eric",DEM,223,2
+13-305 South Midtown No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,223,8
+13-305 South Midtown No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,223,95
+13-310 South Midtown No. 2,0,U.S. Representative,"Begich, Nick",REP,1088,494
+13-310 South Midtown No. 2,0,U.S. Representative,"Hafner, Eric",DEM,1088,16
+13-310 South Midtown No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,1088,39
+13-310 South Midtown No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,1088,516
+13-315 South Midtown No. 3,0,U.S. Representative,"Begich, Nick",REP,980,445
+13-315 South Midtown No. 3,0,U.S. Representative,"Hafner, Eric",DEM,980,18
+13-315 South Midtown No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,980,46
+13-315 South Midtown No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,980,454
+13-320 South Midtown No. 4,0,U.S. Representative,"Begich, Nick",REP,954,412
+13-320 South Midtown No. 4,0,U.S. Representative,"Hafner, Eric",DEM,954,12
+13-320 South Midtown No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,954,44
+13-320 South Midtown No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,954,461
+13-325 South Midtown No. 5,0,U.S. Representative,"Begich, Nick",REP,989,353
+13-325 South Midtown No. 5,0,U.S. Representative,"Hafner, Eric",DEM,989,23
+13-325 South Midtown No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,989,30
+13-325 South Midtown No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,989,567
+14-350 North Midtown No. 1,0,U.S. Representative,"Begich, Nick",REP,290,92
+14-350 North Midtown No. 1,0,U.S. Representative,"Hafner, Eric",DEM,290,5
+14-350 North Midtown No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,290,7
+14-350 North Midtown No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,290,181
+14-355 North Midtown No. 2,0,U.S. Representative,"Begich, Nick",REP,389,124
+14-355 North Midtown No. 2,0,U.S. Representative,"Hafner, Eric",DEM,389,8
+14-355 North Midtown No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,389,19
+14-355 North Midtown No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,389,231
+14-360 North Midtown No. 3,0,U.S. Representative,"Begich, Nick",REP,321,134
+14-360 North Midtown No. 3,0,U.S. Representative,"Hafner, Eric",DEM,321,4
+14-360 North Midtown No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,321,20
+14-360 North Midtown No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,321,157
+14-365 North Midtown No. 4,0,U.S. Representative,"Begich, Nick",REP,452,160
+14-365 North Midtown No. 4,0,U.S. Representative,"Hafner, Eric",DEM,452,12
+14-365 North Midtown No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,452,19
+14-365 North Midtown No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,452,251
+14-370 North Midtown No. 5,0,U.S. Representative,"Begich, Nick",REP,747,262
+14-370 North Midtown No. 5,0,U.S. Representative,"Hafner, Eric",DEM,747,11
+14-370 North Midtown No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,747,36
+14-370 North Midtown No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,747,419
+14-375 North Midtown No. 6,0,U.S. Representative,"Begich, Nick",REP,498,196
+14-375 North Midtown No. 6,0,U.S. Representative,"Hafner, Eric",DEM,498,8
+14-375 North Midtown No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,498,17
+14-375 North Midtown No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,498,265
+14-380 North Midtown No. 7,0,U.S. Representative,"Begich, Nick",REP,868,271
+14-380 North Midtown No. 7,0,U.S. Representative,"Hafner, Eric",DEM,868,5
+14-380 North Midtown No. 7,0,U.S. Representative,"Howe, John Wayne",AIP,868,19
+14-380 North Midtown No. 7,0,U.S. Representative,"Peltola, Mary S.",DEM,868,564
+15-405 Southwest Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,667,332
+15-405 Southwest Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,667,4
+15-405 Southwest Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,667,17
+15-405 Southwest Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,667,307
+15-410 Southwest Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,794,376
+15-410 Southwest Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,794,9
+15-410 Southwest Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,794,27
+15-410 Southwest Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,794,374
+15-415 Southwest Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,943,432
+15-415 Southwest Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,943,11
+15-415 Southwest Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,943,33
+15-415 Southwest Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,943,454
+15-420 Southwest Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,830,357
+15-420 Southwest Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,830,9
+15-420 Southwest Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,830,35
+15-420 Southwest Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,830,410
+15-425 Southwest Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,794,346
+15-425 Southwest Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,794,6
+15-425 Southwest Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,794,30
+15-425 Southwest Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,794,402
+15-430 Southwest Anchorage No. 6,0,U.S. Representative,"Begich, Nick",REP,1182,608
+15-430 Southwest Anchorage No. 6,0,U.S. Representative,"Hafner, Eric",DEM,1182,7
+15-430 Southwest Anchorage No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,1182,28
+15-430 Southwest Anchorage No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,1182,522
+16-450 West Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,660,161
+16-450 West Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,660,1
+16-450 West Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,660,6
+16-450 West Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,660,485
+16-455 West Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,799,273
+16-455 West Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,799,7
+16-455 West Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,799,20
+16-455 West Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,799,493
+16-460 West Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,1054,385
+16-460 West Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,1054,8
+16-460 West Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,1054,18
+16-460 West Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,1054,628
+16-465 West Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,536,226
+16-465 West Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,536,7
+16-465 West Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,536,11
+16-465 West Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,536,284
+16-470 West Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,910,415
+16-470 West Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,910,4
+16-470 West Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,910,24
+16-470 West Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,910,462
+16-475 West Anchorage No. 6,0,U.S. Representative,"Begich, Nick",REP,770,341
+16-475 West Anchorage No. 6,0,U.S. Representative,"Hafner, Eric",DEM,770,4
+16-475 West Anchorage No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,770,24
+16-475 West Anchorage No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,770,394
+16-480 West Anchorage No. 7,0,U.S. Representative,"Begich, Nick",REP,620,252
+16-480 West Anchorage No. 7,0,U.S. Representative,"Hafner, Eric",DEM,620,8
+16-480 West Anchorage No. 7,0,U.S. Representative,"Howe, John Wayne",AIP,620,24
+16-480 West Anchorage No. 7,0,U.S. Representative,"Peltola, Mary S.",DEM,620,318
+17-505 Downtown Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,347,117
+17-505 Downtown Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,347,4
+17-505 Downtown Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,347,8
+17-505 Downtown Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,347,210
+17-510 Downtown Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,494,128
+17-510 Downtown Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,494,4
+17-510 Downtown Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,494,9
+17-510 Downtown Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,494,348
+17-515 Downtown Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,347,108
+17-515 Downtown Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,347,3
+17-515 Downtown Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,347,1
+17-515 Downtown Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,347,234
+17-520 Downtown Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,636,202
+17-520 Downtown Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,636,14
+17-520 Downtown Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,636,16
+17-520 Downtown Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,636,396
+17-525 Downtown Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,433,122
+17-525 Downtown Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,433,15
+17-525 Downtown Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,433,14
+17-525 Downtown Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,433,262
+17-530 Downtown Anchorage No. 6,0,U.S. Representative,"Begich, Nick",REP,316,89
+17-530 Downtown Anchorage No. 6,0,U.S. Representative,"Hafner, Eric",DEM,316,8
+17-530 Downtown Anchorage No. 6,0,U.S. Representative,"Howe, John Wayne",AIP,316,16
+17-530 Downtown Anchorage No. 6,0,U.S. Representative,"Peltola, Mary S.",DEM,316,189
+17-535 Downtown Anchorage No. 7,0,U.S. Representative,"Begich, Nick",REP,447,149
+17-535 Downtown Anchorage No. 7,0,U.S. Representative,"Hafner, Eric",DEM,447,13
+17-535 Downtown Anchorage No. 7,0,U.S. Representative,"Howe, John Wayne",AIP,447,13
+17-535 Downtown Anchorage No. 7,0,U.S. Representative,"Peltola, Mary S.",DEM,447,258
+18-550 Government Hill,0,U.S. Representative,"Begich, Nick",REP,419,137
+18-550 Government Hill,0,U.S. Representative,"Hafner, Eric",DEM,419,5
+18-550 Government Hill,0,U.S. Representative,"Howe, John Wayne",AIP,419,19
+18-550 Government Hill,0,U.S. Representative,"Peltola, Mary S.",DEM,419,243
+18-555 JBER No.1,0,U.S. Representative,"Begich, Nick",REP,832,501
+18-555 JBER No.1,0,U.S. Representative,"Hafner, Eric",DEM,832,21
+18-555 JBER No.1,0,U.S. Representative,"Howe, John Wayne",AIP,832,56
+18-555 JBER No.1,0,U.S. Representative,"Peltola, Mary S.",DEM,832,227
+18-556 JBER No.2,0,U.S. Representative,"Begich, Nick",REP,238,129
+18-556 JBER No.2,0,U.S. Representative,"Hafner, Eric",DEM,238,8
+18-556 JBER No.2,0,U.S. Representative,"Howe, John Wayne",AIP,238,15
+18-556 JBER No.2,0,U.S. Representative,"Peltola, Mary S.",DEM,238,75
+18-560 North Muldoon,0,U.S. Representative,"Begich, Nick",REP,351,142
+18-560 North Muldoon,0,U.S. Representative,"Hafner, Eric",DEM,351,2
+18-560 North Muldoon,0,U.S. Representative,"Howe, John Wayne",AIP,351,18
+18-560 North Muldoon,0,U.S. Representative,"Peltola, Mary S.",DEM,351,181
+18-565 Ship Creek,0,U.S. Representative,"Begich, Nick",REP,86,25
+18-565 Ship Creek,0,U.S. Representative,"Hafner, Eric",DEM,86,2
+18-565 Ship Creek,0,U.S. Representative,"Howe, John Wayne",AIP,86,3
+18-565 Ship Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,86,52
+19-605 Airport Heights No. 1,0,U.S. Representative,"Begich, Nick",REP,724,198
+19-605 Airport Heights No. 1,0,U.S. Representative,"Hafner, Eric",DEM,724,8
+19-605 Airport Heights No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,724,26
+19-605 Airport Heights No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,724,482
+19-610 Airport Heights No. 2,0,U.S. Representative,"Begich, Nick",REP,723,283
+19-610 Airport Heights No. 2,0,U.S. Representative,"Hafner, Eric",DEM,723,7
+19-610 Airport Heights No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,723,39
+19-610 Airport Heights No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,723,376
+19-615 Mountainview No. 1,0,U.S. Representative,"Begich, Nick",REP,402,128
+19-615 Mountainview No. 1,0,U.S. Representative,"Hafner, Eric",DEM,402,4
+19-615 Mountainview No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,402,26
+19-615 Mountainview No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,402,232
+19-620 Mountainview No. 2,0,U.S. Representative,"Begich, Nick",REP,380,134
+19-620 Mountainview No. 2,0,U.S. Representative,"Hafner, Eric",DEM,380,10
+19-620 Mountainview No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,380,23
+19-620 Mountainview No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,380,202
+19-625 South Mountainview,0,U.S. Representative,"Begich, Nick",REP,462,184
+19-625 South Mountainview,0,U.S. Representative,"Hafner, Eric",DEM,462,9
+19-625 South Mountainview,0,U.S. Representative,"Howe, John Wayne",AIP,462,23
+19-625 South Mountainview,0,U.S. Representative,"Peltola, Mary S.",DEM,462,229
+20-650 University No. 1,0,U.S. Representative,"Begich, Nick",REP,270,99
+20-650 University No. 1,0,U.S. Representative,"Hafner, Eric",DEM,270,5
+20-650 University No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,270,9
+20-650 University No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,270,143
+20-655 University No. 2,0,U.S. Representative,"Begich, Nick",REP,920,354
+20-655 University No. 2,0,U.S. Representative,"Hafner, Eric",DEM,920,13
+20-655 University No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,920,52
+20-655 University No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,920,483
+20-660 University No. 3,0,U.S. Representative,"Begich, Nick",REP,919,324
+20-660 University No. 3,0,U.S. Representative,"Hafner, Eric",DEM,919,10
+20-660 University No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,919,22
+20-660 University No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,919,547
+20-665 University No. 4,0,U.S. Representative,"Begich, Nick",REP,427,162
+20-665 University No. 4,0,U.S. Representative,"Hafner, Eric",DEM,427,3
+20-665 University No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,427,11
+20-665 University No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,427,238
+20-670 University No. 5,0,U.S. Representative,"Begich, Nick",REP,1312,515
+20-670 University No. 5,0,U.S. Representative,"Hafner, Eric",DEM,1312,9
+20-670 University No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,1312,32
+20-670 University No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,1312,725
+21-705 East Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,694,282
+21-705 East Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,694,4
+21-705 East Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,694,16
+21-705 East Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,694,379
+21-710 East Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,804,379
+21-710 East Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,804,11
+21-710 East Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,804,25
+21-710 East Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,804,380
+21-715 East Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,1117,502
+21-715 East Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,1117,14
+21-715 East Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,1117,38
+21-715 East Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,1117,543
+21-720 East Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,858,362
+21-720 East Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,858,7
+21-720 East Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,858,29
+21-720 East Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,858,445
+21-725 East Anchorage No. 5,0,U.S. Representative,"Begich, Nick",REP,1217,510
+21-725 East Anchorage No. 5,0,U.S. Representative,"Hafner, Eric",DEM,1217,17
+21-725 East Anchorage No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,1217,35
+21-725 East Anchorage No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,1217,644
+22-750 Northeast Anchorage No. 1,0,U.S. Representative,"Begich, Nick",REP,826,328
+22-750 Northeast Anchorage No. 1,0,U.S. Representative,"Hafner, Eric",DEM,826,25
+22-750 Northeast Anchorage No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,826,39
+22-750 Northeast Anchorage No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,826,416
+22-755 Northeast Anchorage No. 2,0,U.S. Representative,"Begich, Nick",REP,766,341
+22-755 Northeast Anchorage No. 2,0,U.S. Representative,"Hafner, Eric",DEM,766,22
+22-755 Northeast Anchorage No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,766,26
+22-755 Northeast Anchorage No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,766,353
+22-760 Northeast Anchorage No. 3,0,U.S. Representative,"Begich, Nick",REP,893,358
+22-760 Northeast Anchorage No. 3,0,U.S. Representative,"Hafner, Eric",DEM,893,20
+22-760 Northeast Anchorage No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,893,30
+22-760 Northeast Anchorage No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,893,467
+22-765 Northeast Anchorage No. 4,0,U.S. Representative,"Begich, Nick",REP,574,243
+22-765 Northeast Anchorage No. 4,0,U.S. Representative,"Hafner, Eric",DEM,574,10
+22-765 Northeast Anchorage No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,574,28
+22-765 Northeast Anchorage No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,574,273
+23-805 Chugach Park No. 1,0,U.S. Representative,"Begich, Nick",REP,1066,546
+23-805 Chugach Park No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1066,5
+23-805 Chugach Park No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1066,42
+23-805 Chugach Park No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1066,456
+23-810 Eagle River No. 1,0,U.S. Representative,"Begich, Nick",REP,632,328
+23-810 Eagle River No. 1,0,U.S. Representative,"Hafner, Eric",DEM,632,10
+23-810 Eagle River No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,632,33
+23-810 Eagle River No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,632,254
+23-815 Eagle River No. 2,0,U.S. Representative,"Begich, Nick",REP,681,344
+23-815 Eagle River No. 2,0,U.S. Representative,"Hafner, Eric",DEM,681,4
+23-815 Eagle River No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,681,31
+23-815 Eagle River No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,681,292
+23-820 Hiland,0,U.S. Representative,"Begich, Nick",REP,638,358
+23-820 Hiland,0,U.S. Representative,"Hafner, Eric",DEM,638,4
+23-820 Hiland,0,U.S. Representative,"Howe, John Wayne",AIP,638,32
+23-820 Hiland,0,U.S. Representative,"Peltola, Mary S.",DEM,638,235
+23-825 Meadow Creek No. 1,0,U.S. Representative,"Begich, Nick",REP,723,363
+23-825 Meadow Creek No. 1,0,U.S. Representative,"Hafner, Eric",DEM,723,7
+23-825 Meadow Creek No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,723,36
+23-825 Meadow Creek No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,723,310
+23-830 Meadow Creek No. 2,0,U.S. Representative,"Begich, Nick",REP,423,233
+23-830 Meadow Creek No. 2,0,U.S. Representative,"Hafner, Eric",DEM,423,3
+23-830 Meadow Creek No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,423,20
+23-830 Meadow Creek No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,423,159
+24-850 Chugach Park No. 2,0,U.S. Representative,"Begich, Nick",REP,679,418
+24-850 Chugach Park No. 2,0,U.S. Representative,"Hafner, Eric",DEM,679,3
+24-850 Chugach Park No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,679,15
+24-850 Chugach Park No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,679,235
+24-855 Chugiak,0,U.S. Representative,"Begich, Nick",REP,368,220
+24-855 Chugiak,0,U.S. Representative,"Hafner, Eric",DEM,368,1
+24-855 Chugiak,0,U.S. Representative,"Howe, John Wayne",AIP,368,20
+24-855 Chugiak,0,U.S. Representative,"Peltola, Mary S.",DEM,368,123
+24-860 Eagle River No. 3,0,U.S. Representative,"Begich, Nick",REP,614,345
+24-860 Eagle River No. 3,0,U.S. Representative,"Hafner, Eric",DEM,614,5
+24-860 Eagle River No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,614,33
+24-860 Eagle River No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,614,222
+24-865 Eklutna,0,U.S. Representative,"Begich, Nick",REP,642,370
+24-865 Eklutna,0,U.S. Representative,"Hafner, Eric",DEM,642,8
+24-865 Eklutna,0,U.S. Representative,"Howe, John Wayne",AIP,642,26
+24-865 Eklutna,0,U.S. Representative,"Peltola, Mary S.",DEM,642,229
+24-870 Fire Lake,0,U.S. Representative,"Begich, Nick",REP,725,420
+24-870 Fire Lake,0,U.S. Representative,"Hafner, Eric",DEM,725,1
+24-870 Fire Lake,0,U.S. Representative,"Howe, John Wayne",AIP,725,28
+24-870 Fire Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,725,264
+24-875 Peters Creek No. 1,0,U.S. Representative,"Begich, Nick",REP,983,618
+24-875 Peters Creek No. 1,0,U.S. Representative,"Hafner, Eric",DEM,983,6
+24-875 Peters Creek No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,983,50
+24-875 Peters Creek No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,983,294
+24-880 Peters Creek No. 2,0,U.S. Representative,"Begich, Nick",REP,526,324
+24-880 Peters Creek No. 2,0,U.S. Representative,"Hafner, Eric",DEM,526,1
+24-880 Peters Creek No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,526,24
+24-880 Peters Creek No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,526,172
+25-305 Butte,0,U.S. Representative,"Begich, Nick",REP,1208,779
+25-305 Butte,0,U.S. Representative,"Hafner, Eric",DEM,1208,7
+25-305 Butte,0,U.S. Representative,"Howe, John Wayne",AIP,1208,71
+25-305 Butte,0,U.S. Representative,"Peltola, Mary S.",DEM,1208,325
+25-310 Greater Palmer,0,U.S. Representative,"Begich, Nick",REP,542,327
+25-310 Greater Palmer,0,U.S. Representative,"Hafner, Eric",DEM,542,3
+25-310 Greater Palmer,0,U.S. Representative,"Howe, John Wayne",AIP,542,26
+25-310 Greater Palmer,0,U.S. Representative,"Peltola, Mary S.",DEM,542,174
+25-315 Lazy Mountain,0,U.S. Representative,"Begich, Nick",REP,788,493
+25-315 Lazy Mountain,0,U.S. Representative,"Hafner, Eric",DEM,788,5
+25-315 Lazy Mountain,0,U.S. Representative,"Howe, John Wayne",AIP,788,36
+25-315 Lazy Mountain,0,U.S. Representative,"Peltola, Mary S.",DEM,788,246
+25-320 Palmer City No. 1,0,U.S. Representative,"Begich, Nick",REP,551,295
+25-320 Palmer City No. 1,0,U.S. Representative,"Hafner, Eric",DEM,551,10
+25-320 Palmer City No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,551,32
+25-320 Palmer City No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,551,198
+25-325 Palmer City No. 2,0,U.S. Representative,"Begich, Nick",REP,562,290
+25-325 Palmer City No. 2,0,U.S. Representative,"Hafner, Eric",DEM,562,13
+25-325 Palmer City No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,562,40
+25-325 Palmer City No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,562,205
+25-330 Springer Loop,0,U.S. Representative,"Begich, Nick",REP,751,491
+25-330 Springer Loop,0,U.S. Representative,"Hafner, Eric",DEM,751,4
+25-330 Springer Loop,0,U.S. Representative,"Howe, John Wayne",AIP,751,39
+25-330 Springer Loop,0,U.S. Representative,"Peltola, Mary S.",DEM,751,200
+25-335 Walby,0,U.S. Representative,"Begich, Nick",REP,670,465
+25-335 Walby,0,U.S. Representative,"Hafner, Eric",DEM,670,7
+25-335 Walby,0,U.S. Representative,"Howe, John Wayne",AIP,670,17
+25-335 Walby,0,U.S. Representative,"Peltola, Mary S.",DEM,670,163
+26-350 Fairview No. 1,0,U.S. Representative,"Begich, Nick",REP,498,351
+26-350 Fairview No. 1,0,U.S. Representative,"Hafner, Eric",DEM,498,1
+26-350 Fairview No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,498,34
+26-350 Fairview No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,498,100
+26-355 Fairview No. 2,0,U.S. Representative,"Begich, Nick",REP,394,246
+26-355 Fairview No. 2,0,U.S. Representative,"Hafner, Eric",DEM,394,3
+26-355 Fairview No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,394,19
+26-355 Fairview No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,394,111
+26-360 Knik Goose Bay No. 1,0,U.S. Representative,"Begich, Nick",REP,1176,804
+26-360 Knik Goose Bay No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1176,9
+26-360 Knik Goose Bay No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1176,78
+26-360 Knik Goose Bay No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1176,248
+26-365 Knik Goose Bay No. 2,0,U.S. Representative,"Begich, Nick",REP,783,514
+26-365 Knik Goose Bay No. 2,0,U.S. Representative,"Hafner, Eric",DEM,783,7
+26-365 Knik Goose Bay No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,783,65
+26-365 Knik Goose Bay No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,783,179
+26-370 Knik Goose Bay No. 3,0,U.S. Representative,"Begich, Nick",REP,510,324
+26-370 Knik Goose Bay No. 3,0,U.S. Representative,"Hafner, Eric",DEM,510,8
+26-370 Knik Goose Bay No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,510,38
+26-370 Knik Goose Bay No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,510,119
+26-375 Mat-Su Campus,0,U.S. Representative,"Begich, Nick",REP,633,400
+26-375 Mat-Su Campus,0,U.S. Representative,"Hafner, Eric",DEM,633,3
+26-375 Mat-Su Campus,0,U.S. Representative,"Howe, John Wayne",AIP,633,28
+26-375 Mat-Su Campus,0,U.S. Representative,"Peltola, Mary S.",DEM,633,188
+26-380 Snowshoe,0,U.S. Representative,"Begich, Nick",REP,987,660
+26-380 Snowshoe,0,U.S. Representative,"Hafner, Eric",DEM,987,4
+26-380 Snowshoe,0,U.S. Representative,"Howe, John Wayne",AIP,987,81
+26-380 Snowshoe,0,U.S. Representative,"Peltola, Mary S.",DEM,987,217
+27-405 Foothills,0,U.S. Representative,"Begich, Nick",REP,716,509
+27-405 Foothills,0,U.S. Representative,"Hafner, Eric",DEM,716,10
+27-405 Foothills,0,U.S. Representative,"Howe, John Wayne",AIP,716,44
+27-405 Foothills,0,U.S. Representative,"Peltola, Mary S.",DEM,716,143
+27-410 Meadow Lakes No. 1,0,U.S. Representative,"Begich, Nick",REP,1067,757
+27-410 Meadow Lakes No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1067,7
+27-410 Meadow Lakes No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1067,76
+27-410 Meadow Lakes No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1067,215
+27-415 Meadow Lakes No. 2,0,U.S. Representative,"Begich, Nick",REP,896,642
+27-415 Meadow Lakes No. 2,0,U.S. Representative,"Hafner, Eric",DEM,896,6
+27-415 Meadow Lakes No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,896,61
+27-415 Meadow Lakes No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,896,164
+27-420 Wasilla No. 1,0,U.S. Representative,"Begich, Nick",REP,742,485
+27-420 Wasilla No. 1,0,U.S. Representative,"Hafner, Eric",DEM,742,10
+27-420 Wasilla No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,742,39
+27-420 Wasilla No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,742,188
+27-425 Wasilla No. 2,0,U.S. Representative,"Begich, Nick",REP,943,629
+27-425 Wasilla No. 2,0,U.S. Representative,"Hafner, Eric",DEM,943,8
+27-425 Wasilla No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,943,64
+27-425 Wasilla No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,943,223
+28-450 Lakes No. 1,0,U.S. Representative,"Begich, Nick",REP,590,403
+28-450 Lakes No. 1,0,U.S. Representative,"Hafner, Eric",DEM,590,5
+28-450 Lakes No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,590,28
+28-450 Lakes No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,590,147
+28-455 Lakes No. 2,0,U.S. Representative,"Begich, Nick",REP,406,264
+28-455 Lakes No. 2,0,U.S. Representative,"Hafner, Eric",DEM,406,5
+28-455 Lakes No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,406,25
+28-455 Lakes No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,406,106
+28-460 Seldon No. 1,0,U.S. Representative,"Begich, Nick",REP,953,684
+28-460 Seldon No. 1,0,U.S. Representative,"Hafner, Eric",DEM,953,8
+28-460 Seldon No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,953,50
+28-460 Seldon No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,953,187
+28-465 Seldon No. 2,0,U.S. Representative,"Begich, Nick",REP,950,587
+28-465 Seldon No. 2,0,U.S. Representative,"Hafner, Eric",DEM,950,6
+28-465 Seldon No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,950,66
+28-465 Seldon No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,950,277
+28-470 Seward Meridian,0,U.S. Representative,"Begich, Nick",REP,403,255
+28-470 Seward Meridian,0,U.S. Representative,"Hafner, Eric",DEM,403,0
+28-470 Seward Meridian,0,U.S. Representative,"Howe, John Wayne",AIP,403,22
+28-470 Seward Meridian,0,U.S. Representative,"Peltola, Mary S.",DEM,403,119
+28-475 Trunk,0,U.S. Representative,"Begich, Nick",REP,759,460
+28-475 Trunk,0,U.S. Representative,"Hafner, Eric",DEM,759,6
+28-475 Trunk,0,U.S. Representative,"Howe, John Wayne",AIP,759,47
+28-475 Trunk,0,U.S. Representative,"Peltola, Mary S.",DEM,759,227
+28-480 Wasilla Lake,0,U.S. Representative,"Begich, Nick",REP,395,266
+28-480 Wasilla Lake,0,U.S. Representative,"Hafner, Eric",DEM,395,5
+28-480 Wasilla Lake,0,U.S. Representative,"Howe, John Wayne",AIP,395,32
+28-480 Wasilla Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,395,90
+29-505 Farm Loop,0,U.S. Representative,"Begich, Nick",REP,977,690
+29-505 Farm Loop,0,U.S. Representative,"Hafner, Eric",DEM,977,1
+29-505 Farm Loop,0,U.S. Representative,"Howe, John Wayne",AIP,977,47
+29-505 Farm Loop,0,U.S. Representative,"Peltola, Mary S.",DEM,977,226
+29-510 Fishhook,0,U.S. Representative,"Begich, Nick",REP,1398,880
+29-510 Fishhook,0,U.S. Representative,"Hafner, Eric",DEM,1398,11
+29-510 Fishhook,0,U.S. Representative,"Howe, John Wayne",AIP,1398,67
+29-510 Fishhook,0,U.S. Representative,"Peltola, Mary S.",DEM,1398,408
+29-515 Kings Lake,0,U.S. Representative,"Begich, Nick",REP,885,610
+29-515 Kings Lake,0,U.S. Representative,"Hafner, Eric",DEM,885,2
+29-515 Kings Lake,0,U.S. Representative,"Howe, John Wayne",AIP,885,38
+29-515 Kings Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,885,217
+29-520 Lakes No. 3,0,U.S. Representative,"Begich, Nick",REP,353,237
+29-520 Lakes No. 3,0,U.S. Representative,"Hafner, Eric",DEM,353,4
+29-520 Lakes No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,353,19
+29-520 Lakes No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,353,86
+29-525 Sheep Mountain,0,U.S. Representative,"Begich, Nick",REP,150,118
+29-525 Sheep Mountain,0,U.S. Representative,"Hafner, Eric",DEM,150,0
+29-525 Sheep Mountain,0,U.S. Representative,"Howe, John Wayne",AIP,150,4
+29-525 Sheep Mountain,0,U.S. Representative,"Peltola, Mary S.",DEM,150,26
+29-530 Sutton,0,U.S. Representative,"Begich, Nick",REP,504,317
+29-530 Sutton,0,U.S. Representative,"Hafner, Eric",DEM,504,4
+29-530 Sutton,0,U.S. Representative,"Howe, John Wayne",AIP,504,20
+29-530 Sutton,0,U.S. Representative,"Peltola, Mary S.",DEM,504,148
+29-535 Valdez No. 1,0,U.S. Representative,"Begich, Nick",REP,475,255
+29-535 Valdez No. 1,0,U.S. Representative,"Hafner, Eric",DEM,475,1
+29-535 Valdez No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,475,24
+29-535 Valdez No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,475,186
+29-540 Valdez No. 2,0,U.S. Representative,"Begich, Nick",REP,224,110
+29-540 Valdez No. 2,0,U.S. Representative,"Hafner, Eric",DEM,224,2
+29-540 Valdez No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,224,10
+29-540 Valdez No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,224,95
+29-545 Valdez No. 3,0,U.S. Representative,"Begich, Nick",REP,379,199
+29-545 Valdez No. 3,0,U.S. Representative,"Hafner, Eric",DEM,379,4
+29-545 Valdez No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,379,20
+29-545 Valdez No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,379,147
+30-550 Anderson/Clear,0,U.S. Representative,"Begich, Nick",REP,137,88
+30-550 Anderson/Clear,0,U.S. Representative,"Hafner, Eric",DEM,137,1
+30-550 Anderson/Clear,0,U.S. Representative,"Howe, John Wayne",AIP,137,11
+30-550 Anderson/Clear,0,U.S. Representative,"Peltola, Mary S.",DEM,137,33
+30-555 Big Lake,0,U.S. Representative,"Begich, Nick",REP,1194,809
+30-555 Big Lake,0,U.S. Representative,"Hafner, Eric",DEM,1194,13
+30-555 Big Lake,0,U.S. Representative,"Howe, John Wayne",AIP,1194,88
+30-555 Big Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,1194,247
+30-560 Cantwell,0,U.S. Representative,"Begich, Nick",REP,86,36
+30-560 Cantwell,0,U.S. Representative,"Hafner, Eric",DEM,86,1
+30-560 Cantwell,0,U.S. Representative,"Howe, John Wayne",AIP,86,0
+30-560 Cantwell,0,U.S. Representative,"Peltola, Mary S.",DEM,86,47
+30-565 Denali Park,0,U.S. Representative,"Begich, Nick",REP,72,8
+30-565 Denali Park,0,U.S. Representative,"Hafner, Eric",DEM,72,1
+30-565 Denali Park,0,U.S. Representative,"Howe, John Wayne",AIP,72,4
+30-565 Denali Park,0,U.S. Representative,"Peltola, Mary S.",DEM,72,59
+30-570 East Schrock,0,U.S. Representative,"Begich, Nick",REP,90,66
+30-570 East Schrock,0,U.S. Representative,"Hafner, Eric",DEM,90,3
+30-570 East Schrock,0,U.S. Representative,"Howe, John Wayne",AIP,90,4
+30-570 East Schrock,0,U.S. Representative,"Peltola, Mary S.",DEM,90,17
+30-575 Healy,0,U.S. Representative,"Begich, Nick",REP,374,213
+30-575 Healy,0,U.S. Representative,"Hafner, Eric",DEM,374,5
+30-575 Healy,0,U.S. Representative,"Howe, John Wayne",AIP,374,23
+30-575 Healy,0,U.S. Representative,"Peltola, Mary S.",DEM,374,125
+30-580 Houston,0,U.S. Representative,"Begich, Nick",REP,525,340
+30-580 Houston,0,U.S. Representative,"Hafner, Eric",DEM,525,5
+30-580 Houston,0,U.S. Representative,"Howe, John Wayne",AIP,525,50
+30-580 Houston,0,U.S. Representative,"Peltola, Mary S.",DEM,525,113
+30-585 Knik Goose Bay No. 4,0,U.S. Representative,"Begich, Nick",REP,1115,768
+30-585 Knik Goose Bay No. 4,0,U.S. Representative,"Hafner, Eric",DEM,1115,8
+30-585 Knik Goose Bay No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,1115,59
+30-585 Knik Goose Bay No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,1115,251
+30-590 Trapper Creek,0,U.S. Representative,"Begich, Nick",REP,119,72
+30-590 Trapper Creek,0,U.S. Representative,"Hafner, Eric",DEM,119,3
+30-590 Trapper Creek,0,U.S. Representative,"Howe, John Wayne",AIP,119,8
+30-590 Trapper Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,119,30
+30-595 Susitna,0,U.S. Representative,"Begich, Nick",REP,497,306
+30-595 Susitna,0,U.S. Representative,"Hafner, Eric",DEM,497,9
+30-595 Susitna,0,U.S. Representative,"Howe, John Wayne",AIP,497,34
+30-595 Susitna,0,U.S. Representative,"Peltola, Mary S.",DEM,497,138
+30-600 Talkeetna,0,U.S. Representative,"Begich, Nick",REP,260,81
+30-600 Talkeetna,0,U.S. Representative,"Hafner, Eric",DEM,260,3
+30-600 Talkeetna,0,U.S. Representative,"Howe, John Wayne",AIP,260,14
+30-600 Talkeetna,0,U.S. Representative,"Peltola, Mary S.",DEM,260,160
+30-605 Willow,0,U.S. Representative,"Begich, Nick",REP,996,645
+30-605 Willow,0,U.S. Representative,"Hafner, Eric",DEM,996,6
+30-605 Willow,0,U.S. Representative,"Howe, John Wayne",AIP,996,64
+30-605 Willow,0,U.S. Representative,"Peltola, Mary S.",DEM,996,243
+31-446 Aurora,0,U.S. Representative,"Begich, Nick",REP,892,388
+31-446 Aurora,0,U.S. Representative,"Hafner, Eric",DEM,892,14
+31-446 Aurora,0,U.S. Representative,"Howe, John Wayne",AIP,892,55
+31-446 Aurora,0,U.S. Representative,"Peltola, Mary S.",DEM,892,425
+31-455 Fairbanks No. 1,0,U.S. Representative,"Begich, Nick",REP,941,362
+31-455 Fairbanks No. 1,0,U.S. Representative,"Hafner, Eric",DEM,941,9
+31-455 Fairbanks No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,941,55
+31-455 Fairbanks No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,941,500
+31-480 Fairbanks No. 2,0,U.S. Representative,"Begich, Nick",REP,914,407
+31-480 Fairbanks No. 2,0,U.S. Representative,"Hafner, Eric",DEM,914,7
+31-480 Fairbanks No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,914,53
+31-480 Fairbanks No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,914,440
+31-485 Fairbanks No. 3,0,U.S. Representative,"Begich, Nick",REP,874,339
+31-485 Fairbanks No. 3,0,U.S. Representative,"Hafner, Eric",DEM,874,8
+31-485 Fairbanks No. 3,0,U.S. Representative,"Howe, John Wayne",AIP,874,56
+31-485 Fairbanks No. 3,0,U.S. Representative,"Peltola, Mary S.",DEM,874,444
+32-355 Fairbanks No. 4,0,U.S. Representative,"Begich, Nick",REP,804,388
+32-355 Fairbanks No. 4,0,U.S. Representative,"Hafner, Eric",DEM,804,10
+32-355 Fairbanks No. 4,0,U.S. Representative,"Howe, John Wayne",AIP,804,35
+32-355 Fairbanks No. 4,0,U.S. Representative,"Peltola, Mary S.",DEM,804,360
+32-365 Fairbanks No. 5,0,U.S. Representative,"Begich, Nick",REP,589,254
+32-365 Fairbanks No. 5,0,U.S. Representative,"Hafner, Eric",DEM,589,11
+32-365 Fairbanks No. 5,0,U.S. Representative,"Howe, John Wayne",AIP,589,32
+32-365 Fairbanks No. 5,0,U.S. Representative,"Peltola, Mary S.",DEM,589,283
+32-375 Fort Wainwright,0,U.S. Representative,"Begich, Nick",REP,377,222
+32-375 Fort Wainwright,0,U.S. Representative,"Hafner, Eric",DEM,377,2
+32-375 Fort Wainwright,0,U.S. Representative,"Howe, John Wayne",AIP,377,25
+32-375 Fort Wainwright,0,U.S. Representative,"Peltola, Mary S.",DEM,377,113
+32-385 Badger No. 2,0,U.S. Representative,"Begich, Nick",REP,1180,713
+32-385 Badger No. 2,0,U.S. Representative,"Hafner, Eric",DEM,1180,6
+32-385 Badger No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,1180,93
+32-385 Badger No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,1180,346
+33-130 Badger No. 1,0,U.S. Representative,"Begich, Nick",REP,1183,760
+33-130 Badger No. 1,0,U.S. Representative,"Hafner, Eric",DEM,1183,17
+33-130 Badger No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,1183,77
+33-130 Badger No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,1183,306
+33-135 Chena Lakes,0,U.S. Representative,"Begich, Nick",REP,1179,837
+33-135 Chena Lakes,0,U.S. Representative,"Hafner, Eric",DEM,1179,15
+33-135 Chena Lakes,0,U.S. Representative,"Howe, John Wayne",AIP,1179,70
+33-135 Chena Lakes,0,U.S. Representative,"Peltola, Mary S.",DEM,1179,244
+33-155 Moose Creek,0,U.S. Representative,"Begich, Nick",REP,148,94
+33-155 Moose Creek,0,U.S. Representative,"Hafner, Eric",DEM,148,6
+33-155 Moose Creek,0,U.S. Representative,"Howe, John Wayne",AIP,148,12
+33-155 Moose Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,148,34
+33-165 Newby,0,U.S. Representative,"Begich, Nick",REP,1249,868
+33-165 Newby,0,U.S. Representative,"Hafner, Eric",DEM,1249,12
+33-165 Newby,0,U.S. Representative,"Howe, John Wayne",AIP,1249,72
+33-165 Newby,0,U.S. Representative,"Peltola, Mary S.",DEM,1249,275
+33-175 North Pole,0,U.S. Representative,"Begich, Nick",REP,738,492
+33-175 North Pole,0,U.S. Representative,"Hafner, Eric",DEM,738,10
+33-175 North Pole,0,U.S. Representative,"Howe, John Wayne",AIP,738,46
+33-175 North Pole,0,U.S. Representative,"Peltola, Mary S.",DEM,738,174
+33-183 Plack,0,U.S. Representative,"Begich, Nick",REP,1138,827
+33-183 Plack,0,U.S. Representative,"Hafner, Eric",DEM,1138,4
+33-183 Plack,0,U.S. Representative,"Howe, John Wayne",AIP,1138,66
+33-183 Plack,0,U.S. Representative,"Peltola, Mary S.",DEM,1138,216
+34-235 Eielson,0,U.S. Representative,"Begich, Nick",REP,332,203
+34-235 Eielson,0,U.S. Representative,"Hafner, Eric",DEM,332,8
+34-235 Eielson,0,U.S. Representative,"Howe, John Wayne",AIP,332,24
+34-235 Eielson,0,U.S. Representative,"Peltola, Mary S.",DEM,332,85
+34-238 Eielson Farm Road,0,U.S. Representative,"Begich, Nick",REP,58,45
+34-238 Eielson Farm Road,0,U.S. Representative,"Hafner, Eric",DEM,58,0
+34-238 Eielson Farm Road,0,U.S. Representative,"Howe, John Wayne",AIP,58,1
+34-238 Eielson Farm Road,0,U.S. Representative,"Peltola, Mary S.",DEM,58,12
+34-240 Farmers Loop,0,U.S. Representative,"Begich, Nick",REP,911,345
+34-240 Farmers Loop,0,U.S. Representative,"Hafner, Eric",DEM,911,11
+34-240 Farmers Loop,0,U.S. Representative,"Howe, John Wayne",AIP,911,28
+34-240 Farmers Loop,0,U.S. Representative,"Peltola, Mary S.",DEM,911,513
+34-260 Salcha,0,U.S. Representative,"Begich, Nick",REP,536,379
+34-260 Salcha,0,U.S. Representative,"Hafner, Eric",DEM,536,2
+34-260 Salcha,0,U.S. Representative,"Howe, John Wayne",AIP,536,31
+34-260 Salcha,0,U.S. Representative,"Peltola, Mary S.",DEM,536,110
+34-263 Steele Creek,0,U.S. Representative,"Begich, Nick",REP,1049,570
+34-263 Steele Creek,0,U.S. Representative,"Hafner, Eric",DEM,1049,6
+34-263 Steele Creek,0,U.S. Representative,"Howe, John Wayne",AIP,1049,56
+34-263 Steele Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,1049,402
+34-265 Steese,0,U.S. Representative,"Begich, Nick",REP,1027,512
+34-265 Steese,0,U.S. Representative,"Hafner, Eric",DEM,1027,9
+34-265 Steese,0,U.S. Representative,"Howe, John Wayne",AIP,1027,60
+34-265 Steese,0,U.S. Representative,"Peltola, Mary S.",DEM,1027,417
+34-270 Summit,0,U.S. Representative,"Begich, Nick",REP,880,446
+34-270 Summit,0,U.S. Representative,"Hafner, Eric",DEM,880,4
+34-270 Summit,0,U.S. Representative,"Howe, John Wayne",AIP,880,61
+34-270 Summit,0,U.S. Representative,"Peltola, Mary S.",DEM,880,349
+34-280 Two Rivers,0,U.S. Representative,"Begich, Nick",REP,503,285
+34-280 Two Rivers,0,U.S. Representative,"Hafner, Eric",DEM,503,2
+34-280 Two Rivers,0,U.S. Representative,"Howe, John Wayne",AIP,503,30
+34-280 Two Rivers,0,U.S. Representative,"Peltola, Mary S.",DEM,503,169
+35-580 Airport,0,U.S. Representative,"Begich, Nick",REP,335,173
+35-580 Airport,0,U.S. Representative,"Hafner, Eric",DEM,335,1
+35-580 Airport,0,U.S. Representative,"Howe, John Wayne",AIP,335,15
+35-580 Airport,0,U.S. Representative,"Peltola, Mary S.",DEM,335,136
+35-582 Chena,0,U.S. Representative,"Begich, Nick",REP,1432,645
+35-582 Chena,0,U.S. Representative,"Hafner, Eric",DEM,1432,9
+35-582 Chena,0,U.S. Representative,"Howe, John Wayne",AIP,1432,51
+35-582 Chena,0,U.S. Representative,"Peltola, Mary S.",DEM,1432,703
+35-584 Ester,0,U.S. Representative,"Begich, Nick",REP,567,187
+35-584 Ester,0,U.S. Representative,"Hafner, Eric",DEM,567,4
+35-584 Ester,0,U.S. Representative,"Howe, John Wayne",AIP,567,26
+35-584 Ester,0,U.S. Representative,"Peltola, Mary S.",DEM,567,342
+35-586 Geist,0,U.S. Representative,"Begich, Nick",REP,580,246
+35-586 Geist,0,U.S. Representative,"Hafner, Eric",DEM,580,10
+35-586 Geist,0,U.S. Representative,"Howe, John Wayne",AIP,580,31
+35-586 Geist,0,U.S. Representative,"Peltola, Mary S.",DEM,580,288
+35-587 Lakeview,0,U.S. Representative,"Begich, Nick",REP,123,69
+35-587 Lakeview,0,U.S. Representative,"Hafner, Eric",DEM,123,2
+35-587 Lakeview,0,U.S. Representative,"Howe, John Wayne",AIP,123,13
+35-587 Lakeview,0,U.S. Representative,"Peltola, Mary S.",DEM,123,37
+35-592 Shanly,0,U.S. Representative,"Begich, Nick",REP,432,167
+35-592 Shanly,0,U.S. Representative,"Hafner, Eric",DEM,432,0
+35-592 Shanly,0,U.S. Representative,"Howe, John Wayne",AIP,432,14
+35-592 Shanly,0,U.S. Representative,"Peltola, Mary S.",DEM,432,242
+35-595 University Hills,0,U.S. Representative,"Begich, Nick",REP,620,207
+35-595 University Hills,0,U.S. Representative,"Hafner, Eric",DEM,620,5
+35-595 University Hills,0,U.S. Representative,"Howe, John Wayne",AIP,620,21
+35-595 University Hills,0,U.S. Representative,"Peltola, Mary S.",DEM,620,378
+35-596 University West,0,U.S. Representative,"Begich, Nick",REP,1291,539
+35-596 University West,0,U.S. Representative,"Hafner, Eric",DEM,1291,6
+35-596 University West,0,U.S. Representative,"Howe, John Wayne",AIP,1291,55
+35-596 University West,0,U.S. Representative,"Peltola, Mary S.",DEM,1291,681
+36-001 Goldstream No. 1,0,U.S. Representative,"Begich, Nick",REP,651,268
+36-001 Goldstream No. 1,0,U.S. Representative,"Hafner, Eric",DEM,651,5
+36-001 Goldstream No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,651,27
+36-001 Goldstream No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,651,341
+36-002 Goldstream No. 2,0,U.S. Representative,"Begich, Nick",REP,778,239
+36-002 Goldstream No. 2,0,U.S. Representative,"Hafner, Eric",DEM,778,4
+36-002 Goldstream No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,778,31
+36-002 Goldstream No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,778,493
+36-010 Allakaket,0,U.S. Representative,"Begich, Nick",REP,40,0
+36-010 Allakaket,0,U.S. Representative,"Hafner, Eric",DEM,40,1
+36-010 Allakaket,0,U.S. Representative,"Howe, John Wayne",AIP,40,1
+36-010 Allakaket,0,U.S. Representative,"Peltola, Mary S.",DEM,40,38
+36-014 Anvik,0,U.S. Representative,"Begich, Nick",REP,25,2
+36-014 Anvik,0,U.S. Representative,"Hafner, Eric",DEM,25,1
+36-014 Anvik,0,U.S. Representative,"Howe, John Wayne",AIP,25,1
+36-014 Anvik,0,U.S. Representative,"Peltola, Mary S.",DEM,25,21
+36-018 Arctic Village,0,U.S. Representative,"Begich, Nick",REP,53,3
+36-018 Arctic Village,0,U.S. Representative,"Hafner, Eric",DEM,53,2
+36-018 Arctic Village,0,U.S. Representative,"Howe, John Wayne",AIP,53,0
+36-018 Arctic Village,0,U.S. Representative,"Peltola, Mary S.",DEM,53,48
+36-022 Beaver,0,U.S. Representative,"Begich, Nick",REP,17,1
+36-022 Beaver,0,U.S. Representative,"Hafner, Eric",DEM,17,0
+36-022 Beaver,0,U.S. Representative,"Howe, John Wayne",AIP,17,0
+36-022 Beaver,0,U.S. Representative,"Peltola, Mary S.",DEM,17,14
+36-026 Bettles,0,U.S. Representative,"Begich, Nick",REP,11,5
+36-026 Bettles,0,U.S. Representative,"Hafner, Eric",DEM,11,1
+36-026 Bettles,0,U.S. Representative,"Howe, John Wayne",AIP,11,0
+36-026 Bettles,0,U.S. Representative,"Peltola, Mary S.",DEM,11,5
+36-034 Central,0,U.S. Representative,"Begich, Nick",REP,41,29
+36-034 Central,0,U.S. Representative,"Hafner, Eric",DEM,41,1
+36-034 Central,0,U.S. Representative,"Howe, John Wayne",AIP,41,2
+36-034 Central,0,U.S. Representative,"Peltola, Mary S.",DEM,41,8
+36-038 Chistochina,0,U.S. Representative,"Begich, Nick",REP,71,38
+36-038 Chistochina,0,U.S. Representative,"Hafner, Eric",DEM,71,2
+36-038 Chistochina,0,U.S. Representative,"Howe, John Wayne",AIP,71,7
+36-038 Chistochina,0,U.S. Representative,"Peltola, Mary S.",DEM,71,22
+36-042 Circle,0,U.S. Representative,"Begich, Nick",REP,20,2
+36-042 Circle,0,U.S. Representative,"Hafner, Eric",DEM,20,0
+36-042 Circle,0,U.S. Representative,"Howe, John Wayne",AIP,20,2
+36-042 Circle,0,U.S. Representative,"Peltola, Mary S.",DEM,20,15
+36-046 Copper Center,0,U.S. Representative,"Begich, Nick",REP,354,203
+36-046 Copper Center,0,U.S. Representative,"Hafner, Eric",DEM,354,0
+36-046 Copper Center,0,U.S. Representative,"Howe, John Wayne",AIP,354,22
+36-046 Copper Center,0,U.S. Representative,"Peltola, Mary S.",DEM,354,126
+36-050 Delta Junction,0,U.S. Representative,"Begich, Nick",REP,358,267
+36-050 Delta Junction,0,U.S. Representative,"Hafner, Eric",DEM,358,1
+36-050 Delta Junction,0,U.S. Representative,"Howe, John Wayne",AIP,358,27
+36-050 Delta Junction,0,U.S. Representative,"Peltola, Mary S.",DEM,358,51
+36-054 Deltana,0,U.S. Representative,"Begich, Nick",REP,1198,934
+36-054 Deltana,0,U.S. Representative,"Hafner, Eric",DEM,1198,4
+36-054 Deltana,0,U.S. Representative,"Howe, John Wayne",AIP,1198,69
+36-054 Deltana,0,U.S. Representative,"Peltola, Mary S.",DEM,1198,169
+36-058 Dot Lake,0,U.S. Representative,"Begich, Nick",REP,49,42
+36-058 Dot Lake,0,U.S. Representative,"Hafner, Eric",DEM,49,0
+36-058 Dot Lake,0,U.S. Representative,"Howe, John Wayne",AIP,49,1
+36-058 Dot Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,49,4
+36-062 Eagle,0,U.S. Representative,"Begich, Nick",REP,69,41
+36-062 Eagle,0,U.S. Representative,"Hafner, Eric",DEM,69,0
+36-062 Eagle,0,U.S. Representative,"Howe, John Wayne",AIP,69,2
+36-062 Eagle,0,U.S. Representative,"Peltola, Mary S.",DEM,69,24
+36-066 Fort Yukon,0,U.S. Representative,"Begich, Nick",REP,140,15
+36-066 Fort Yukon,0,U.S. Representative,"Hafner, Eric",DEM,140,3
+36-066 Fort Yukon,0,U.S. Representative,"Howe, John Wayne",AIP,140,1
+36-066 Fort Yukon,0,U.S. Representative,"Peltola, Mary S.",DEM,140,117
+36-070 Gakona,0,U.S. Representative,"Begich, Nick",REP,110,63
+36-070 Gakona,0,U.S. Representative,"Hafner, Eric",DEM,110,2
+36-070 Gakona,0,U.S. Representative,"Howe, John Wayne",AIP,110,6
+36-070 Gakona,0,U.S. Representative,"Peltola, Mary S.",DEM,110,34
+36-074 Galena,0,U.S. Representative,"Begich, Nick",REP,146,41
+36-074 Galena,0,U.S. Representative,"Hafner, Eric",DEM,146,1
+36-074 Galena,0,U.S. Representative,"Howe, John Wayne",AIP,146,8
+36-074 Galena,0,U.S. Representative,"Peltola, Mary S.",DEM,146,93
+36-078 Glennallen,0,U.S. Representative,"Begich, Nick",REP,179,114
+36-078 Glennallen,0,U.S. Representative,"Hafner, Eric",DEM,179,2
+36-078 Glennallen,0,U.S. Representative,"Howe, John Wayne",AIP,179,16
+36-078 Glennallen,0,U.S. Representative,"Peltola, Mary S.",DEM,179,42
+36-082 Grayling,0,U.S. Representative,"Begich, Nick",REP,55,12
+36-082 Grayling,0,U.S. Representative,"Hafner, Eric",DEM,55,0
+36-082 Grayling,0,U.S. Representative,"Howe, John Wayne",AIP,55,5
+36-082 Grayling,0,U.S. Representative,"Peltola, Mary S.",DEM,55,36
+36-086 Holy Cross,0,U.S. Representative,"Begich, Nick",REP,41,4
+36-086 Holy Cross,0,U.S. Representative,"Hafner, Eric",DEM,41,1
+36-086 Holy Cross,0,U.S. Representative,"Howe, John Wayne",AIP,41,1
+36-086 Holy Cross,0,U.S. Representative,"Peltola, Mary S.",DEM,41,34
+36-090 Hughes,0,U.S. Representative,"Begich, Nick",REP,30,5
+36-090 Hughes,0,U.S. Representative,"Hafner, Eric",DEM,30,1
+36-090 Hughes,0,U.S. Representative,"Howe, John Wayne",AIP,30,3
+36-090 Hughes,0,U.S. Representative,"Peltola, Mary S.",DEM,30,20
+36-094 Huslia,0,U.S. Representative,"Begich, Nick",REP,95,13
+36-094 Huslia,0,U.S. Representative,"Hafner, Eric",DEM,95,1
+36-094 Huslia,0,U.S. Representative,"Howe, John Wayne",AIP,95,4
+36-094 Huslia,0,U.S. Representative,"Peltola, Mary S.",DEM,95,70
+36-098 Kaltag,0,U.S. Representative,"Begich, Nick",REP,40,7
+36-098 Kaltag,0,U.S. Representative,"Hafner, Eric",DEM,40,1
+36-098 Kaltag,0,U.S. Representative,"Howe, John Wayne",AIP,40,1
+36-098 Kaltag,0,U.S. Representative,"Peltola, Mary S.",DEM,40,29
+36-102 Kenny Lake,0,U.S. Representative,"Begich, Nick",REP,185,110
+36-102 Kenny Lake,0,U.S. Representative,"Hafner, Eric",DEM,185,2
+36-102 Kenny Lake,0,U.S. Representative,"Howe, John Wayne",AIP,185,15
+36-102 Kenny Lake,0,U.S. Representative,"Peltola, Mary S.",DEM,185,55
+36-106 Koyukuk,0,U.S. Representative,"Begich, Nick",REP,29,3
+36-106 Koyukuk,0,U.S. Representative,"Hafner, Eric",DEM,29,0
+36-106 Koyukuk,0,U.S. Representative,"Howe, John Wayne",AIP,29,2
+36-106 Koyukuk,0,U.S. Representative,"Peltola, Mary S.",DEM,29,23
+36-110 Manley,0,U.S. Representative,"Begich, Nick",REP,47,31
+36-110 Manley,0,U.S. Representative,"Hafner, Eric",DEM,47,0
+36-110 Manley,0,U.S. Representative,"Howe, John Wayne",AIP,47,3
+36-110 Manley,0,U.S. Representative,"Peltola, Mary S.",DEM,47,12
+36-114 McGrath,0,U.S. Representative,"Begich, Nick",REP,94,56
+36-114 McGrath,0,U.S. Representative,"Hafner, Eric",DEM,94,1
+36-114 McGrath,0,U.S. Representative,"Howe, John Wayne",AIP,94,3
+36-114 McGrath,0,U.S. Representative,"Peltola, Mary S.",DEM,94,29
+36-118 Mentasta,0,U.S. Representative,"Begich, Nick",REP,39,13
+36-118 Mentasta,0,U.S. Representative,"Hafner, Eric",DEM,39,0
+36-118 Mentasta,0,U.S. Representative,"Howe, John Wayne",AIP,39,0
+36-118 Mentasta,0,U.S. Representative,"Peltola, Mary S.",DEM,39,26
+36-122 Minto,0,U.S. Representative,"Begich, Nick",REP,51,13
+36-122 Minto,0,U.S. Representative,"Hafner, Eric",DEM,51,1
+36-122 Minto,0,U.S. Representative,"Howe, John Wayne",AIP,51,4
+36-122 Minto,0,U.S. Representative,"Peltola, Mary S.",DEM,51,31
+36-126 Nenana,0,U.S. Representative,"Begich, Nick",REP,314,169
+36-126 Nenana,0,U.S. Representative,"Hafner, Eric",DEM,314,0
+36-126 Nenana,0,U.S. Representative,"Howe, John Wayne",AIP,314,16
+36-126 Nenana,0,U.S. Representative,"Peltola, Mary S.",DEM,314,126
+36-130 Nikolai,0,U.S. Representative,"Begich, Nick",REP,27,6
+36-130 Nikolai,0,U.S. Representative,"Hafner, Eric",DEM,27,0
+36-130 Nikolai,0,U.S. Representative,"Howe, John Wayne",AIP,27,1
+36-130 Nikolai,0,U.S. Representative,"Peltola, Mary S.",DEM,27,17
+36-134 Northway,0,U.S. Representative,"Begich, Nick",REP,71,34
+36-134 Northway,0,U.S. Representative,"Hafner, Eric",DEM,71,3
+36-134 Northway,0,U.S. Representative,"Howe, John Wayne",AIP,71,1
+36-134 Northway,0,U.S. Representative,"Peltola, Mary S.",DEM,71,32
+36-138 Nulato,0,U.S. Representative,"Begich, Nick",REP,77,9
+36-138 Nulato,0,U.S. Representative,"Hafner, Eric",DEM,77,2
+36-138 Nulato,0,U.S. Representative,"Howe, John Wayne",AIP,77,0
+36-138 Nulato,0,U.S. Representative,"Peltola, Mary S.",DEM,77,63
+36-142 Ruby,0,U.S. Representative,"Begich, Nick",REP,30,9
+36-142 Ruby,0,U.S. Representative,"Hafner, Eric",DEM,30,0
+36-142 Ruby,0,U.S. Representative,"Howe, John Wayne",AIP,30,0
+36-142 Ruby,0,U.S. Representative,"Peltola, Mary S.",DEM,30,21
+36-146 Shageluk,0,U.S. Representative,"Begich, Nick",REP,23,1
+36-146 Shageluk,0,U.S. Representative,"Hafner, Eric",DEM,23,1
+36-146 Shageluk,0,U.S. Representative,"Howe, John Wayne",AIP,23,0
+36-146 Shageluk,0,U.S. Representative,"Peltola, Mary S.",DEM,23,20
+36-162 Tanana,0,U.S. Representative,"Begich, Nick",REP,79,6
+36-162 Tanana,0,U.S. Representative,"Hafner, Eric",DEM,79,1
+36-162 Tanana,0,U.S. Representative,"Howe, John Wayne",AIP,79,1
+36-162 Tanana,0,U.S. Representative,"Peltola, Mary S.",DEM,79,68
+36-166 Tetlin,0,U.S. Representative,"Begich, Nick",REP,30,15
+36-166 Tetlin,0,U.S. Representative,"Hafner, Eric",DEM,30,0
+36-166 Tetlin,0,U.S. Representative,"Howe, John Wayne",AIP,30,0
+36-166 Tetlin,0,U.S. Representative,"Peltola, Mary S.",DEM,30,15
+36-170 Tok,0,U.S. Representative,"Begich, Nick",REP,522,356
+36-170 Tok,0,U.S. Representative,"Hafner, Eric",DEM,522,3
+36-170 Tok,0,U.S. Representative,"Howe, John Wayne",AIP,522,23
+36-170 Tok,0,U.S. Representative,"Peltola, Mary S.",DEM,522,124
+36-174 Venetie,0,U.S. Representative,"Begich, Nick",REP,45,5
+36-174 Venetie,0,U.S. Representative,"Hafner, Eric",DEM,45,1
+36-174 Venetie,0,U.S. Representative,"Howe, John Wayne",AIP,45,0
+36-174 Venetie,0,U.S. Representative,"Peltola, Mary S.",DEM,45,38
+37-700 Akutan,0,U.S. Representative,"Begich, Nick",REP,49,16
+37-700 Akutan,0,U.S. Representative,"Hafner, Eric",DEM,49,3
+37-700 Akutan,0,U.S. Representative,"Howe, John Wayne",AIP,49,4
+37-700 Akutan,0,U.S. Representative,"Peltola, Mary S.",DEM,49,24
+37-702 Aleknagik,0,U.S. Representative,"Begich, Nick",REP,69,27
+37-702 Aleknagik,0,U.S. Representative,"Hafner, Eric",DEM,69,0
+37-702 Aleknagik,0,U.S. Representative,"Howe, John Wayne",AIP,69,5
+37-702 Aleknagik,0,U.S. Representative,"Peltola, Mary S.",DEM,69,31
+37-704 Aleutians No. 1,0,U.S. Representative,"Begich, Nick",REP,19,7
+37-704 Aleutians No. 1,0,U.S. Representative,"Hafner, Eric",DEM,19,3
+37-704 Aleutians No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,19,1
+37-704 Aleutians No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,19,8
+37-706 Aleutians No. 2,0,U.S. Representative,"Begich, Nick",REP,534,244
+37-706 Aleutians No. 2,0,U.S. Representative,"Hafner, Eric",DEM,534,17
+37-706 Aleutians No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,534,20
+37-706 Aleutians No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,534,234
+37-707 Aniak,0,U.S. Representative,"Begich, Nick",REP,107,35
+37-707 Aniak,0,U.S. Representative,"Hafner, Eric",DEM,107,1
+37-707 Aniak,0,U.S. Representative,"Howe, John Wayne",AIP,107,4
+37-707 Aniak,0,U.S. Representative,"Peltola, Mary S.",DEM,107,61
+37-708 Chignik,0,U.S. Representative,"Begich, Nick",REP,16,4
+37-708 Chignik,0,U.S. Representative,"Hafner, Eric",DEM,16,0
+37-708 Chignik,0,U.S. Representative,"Howe, John Wayne",AIP,16,1
+37-708 Chignik,0,U.S. Representative,"Peltola, Mary S.",DEM,16,10
+37-709 Chuathbaluk,0,U.S. Representative,"Begich, Nick",REP,19,4
+37-709 Chuathbaluk,0,U.S. Representative,"Hafner, Eric",DEM,19,1
+37-709 Chuathbaluk,0,U.S. Representative,"Howe, John Wayne",AIP,19,2
+37-709 Chuathbaluk,0,U.S. Representative,"Peltola, Mary S.",DEM,19,12
+37-710 Clark's Point,0,U.S. Representative,"Begich, Nick",REP,19,4
+37-710 Clark's Point,0,U.S. Representative,"Hafner, Eric",DEM,19,1
+37-710 Clark's Point,0,U.S. Representative,"Howe, John Wayne",AIP,19,2
+37-710 Clark's Point,0,U.S. Representative,"Peltola, Mary S.",DEM,19,12
+37-712 Cold Bay,0,U.S. Representative,"Begich, Nick",REP,20,11
+37-712 Cold Bay,0,U.S. Representative,"Hafner, Eric",DEM,20,0
+37-712 Cold Bay,0,U.S. Representative,"Howe, John Wayne",AIP,20,1
+37-712 Cold Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,20,8
+37-713 Crooked Creek,0,U.S. Representative,"Begich, Nick",REP,19,3
+37-713 Crooked Creek,0,U.S. Representative,"Hafner, Eric",DEM,19,1
+37-713 Crooked Creek,0,U.S. Representative,"Howe, John Wayne",AIP,19,1
+37-713 Crooked Creek,0,U.S. Representative,"Peltola, Mary S.",DEM,19,14
+37-714 Dillingham,0,U.S. Representative,"Begich, Nick",REP,550,193
+37-714 Dillingham,0,U.S. Representative,"Hafner, Eric",DEM,550,4
+37-714 Dillingham,0,U.S. Representative,"Howe, John Wayne",AIP,550,17
+37-714 Dillingham,0,U.S. Representative,"Peltola, Mary S.",DEM,550,329
+37-716 Egegik,0,U.S. Representative,"Begich, Nick",REP,11,7
+37-716 Egegik,0,U.S. Representative,"Hafner, Eric",DEM,11,0
+37-716 Egegik,0,U.S. Representative,"Howe, John Wayne",AIP,11,1
+37-716 Egegik,0,U.S. Representative,"Peltola, Mary S.",DEM,11,1
+37-718 Ekwok,0,U.S. Representative,"Begich, Nick",REP,34,15
+37-718 Ekwok,0,U.S. Representative,"Hafner, Eric",DEM,34,0
+37-718 Ekwok,0,U.S. Representative,"Howe, John Wayne",AIP,34,3
+37-718 Ekwok,0,U.S. Representative,"Peltola, Mary S.",DEM,34,14
+37-719 Goodnews Bay,0,U.S. Representative,"Begich, Nick",REP,58,15
+37-719 Goodnews Bay,0,U.S. Representative,"Hafner, Eric",DEM,58,1
+37-719 Goodnews Bay,0,U.S. Representative,"Howe, John Wayne",AIP,58,5
+37-719 Goodnews Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,58,36
+37-720 King Cove,0,U.S. Representative,"Begich, Nick",REP,111,78
+37-720 King Cove,0,U.S. Representative,"Hafner, Eric",DEM,111,2
+37-720 King Cove,0,U.S. Representative,"Howe, John Wayne",AIP,111,2
+37-720 King Cove,0,U.S. Representative,"Peltola, Mary S.",DEM,111,25
+37-722 King Salmon,0,U.S. Representative,"Begich, Nick",REP,128,63
+37-722 King Salmon,0,U.S. Representative,"Hafner, Eric",DEM,128,4
+37-722 King Salmon,0,U.S. Representative,"Howe, John Wayne",AIP,128,6
+37-722 King Salmon,0,U.S. Representative,"Peltola, Mary S.",DEM,128,46
+37-724 Koliganek,0,U.S. Representative,"Begich, Nick",REP,72,33
+37-724 Koliganek,0,U.S. Representative,"Hafner, Eric",DEM,72,0
+37-724 Koliganek,0,U.S. Representative,"Howe, John Wayne",AIP,72,0
+37-724 Koliganek,0,U.S. Representative,"Peltola, Mary S.",DEM,72,38
+37-726 Lake Iliamna No. 1,0,U.S. Representative,"Begich, Nick",REP,103,51
+37-726 Lake Iliamna No. 1,0,U.S. Representative,"Hafner, Eric",DEM,103,4
+37-726 Lake Iliamna No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,103,2
+37-726 Lake Iliamna No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,103,44
+37-728 Lake Iliamna No. 2,0,U.S. Representative,"Begich, Nick",REP,78,13
+37-728 Lake Iliamna No. 2,0,U.S. Representative,"Hafner, Eric",DEM,78,2
+37-728 Lake Iliamna No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,78,9
+37-728 Lake Iliamna No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,78,47
+37-730 Levelock,0,U.S. Representative,"Begich, Nick",REP,24,4
+37-730 Levelock,0,U.S. Representative,"Hafner, Eric",DEM,24,0
+37-730 Levelock,0,U.S. Representative,"Howe, John Wayne",AIP,24,0
+37-730 Levelock,0,U.S. Representative,"Peltola, Mary S.",DEM,24,19
+37-731 Lower Kalskag,0,U.S. Representative,"Begich, Nick",REP,61,10
+37-731 Lower Kalskag,0,U.S. Representative,"Hafner, Eric",DEM,61,3
+37-731 Lower Kalskag,0,U.S. Representative,"Howe, John Wayne",AIP,61,5
+37-731 Lower Kalskag,0,U.S. Representative,"Peltola, Mary S.",DEM,61,41
+37-732 Manokotak,0,U.S. Representative,"Begich, Nick",REP,104,31
+37-732 Manokotak,0,U.S. Representative,"Hafner, Eric",DEM,104,0
+37-732 Manokotak,0,U.S. Representative,"Howe, John Wayne",AIP,104,7
+37-732 Manokotak,0,U.S. Representative,"Peltola, Mary S.",DEM,104,62
+37-734 Naknek,0,U.S. Representative,"Begich, Nick",REP,142,66
+37-734 Naknek,0,U.S. Representative,"Hafner, Eric",DEM,142,3
+37-734 Naknek,0,U.S. Representative,"Howe, John Wayne",AIP,142,6
+37-734 Naknek,0,U.S. Representative,"Peltola, Mary S.",DEM,142,64
+37-736 New Stuyahok,0,U.S. Representative,"Begich, Nick",REP,53,5
+37-736 New Stuyahok,0,U.S. Representative,"Hafner, Eric",DEM,53,1
+37-736 New Stuyahok,0,U.S. Representative,"Howe, John Wayne",AIP,53,1
+37-736 New Stuyahok,0,U.S. Representative,"Peltola, Mary S.",DEM,53,44
+37-738 Nondalton,0,U.S. Representative,"Begich, Nick",REP,44,10
+37-738 Nondalton,0,U.S. Representative,"Hafner, Eric",DEM,44,0
+37-738 Nondalton,0,U.S. Representative,"Howe, John Wayne",AIP,44,2
+37-738 Nondalton,0,U.S. Representative,"Peltola, Mary S.",DEM,44,29
+37-740 Pedro Bay,0,U.S. Representative,"Begich, Nick",REP,14,8
+37-740 Pedro Bay,0,U.S. Representative,"Hafner, Eric",DEM,14,0
+37-740 Pedro Bay,0,U.S. Representative,"Howe, John Wayne",AIP,14,0
+37-740 Pedro Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,14,6
+37-742 Port Heiden,0,U.S. Representative,"Begich, Nick",REP,24,10
+37-742 Port Heiden,0,U.S. Representative,"Hafner, Eric",DEM,24,0
+37-742 Port Heiden,0,U.S. Representative,"Howe, John Wayne",AIP,24,0
+37-742 Port Heiden,0,U.S. Representative,"Peltola, Mary S.",DEM,24,14
+37-744 Sand Point,0,U.S. Representative,"Begich, Nick",REP,123,87
+37-744 Sand Point,0,U.S. Representative,"Hafner, Eric",DEM,123,3
+37-744 Sand Point,0,U.S. Representative,"Howe, John Wayne",AIP,123,6
+37-744 Sand Point,0,U.S. Representative,"Peltola, Mary S.",DEM,123,22
+37-746 Sleetmute,0,U.S. Representative,"Begich, Nick",REP,24,7
+37-746 Sleetmute,0,U.S. Representative,"Hafner, Eric",DEM,24,0
+37-746 Sleetmute,0,U.S. Representative,"Howe, John Wayne",AIP,24,0
+37-746 Sleetmute,0,U.S. Representative,"Peltola, Mary S.",DEM,24,16
+37-748 South Naknek,0,U.S. Representative,"Begich, Nick",REP,18,4
+37-748 South Naknek,0,U.S. Representative,"Hafner, Eric",DEM,18,0
+37-748 South Naknek,0,U.S. Representative,"Howe, John Wayne",AIP,18,1
+37-748 South Naknek,0,U.S. Representative,"Peltola, Mary S.",DEM,18,11
+37-750 St. George Island,0,U.S. Representative,"Begich, Nick",REP,7,1
+37-750 St. George Island,0,U.S. Representative,"Hafner, Eric",DEM,7,0
+37-750 St. George Island,0,U.S. Representative,"Howe, John Wayne",AIP,7,0
+37-750 St. George Island,0,U.S. Representative,"Peltola, Mary S.",DEM,7,6
+37-752 St. Paul Island,0,U.S. Representative,"Begich, Nick",REP,107,22
+37-752 St. Paul Island,0,U.S. Representative,"Hafner, Eric",DEM,107,0
+37-752 St. Paul Island,0,U.S. Representative,"Howe, John Wayne",AIP,107,2
+37-752 St. Paul Island,0,U.S. Representative,"Peltola, Mary S.",DEM,107,78
+37-754 Togiak,0,U.S. Representative,"Begich, Nick",REP,149,52
+37-754 Togiak,0,U.S. Representative,"Hafner, Eric",DEM,149,3
+37-754 Togiak,0,U.S. Representative,"Howe, John Wayne",AIP,149,8
+37-754 Togiak,0,U.S. Representative,"Peltola, Mary S.",DEM,149,74
+37-756 Tyonek,0,U.S. Representative,"Begich, Nick",REP,37,8
+37-756 Tyonek,0,U.S. Representative,"Hafner, Eric",DEM,37,1
+37-756 Tyonek,0,U.S. Representative,"Howe, John Wayne",AIP,37,0
+37-756 Tyonek,0,U.S. Representative,"Peltola, Mary S.",DEM,37,28
+37-758 Upper Kalskag,0,U.S. Representative,"Begich, Nick",REP,57,10
+37-758 Upper Kalskag,0,U.S. Representative,"Hafner, Eric",DEM,57,0
+37-758 Upper Kalskag,0,U.S. Representative,"Howe, John Wayne",AIP,57,4
+37-758 Upper Kalskag,0,U.S. Representative,"Peltola, Mary S.",DEM,57,39
+38-800 Akiachak,0,U.S. Representative,"Begich, Nick",REP,161,36
+38-800 Akiachak,0,U.S. Representative,"Hafner, Eric",DEM,161,9
+38-800 Akiachak,0,U.S. Representative,"Howe, John Wayne",AIP,161,15
+38-800 Akiachak,0,U.S. Representative,"Peltola, Mary S.",DEM,161,99
+38-802 Akiak,0,U.S. Representative,"Begich, Nick",REP,90,23
+38-802 Akiak,0,U.S. Representative,"Hafner, Eric",DEM,90,3
+38-802 Akiak,0,U.S. Representative,"Howe, John Wayne",AIP,90,13
+38-802 Akiak,0,U.S. Representative,"Peltola, Mary S.",DEM,90,50
+38-806 Atmautluak,0,U.S. Representative,"Begich, Nick",REP,45,9
+38-806 Atmautluak,0,U.S. Representative,"Hafner, Eric",DEM,45,2
+38-806 Atmautluak,0,U.S. Representative,"Howe, John Wayne",AIP,45,1
+38-806 Atmautluak,0,U.S. Representative,"Peltola, Mary S.",DEM,45,32
+38-808 Bethel No. 1,0,U.S. Representative,"Begich, Nick",REP,581,176
+38-808 Bethel No. 1,0,U.S. Representative,"Hafner, Eric",DEM,581,14
+38-808 Bethel No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,581,13
+38-808 Bethel No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,581,361
+38-810 Bethel No. 2,0,U.S. Representative,"Begich, Nick",REP,575,176
+38-810 Bethel No. 2,0,U.S. Representative,"Hafner, Eric",DEM,575,11
+38-810 Bethel No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,575,15
+38-810 Bethel No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,575,367
+38-812 Chefornak,0,U.S. Representative,"Begich, Nick",REP,96,11
+38-812 Chefornak,0,U.S. Representative,"Hafner, Eric",DEM,96,4
+38-812 Chefornak,0,U.S. Representative,"Howe, John Wayne",AIP,96,5
+38-812 Chefornak,0,U.S. Representative,"Peltola, Mary S.",DEM,96,74
+38-813 Chevak,0,U.S. Representative,"Begich, Nick",REP,128,34
+38-813 Chevak,0,U.S. Representative,"Hafner, Eric",DEM,128,4
+38-813 Chevak,0,U.S. Representative,"Howe, John Wayne",AIP,128,3
+38-813 Chevak,0,U.S. Representative,"Peltola, Mary S.",DEM,128,82
+38-818 Eek,0,U.S. Representative,"Begich, Nick",REP,95,30
+38-818 Eek,0,U.S. Representative,"Hafner, Eric",DEM,95,1
+38-818 Eek,0,U.S. Representative,"Howe, John Wayne",AIP,95,6
+38-818 Eek,0,U.S. Representative,"Peltola, Mary S.",DEM,95,57
+38-822 Kasigluk,0,U.S. Representative,"Begich, Nick",REP,65,7
+38-822 Kasigluk,0,U.S. Representative,"Hafner, Eric",DEM,65,2
+38-822 Kasigluk,0,U.S. Representative,"Howe, John Wayne",AIP,65,6
+38-822 Kasigluk,0,U.S. Representative,"Peltola, Mary S.",DEM,65,47
+38-824 Kipnuk,0,U.S. Representative,"Begich, Nick",REP,113,29
+38-824 Kipnuk,0,U.S. Representative,"Hafner, Eric",DEM,113,4
+38-824 Kipnuk,0,U.S. Representative,"Howe, John Wayne",AIP,113,11
+38-824 Kipnuk,0,U.S. Representative,"Peltola, Mary S.",DEM,113,66
+38-826 Kongiganak,0,U.S. Representative,"Begich, Nick",REP,94,18
+38-826 Kongiganak,0,U.S. Representative,"Hafner, Eric",DEM,94,6
+38-826 Kongiganak,0,U.S. Representative,"Howe, John Wayne",AIP,94,6
+38-826 Kongiganak,0,U.S. Representative,"Peltola, Mary S.",DEM,94,58
+38-828 Kwethluk,0,U.S. Representative,"Begich, Nick",REP,133,19
+38-828 Kwethluk,0,U.S. Representative,"Hafner, Eric",DEM,133,5
+38-828 Kwethluk,0,U.S. Representative,"Howe, John Wayne",AIP,133,6
+38-828 Kwethluk,0,U.S. Representative,"Peltola, Mary S.",DEM,133,101
+38-830 Kwigillingok,0,U.S. Representative,"Begich, Nick",REP,81,33
+38-830 Kwigillingok,0,U.S. Representative,"Hafner, Eric",DEM,81,0
+38-830 Kwigillingok,0,U.S. Representative,"Howe, John Wayne",AIP,81,7
+38-830 Kwigillingok,0,U.S. Representative,"Peltola, Mary S.",DEM,81,36
+38-836 Mekoryuk,0,U.S. Representative,"Begich, Nick",REP,69,19
+38-836 Mekoryuk,0,U.S. Representative,"Hafner, Eric",DEM,69,0
+38-836 Mekoryuk,0,U.S. Representative,"Howe, John Wayne",AIP,69,2
+38-836 Mekoryuk,0,U.S. Representative,"Peltola, Mary S.",DEM,69,47
+38-838 Napakiak,0,U.S. Representative,"Begich, Nick",REP,71,21
+38-838 Napakiak,0,U.S. Representative,"Hafner, Eric",DEM,71,3
+38-838 Napakiak,0,U.S. Representative,"Howe, John Wayne",AIP,71,1
+38-838 Napakiak,0,U.S. Representative,"Peltola, Mary S.",DEM,71,45
+38-840 Napaskiak,0,U.S. Representative,"Begich, Nick",REP,68,7
+38-840 Napaskiak,0,U.S. Representative,"Hafner, Eric",DEM,68,3
+38-840 Napaskiak,0,U.S. Representative,"Howe, John Wayne",AIP,68,2
+38-840 Napaskiak,0,U.S. Representative,"Peltola, Mary S.",DEM,68,54
+38-842 Newtok,0,U.S. Representative,"Begich, Nick",REP,56,9
+38-842 Newtok,0,U.S. Representative,"Hafner, Eric",DEM,56,2
+38-842 Newtok,0,U.S. Representative,"Howe, John Wayne",AIP,56,5
+38-842 Newtok,0,U.S. Representative,"Peltola, Mary S.",DEM,56,34
+38-844 Nightmute,0,U.S. Representative,"Begich, Nick",REP,34,8
+38-844 Nightmute,0,U.S. Representative,"Hafner, Eric",DEM,34,0
+38-844 Nightmute,0,U.S. Representative,"Howe, John Wayne",AIP,34,2
+38-844 Nightmute,0,U.S. Representative,"Peltola, Mary S.",DEM,34,20
+38-846 Nunapitchuk,0,U.S. Representative,"Begich, Nick",REP,98,27
+38-846 Nunapitchuk,0,U.S. Representative,"Hafner, Eric",DEM,98,5
+38-846 Nunapitchuk,0,U.S. Representative,"Howe, John Wayne",AIP,98,6
+38-846 Nunapitchuk,0,U.S. Representative,"Peltola, Mary S.",DEM,98,58
+38-848 Quinhagak,0,U.S. Representative,"Begich, Nick",REP,134,29
+38-848 Quinhagak,0,U.S. Representative,"Hafner, Eric",DEM,134,8
+38-848 Quinhagak,0,U.S. Representative,"Howe, John Wayne",AIP,134,12
+38-848 Quinhagak,0,U.S. Representative,"Peltola, Mary S.",DEM,134,82
+38-852 Toksook Bay,0,U.S. Representative,"Begich, Nick",REP,180,37
+38-852 Toksook Bay,0,U.S. Representative,"Hafner, Eric",DEM,180,2
+38-852 Toksook Bay,0,U.S. Representative,"Howe, John Wayne",AIP,180,5
+38-852 Toksook Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,180,123
+38-854 Tuluksak,0,U.S. Representative,"Begich, Nick",REP,78,16
+38-854 Tuluksak,0,U.S. Representative,"Hafner, Eric",DEM,78,1
+38-854 Tuluksak,0,U.S. Representative,"Howe, John Wayne",AIP,78,7
+38-854 Tuluksak,0,U.S. Representative,"Peltola, Mary S.",DEM,78,47
+38-856 Tuntutuliak,0,U.S. Representative,"Begich, Nick",REP,117,22
+38-856 Tuntutuliak,0,U.S. Representative,"Hafner, Eric",DEM,117,0
+38-856 Tuntutuliak,0,U.S. Representative,"Howe, John Wayne",AIP,117,4
+38-856 Tuntutuliak,0,U.S. Representative,"Peltola, Mary S.",DEM,117,90
+38-858 Tununak,0,U.S. Representative,"Begich, Nick",REP,81,11
+38-858 Tununak,0,U.S. Representative,"Hafner, Eric",DEM,81,1
+38-858 Tununak,0,U.S. Representative,"Howe, John Wayne",AIP,81,4
+38-858 Tununak,0,U.S. Representative,"Peltola, Mary S.",DEM,81,64
+39-900 Alakanuk,0,U.S. Representative,"Begich, Nick",REP,87,28
+39-900 Alakanuk,0,U.S. Representative,"Hafner, Eric",DEM,87,0
+39-900 Alakanuk,0,U.S. Representative,"Howe, John Wayne",AIP,87,8
+39-900 Alakanuk,0,U.S. Representative,"Peltola, Mary S.",DEM,87,47
+39-902 Brevig Mission,0,U.S. Representative,"Begich, Nick",REP,102,14
+39-902 Brevig Mission,0,U.S. Representative,"Hafner, Eric",DEM,102,4
+39-902 Brevig Mission,0,U.S. Representative,"Howe, John Wayne",AIP,102,8
+39-902 Brevig Mission,0,U.S. Representative,"Peltola, Mary S.",DEM,102,72
+39-906 Diomede,0,U.S. Representative,"Begich, Nick",REP,10,3
+39-906 Diomede,0,U.S. Representative,"Hafner, Eric",DEM,10,0
+39-906 Diomede,0,U.S. Representative,"Howe, John Wayne",AIP,10,2
+39-906 Diomede,0,U.S. Representative,"Peltola, Mary S.",DEM,10,5
+39-908 Elim,0,U.S. Representative,"Begich, Nick",REP,103,30
+39-908 Elim,0,U.S. Representative,"Hafner, Eric",DEM,103,2
+39-908 Elim,0,U.S. Representative,"Howe, John Wayne",AIP,103,14
+39-908 Elim,0,U.S. Representative,"Peltola, Mary S.",DEM,103,54
+39-910 Emmonak,0,U.S. Representative,"Begich, Nick",REP,148,24
+39-910 Emmonak,0,U.S. Representative,"Hafner, Eric",DEM,148,2
+39-910 Emmonak,0,U.S. Representative,"Howe, John Wayne",AIP,148,13
+39-910 Emmonak,0,U.S. Representative,"Peltola, Mary S.",DEM,148,101
+39-912 Gambell,0,U.S. Representative,"Begich, Nick",REP,146,36
+39-912 Gambell,0,U.S. Representative,"Hafner, Eric",DEM,146,2
+39-912 Gambell,0,U.S. Representative,"Howe, John Wayne",AIP,146,20
+39-912 Gambell,0,U.S. Representative,"Peltola, Mary S.",DEM,146,71
+39-914 Golovin,0,U.S. Representative,"Begich, Nick",REP,49,6
+39-914 Golovin,0,U.S. Representative,"Hafner, Eric",DEM,49,1
+39-914 Golovin,0,U.S. Representative,"Howe, John Wayne",AIP,49,6
+39-914 Golovin,0,U.S. Representative,"Peltola, Mary S.",DEM,49,35
+39-916 Hooper Bay,0,U.S. Representative,"Begich, Nick",REP,167,37
+39-916 Hooper Bay,0,U.S. Representative,"Hafner, Eric",DEM,167,1
+39-916 Hooper Bay,0,U.S. Representative,"Howe, John Wayne",AIP,167,10
+39-916 Hooper Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,167,115
+39-918 Kotlik,0,U.S. Representative,"Begich, Nick",REP,109,27
+39-918 Kotlik,0,U.S. Representative,"Hafner, Eric",DEM,109,2
+39-918 Kotlik,0,U.S. Representative,"Howe, John Wayne",AIP,109,10
+39-918 Kotlik,0,U.S. Representative,"Peltola, Mary S.",DEM,109,69
+39-920 Koyuk,0,U.S. Representative,"Begich, Nick",REP,100,30
+39-920 Koyuk,0,U.S. Representative,"Hafner, Eric",DEM,100,3
+39-920 Koyuk,0,U.S. Representative,"Howe, John Wayne",AIP,100,7
+39-920 Koyuk,0,U.S. Representative,"Peltola, Mary S.",DEM,100,57
+39-921 Marshall,0,U.S. Representative,"Begich, Nick",REP,86,27
+39-921 Marshall,0,U.S. Representative,"Hafner, Eric",DEM,86,3
+39-921 Marshall,0,U.S. Representative,"Howe, John Wayne",AIP,86,14
+39-921 Marshall,0,U.S. Representative,"Peltola, Mary S.",DEM,86,39
+39-922 Mountain Village,0,U.S. Representative,"Begich, Nick",REP,132,34
+39-922 Mountain Village,0,U.S. Representative,"Hafner, Eric",DEM,132,5
+39-922 Mountain Village,0,U.S. Representative,"Howe, John Wayne",AIP,132,9
+39-922 Mountain Village,0,U.S. Representative,"Peltola, Mary S.",DEM,132,81
+39-924 Nome No. 1,0,U.S. Representative,"Begich, Nick",REP,303,84
+39-924 Nome No. 1,0,U.S. Representative,"Hafner, Eric",DEM,303,0
+39-924 Nome No. 1,0,U.S. Representative,"Howe, John Wayne",AIP,303,16
+39-924 Nome No. 1,0,U.S. Representative,"Peltola, Mary S.",DEM,303,196
+39-926 Nome No. 2,0,U.S. Representative,"Begich, Nick",REP,580,165
+39-926 Nome No. 2,0,U.S. Representative,"Hafner, Eric",DEM,580,7
+39-926 Nome No. 2,0,U.S. Representative,"Howe, John Wayne",AIP,580,32
+39-926 Nome No. 2,0,U.S. Representative,"Peltola, Mary S.",DEM,580,366
+39-928 Nunam Iqua,0,U.S. Representative,"Begich, Nick",REP,37,6
+39-928 Nunam Iqua,0,U.S. Representative,"Hafner, Eric",DEM,37,2
+39-928 Nunam Iqua,0,U.S. Representative,"Howe, John Wayne",AIP,37,5
+39-928 Nunam Iqua,0,U.S. Representative,"Peltola, Mary S.",DEM,37,22
+39-930 Pilot Station,0,U.S. Representative,"Begich, Nick",REP,94,17
+39-930 Pilot Station,0,U.S. Representative,"Hafner, Eric",DEM,94,2
+39-930 Pilot Station,0,U.S. Representative,"Howe, John Wayne",AIP,94,7
+39-930 Pilot Station,0,U.S. Representative,"Peltola, Mary S.",DEM,94,65
+39-931 Russian Mission,0,U.S. Representative,"Begich, Nick",REP,59,19
+39-931 Russian Mission,0,U.S. Representative,"Hafner, Eric",DEM,59,2
+39-931 Russian Mission,0,U.S. Representative,"Howe, John Wayne",AIP,59,5
+39-931 Russian Mission,0,U.S. Representative,"Peltola, Mary S.",DEM,59,32
+39-932 Savoonga,0,U.S. Representative,"Begich, Nick",REP,159,18
+39-932 Savoonga,0,U.S. Representative,"Hafner, Eric",DEM,159,6
+39-932 Savoonga,0,U.S. Representative,"Howe, John Wayne",AIP,159,25
+39-932 Savoonga,0,U.S. Representative,"Peltola, Mary S.",DEM,159,104
+39-934 Scammon Bay,0,U.S. Representative,"Begich, Nick",REP,108,16
+39-934 Scammon Bay,0,U.S. Representative,"Hafner, Eric",DEM,108,0
+39-934 Scammon Bay,0,U.S. Representative,"Howe, John Wayne",AIP,108,6
+39-934 Scammon Bay,0,U.S. Representative,"Peltola, Mary S.",DEM,108,81
+39-936 Shaktoolik,0,U.S. Representative,"Begich, Nick",REP,57,21
+39-936 Shaktoolik,0,U.S. Representative,"Hafner, Eric",DEM,57,2
+39-936 Shaktoolik,0,U.S. Representative,"Howe, John Wayne",AIP,57,1
+39-936 Shaktoolik,0,U.S. Representative,"Peltola, Mary S.",DEM,57,29
+39-938 Shishmaref,0,U.S. Representative,"Begich, Nick",REP,175,22
+39-938 Shishmaref,0,U.S. Representative,"Hafner, Eric",DEM,175,3
+39-938 Shishmaref,0,U.S. Representative,"Howe, John Wayne",AIP,175,12
+39-938 Shishmaref,0,U.S. Representative,"Peltola, Mary S.",DEM,175,133
+39-940 St. Mary's,0,U.S. Representative,"Begich, Nick",REP,117,18
+39-940 St. Mary's,0,U.S. Representative,"Hafner, Eric",DEM,117,0
+39-940 St. Mary's,0,U.S. Representative,"Howe, John Wayne",AIP,117,5
+39-940 St. Mary's,0,U.S. Representative,"Peltola, Mary S.",DEM,117,94
+39-942 St. Michael,0,U.S. Representative,"Begich, Nick",REP,65,23
+39-942 St. Michael,0,U.S. Representative,"Hafner, Eric",DEM,65,1
+39-942 St. Michael,0,U.S. Representative,"Howe, John Wayne",AIP,65,5
+39-942 St. Michael,0,U.S. Representative,"Peltola, Mary S.",DEM,65,31
+39-944 Stebbins,0,U.S. Representative,"Begich, Nick",REP,73,18
+39-944 Stebbins,0,U.S. Representative,"Hafner, Eric",DEM,73,0
+39-944 Stebbins,0,U.S. Representative,"Howe, John Wayne",AIP,73,7
+39-944 Stebbins,0,U.S. Representative,"Peltola, Mary S.",DEM,73,47
+39-946 Teller,0,U.S. Representative,"Begich, Nick",REP,36,9
+39-946 Teller,0,U.S. Representative,"Hafner, Eric",DEM,36,1
+39-946 Teller,0,U.S. Representative,"Howe, John Wayne",AIP,36,1
+39-946 Teller,0,U.S. Representative,"Peltola, Mary S.",DEM,36,25
+39-948 Unalakleet,0,U.S. Representative,"Begich, Nick",REP,221,60
+39-948 Unalakleet,0,U.S. Representative,"Hafner, Eric",DEM,221,0
+39-948 Unalakleet,0,U.S. Representative,"Howe, John Wayne",AIP,221,5
+39-948 Unalakleet,0,U.S. Representative,"Peltola, Mary S.",DEM,221,149
+39-950 Wales,0,U.S. Representative,"Begich, Nick",REP,8,0
+39-950 Wales,0,U.S. Representative,"Hafner, Eric",DEM,8,0
+39-950 Wales,0,U.S. Representative,"Howe, John Wayne",AIP,8,1
+39-950 Wales,0,U.S. Representative,"Peltola, Mary S.",DEM,8,7
+39-952 White Mountain,0,U.S. Representative,"Begich, Nick",REP,69,15
+39-952 White Mountain,0,U.S. Representative,"Hafner, Eric",DEM,69,1
+39-952 White Mountain,0,U.S. Representative,"Howe, John Wayne",AIP,69,6
+39-952 White Mountain,0,U.S. Representative,"Peltola, Mary S.",DEM,69,47
+40-002 Ambler,0,U.S. Representative,"Begich, Nick",REP,44,14
+40-002 Ambler,0,U.S. Representative,"Hafner, Eric",DEM,44,4
+40-002 Ambler,0,U.S. Representative,"Howe, John Wayne",AIP,44,2
+40-002 Ambler,0,U.S. Representative,"Peltola, Mary S.",DEM,44,23
+40-004 Anaktuvuk Pass,0,U.S. Representative,"Begich, Nick",REP,58,18
+40-004 Anaktuvuk Pass,0,U.S. Representative,"Hafner, Eric",DEM,58,2
+40-004 Anaktuvuk Pass,0,U.S. Representative,"Howe, John Wayne",AIP,58,2
+40-004 Anaktuvuk Pass,0,U.S. Representative,"Peltola, Mary S.",DEM,58,34
+40-006 Atqasuk,0,U.S. Representative,"Begich, Nick",REP,37,11
+40-006 Atqasuk,0,U.S. Representative,"Hafner, Eric",DEM,37,0
+40-006 Atqasuk,0,U.S. Representative,"Howe, John Wayne",AIP,37,7
+40-006 Atqasuk,0,U.S. Representative,"Peltola, Mary S.",DEM,37,17
+40-008 Utqiagvik,0,U.S. Representative,"Begich, Nick",REP,249,88
+40-008 Utqiagvik,0,U.S. Representative,"Hafner, Eric",DEM,249,8
+40-008 Utqiagvik,0,U.S. Representative,"Howe, John Wayne",AIP,249,13
+40-008 Utqiagvik,0,U.S. Representative,"Peltola, Mary S.",DEM,249,138
+40-010 Browerville,0,U.S. Representative,"Begich, Nick",REP,647,163
+40-010 Browerville,0,U.S. Representative,"Hafner, Eric",DEM,647,12
+40-010 Browerville,0,U.S. Representative,"Howe, John Wayne",AIP,647,39
+40-010 Browerville,0,U.S. Representative,"Peltola, Mary S.",DEM,647,406
+40-012 Buckland,0,U.S. Representative,"Begich, Nick",REP,84,17
+40-012 Buckland,0,U.S. Representative,"Hafner, Eric",DEM,84,3
+40-012 Buckland,0,U.S. Representative,"Howe, John Wayne",AIP,84,4
+40-012 Buckland,0,U.S. Representative,"Peltola, Mary S.",DEM,84,57
+40-014 Deering,0,U.S. Representative,"Begich, Nick",REP,37,7
+40-014 Deering,0,U.S. Representative,"Hafner, Eric",DEM,37,0
+40-014 Deering,0,U.S. Representative,"Howe, John Wayne",AIP,37,3
+40-014 Deering,0,U.S. Representative,"Peltola, Mary S.",DEM,37,26
+40-016 Kaktovik,0,U.S. Representative,"Begich, Nick",REP,73,36
+40-016 Kaktovik,0,U.S. Representative,"Hafner, Eric",DEM,73,1
+40-016 Kaktovik,0,U.S. Representative,"Howe, John Wayne",AIP,73,6
+40-016 Kaktovik,0,U.S. Representative,"Peltola, Mary S.",DEM,73,25
+40-018 Kiana,0,U.S. Representative,"Begich, Nick",REP,60,19
+40-018 Kiana,0,U.S. Representative,"Hafner, Eric",DEM,60,1
+40-018 Kiana,0,U.S. Representative,"Howe, John Wayne",AIP,60,2
+40-018 Kiana,0,U.S. Representative,"Peltola, Mary S.",DEM,60,36
+40-020 Kivalina,0,U.S. Representative,"Begich, Nick",REP,62,19
+40-020 Kivalina,0,U.S. Representative,"Hafner, Eric",DEM,62,1
+40-020 Kivalina,0,U.S. Representative,"Howe, John Wayne",AIP,62,11
+40-020 Kivalina,0,U.S. Representative,"Peltola, Mary S.",DEM,62,28
+40-022 Kobuk,0,U.S. Representative,"Begich, Nick",REP,38,4
+40-022 Kobuk,0,U.S. Representative,"Hafner, Eric",DEM,38,2
+40-022 Kobuk,0,U.S. Representative,"Howe, John Wayne",AIP,38,3
+40-022 Kobuk,0,U.S. Representative,"Peltola, Mary S.",DEM,38,26
+40-024 Kotzebue,0,U.S. Representative,"Begich, Nick",REP,574,159
+40-024 Kotzebue,0,U.S. Representative,"Hafner, Eric",DEM,574,5
+40-024 Kotzebue,0,U.S. Representative,"Howe, John Wayne",AIP,574,36
+40-024 Kotzebue,0,U.S. Representative,"Peltola, Mary S.",DEM,574,356
+40-026 Noatak,0,U.S. Representative,"Begich, Nick",REP,105,39
+40-026 Noatak,0,U.S. Representative,"Hafner, Eric",DEM,105,1
+40-026 Noatak,0,U.S. Representative,"Howe, John Wayne",AIP,105,16
+40-026 Noatak,0,U.S. Representative,"Peltola, Mary S.",DEM,105,46
+40-028 Noorvik,0,U.S. Representative,"Begich, Nick",REP,96,36
+40-028 Noorvik,0,U.S. Representative,"Hafner, Eric",DEM,96,4
+40-028 Noorvik,0,U.S. Representative,"Howe, John Wayne",AIP,96,12
+40-028 Noorvik,0,U.S. Representative,"Peltola, Mary S.",DEM,96,42
+40-030 Nuiqsut,0,U.S. Representative,"Begich, Nick",REP,44,8
+40-030 Nuiqsut,0,U.S. Representative,"Hafner, Eric",DEM,44,5
+40-030 Nuiqsut,0,U.S. Representative,"Howe, John Wayne",AIP,44,7
+40-030 Nuiqsut,0,U.S. Representative,"Peltola, Mary S.",DEM,44,22
+40-032 Point Hope,0,U.S. Representative,"Begich, Nick",REP,120,42
+40-032 Point Hope,0,U.S. Representative,"Hafner, Eric",DEM,120,7
+40-032 Point Hope,0,U.S. Representative,"Howe, John Wayne",AIP,120,11
+40-032 Point Hope,0,U.S. Representative,"Peltola, Mary S.",DEM,120,57
+40-034 Point Lay,0,U.S. Representative,"Begich, Nick",REP,30,9
+40-034 Point Lay,0,U.S. Representative,"Hafner, Eric",DEM,30,4
+40-034 Point Lay,0,U.S. Representative,"Howe, John Wayne",AIP,30,0
+40-034 Point Lay,0,U.S. Representative,"Peltola, Mary S.",DEM,30,16
+40-036 Selawik,0,U.S. Representative,"Begich, Nick",REP,78,26
+40-036 Selawik,0,U.S. Representative,"Hafner, Eric",DEM,78,4
+40-036 Selawik,0,U.S. Representative,"Howe, John Wayne",AIP,78,2
+40-036 Selawik,0,U.S. Representative,"Peltola, Mary S.",DEM,78,42
+40-038 Shungnak,0,U.S. Representative,"Begich, Nick",REP,50,12
+40-038 Shungnak,0,U.S. Representative,"Hafner, Eric",DEM,50,1
+40-038 Shungnak,0,U.S. Representative,"Howe, John Wayne",AIP,50,2
+40-038 Shungnak,0,U.S. Representative,"Peltola, Mary S.",DEM,50,35
+40-040 Wainwright,0,U.S. Representative,"Begich, Nick",REP,129,58
+40-040 Wainwright,0,U.S. Representative,"Hafner, Eric",DEM,129,5
+40-040 Wainwright,0,U.S. Representative,"Howe, John Wayne",AIP,129,10
+40-040 Wainwright,0,U.S. Representative,"Peltola, Mary S.",DEM,129,53
+HD99 Fed Overseas Absentee,0,U.S. Representative,"Begich, Nick",REP,401,50
+HD99 Fed Overseas Absentee,0,U.S. Representative,"Hafner, Eric",DEM,401,30
+HD99 Fed Overseas Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,401,8
+HD99 Fed Overseas Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,401,294
+District 1 - Absentee,0,U.S. Representative,"Begich, Nick",REP,3043,1447
+District 1 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,3043,38
+District 1 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,3043,92
+District 1 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,3043,1356
+District 2 - Absentee,0,U.S. Representative,"Begich, Nick",REP,4673,1716
+District 2 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,4673,58
+District 2 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,4673,138
+District 2 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,4673,2590
+District 3 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2685,768
+District 3 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2685,19
+District 3 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2685,68
+District 3 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2685,1744
+District 4 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1668,308
+District 4 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1668,12
+District 4 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1668,29
+District 4 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1668,1261
+District 5 - Absentee,0,U.S. Representative,"Begich, Nick",REP,3141,1327
+District 5 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,3141,43
+District 5 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,3141,87
+District 5 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,3141,1549
+District 6 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2389,969
+District 6 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2389,28
+District 6 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2389,59
+District 6 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2389,1231
+District 7 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1707,962
+District 7 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1707,15
+District 7 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1707,60
+District 7 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1707,595
+District 8 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2270,1300
+District 8 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2270,10
+District 8 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2270,51
+District 8 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2270,829
+District 9 - Absentee,0,U.S. Representative,"Begich, Nick",REP,3300,1153
+District 9 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,3300,15
+District 9 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,3300,32
+District 9 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,3300,2036
+District 10 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1972,661
+District 10 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1972,27
+District 10 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1972,33
+District 10 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1972,1215
+District 11 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2559,884
+District 11 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2559,18
+District 11 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2559,46
+District 11 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2559,1567
+District 12 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1983,592
+District 12 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1983,17
+District 12 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1983,28
+District 12 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1983,1280
+District 13 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1660,482
+District 13 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1660,34
+District 13 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1660,28
+District 13 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1660,1056
+District 14 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1861,405
+District 14 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1861,38
+District 14 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1861,35
+District 14 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1861,1325
+District 15 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2145,728
+District 15 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2145,14
+District 15 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2145,49
+District 15 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2145,1309
+District 16 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2258,608
+District 16 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2258,13
+District 16 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2258,32
+District 16 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2258,1562
+District 17 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2269,515
+District 17 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2269,28
+District 17 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2269,25
+District 17 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2269,1604
+District 18 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1571,677
+District 18 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1571,54
+District 18 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1571,41
+District 18 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1571,648
+District 19 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1144,242
+District 19 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1144,14
+District 19 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1144,27
+District 19 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1144,810
+District 20 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1806,511
+District 20 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1806,22
+District 20 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1806,29
+District 20 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1806,1189
+District 21 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2475,714
+District 21 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2475,46
+District 21 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2475,44
+District 21 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2475,1605
+District 22 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1225,417
+District 22 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1225,23
+District 22 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1225,36
+District 22 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1225,701
+District 23 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2738,1172
+District 23 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2738,16
+District 23 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2738,82
+District 23 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2738,1356
+District 24 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2050,1010
+District 24 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2050,16
+District 24 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2050,48
+District 24 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2050,900
+District 25 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1597,771
+District 25 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1597,14
+District 25 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1597,57
+District 25 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1597,681
+District 26 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1387,799
+District 26 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1387,7
+District 26 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1387,48
+District 26 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1387,471
+District 27 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1311,760
+District 27 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1311,9
+District 27 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1311,50
+District 27 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1311,429
+District 28 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1393,773
+District 28 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1393,7
+District 28 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1393,57
+District 28 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1393,506
+District 29 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2027,1058
+District 29 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2027,21
+District 29 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2027,69
+District 29 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2027,791
+District 30 - Absentee,0,U.S. Representative,"Begich, Nick",REP,3349,1860
+District 30 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,3349,19
+District 30 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,3349,125
+District 30 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,3349,1232
+District 31 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1168,414
+District 31 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1168,9
+District 31 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1168,54
+District 31 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1168,576
+District 32 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1015,491
+District 32 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1015,13
+District 32 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1015,35
+District 32 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1015,388
+District 33 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1267,696
+District 33 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1267,22
+District 33 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1267,38
+District 33 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1267,431
+District 34 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1568,675
+District 34 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1568,15
+District 34 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1568,39
+District 34 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1568,755
+District 35 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1421,480
+District 35 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1421,12
+District 35 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1421,35
+District 35 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1421,827
+District 36 - Absentee,0,U.S. Representative,"Begich, Nick",REP,2372,1256
+District 36 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,2372,20
+District 36 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,2372,81
+District 36 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,2372,943
+District 37 - Absentee,0,U.S. Representative,"Begich, Nick",REP,1146,456
+District 37 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,1146,19
+District 37 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,1146,42
+District 37 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,1146,573
+District 38 - Absentee,0,U.S. Representative,"Begich, Nick",REP,536,131
+District 38 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,536,6
+District 38 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,536,15
+District 38 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,536,363
+District 39 - Absentee,0,U.S. Representative,"Begich, Nick",REP,511,159
+District 39 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,511,5
+District 39 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,511,20
+District 39 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,511,305
+District 40 - Absentee,0,U.S. Representative,"Begich, Nick",REP,449,158
+District 40 - Absentee,0,U.S. Representative,"Hafner, Eric",DEM,449,1
+District 40 - Absentee,0,U.S. Representative,"Howe, John Wayne",AIP,449,19
+District 40 - Absentee,0,U.S. Representative,"Peltola, Mary S.",DEM,449,253
+District 1 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,20,4
+District 1 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,20,2
+District 1 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,20,2
+District 1 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,20,11
+District 2 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,76,17
+District 2 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,76,0
+District 2 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,76,10
+District 2 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,76,45
+District 3 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3560,1241
+District 3 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3560,22
+District 3 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3560,75
+District 3 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3560,2177
+District 4 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3856,922
+District 4 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3856,30
+District 4 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3856,74
+District 4 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3856,2780
+District 5 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,62,32
+District 5 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,62,1
+District 5 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,62,1
+District 5 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,62,27
+District 6 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,4069,1964
+District 6 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,4069,24
+District 6 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,4069,98
+District 6 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,4069,1925
+District 7 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3645,2341
+District 7 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3645,27
+District 7 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3645,139
+District 7 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3645,1058
+District 8 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3178,2300
+District 8 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3178,15
+District 8 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3178,85
+District 8 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3178,732
+District 9 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2162,1036
+District 9 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2162,7
+District 9 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2162,21
+District 9 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2162,1079
+District 10 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1557,756
+District 10 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1557,13
+District 10 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1557,23
+District 10 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1557,741
+District 11 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1784,879
+District 11 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1784,10
+District 11 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1784,31
+District 11 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1784,851
+District 12 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1600,706
+District 12 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1600,8
+District 12 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1600,22
+District 12 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1600,857
+District 13 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1392,669
+District 13 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1392,19
+District 13 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1392,21
+District 13 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1392,667
+District 14 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1635,548
+District 14 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1635,15
+District 14 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1635,24
+District 14 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1635,1006
+District 15 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1743,851
+District 15 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1743,7
+District 15 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1743,21
+District 15 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1743,847
+District 16 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1837,679
+District 16 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1837,7
+District 16 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1837,22
+District 16 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1837,1111
+District 17 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2105,580
+District 17 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2105,25
+District 17 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2105,26
+District 17 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2105,1417
+District 18 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,508,202
+District 18 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,508,9
+District 18 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,508,27
+District 18 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,508,261
+District 19 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,830,259
+District 19 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,830,8
+District 19 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,830,28
+District 19 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,830,521
+District 20 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1300,512
+District 20 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1300,8
+District 20 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1300,21
+District 20 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1300,745
+District 21 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1541,648
+District 21 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1541,20
+District 21 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1541,19
+District 21 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1541,826
+District 22 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,923,400
+District 22 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,923,14
+District 22 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,923,29
+District 22 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,923,460
+District 23 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3517,2044
+District 23 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3517,19
+District 23 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3517,98
+District 23 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3517,1327
+District 24 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3260,2077
+District 24 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3260,8
+District 24 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3260,64
+District 24 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3260,1077
+District 25 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3426,2071
+District 25 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3426,20
+District 25 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3426,68
+District 25 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3426,1219
+District 26 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2698,1958
+District 26 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2698,25
+District 26 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2698,92
+District 26 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2698,558
+District 27 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2740,1943
+District 27 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2740,13
+District 27 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2740,100
+District 27 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2740,638
+District 28 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,3045,2113
+District 28 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,3045,11
+District 28 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,3045,91
+District 28 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,3045,794
+District 29 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2812,1997
+District 29 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2812,17
+District 29 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2812,78
+District 29 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2812,683
+District 30 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1171,864
+District 30 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1171,9
+District 30 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1171,41
+District 30 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1171,238
+District 31 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1967,775
+District 31 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1967,25
+District 31 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1967,89
+District 31 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1967,1034
+District 32 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1094,585
+District 32 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1094,17
+District 32 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1094,37
+District 32 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1094,430
+District 33 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,1693,1118
+District 33 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,1693,10
+District 33 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,1693,56
+District 33 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,1693,480
+District 34 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2545,1241
+District 34 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2545,16
+District 34 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2545,86
+District 34 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2545,1160
+District 35 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,2670,993
+District 35 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,2670,27
+District 35 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,2670,55
+District 35 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,2670,1561
+District 36 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,730,229
+District 36 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,730,5
+District 36 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,730,27
+District 36 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,730,459
+District 37 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,103,39
+District 37 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,103,1
+District 37 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,103,0
+District 37 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,103,59
+District 38 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,30,7
+District 38 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,30,0
+District 38 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,30,0
+District 38 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,30,23
+District 39 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,222,61
+District 39 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,222,2
+District 39 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,222,6
+District 39 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,222,150
+District 40 - Early Voting,0,U.S. Representative,"Begich, Nick",REP,46,17
+District 40 - Early Voting,0,U.S. Representative,"Hafner, Eric",DEM,46,2
+District 40 - Early Voting,0,U.S. Representative,"Howe, John Wayne",AIP,46,3
+District 40 - Early Voting,0,U.S. Representative,"Peltola, Mary S.",DEM,46,22
+District 1  - Question,0,U.S. Representative,"Begich, Nick",REP,498,200
+District 1  - Question,0,U.S. Representative,"Hafner, Eric",DEM,498,7
+District 1  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,498,38
+District 1  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,498,153
+District 2  - Question,0,U.S. Representative,"Begich, Nick",REP,272,69
+District 2  - Question,0,U.S. Representative,"Hafner, Eric",DEM,272,2
+District 2  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,272,18
+District 2  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,272,69
+District 3  - Question,0,U.S. Representative,"Begich, Nick",REP,308,68
+District 3  - Question,0,U.S. Representative,"Hafner, Eric",DEM,308,3
+District 3  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,308,25
+District 3  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,308,131
+District 4  - Question,0,U.S. Representative,"Begich, Nick",REP,427,118
+District 4  - Question,0,U.S. Representative,"Hafner, Eric",DEM,427,3
+District 4  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,427,21
+District 4  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,427,207
+District 5  - Question,0,U.S. Representative,"Begich, Nick",REP,367,155
+District 5  - Question,0,U.S. Representative,"Hafner, Eric",DEM,367,6
+District 5  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,367,17
+District 5  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,367,78
+District 6  - Question,0,U.S. Representative,"Begich, Nick",REP,340,122
+District 6  - Question,0,U.S. Representative,"Hafner, Eric",DEM,340,4
+District 6  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,340,17
+District 6  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,340,81
+District 7  - Question,0,U.S. Representative,"Begich, Nick",REP,297,119
+District 7  - Question,0,U.S. Representative,"Hafner, Eric",DEM,297,4
+District 7  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,297,35
+District 7  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,297,46
+District 8  - Question,0,U.S. Representative,"Begich, Nick",REP,197,98
+District 8  - Question,0,U.S. Representative,"Hafner, Eric",DEM,197,2
+District 8  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,197,15
+District 8  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,197,20
+District 9  - Question,0,U.S. Representative,"Begich, Nick",REP,253,87
+District 9  - Question,0,U.S. Representative,"Hafner, Eric",DEM,253,3
+District 9  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,253,12
+District 9  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,253,103
+District 10  - Question,0,U.S. Representative,"Begich, Nick",REP,258,105
+District 10  - Question,0,U.S. Representative,"Hafner, Eric",DEM,258,3
+District 10  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,258,8
+District 10  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,258,93
+District 11  - Question,0,U.S. Representative,"Begich, Nick",REP,238,101
+District 11  - Question,0,U.S. Representative,"Hafner, Eric",DEM,238,0
+District 11  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,238,11
+District 11  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,238,84
+District 12  - Question,0,U.S. Representative,"Begich, Nick",REP,240,99
+District 12  - Question,0,U.S. Representative,"Hafner, Eric",DEM,240,1
+District 12  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,240,13
+District 12  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,240,95
+District 13  - Question,0,U.S. Representative,"Begich, Nick",REP,346,142
+District 13  - Question,0,U.S. Representative,"Hafner, Eric",DEM,346,8
+District 13  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,346,20
+District 13  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,346,118
+District 14  - Question,0,U.S. Representative,"Begich, Nick",REP,434,148
+District 14  - Question,0,U.S. Representative,"Hafner, Eric",DEM,434,18
+District 14  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,434,21
+District 14  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,434,178
+District 15  - Question,0,U.S. Representative,"Begich, Nick",REP,283,108
+District 15  - Question,0,U.S. Representative,"Hafner, Eric",DEM,283,3
+District 15  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,283,19
+District 15  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,283,103
+District 16  - Question,0,U.S. Representative,"Begich, Nick",REP,302,112
+District 16  - Question,0,U.S. Representative,"Hafner, Eric",DEM,302,6
+District 16  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,302,12
+District 16  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,302,121
+District 17  - Question,0,U.S. Representative,"Begich, Nick",REP,399,111
+District 17  - Question,0,U.S. Representative,"Hafner, Eric",DEM,399,8
+District 17  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,399,22
+District 17  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,399,176
+District 18  - Question,0,U.S. Representative,"Begich, Nick",REP,835,119
+District 18  - Question,0,U.S. Representative,"Hafner, Eric",DEM,835,4
+District 18  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,835,17
+District 18  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,835,63
+District 19  - Question,0,U.S. Representative,"Begich, Nick",REP,401,111
+District 19  - Question,0,U.S. Representative,"Hafner, Eric",DEM,401,9
+District 19  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,401,29
+District 19  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,401,169
+District 20  - Question,0,U.S. Representative,"Begich, Nick",REP,373,116
+District 20  - Question,0,U.S. Representative,"Hafner, Eric",DEM,373,6
+District 20  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,373,28
+District 20  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,373,142
+District 21  - Question,0,U.S. Representative,"Begich, Nick",REP,402,136
+District 21  - Question,0,U.S. Representative,"Hafner, Eric",DEM,402,8
+District 21  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,402,27
+District 21  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,402,167
+District 22  - Question,0,U.S. Representative,"Begich, Nick",REP,314,101
+District 22  - Question,0,U.S. Representative,"Hafner, Eric",DEM,314,8
+District 22  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,314,27
+District 22  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,314,109
+District 23  - Question,0,U.S. Representative,"Begich, Nick",REP,324,128
+District 23  - Question,0,U.S. Representative,"Hafner, Eric",DEM,324,6
+District 23  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,324,20
+District 23  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,324,77
+District 24  - Question,0,U.S. Representative,"Begich, Nick",REP,335,156
+District 24  - Question,0,U.S. Representative,"Hafner, Eric",DEM,335,3
+District 24  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,335,18
+District 24  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,335,89
+District 25  - Question,0,U.S. Representative,"Begich, Nick",REP,437,205
+District 25  - Question,0,U.S. Representative,"Hafner, Eric",DEM,437,4
+District 25  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,437,30
+District 25  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,437,83
+District 26  - Question,0,U.S. Representative,"Begich, Nick",REP,426,223
+District 26  - Question,0,U.S. Representative,"Hafner, Eric",DEM,426,3
+District 26  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,426,32
+District 26  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,426,77
+District 27  - Question,0,U.S. Representative,"Begich, Nick",REP,497,261
+District 27  - Question,0,U.S. Representative,"Hafner, Eric",DEM,497,5
+District 27  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,497,54
+District 27  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,497,76
+District 28  - Question,0,U.S. Representative,"Begich, Nick",REP,437,245
+District 28  - Question,0,U.S. Representative,"Hafner, Eric",DEM,437,8
+District 28  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,437,27
+District 28  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,437,85
+District 29  - Question,0,U.S. Representative,"Begich, Nick",REP,386,187
+District 29  - Question,0,U.S. Representative,"Hafner, Eric",DEM,386,8
+District 29  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,386,26
+District 29  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,386,89
+District 30  - Question,0,U.S. Representative,"Begich, Nick",REP,404,198
+District 30  - Question,0,U.S. Representative,"Hafner, Eric",DEM,404,3
+District 30  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,404,31
+District 30  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,404,84
+District 31  - Question,0,U.S. Representative,"Begich, Nick",REP,328,98
+District 31  - Question,0,U.S. Representative,"Hafner, Eric",DEM,328,2
+District 31  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,328,28
+District 31  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,328,118
+District 32  - Question,0,U.S. Representative,"Begich, Nick",REP,842,128
+District 32  - Question,0,U.S. Representative,"Hafner, Eric",DEM,842,2
+District 32  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,842,22
+District 32  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,842,80
+District 33  - Question,0,U.S. Representative,"Begich, Nick",REP,305,127
+District 33  - Question,0,U.S. Representative,"Hafner, Eric",DEM,305,4
+District 33  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,305,19
+District 33  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,305,48
+District 34  - Question,0,U.S. Representative,"Begich, Nick",REP,683,158
+District 34  - Question,0,U.S. Representative,"Hafner, Eric",DEM,683,7
+District 34  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,683,43
+District 34  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,683,86
+District 35  - Question,0,U.S. Representative,"Begich, Nick",REP,326,112
+District 35  - Question,0,U.S. Representative,"Hafner, Eric",DEM,326,2
+District 35  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,326,33
+District 35  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,326,123
+District 36  - Question,0,U.S. Representative,"Begich, Nick",REP,384,144
+District 36  - Question,0,U.S. Representative,"Hafner, Eric",DEM,384,9
+District 36  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,384,20
+District 36  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,384,121
+District 37  - Question,0,U.S. Representative,"Begich, Nick",REP,191,67
+District 37  - Question,0,U.S. Representative,"Hafner, Eric",DEM,191,4
+District 37  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,191,8
+District 37  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,191,53
+District 38  - Question,0,U.S. Representative,"Begich, Nick",REP,270,102
+District 38  - Question,0,U.S. Representative,"Hafner, Eric",DEM,270,5
+District 38  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,270,12
+District 38  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,270,102
+District 39  - Question,0,U.S. Representative,"Begich, Nick",REP,175,53
+District 39  - Question,0,U.S. Representative,"Hafner, Eric",DEM,175,0
+District 39  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,175,15
+District 39  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,175,58
+District 40  - Question,0,U.S. Representative,"Begich, Nick",REP,252,90
+District 40  - Question,0,U.S. Representative,"Hafner, Eric",DEM,252,6
+District 40  - Question,0,U.S. Representative,"Howe, John Wayne",AIP,252,15
+District 40  - Question,0,U.S. Representative,"Peltola, Mary S.",DEM,252,87
