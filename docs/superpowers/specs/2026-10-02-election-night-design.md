@@ -114,3 +114,15 @@ Paid feeds, hand entry of results, anyone else's calls, and the forecast-trust (
 - Hosting decision by Oct. 20 (Vercel Pro vs Cloudflare Pages) after the load test.
 - Final call-probability cutoff after rehearsals.
 - Whether to add a paid feed later (the `ResultsSource` interface leaves room for it).
+
+## 10. Amendments from planning (2026-10-02)
+
+Found while writing the implementation plan (`docs/superpowers/plans/2026-10-02-election-night.md`); where this section and an earlier section disagree, this section wins.
+
+1. **Call probability and validation (replaces the 99.5% in section 4 and the "0 to 20 point" test in section 6).** Simulations with the early count leaning toward the eventual loser and the "share counted" figure wrong by up to 25% showed 99.5% is not safe (about 4% of close races called wrongly at a 12-point lean). The default is **99.99%** with wide late-vote spreads, and the acceptance test is zero wrong calls through a 16-point early lean in unit-count mode (20 for mail-heavy states) and zero in all county scenarios up to late urban counties moving 30 points against the early count, with the measured rates recorded in `docs/call-validation.md`.
+2. **Close races.** With nobody on duty, a lead under about 8 points is not auto-called in unit-count mode, even at 100% of precincts, because the share-reporting figure can be wrong. County-level projection calls some close statewide races (about 19% of races under 5 points in simulation) and calls earlier than unit counts (27% vs 10% before the last county). House races and states without county detail use unit counts. The `cushion` setting in `data/config/call_rules.json` is the owner's knob for trading wrong-call risk against how many close races get called.
+3. **Expected vote (replaces the 2022/2024 turnout baseline in section 4).** The engine uses 2024 presidential results by county as the geography of the vote still out, and learns the turnout ratio from the live count (prior 0.72, erring high). A 2022 county file is used only if a real, citable one is found (plan Task 3).
+4. **One source of truth for calls.** Calls are computed in the worker only; the pages display them. The browser-side rule in `web/lib/live.ts` remains only for the rehearsal demo. All thresholds live in `data/config/call_rules.json`.
+5. **Restarts.** The chained jobs resume from the last published `results.json` / `status.json`, so the "votes went down" checks and call history survive a handoff.
+6. **Monitoring and auto-start (replaces the hourly watchdog in section 6).** Alerts are raised inside the worker loop (opening a GitHub issue); the 4 p.m. ET Nov. 3 start uses three cron slots plus a guard that stands down if another run is already updating results.
+7. **Readers need real sample files.** Parsers for ElectionStats, additional Clarity/Enhanced Voting states and key-state feeds are blocked until a real past-election file is committed for that format; a state whose site refuses automated requests stays a link-out state.

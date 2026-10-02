@@ -16,7 +16,7 @@
    - P(call) 0.995 / late-vote spread 10 / min 50% reporting: about **4% of close races called wrongly** at a 12-point lean.
    - P 0.9999 / spread 24 / min 80% reporting: **zero wrong through a 16-point lean, about 1 in 4,000 at 20**, but races are only called at about 90% reporting.
    So the plan's defaults are the strict ones. **Two consequences the owner should know:**
-   - **County-level projection (Task 4) calls earlier only when late-counted votes are not extremely adverse.** Against a worst case (every late urban county moving 10-15 points against the leader) it needs a very wide spread and then calls only about 5-19% of races before the count is complete; with a moderate late shift it calls about half. The engine does not know which counties count late, so it must assume the worst. Task 5 records the measurements.
+   - **County-level projection (Task 4) is what makes calls come earlier.** In a synthetic worst case (late urban counties moving up to 30 points against the early count) it made zero wrong calls with a spread of 12, called about 27% of races before the last county reported (unit-count mode: 10%) and about 19% of races decided by under 5 points (unit-count mode: essentially none). In mail-heavy states it is stricter: 8% early and no race under 5 points. Unit-count mode alone, used for House races and states without county detail, effectively never calls close races.
    - **A lead under about 8 points is not auto-called, even at 100% of precincts in unit-count mode.** The rule keeps a 10% "vote could still be outstanding" cushion because the share-reporting figure can be wrong by 25% (mail, provisional and late-posted ballots). That cushion (`cushion` in `call_rules.json`) is the single knob that trades wrong-call risk for how many close races get called. Those races show "Counting" or "Too close to call" with the real numbers and sources. AP-style calls on close races rely on human judgment and richer data; with nobody on duty we choose not to guess. The owner decides whether to loosen it after the Oct. 26 rehearsal.
    The acceptance criterion in the plan is: zero wrong calls through a 16-point early lean (units mode, non-mail states), zero through 20 for mail-heavy states, zero in all five county scenarios, and the measured rates recorded in `docs/call-validation.md`. The owner approves the final numbers (spec section 9).
 2. **Calls live in one place.** The spec's call engine is in the worker; the browser no longer decides calls. `web/lib/live.ts#decide` remains only for the rehearsal demo page and is renamed in the UI to "Bellwether call" like everything else (Task 10).
@@ -99,8 +99,8 @@ Critical path first; readers after, each shipping a usable result alone.
  "modes": {
   "units":        {"late_sd": 24.0, "min_share": 0.80},
   "units_mail":   {"late_sd": 30.0, "min_share": 0.85},
-  "county":       {"late_sd": 32.0, "min_share": 0.50},
-  "county_mail":  {"late_sd": 40.0, "min_share": 0.70}
+  "county":       {"late_sd": 12.0, "min_share": 0.50},
+  "county_mail":  {"late_sd": 20.0, "min_share": 0.70}
  }
 }
 ```
@@ -804,66 +804,83 @@ Expected: PASS with the default `call_rules.json`. If any test fails, **do not l
 Add to the same file:
 
 ```python
-def county_night(sigma_swing: float, late_urban_against: float, n: int, seed: int, state: str = "GA"):
+def county_night(sigma_swing: float, late_urban_against: float, n: int, seed: int, state: str = "GA", use_counties: bool = True) -> dict:
     """A state of 20 counties: 14 'rural' report first, 6 'urban' last. All counties swing by a common amount plus noise relative to the 2024
-    baseline; late urban counties additionally move `late_urban_against` points against the eventual leader. Wrong calls are counted."""
+    baseline. The late urban counties then move `late_urban_against` points AGAINST the leader of the count without that move (the dangerous
+    case: early rural counties point the wrong way). The truth is the winner of the complete, shifted count, which is exactly what the engine
+    sees once all 20 counties are in, so a call made on the full count can never be wrong. `use_counties=False` hides county detail from the
+    engine (unit-count mode) so the two modes can be compared on identical nights."""
     rng = random.Random(seed)
     info = {**INFO, "state": state}
-    wrong = called = 0
+    out = {"wrong": 0, "called": 0, "early": 0, "full_wrong": 0}
     for _ in range(n):
-        base = {}
         names = [f"c{i}" for i in range(20)]
+        base, votes_by, m_by = {}, {}, {}
+        common = rng.gauss(0, sigma_swing)
         for i, name in enumerate(names):
             urban = i >= 14
             tot = rng.randint(40_000, 120_000) if urban else rng.randint(5_000, 40_000)
-            bm = rng.gauss(20 if urban else -15, 8)                         # baseline margin %
+            bm = rng.gauss(20 if urban else -15, 8)                           # 2024 baseline margin, %
             base[name] = [int(tot * (50 + bm / 2) / 100), int(tot * (50 - bm / 2) / 100), tot]
-        common = rng.gauss(0, sigma_swing)
-        final_by = {}
-        for i, name in enumerate(names):
-            tot_b = base[name][2]
-            bm = (base[name][0] - base[name][1]) / tot_b * 100
-            final_by[name] = (int(0.72 * tot_b), bm + common + rng.gauss(0, 3))
-        # leader and the adversarial late move
-        fin_d = sum(int(v[0] * (50 + v[1] / 2) / 100) for v in final_by.values())
-        fin_r = sum(v[0] - int(v[0] * (50 + v[1] / 2) / 100) for v in final_by.values())
-        final_margin = (fin_d - fin_r) / sum(v[0] for v in final_by.values()) * 100
-        against = -1 if final_margin > 0 else 1
-        for k in range(1, 21):                                               # k counties fully reported, in order
-            counties, d_tot, r_tot, units = {}, 0, 0, k
-            for j, name in enumerate(names[:k]):
-                votes, m = final_by[name]
-                if j >= 14:
-                    m += against * late_urban_against
-                d = int(votes * (50 + m / 2) / 100)
-                counties[name] = [d, votes - d, 0]
-                d_tot += d
-                r_tot += votes - d
-            race = RaceResult(f"2026-sen-{state}", state, [Cand("A D", "D", d_tot), Cand("B R", "R", r_tot)], units, 20, "sim", counties=counties)
+            votes_by[name] = int(0.72 * tot)
+            m_by[name] = bm + common + rng.gauss(0, 3)
+
+        def tallies(m_map):
+            res = {}
+            for name in names:
+                d = int(votes_by[name] * (50 + m_map[name] / 2) / 100)
+                res[name] = [d, votes_by[name] - d, 0]
+            return res
+
+        plain = tallies(m_by)
+        lead = 1 if sum(v[0] for v in plain.values()) > sum(v[1] for v in plain.values()) else -1
+        shifted = {nm: m_by[nm] + (-lead * late_urban_against if i >= 14 else 0) for i, nm in enumerate(names)}
+        final = tallies(shifted)
+        truth_d = sum(v[0] for v in final.values()) > sum(v[1] for v in final.values())
+        for k in range(1, 21):                                                # k counties fully reported, rural first
+            counties = {nm: final[nm] for nm in names[:k]}
+            d_tot = sum(v[0] for v in counties.values())
+            r_tot = sum(v[1] for v in counties.values())
+            race = RaceResult(f"2026-sen-{state}", state, [Cand("A D", "D", d_tot), Cand("B R", "R", r_tot)], k, 20, "sim",
+                              counties=counties if use_counties else None)
             c = decide_call(race, info, {state: base}, closed=True)
             if c.state == "called":
-                called += 1
-                wrong += (c.winner == "dside") != (final_margin > 0)
+                bad = (c.winner == "dside") != truth_d
+                out["called"] += 1
+                out["wrong"] += bad
+                out["full_wrong"] += bad and k == 20
+                out["early"] += k < 20
                 break
-    return wrong, called
+    return out
 
 
 def test_county_mode_zero_wrong_calls_with_adversarial_late_counties():
-    for swing, against in ((0, 0), (3, 3), (5, 6), (8, 10), (12, 15)):
-        wrong, called = county_night(swing, against, 300, seed=21)
-        assert called > 0, f"swing={swing}: the engine never called anything, which passes 'zero wrong' trivially"
-        assert wrong == 0, f"swing={swing}, late urban against={against}: {wrong} wrong of {called}"
+    for swing, against in ((0, 0), (3, 3), (8, 10), (15, 20), (20, 30)):
+        r = county_night(swing, against, 300, seed=21)
+        assert r["called"] > 0 and r["early"] > 0, f"swing={swing}: no early calls, which passes 'zero wrong' trivially"
+        assert r["wrong"] == 0, f"swing={swing}, late urban against={against}: {r['wrong']} wrong of {r['called']}"
+        assert r["full_wrong"] == 0     # a call on the complete count can never be wrong; if this fails the simulation's ground truth is broken
 
 
 def test_county_mode_mail_heavy_state_is_at_least_as_safe():
-    wrong, called = county_night(12, 15, 300, seed=22, state="AZ")
-    assert called > 0 and wrong == 0
+    r = county_night(20, 30, 300, seed=22, state="AZ")
+    assert r["called"] > 0 and r["wrong"] == 0
+
+
+def test_county_mode_calls_earlier_than_unit_counts_on_the_same_nights():
+    with_counties = county_night(3, 3, 300, seed=23)
+    without = county_night(3, 3, 300, seed=23, use_counties=False)
+    assert with_counties["early"] > without["early"], (with_counties, without)
 ```
 
 - [ ] **Step 4: Run, and tune county settings only**
 
 Run: `python3 -m pytest -q pipeline/tests/test_calls_sim.py -k county`
-Expected: PASS with the default `call_rules.json`. This was checked while writing the plan, and the measurement matters: with the adversarial geography, a county-mode `late_sd` of 4 produced **131 wrong calls in 337 (39%)** at a late-urban swing of 10 points, `late_sd` 12 still produced 50 wrong at 8/10, and only `late_sd` 32 gave zero wrong across all five scenarios. Measured for `late_sd` 32 (300 races each): 15, 25, 30, 41 and 56 races called before the last county reported, so in the worst geography county mode calls only about 5-19% of races early, and about half when the late shift is moderate (`late_sd` 12 calls 153 of 300 at the 3/3 scenario with zero wrong). That is the honest trade-off: the engine knows nothing about *which* counties count late, so it must assume the worst. If any county test fails, raise `late_sd` or `min_share`; never weaken the test. A config that never calls passes "zero wrong" trivially, which is why the tests also assert `called > 0`.
+Expected: PASS with the default `call_rules.json`. Measured while writing the plan (400 races per cell, truth taken from the complete shifted count):
+- County `late_sd` 4 is safe until late urban counties move about 25 points against the early count (3 wrong in 359 at 18/25, 7 in 375 at 20/30). `late_sd` 8 and 12 and 16 gave zero wrong at every scenario through 20/30. The default is **12** (county) and **20** (mail-heavy): safe with headroom.
+- On identical nights, county mode called 27% of races before the last county reported; unit-count mode called 10%. County mode called about 19% of the races decided by under 5 points; unit-count mode called essentially none. In a mail-heavy state county mode called 38% of races overall, 8% early, and no race decided by under 5 points. These are synthetic numbers: use them to compare modes, not to predict the night.
+- The first draft of this simulation graded calls against the winner of the count *before* the late counties moved, which made correct calls on the full count look wrong (it reported 39% wrong at `late_sd` 4). `test_county_mode_...` therefore also asserts `full_wrong == 0`: a call made on the complete count must never be wrong, so a failure there means the simulation, not the engine, is broken.
+If any county test fails, raise `late_sd` or `min_share`; never weaken the test. A config that never calls passes "zero wrong" trivially, which is why the tests also assert early calls happen.
 
 - [ ] **Step 5: Record results**
 
