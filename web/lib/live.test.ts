@@ -45,6 +45,11 @@ test("Decided needs the lead to beat what the uncounted vote could shift", () =>
 });
 
 test("within one point is never Decided, even with everything counted", () => {
+  // mail-heavy states wait for 80% of units and half the expected vote; elsewhere the same count is decided
+  const early = { margin: 30, counted: 280_000, expected: 400_000, units: 0.7 };
+  assert.equal(decide({ ...early, state: "OH" }).state, "decided");
+  assert.equal(decide({ ...early, state: "CA" }).state, "counting");
+  assert.equal(decide({ ...early, state: "CA", counted: 380_000, units: 0.95 }).state, "decided");
   assert.equal(decide({ margin: 0.6, counted: 400_000, expected: 400_000, units: 1 }).state, "close");
   assert.equal(decide({ margin: -0.9, counted: 400_000, expected: 400_000, units: 1 }).state, "close");
 });

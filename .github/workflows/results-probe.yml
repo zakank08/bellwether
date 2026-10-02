@@ -32,5 +32,8 @@ jobs:
           git add docs/results-probe-latest.json
           if git diff --cached --quiet; then echo "no change"; exit 0; fi
           git commit -m "Results-site probe: update (automatic)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          echo "push failed after retries"; exit 1

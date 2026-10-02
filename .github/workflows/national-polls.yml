@@ -41,8 +41,11 @@ jobs:
           git add data/config/national_polls.json
           if git diff --cached --quiet; then echo "no new polls"; exit 0; fi
           git commit -m "Add new national polls (automatic)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          echo "push failed after retries"; exit 1
       - name: Open an issue if a person is needed
         if: steps.run.outputs.code == '3'
         run: |

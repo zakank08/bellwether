@@ -156,7 +156,7 @@ export function snapshot(row: DemoRow, finalMargin: number, t: number, drills: D
   const tr = truthAt(row, finalMargin, feed.tEff);
   const fExp = tr.counted / row.expected;   // share of the EXPECTED vote (an estimate) the model sees
   const done = tr.f >= 0.995;
-  const decision = decide({ margin: tr.margin, counted: tr.counted, expected: row.expected, units: done ? 1 : tr.units, rule: row.rule, thirdShare: row.third });
+  const decision = decide({ margin: tr.margin, counted: tr.counted, expected: row.expected, units: done ? 1 : tr.units, rule: row.rule, thirdShare: row.third, state: row.st });
   const odds = liveOdds(row.mu0, row.sd0, { margin: tr.margin, f: Math.min(fExp, 1) });
   const p = decision.winner === "dside" ? 1 : decision.winner === "rside" ? 0 : odds.p;
   return { row, feed, f: fExp, counted: tr.counted, units: tr.units, margin: tr.margin, decision, p, mu: odds.mu, sd: odds.sd, tEff: feed.tEff };

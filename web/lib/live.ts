@@ -46,13 +46,22 @@ export const DECIDE = {
   closeBand: 1.0,               // a lead under 1 point is never "decided" (recount range)
 };
 
+/** States that count large shares of mail and late-arriving ballots, so early counts can lean far from the final
+ * result (the rehearsal's wrong calls started at about a 16-point early lean). They need more counted first. */
+export const MAIL_HEAVY_STATES = ["AZ", "CA", "CO", "NV", "OR", "UT", "WA"];
+export const STRICT = { minCountedOfExpected: 0.5, minUnits: 0.8 };
+export const isMailHeavy = (state: string | undefined) => !!state && MAIL_HEAVY_STATES.includes(state);
+
 /** A race is Decided only when the votes still to count, with generous safety margins, cannot overturn the
  * lead. This is deliberately stricter than a projection: no race is called on a hunch, and nothing here is
  * attributed to anyone else. */
-export function decide(a: { margin: number; counted: number; expected: number; units: number; rule?: Rule; thirdShare?: number }): Decision {
+export function decide(a: { margin: number; counted: number; expected: number; units: number; rule?: Rule; thirdShare?: number; state?: string }): Decision {
   if (a.counted <= 0) return { state: "waiting", winner: null, why: "No results yet" };
-  if (a.counted < DECIDE.minCountedOfExpected * a.expected || a.units < DECIDE.minUnits)
-    return { state: "counting", winner: null, why: "Too early: less than a third of the expected vote is counted" };
+  const strict = isMailHeavy(a.state);
+  const minCounted = strict ? STRICT.minCountedOfExpected : DECIDE.minCountedOfExpected;
+  const minUnits = strict ? STRICT.minUnits : DECIDE.minUnits;
+  if (a.counted < minCounted * a.expected || a.units < minUnits)
+    return { state: "counting", winner: null, why: strict ? "Too early: this state counts many mail ballots late, so we wait for most of the vote" : "Too early: less than a third of the expected vote is counted" };
   const side = a.margin >= 0 ? "dside" : "rside";
   const leaderShare = (100 - (a.thirdShare ?? 0) + Math.abs(a.margin)) / 2;
   if (a.rule === "runoff" && leaderShare <= 50) return { state: "runoff", winner: null, why: "Nobody is above 50%, so this goes to a runoff if it holds" };

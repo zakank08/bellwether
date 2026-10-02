@@ -20,7 +20,7 @@ from pathlib import Path
 from . import ELECTION_DATE
 from .averaging import d as to_date
 from .forecast import DEFAULT_VERSION, VERSION_LABELS, VERSIONS, Forecast, approval_average
-from .fundamentals import INCUMBENCY, poll_drift_sd
+from .fundamentals import poll_drift_sd
 
 OUT = Path(__file__).resolve().parents[2] / "web" / "public" / "data"
 MODEL_VERSION = "0.2.0"
@@ -136,7 +136,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
                 "poll_avg": _r(row["avg"].margin, 2), "poll_se": _r(row["avg"].se, 2), "n_eff": _r(row["avg"].n_eff, 1),
                 "fundamentals": _r(row["fund"], 2), "fund_sd": _r(row["fund_sd"], 1), "experts": _r(row["expert"], 1),
                 "national_env": _r(env["national"], 2), "pvi": r.pvi,
-                "incumbency": row["dside_inc"] * INCUMBENCY[r.office], "poll_weight": _r(w, 3),
+                "incumbency": row["dside_inc"] * fc.incumbency[r.office], "poll_weight": _r(w, 3),
                 "incumbent_history": row.get("inc_eff"),
                 "fundraising_adj": _r(row.get("money_adj"), 2),
                 "mean": _r(m, 2), "sd": _r(s, 2), "drift_sd": _r(poll_drift_sd(env["days"]), 2),
@@ -227,7 +227,7 @@ def publish(fc: Forecast, out_dir=None, history=False, n_history_sims=8000):
 
 
     # --- what changed ----------------------------------------------------------
-    changes = _changes(prev, races_rows, fc) if prev else []
+    changes = _changes(prev, races_rows, fc, out) if prev else []
 
     # --- forecast summary ------------------------------------------------------
     summary = {
@@ -293,10 +293,10 @@ def _hist_point(t, r):
             "senate_seats": _r(r["senate"]["mean_seats"]["D"], 2), "house_seats": _r(r["house"]["mean_seats"]["D"], 2)}
 
 
-def _changes(prev, races_rows, fc):
+def _changes(prev, races_rows, fc, out_dir=None):
     old = {}
     try:
-        old_races = json.loads((OUT / "races.json").read_text())
+        old_races = json.loads(((out_dir or OUT) / "races.json").read_text())
         old = {x["id"]: x for x in old_races}
     except Exception:
         return []
@@ -392,12 +392,14 @@ def poll_schedule(rows) -> dict:
         if r.poll_close_et:
             e["close"] = r.poll_close_et
             e["close_source"] = "wikipedia"
+    for row in rows:
+        r = row["race"]
+        if r.office != "house" or row["kind"] == "two_party":
+            by_state[r.state]["races"].append(r.id)
     for st, t in fb.get("states", {}).items():
         if st in by_state and not by_state[st]["close"]:
             by_state[st]["close"] = t
             by_state[st]["close_source"] = "fallback"
-        if r.office != "house" or row["kind"] == "two_party":
-            e["races"].append(r.id)
     out = []
     for e in by_state.values():
         times = re.findall(r"\d{1,2}(?::\d{2})?\s*[ap]m", e["close"] or "")
