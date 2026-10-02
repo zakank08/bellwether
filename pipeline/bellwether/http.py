@@ -11,6 +11,8 @@ import hashlib
 import json
 import os
 import time
+from datetime import datetime
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 import re
 from urllib.parse import urlparse
@@ -46,6 +48,20 @@ def redact(url: str) -> str:
     """Hide API keys in a URL. Cache sidecars are committed to a public repo,
     so anything written to disk or printed must go through this."""
     return _SECRET_PARAM.sub(r"\1REDACTED", url)
+
+
+def _retry_after(value: str | None, default: float, cap: float = 120.0) -> float:
+    """Seconds to wait for a Retry-After header, which may be a number or an HTTP date."""
+    if value:
+        try:
+            return min(max(float(value), 0.0), cap)
+        except ValueError:
+            try:
+                when = parsedate_to_datetime(value)
+                return min(max((when - datetime.now(when.tzinfo)).total_seconds(), 0.0), cap)
+            except (TypeError, ValueError):
+                pass
+    return default
 
 
 class FetchError(RuntimeError):
@@ -97,7 +113,7 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
         try:
             r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
             if r.status_code == 429:
-                time.sleep(float(r.headers.get("Retry-After", 20 * (attempt + 1))))
+                time.sleep(_retry_after(r.headers.get("Retry-After"), 20 * (attempt + 1)))
                 last_err = FetchError(f"429 from {host}")
                 continue
             r.raise_for_status()
@@ -107,7 +123,8 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
             return r.content
         except requests.RequestException as e:  # network or HTTP error
             last_err = e
-            time.sleep(2 ** attempt)
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)
     if allow_stale and path.exists():
         _mark(host, "stale", url, cache_age(url))
         return path.read_bytes()

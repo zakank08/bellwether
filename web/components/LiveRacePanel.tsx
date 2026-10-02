@@ -40,7 +40,7 @@ export default function LiveRacePanel({ raceId, title, dside, rside, mu0, sd0, r
   const f = row.units_total > 0 ? row.units_reporting / row.units_total : 0;
   const rule: Rule = rules.rcv ? "rcv" : rules.runoff ? "runoff" : rules.jungle_nov ? "primary" : "none";
   const expected = f > 0 ? total / f : total;
-  let dec = decide({ margin, counted: total, expected, units: f, rule, thirdShare: total ? (ov / total) * 100 : 0 });
+  let dec = decide({ margin, counted: total, expected, units: f, rule, thirdShare: total ? (ov / total) * 100 : 0, state });
   if (hold) dec = hold.action === "undecided" ? { state: "counting", winner: null, why: `Held open by hand: ${hold.reason}` } : { state: "decided", winner: hold.action === "decided_dside" ? "dside" : "rside", why: `Marked by hand: ${hold.reason}` };
   const odds = mu0 == null ? null : liveOdds(mu0, sd0, total ? { margin, f } : null);
   const leader = dec.winner === "dside" ? dside.name : dec.winner === "rside" ? rside.name : null;

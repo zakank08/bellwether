@@ -50,19 +50,23 @@ def national_environment(generic_margin, generic_se, net_approval, president_par
 
 
 def race_fundamentals(office: str, pvi: float | None, national: float, dside_incumbent: int,
-                      fundraising_adj: float = 0.0) -> tuple[float | None, float]:
-    # fundraising_adj: extra adjustments (incumbent history, money), D-minus-R points
+                      fundraising_adj: float = 0.0, incumbency: dict | None = None,
+                      fund_sd: dict | None = None) -> tuple[float | None, float]:
     """Expected margin from partisanship + environment + incumbency.
+
+    fundraising_adj: extra adjustments (incumbent history, money), D-minus-R points.
+    incumbency / fund_sd: per-run values (the House ones are refit each run); default to the module constants.
 
     dside_incumbent: +1 if the D-side principal is the incumbent, -1 if the
     R-side principal is, 0 for open seats.
     Cook PVI is a share-point lean relative to the nation, so the margin
     difference is about twice the PVI.
     """
+    inc, sd = incumbency or INCUMBENCY, fund_sd or FUND_SD
     if pvi is None:
         return None, 12.0
-    m = ELASTICITY[office] * 2 * pvi + national + INCUMBENCY[office] * dside_incumbent + fundraising_adj
-    return m, FUND_SD[office]
+    m = ELASTICITY[office] * 2 * pvi + national + inc[office] * dside_incumbent + fundraising_adj
+    return m, sd[office]
 
 
 def rating_to_margin(label: str) -> float | None:

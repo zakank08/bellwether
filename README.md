@@ -45,7 +45,7 @@ Paid/unavailable, behind interfaces in `pipeline/bellwether/adapters/base.py`: A
 
 ## Deployment
 
-`web/` is a pure static export (`output: "export"`), deployable to Vercel (root directory `web`, build `npm run build`, output `out`) or any CDN. No server or database is needed for Phase 1; Postgres arrives with the election-night admin panel.
+`web/` is a pure static export (`output: "export"`), deployable to Vercel (root directory `web`, build `npm run build`, output `out`) or any CDN. No server or database is needed: election-night results are written by a GitHub Actions worker to object storage (R2) and read by the static pages.
 
 ## Hand corrections
 

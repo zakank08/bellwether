@@ -13,6 +13,7 @@ import numpy as np
 from . import ELECTION_DATE
 from .candidate_history import incumbent_effect
 from .averaging import HOUSE_EFFECT_K, Average, PollingModel, PollPoint, principals, weighted_average, d as to_date
+from . import fundamentals as F
 from .fundamentals import (ELASTICITY, blend, expert_consensus, fundraising_adjustment, national_environment,
                            race_fundamentals)
 from .pollster_ratings import Matcher, compute as compute_ratings
@@ -131,14 +132,15 @@ class Forecast:
         self.fundraising: dict[str, dict] = {}
         # Calibrate House fundamentals against 2024 district results (unchanged-lines states).
         self.house_cal = None
+        self.incumbency = dict(F.INCUMBENCY)   # per-run copies: the House values are refit below
+        self.fund_sd = dict(F.FUND_SD)
         try:
-            from . import fundamentals as F
             from .house_history import calibrate
             cal = calibrate(inputs.races)
             if cal["n"] >= 100:
                 self.house_cal = cal
-                F.INCUMBENCY["house"] = max(1.5, min(5.0, cal["incumbency"]))
-                F.FUND_SD["house"] = round((cal["resid_sd"] ** 2 + 3.5 ** 2) ** 0.5, 2)
+                self.incumbency["house"] = max(1.5, min(5.0, cal["incumbency"]))
+                self.fund_sd["house"] = round((cal["resid_sd"] ** 2 + 3.5 ** 2) ** 0.5, 2)
         except Exception as e:  # never block the forecast on a calibration source
             print("house calibration skipped:", e)
 
@@ -209,14 +211,12 @@ class Forecast:
                         from .house_history import incumbent_effect as house_effect
                         inc_eff = house_effect(r, self.house_cal)
             money = self.fundraising.get(r.id)
-            money_adj = fundraising_adjustment((money or {}).get("d", {}) and money["d"].get("receipts") if money and money.get("d") else None,
-                                               money["r"].get("receipts") if money and money.get("r") else None)
+            d_money, r_money = ((money or {}).get(k) or {} for k in ("d", "r"))
+            money_adj = fundraising_adjustment(d_money.get("receipts"), r_money.get("receipts"))
             fund, fsd = race_fundamentals(r.office, r.pvi, nat, dside_inc,
-                                          fundraising_adj=(inc_eff["carry"] if inc_eff else 0.0) + money_adj)
+                                          fundraising_adj=(inc_eff["carry"] if inc_eff else 0.0) + money_adj,
+                                          incumbency=self.incumbency, fund_sd=self.fund_sd)
             exp = expert_consensus(r.ratings)
-            if exp is not None and pr.d_party not in ("D",) and pr.r_party == "R":
-                # ratings are D-vs-R; with an independent D-side, "Lean R" still means R-side ahead
-                pass
             ests = {}
             for v in VERSIONS:
                 if v == "polls":

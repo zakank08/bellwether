@@ -91,6 +91,19 @@ including a replay of three nights. What it showed needs fixing is in `docs/elec
 - County maps (`CountySection`/`CountyMap`) on state pages and statewide race pages: 2024 presidential margin by county (`pipeline/tools/county_2024.py` -> `web/public/data/county2024.json`, source = Fox News results compiled by T. McGovern, **not authoritative**; AK and CT omitted because they report by House district/town). Switches to a live county count when the results row carries `counties` (only the North Carolina reader provides it so far; other readers need county detail added).
 - Tested locally with a rehearsal feed served next to a build made with `NEXT_PUBLIC_LIVE_URL` set (panel, hand labels, county overlay all rendered). Not yet tested against a real 2026 feed.
 
+## 1k. Code review fixes (Oct. 2)
+Fixed: election-night schedule page had no race chips for 49 of 50 states (`poll_schedule` loop indentation); a `Retry-After`
+HTTP-date header crashed the fetcher; `_changes` ignored `--out`; the House calibration no longer mutates module globals
+(`Forecast.incumbency` / `fund_sd`); "Decided" waits for 80% of units and half the expected vote in AZ, CA, CO, NV, OR, UT, WA
+(`MAIL_HEAVY_STATES` in `web/lib/live.ts`); election-night workflow has a third chained job (about 16 hours) and read-only
+permissions; the bot workflows retry the push; pip is cached in `forecast.yml`.
+Still open (not fixed, need a decision or a real feed):
+- The odds-over-time backcast uses today's house effects, fundraising and matchups for past dates; say so on the methodology page.
+- The backtest tunes its uncertainty settings on the same 2018–2022 races it reports; label the 158/172 as an election-eve, tuned result.
+- `data/cache` (64 MB) is committed on every run; move it to the Actions cache before the repo grows much more.
+- Expected vote on live pages is still estimated from units reporting; replace with 2022/2024 turnout estimates.
+- Actions are pinned by tag, not commit SHA.
+
 ## 1j. Motion and friendliness pass (Oct. 1)
 - `ScrollFX` (in the site layout): below-the-fold sections and card groups ease in as they scroll into view (staggered), the header becomes frosted glass once scrolled, "Back to top" button. Only things that start off-screen are hidden (no flash on refresh); reduced-motion users get none. Tokens/classes in `globals.css` ("motion and polish"). Elements inside `Reveal` are skipped to avoid double animation.
 - `QuickLinks` on the home page (six big doors: find my races, what-if, compare, states, election night, latest). Phone nav has an edge fade and bigger tap targets.
