@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=MN&district=06&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1790976084.9617474}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=MN&district=06&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791028827.073374}
