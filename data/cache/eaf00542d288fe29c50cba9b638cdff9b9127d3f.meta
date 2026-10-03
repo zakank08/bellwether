@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=IL&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791028727.0671055}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=IL&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791069508.8162622}
