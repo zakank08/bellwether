@@ -400,9 +400,8 @@
   "SD": [
    {
     "url": "https://electionresults.sd.gov/",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "unreachable",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
    }
   ],
   "TN": [
@@ -487,9 +486,9 @@
   ]
  },
  "summary": {
-  "ok": 36,
+  "ok": 35,
   "challenge": 8,
   "blocked": 5,
-  "unreachable": 1
+  "unreachable": 2
  }
 }
