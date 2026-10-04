@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=KY&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791118183.0839021}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=KY&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791156850.2519333}
