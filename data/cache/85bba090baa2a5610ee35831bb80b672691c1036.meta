@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=IL&district=06&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791069594.125118}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=IL&district=06&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791118255.1032767}
