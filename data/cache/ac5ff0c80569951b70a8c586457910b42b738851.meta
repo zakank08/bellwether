@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=KS&district=04&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791156935.2034}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=KS&district=04&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791213293.2842386}
