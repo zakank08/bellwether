@@ -296,8 +296,9 @@
   "ND": [
    {
     "url": "https://results.sos.nd.gov/",
-    "result": "blocked",
-    "http": 526
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NE": [
@@ -486,9 +487,9 @@
   ]
  },
  "summary": {
-  "ok": 35,
+  "ok": 36,
   "challenge": 8,
-  "blocked": 5,
+  "blocked": 4,
   "unreachable": 2
  }
 }
