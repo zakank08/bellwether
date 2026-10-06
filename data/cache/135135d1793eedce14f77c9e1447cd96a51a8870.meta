@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=PA&district=17&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791255641.4260554}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=PA&district=17&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791293857.2726107}

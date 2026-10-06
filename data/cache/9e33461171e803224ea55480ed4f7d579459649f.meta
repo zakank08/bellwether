@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NV&district=03&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791255593.411846}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NV&district=03&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791293804.6619873}
