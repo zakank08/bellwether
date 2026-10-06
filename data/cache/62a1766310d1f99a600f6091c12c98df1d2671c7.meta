@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=AZ&district=01&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791293699.5868108}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=AZ&district=01&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791322674.1764538}

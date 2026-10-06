@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=CO&district=05&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791293741.9649203}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=CO&district=05&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791322693.9119992}

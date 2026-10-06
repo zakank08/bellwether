@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NE&district=01&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791293800.6846128}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NE&district=01&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791322756.3249977}
