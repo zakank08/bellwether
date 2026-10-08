@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=OK&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791419002.565438}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=OK&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791467900.2575135}
