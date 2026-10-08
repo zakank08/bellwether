@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=AR&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791381005.9317286}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=AR&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791418976.4102283}
