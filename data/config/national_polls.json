@@ -1,6 +1,6 @@
 {
  "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
- "collected": "2026-10-01",
+ "collected": "2026-10-09",
  "polls": [
   {
    "pollster": "YouGov",
@@ -1150,6 +1150,42 @@
    },
    "url": "https://yougov.com/en-us/articles/55649-democrats-big-lead-independents-lean-and-more-september-25-28-2026-economist-yougov-poll",
    "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_CCphJ5Q.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-02",
+   "end_date": "2026-10-05",
+   "sample_size": 1381,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 38.0,
+    "Disapprove": 60.0
+   },
+   "url": "https://yougov.com/en-us/articles/55700-democrats-8-point-lead-with-registered-voters-inflation-importance-hits-new-high-and-more-october-25-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_703uvs1.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-02",
+   "end_date": "2026-10-05",
+   "sample_size": 1381,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 47.0,
+    "Rep": 38.0
+   },
+   "url": "https://yougov.com/en-us/articles/55700-democrats-8-point-lead-with-registered-voters-inflation-importance-hits-new-high-and-more-october-25-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_703uvs1.pdf"
   }
  ]
 }
