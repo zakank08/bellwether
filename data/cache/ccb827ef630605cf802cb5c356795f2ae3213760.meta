@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=TX&district=32&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791468083.9550061}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=TX&district=32&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791506385.94506}

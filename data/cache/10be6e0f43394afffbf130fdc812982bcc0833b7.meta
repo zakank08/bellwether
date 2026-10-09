@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=NM&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791467898.2590888}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=senate&state=NM&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791506207.3035746}

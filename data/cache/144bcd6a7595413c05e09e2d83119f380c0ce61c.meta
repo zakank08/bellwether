@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=AK&district=00&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791467911.2719247}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=AK&district=00&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1791506220.3120308}
