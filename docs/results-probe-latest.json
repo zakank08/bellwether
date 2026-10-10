@@ -4,15 +4,13 @@
   "AK": [
    {
     "url": "https://www.elections.alaska.gov/election-results/e/?id=24genr",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "unreachable",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unabl"
    },
    {
     "url": "https://www.elections.alaska.gov/results/24GENR/ENRbyPrecinct.csv",
-    "result": "ok",
-    "http": 200,
-    "type": "text/csv"
+    "result": "unreachable",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unabl"
    }
   ],
   "AL": [
@@ -312,9 +310,8 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "challenge",
+    "http": 403
    }
   ],
   "NJ": [
@@ -488,9 +485,9 @@
   ]
  },
  "summary": {
-  "ok": 37,
-  "challenge": 7,
-  "blocked": 4,
-  "unreachable": 2
+  "unreachable": 3,
+  "ok": 35,
+  "challenge": 8,
+  "blocked": 4
  }
 }
