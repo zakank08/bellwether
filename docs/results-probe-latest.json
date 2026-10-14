@@ -273,7 +273,7 @@
   "MT": [
    {
     "url": "https://sosmt.gov/elections/results/",
-    "result": "blocked",
+    "result": "challenge",
     "http": 403
    }
   ],
@@ -310,9 +310,8 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "challenge",
+    "http": 403
    }
   ],
   "NJ": [
@@ -400,8 +399,9 @@
   "SD": [
    {
     "url": "https://electionresults.sd.gov/",
-    "result": "unreachable",
-    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "TN": [
@@ -486,9 +486,9 @@
   ]
  },
  "summary": {
-  "unreachable": 3,
+  "unreachable": 2,
   "ok": 36,
-  "challenge": 7,
-  "blocked": 4
+  "challenge": 9,
+  "blocked": 3
  }
 }
