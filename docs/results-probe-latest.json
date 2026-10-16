@@ -224,9 +224,8 @@
   "ME": [
    {
     "url": "https://www.maine.gov/sos/elections-voting/election-results-data",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "blocked",
+    "http": 403
    }
   ],
   "MI": [
@@ -353,8 +352,9 @@
   "OH": [
    {
     "url": "https://liveresults.ohiosos.gov/",
-    "result": "blocked",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "OK": [
@@ -367,9 +367,8 @@
   "OR": [
    {
     "url": "https://results.oregonvotes.gov/",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "unreachable",
+    "error": "<urlopen error [Errno -5] No address associated with hostname>"
    }
   ],
   "PA": [
@@ -486,8 +485,8 @@
   ]
  },
  "summary": {
-  "unreachable": 2,
-  "ok": 36,
+  "unreachable": 3,
+  "ok": 35,
   "challenge": 9,
   "blocked": 3
  }
