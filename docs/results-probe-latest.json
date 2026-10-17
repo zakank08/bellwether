@@ -367,8 +367,9 @@
   "OR": [
    {
     "url": "https://results.oregonvotes.gov/",
-    "result": "unreachable",
-    "error": "<urlopen error [Errno -5] No address associated with hostname>"
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "PA": [
@@ -485,8 +486,8 @@
   ]
  },
  "summary": {
-  "unreachable": 3,
-  "ok": 35,
+  "unreachable": 2,
+  "ok": 36,
   "challenge": 9,
   "blocked": 3
  }
