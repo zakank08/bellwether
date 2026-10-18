@@ -309,8 +309,9 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "challenge",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NJ": [
@@ -487,8 +488,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 36,
-  "challenge": 9,
+  "ok": 37,
+  "challenge": 8,
   "blocked": 3
  }
 }
