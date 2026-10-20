@@ -141,9 +141,8 @@
    },
    {
     "url": "https://sos.iowa.gov/iowans/election-results-statistics",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "challenge",
+    "http": 403
    }
   ],
   "ID": [
@@ -309,9 +308,8 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "challenge",
+    "http": 403
    }
   ],
   "NJ": [
@@ -488,8 +486,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 37,
-  "challenge": 8,
+  "ok": 36,
+  "challenge": 9,
   "blocked": 3
  }
 }
