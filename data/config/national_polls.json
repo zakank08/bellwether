@@ -1,6 +1,6 @@
 {
  "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
- "collected": "2026-10-16",
+ "collected": "2026-10-23",
  "polls": [
   {
    "pollster": "YouGov",
@@ -1222,6 +1222,75 @@
    "url": "https://yougov.com/en-us/articles/55753-steady-midterms-picture-economic-doubts-death-penalty-more-october-10-12-2026-economist-yougov-poll",
    "auto": true,
    "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_7pgxnD3.pdf"
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-10-15",
+   "end_date": "2026-10-19",
+   "sample_size": 1010,
+   "population": "lv",
+   "question": "approval",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 60.0
+   },
+   "url": "https://echeloninsights.com/insights/october-2026-verified-voter-omnibus",
+   "auto": true,
+   "document": "https://echeloninsights.com/hubfs/_Media%20for%20Insights%20Blog/October%202026%20-%20Voter%20Omnibus%20Topline%20-%20External.pdf"
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-10-15",
+   "end_date": "2026-10-19",
+   "sample_size": 1010,
+   "population": "lv",
+   "question": "generic",
+   "answers": {
+    "Dem": 50.0,
+    "Rep": 45.0
+   },
+   "url": "https://echeloninsights.com/insights/october-2026-verified-voter-omnibus",
+   "auto": true,
+   "note": "Includes leaners",
+   "document": "https://echeloninsights.com/hubfs/_Media%20for%20Insights%20Blog/October%202026%20-%20Voter%20Omnibus%20Topline%20-%20External.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-19",
+   "end_date": "2026-10-20",
+   "sample_size": 1501,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 40.0,
+    "Disapprove": 59.0
+   },
+   "url": "https://yougov.com/en-us/articles/55795-2026-midterms-update-ebbing-support-for-ukraine-and-more-october-19-20-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AjDiUmp.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-19",
+   "end_date": "2026-10-20",
+   "sample_size": 1501,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 45.0,
+    "Rep": 40.0
+   },
+   "url": "https://yougov.com/en-us/articles/55795-2026-midterms-update-ebbing-support-for-ukraine-and-more-october-19-20-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AjDiUmp.pdf"
   }
  ]
 }
