@@ -93,7 +93,7 @@
    {
     "url": "https://electionresults.delaware.gov/",
     "result": "unreachable",
-    "error": "<urlopen error [Errno -2] Name or service not known>"
+    "error": "<urlopen error [Errno -5] No address associated with hostname>"
    },
    {
     "url": "https://elections.delaware.gov/reports/GE2024.csv",
