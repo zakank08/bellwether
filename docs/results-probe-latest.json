@@ -366,9 +366,8 @@
   "OR": [
    {
     "url": "https://results.oregonvotes.gov/",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "blocked",
+    "http": 503
    }
   ],
   "PA": [
@@ -486,8 +485,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 36,
+  "ok": 35,
   "challenge": 9,
-  "blocked": 3
+  "blocked": 4
  }
 }
