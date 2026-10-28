@@ -50,7 +50,7 @@
   "CA": [
    {
     "url": "https://electionresults.sos.ca.gov/",
-    "result": "ok",
+    "result": "challenge",
     "http": 200,
     "type": "text/html"
    },
@@ -332,8 +332,7 @@
    {
     "url": "https://silverstateelection.nv.gov/",
     "result": "challenge",
-    "http": 200,
-    "type": "text/html"
+    "http": 403
    }
   ],
   "NY": [
@@ -366,8 +365,9 @@
   "OR": [
    {
     "url": "https://results.oregonvotes.gov/",
-    "result": "blocked",
-    "http": 503
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "PA": [
@@ -485,8 +485,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 35,
+  "ok": 36,
   "challenge": 9,
-  "blocked": 4
+  "blocked": 3
  }
 }
