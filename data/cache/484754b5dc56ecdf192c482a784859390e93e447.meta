@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=FL&district=28&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1793194237.4542463}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=FL&district=28&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1793223620.1128194}
