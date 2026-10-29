@@ -50,7 +50,7 @@
   "CA": [
    {
     "url": "https://electionresults.sos.ca.gov/",
-    "result": "challenge",
+    "result": "ok",
     "http": 200,
     "type": "text/html"
    },
@@ -308,8 +308,9 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "challenge",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NJ": [
@@ -332,7 +333,8 @@
    {
     "url": "https://silverstateelection.nv.gov/",
     "result": "challenge",
-    "http": 403
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NY": [
@@ -485,8 +487,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 36,
-  "challenge": 9,
+  "ok": 37,
+  "challenge": 8,
   "blocked": 3
  }
 }
