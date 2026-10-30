@@ -1,6 +1,6 @@
 {
  "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
- "collected": "2026-10-23",
+ "collected": "2026-10-30",
  "polls": [
   {
    "pollster": "YouGov",
@@ -1291,6 +1291,42 @@
    "url": "https://yougov.com/en-us/articles/55795-2026-midterms-update-ebbing-support-for-ukraine-and-more-october-19-20-2026-economist-yougov-poll",
    "auto": true,
    "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AjDiUmp.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-23",
+   "end_date": "2026-10-26",
+   "sample_size": 1440,
+   "population": "rv",
+   "question": "approval",
+   "answers": {
+    "Approve": 39.0,
+    "Disapprove": 58.0
+   },
+   "url": "https://yougov.com/en-us/articles/55847-democrats-2026-midterms-lead-voter-fraud-concerns-ramaswamy-ad-more-october-23-26-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AdxdJpN.pdf"
+  },
+  {
+   "pollster": "YouGov",
+   "sponsors": [
+    "The Economist"
+   ],
+   "start_date": "2026-10-23",
+   "end_date": "2026-10-26",
+   "sample_size": 1440,
+   "population": "rv",
+   "question": "generic",
+   "answers": {
+    "Dem": 46.0,
+    "Rep": 40.0
+   },
+   "url": "https://yougov.com/en-us/articles/55847-democrats-2026-midterms-lead-voter-fraud-concerns-ramaswamy-ad-more-october-23-26-2026-economist-yougov-poll",
+   "auto": true,
+   "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_AdxdJpN.pdf"
   }
  ]
 }
