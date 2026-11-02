@@ -50,7 +50,7 @@
   "CA": [
    {
     "url": "https://electionresults.sos.ca.gov/",
-    "result": "ok",
+    "result": "challenge",
     "http": 200,
     "type": "text/html"
    },
@@ -256,8 +256,8 @@
   "MO": [
    {
     "url": "https://enr.sos.mo.gov/",
-    "result": "challenge",
-    "http": 403
+    "result": "unreachable",
+    "error": "The read operation timed out"
    }
   ],
   "MS": [
@@ -485,9 +485,9 @@
   ]
  },
  "summary": {
-  "unreachable": 2,
+  "unreachable": 3,
   "ok": 36,
-  "challenge": 9,
+  "challenge": 8,
   "blocked": 3
  }
 }
