@@ -99,3 +99,22 @@ test("candidates are matched to race sides by surname (ignoring Jr./III), then b
   assert.equal(sideOf({ name: "M. Peltola", party: "D", votes: 1 }, d, r), "d");
   assert.equal(sideOf({ name: "Someone Else", party: "O", votes: 1 }, d, r), "o");
 });
+
+test("live page: results become snapshots with real vote counts, holds and stale feeds", async () => {
+  const { liveSnaps } = await import("./livesnap.ts");
+  const row = { id: "2026-sen-GA", o: "s", st: "GA", title: "Georgia", dn: "Jon Ossoff", dp: "D", rn: "Mike Collins", rp: "R", c: 0, mu0: 8, sd0: 6, rule: "runoff", third: 3, holder: "D", openAt: 60, lastClose: 60, expected: 1, actual: 1, start: 0, dur: 1, lean: 0, cadence: 1, offset: 0 } as never;
+  const res = { updated: "2026-11-04T02:00:00Z", holds: {}, races: [{ race_id: "2026-sen-GA", state: "GA", total: 0, units_reporting: 2600, units_total: 2600, source: "x",
+    cands: [{ name: "Jon Ossoff", party: "D", votes: 2600000 }, { name: "Mike Collins", party: "R", votes: 2000000 }, { name: "Third P", party: "O", votes: 60000 }] }] };
+  const st = { updated: "2026-11-04T02:00:00Z", states: { GA: { state: "ok", last_success: "2026-11-04T02:00:00Z" } } };
+  const now = Date.parse("2026-11-04T02:00:00Z");
+  const [a] = liveSnaps([row], res as never, st as never, now);
+  assert.deepEqual(a.votes, { d: 2600000, r: 2000000, o: 60000 });
+  assert.equal(a.decision.state, "decided");          // everything counted, lead of about 12 points, above 50%
+  assert.equal(a.decision.winner, "dside");
+  const [b] = liveSnaps([row], res as never, { ...st, states: { GA: { state: "stale", last_success: "2026-11-04T01:40:00Z" } } } as never, now);
+  assert.equal(b.feed.status, "stale");
+  const [c] = liveSnaps([row], { ...res, holds: { "2026-sen-GA": { action: "undecided", reason: "recount" } } } as never, st as never, now);
+  assert.equal(c.decision.state, "counting");
+  const [d] = liveSnaps([row], null, null, Date.parse("2026-11-03T23:30:00Z"));
+  assert.equal(d.feed.status, "closed");               // polls close at openAt=60 min after 6 pm = 7 pm ET
+});

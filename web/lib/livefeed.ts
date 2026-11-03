@@ -6,7 +6,7 @@ export type LiveRace = {
   counties?: Record<string, [number, number, number]>;   // county name -> [Democratic, Republican, other]
 };
 export type LiveResults = { updated: string | null; races: LiveRace[]; holds?: Record<string, { action: "undecided" | "decided_dside" | "decided_rside"; reason: string }> };
-export type LiveStatus = { updated: string | null; publish_every_s?: number; states: Record<string, { state: "ok" | "partial" | "stale" | "down" | "paused"; last_success: string | null; message?: string }>; by_hand?: string[]; override_errors?: string[] };
+export type LiveStatus = { updated: string | null; publish_every_s?: number; states: Record<string, { state: "ok" | "partial" | "stale" | "down" | "paused"; last_success: string | null; message?: string; rejected?: { race_id: string; why: string }[] }>; by_hand?: string[]; override_errors?: string[] };
 
 /** Where the worker publishes. With Cloudflare storage set up (NEXT_PUBLIC_LIVE_URL) numbers refresh every ~15 seconds; without it the worker
  * commits the files into the site itself and they refresh when the site redeploys (every 10 to 30 minutes). */

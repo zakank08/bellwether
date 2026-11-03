@@ -10,15 +10,15 @@ import { DemoHexMap, DemoStateMap, fillFor, flipOfSnap, MapLegend } from "./Demo
 
 const SPEEDS = [["Slow", 3], ["Normal", 10], ["Fast", 30]] as const;
 const dayLabel = (t: number) => (t >= 360 ? " · Nov. 4" : "");
-type Chamber = { D: number; R: number; C: number; ess: number };
+export type Chamber = { D: number; R: number; C: number; ess: number };
 
-function Status({ s }: { s: Snap }) {
+export function Status({ s }: { s: Snap }) {
   const d = s.decision, r = s.row;
   if (d.state === "decided") return <span className="chip demo-decided">✓ Decided: {surname(d.winner === "dside" ? r.dn : r.rn)} ({partyOf(r, d.winner!)})</span>;
   const label = { waiting: s.feed.status === "closed" ? "Polls not closed" : "No results yet", counting: "Counting", close: "Too close to decide", runoff: "Runoff possible", rcv: "Ranked-choice count later", primary: "All-party primary", decided: "" }[d.state];
   return <span className={`chip demo-${d.state}`}>{label}</span>;
 }
-function FeedChip({ s, t }: { s: Snap; t: number }) {
+export function FeedChip({ s, t }: { s: Snap; t: number }) {
   const f = s.feed;
   if (f.status === "manual") return <span className="chip demo-manual" title={f.note}>Entered by hand</span>;
   if (f.status === "stale") return <span className="chip demo-warn" title={f.note}>Feed stale · {t - (s.tEff ?? 0)} min</span>;
@@ -27,7 +27,7 @@ function FeedChip({ s, t }: { s: Snap; t: number }) {
   return null;
 }
 
-function tally(snaps: Snap[], office: "s" | "h", meta: WMeta) {
+export function tally(snaps: Snap[], office: "s" | "h", meta: WMeta) {
   const nuD = office === "s" ? meta.senate_not_up.D + meta.senate_not_up.I_caucus_D : 0, nuR = office === "s" ? meta.senate_not_up.R : 0;
   let decD = 0, decR = 0, leadD = 0, leadR = 0;
   for (const s of snaps) {
@@ -38,9 +38,9 @@ function tally(snaps: Snap[], office: "s" | "h", meta: WMeta) {
   const total = office === "s" ? 100 : 435;
   return { nuD, nuR, decD, decR, leadD, leadR, total, maj: office === "s" ? 51 : 218, openN: total - nuD - nuR - decD - decR - leadD - leadR };
 }
-type Tally = ReturnType<typeof tally>;
+export type Tally = ReturnType<typeof tally>;
 
-function SeatBar({ t, label }: { t: Tally; label: string }) {
+export function SeatBar({ t, label }: { t: Tally; label: string }) {
   const w = (n: number) => `${(Math.max(n, 0) / t.total) * 100}%`;
   return (
     <div className="seatbar" role="img" aria-label={label}>
@@ -52,7 +52,7 @@ function SeatBar({ t, label }: { t: Tally; label: string }) {
   );
 }
 
-function Scoreboard({ office, t, ch, base, tm }: { office: "s" | "h"; t: Tally; ch: Chamber | null; base: Chamber; tm: number }) {
+export function Scoreboard({ office, t, ch, base, tm }: { office: "s" | "h"; t: Tally; ch: Chamber | null; base: Chamber; tm: number }) {
   const D = ch ?? base;
   return (
     <div className="demo-panel">
@@ -100,7 +100,7 @@ function OddsChart({ pts, tm }: { pts: { t: number; p: number }[]; tm: number })
   );
 }
 
-function Detail({ s, t, series, onPick, stateSnaps, preP }: { s: Snap; t: number; series: { t: number; p: number }[]; onPick: (id: string) => void; stateSnaps: Snap[]; preP: number }) {
+export function Detail({ s, t, series, onPick, stateSnaps, preP }: { s: Snap; t: number; series: { t: number; p: number }[]; onPick: (id: string) => void; stateSnaps: Snap[]; preP: number }) {
   const r = s.row;
   const lead = s.margin == null ? null : Math.abs(candidateVotes(s).d - candidateVotes(s).r);
   return (

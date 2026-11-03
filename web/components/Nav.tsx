@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  ["/", "Forecast"], ["/find/", "My races"], ["/whatif/", "What if?"], ["/senate/", "Senate"], ["/house/", "House"], ["/governor/", "Governors"], ["/schedule/", "Election night"],
+  ["/", "Forecast"], ["/find/", "My races"], ["/whatif/", "What if?"], ["/senate/", "Senate"], ["/house/", "House"], ["/governor/", "Governors"], ["/election-night/", "Election night"],
   ["/polls/", "Polls"], ["/methodology/", "How it works"],
 ] as const;
 

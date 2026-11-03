@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Search from "@/components/Search";
 import StaleBanner from "@/components/StaleBanner";
 import LiveFeedBanner from "@/components/LiveFeedBanner";
+import NightCallout from "@/components/NightCallout";
 import ScrollFX from "@/components/ScrollFX";
 import NewsBar from "@/components/NewsBar";
 import { topNews } from "@/lib/news";
@@ -33,6 +34,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         </div>
       </div>
     </header>
+    <NightCallout />
     <NewsBar items={topNews(3)} />
     <StaleBanner updated={getForecast().updated} />
     <LiveFeedBanner />

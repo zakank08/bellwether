@@ -448,3 +448,13 @@ a:not([class]) { text-underline-offset: 3px; text-decoration-thickness: 1px; tra
   .site-head, .nav a::after, .news-card, .state-grid a, .quick-item, .quick-ic, .to-top, .toggle button, .icon-btn { transition: none !important; }
   .news-card:hover, .state-grid a:hover, .quick-item:hover, .quick-item:hover .quick-ic, .to-top:hover { transform: none !important; }
 }
+
+/* ---- election-night callout ---- */
+.night-callout { display: block; background: var(--ink); color: var(--surface); text-decoration: none; font-size: 14px; line-height: 20px; }
+.night-callout .wrap { display: flex; align-items: center; gap: 12px; min-height: 42px; padding-block: 8px; flex-wrap: wrap; }
+.night-callout strong { font-weight: 700; } .night-sub { opacity: .8; } .night-go { margin-left: auto; font-weight: 600; white-space: nowrap; }
+.night-callout:hover .night-go { text-decoration: underline; }
+.night-dot { width: 9px; height: 9px; border-radius: 50%; background: #ff5a4f; flex: none; animation: nightpulse 1.8s ease-in-out infinite; }
+@keyframes nightpulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 90, 79, .6); } 50% { box-shadow: 0 0 0 7px rgba(255, 90, 79, 0); } }
+@media (prefers-reduced-motion: reduce) { .night-dot { animation: none; } }
+@media (max-width: 719px) { .night-sub { display: none; } .night-go { font-size: 13px; } }
