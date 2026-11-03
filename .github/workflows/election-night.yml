@@ -15,6 +15,10 @@ on:
         description: "Rehearsal: replay old 2024 files instead of reading live feeds"
         type: boolean
         default: false
+      hours:
+        description: "Length of each part in hours (leave 5.4; use 0.05 for a 3-minute test that runs only one part)"
+        type: string
+        default: "5.4"
 
 permissions:
   contents: read
@@ -50,11 +54,11 @@ jobs:
           if [ "${{ inputs.rehearsal }}" = "true" ]; then
             python -m bellwether.results.run --rehearse --out live
           else
-            python -m bellwether.results.run --loop --upload --hours 5.4 --out live
+            python -m bellwether.results.run --loop --upload --hours ${{ inputs.hours || 5.4 }} --out live
           fi
   part2:
     needs: part1
-    if: ${{ !cancelled() && inputs.rehearsal != true }}
+    if: ${{ !cancelled() && inputs.rehearsal != true && (inputs.hours == '' || inputs.hours == '5.4') }}
     runs-on: ubuntu-latest
     timeout-minutes: 345
     permissions:
@@ -76,10 +80,10 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: python -m bellwether.results.run --loop --upload --hours 5.4 --out live
+        run: python -m bellwether.results.run --loop --upload --hours ${{ inputs.hours || 5.4 }} --out live
   part3:
     needs: part2
-    if: ${{ !cancelled() && inputs.rehearsal != true }}
+    if: ${{ !cancelled() && inputs.rehearsal != true && (inputs.hours == '' || inputs.hours == '5.4') }}
     runs-on: ubuntu-latest
     timeout-minutes: 345
     permissions:
@@ -101,10 +105,10 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: python -m bellwether.results.run --loop --upload --hours 5.4 --out live
+        run: python -m bellwether.results.run --loop --upload --hours ${{ inputs.hours || 5.4 }} --out live
   part4:
     needs: part3
-    if: ${{ !cancelled() && inputs.rehearsal != true }}
+    if: ${{ !cancelled() && inputs.rehearsal != true && (inputs.hours == '' || inputs.hours == '5.4') }}
     runs-on: ubuntu-latest
     timeout-minutes: 345
     permissions:
@@ -126,4 +130,4 @@ jobs:
           R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: python -m bellwether.results.run --loop --upload --hours 5.4 --out live
+        run: python -m bellwether.results.run --loop --upload --hours ${{ inputs.hours || 5.4 }} --out live

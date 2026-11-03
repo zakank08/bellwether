@@ -133,9 +133,11 @@ def publish_to_site(out: Path) -> bool:
     return False
 
 
-def publish_every_s(now: datetime | None = None) -> int:
+def publish_every_s(now: datetime | None = None, has_votes: bool = True) -> int:
     """How often the site-publish fallback pushes. Every push is a site build; Vercel's free plan allows about 100 a day,
     so it is quicker while results are pouring in (7 p.m. to 2 a.m. Eastern) and slower around that."""
+    if not has_votes:
+        return 3600  # nothing counted anywhere yet: no reason to rebuild the site more than hourly
     h = (now or datetime.now(timezone.utc)).hour
     return 600 if (h >= 23 or h < 7) else 1800
 
@@ -189,14 +191,16 @@ def main() -> None:
         src, ov, problems = current_config()
         res, st = worker.run_once(readers_from_config(src), prev, ov)
         st["override_errors"] = list(st.get("override_errors") or []) + problems
-        st["publish_every_s"] = 15 if use_r2 else publish_every_s()
+        votes = any(r.get("total") for r in res["races"])
+        every = publish_every_s(has_votes=votes)
+        st["publish_every_s"] = 15 if use_r2 else every
         worker.write(res, st, a.out)
         prev = {"results": res, "status": st}
         if a.upload:
             try:
                 if use_r2:
                     upload(a.out)
-                elif time.time() - last_pub >= publish_every_s():
+                elif time.time() - last_pub >= every:
                     publish_to_site(a.out)
                     last_pub = time.time()
             except Exception as ex:  # noqa: BLE001 - keep counting even if publishing hiccups

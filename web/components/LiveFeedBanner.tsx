@@ -6,6 +6,7 @@ import { useLive } from "./useLive";
 export default function LiveFeedBanner() {
   const { status: s, error } = useLive();
   if (!s || !s.updated) return null;                       // nothing published yet: not election night
+  if (Date.now() < Date.parse("2026-11-03T22:00:00Z")) return null;   // the worker may be running all day; only speak up from an hour before the first polls close (6 p.m. ET = 23:00 UTC)
   const behind = Object.entries(s.states).filter(([, v]) => v.state === "stale" || v.state === "down").map(([k]) => k);
   const ageMin = (Date.now() - new Date(s.updated).getTime()) / 60000;
   const limit = Math.max(5, ((s.publish_every_s ?? 60) / 60) * 2.5 + 3);   // minutes of silence before we say the worker stopped
