@@ -135,11 +135,11 @@ def publish_to_site(out: Path) -> bool:
 
 def publish_every_s(now: datetime | None = None, has_votes: bool = True) -> int:
     """How often the site-publish fallback pushes. Every push is a site build; Vercel's free plan allows about 100 a day,
-    so it is quicker while results are pouring in (7 p.m. to 2 a.m. Eastern) and slower around that."""
+    so it is quicker while results are pouring in (6 p.m. to 2 a.m. Eastern) and slower around that."""
     if not has_votes:
-        return 3600  # nothing counted anywhere yet: no reason to rebuild the site more than hourly
+        return 7200  # nothing counted anywhere yet: no reason to rebuild the site more than every two hours
     h = (now or datetime.now(timezone.utc)).hour
-    return 600 if (h >= 23 or h < 7) else 1800
+    return 720 if (h >= 23 or h < 7) else 2400
 
 
 def seed_previous() -> dict | None:

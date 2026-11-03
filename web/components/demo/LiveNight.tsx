@@ -104,7 +104,7 @@ function Inner({ compact, schedule }: { compact: CompactRace[]; schedule: SchedR
       <div className="demo-controls">
         <div className="wrap row" style={{ gap: 14, flexWrap: "wrap", alignItems: "center" }}>
           <strong className="num demo-clock">{clock(tm)} ET<small>{dayLabel(tm)}</small></strong>
-          <span className="small muted" role="status">{anyVotes ? (updatedAgo == null ? "Live" : `Updated ${updatedAgo < 1 ? "just now" : `${updatedAgo} min ago`}`) : "Results appear as polls close"}{error ? " · connection problem, showing the last numbers" : ""}</span>
+          <span className="small muted" role="status">{anyVotes ? (updatedAgo == null ? "Live" : `Updated ${updatedAgo < 1 ? "just now" : `${updatedAgo} min ago`}`) : "Results appear as polls close"}{anyVotes && (status?.publish_every_s ?? 0) >= 300 ? ` · refreshes about every ${Math.round((status!.publish_every_s ?? 720) / 60)} minutes` : ""}{error ? " · connection problem, showing the last numbers" : ""}</span>
           <div className="mini-scores" style={{ marginLeft: "auto" }}>{mini(ts, "Senate")}{mini(th, "House")}</div>
         </div>
       </div>

@@ -6,7 +6,7 @@ All times Eastern (ET). UTC = ET + 5 hours on Nov. 3.
 - **Forecast refresh:** about every 4-6 hours (GitHub "forecast" job). It keeps running tonight; it does not use vote counts.
 - **Live results job ("election-night"):** starts itself at **10 a.m. CT / 11 a.m. ET (15:00 UTC)** and runs about 21 hours in four chained parts. It reads each state's official site every ~45 seconds and publishes:
   - **with Cloudflare storage set up:** every ~15 seconds;
-  - **without it (the default today):** into the site itself, about every **10 minutes from 6 p.m. to 2 a.m. ET** and every 30 minutes outside that (each publish redeploys the site).
+  - **without it (the default today):** into the site itself, about every **12 minutes from 6 p.m. to 2 a.m. ET** and every 40 minutes outside that (each publish redeploys the site).
 - **Site pages:** `/election-night/` (scoreboard, map, races), each race page's "Live results" box, a red "Election night" bar on every page, and a yellow banner that appears only if something is delayed.
 
 ## Things to check (2 minutes each)
