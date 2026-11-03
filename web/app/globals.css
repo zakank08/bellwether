@@ -458,3 +458,6 @@ a:not([class]) { text-underline-offset: 3px; text-decoration-thickness: 1px; tra
 @keyframes nightpulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 90, 79, .6); } 50% { box-shadow: 0 0 0 7px rgba(255, 90, 79, 0); } }
 @media (prefers-reduced-motion: reduce) { .night-dot { animation: none; } }
 @media (max-width: 719px) { .night-sub { display: none; } .night-go { font-size: 13px; } }
+
+/* long unbroken text (links, ids) must wrap instead of widening the page on phones */
+main p, main li, main figcaption { overflow-wrap: break-word; }
