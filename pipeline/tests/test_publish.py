@@ -36,3 +36,9 @@ def test_fundamentals_uses_per_run_incumbency_without_touching_defaults():
                                            fund_sd={**fundamentals.FUND_SD, "house": 5.0})
     assert (m, sd) == (4.0, 5.0)
     assert fundamentals.INCUMBENCY["house"] == base
+
+
+def test_poll_closing_times_parse_with_or_without_dots():
+    from bellwether.publish import _close_minutes
+    assert _close_minutes("6 p.m.") == 360 and _close_minutes("6pm") == 360      # Kentucky is 6 p.m. Eastern, not the 8 p.m. default
+    assert _close_minutes("7:30 p.m.") == 450 and _close_minutes("12 a.m.") == 720 and _close_minutes("1 a.m.") == 780

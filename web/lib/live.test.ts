@@ -126,3 +126,13 @@ test("governor rows get a spread backed out of their win probability", async () 
   assert.ok(r.sd0 > 3 && r.sd0 < 7, String(r.sd0));      // a 4-point lead at 80 in 100 implies roughly a 4.7-point spread
   assert.equal(r.openAt, 180);
 });
+
+
+test("closing-time text is read with or without dots, so no state silently defaults to 8 PM", async () => {
+  const { closeRange } = await import("./demo.ts");
+  assert.deepEqual(closeRange("6 p.m. and 7 p.m."), { first: 360, last: 420 });      // Kentucky
+  assert.deepEqual(closeRange("7:30 p.m."), { first: 450, last: 450 });
+  assert.deepEqual(closeRange("8pm and 9pm"), { first: 480, last: 540 });
+  assert.deepEqual(closeRange("November 4, 12 a.m. and 1 a.m."), { first: 720, last: 780 });
+  assert.equal(closeRange(null), null);
+});

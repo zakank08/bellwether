@@ -235,3 +235,12 @@ export function buildGovRows(govs: GovRace[], schedule: SchedRow[]): DemoRow[] {
       openAt: first, lastClose: last, expected: 1, actual: 1, start: first, dur: 180, lean: 0, cadence: 5, offset: 0 } as DemoRow;
   });
 }
+
+
+/** Minutes after noon ET for the earliest and latest closing time in text such as "6 p.m. and 7 p.m." or "November 4, 12 a.m. and 1 a.m.".
+ * A safety net for the live page: if the schedule file ever lacks numbers, the text is still read instead of defaulting to 8 PM. */
+export function closeRange(text: string | null | undefined): { first: number; last: number } | null {
+  const ms = [...(text ?? "").matchAll(/(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?/gi)];
+  const mins = ms.map((m) => { const h = (+m[1] % 12) + (m[3].toLowerCase() === "p" ? 12 : 24); return (h - 12) * 60 + +(m[2] ?? 0); });
+  return mins.length ? { first: Math.min(...mins), last: Math.max(...mins) } : null;
+}

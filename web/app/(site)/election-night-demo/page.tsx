@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import ElectionNightDemo from "@/components/demo/ElectionNightDemo";
 import { getRaces, getSchedule } from "@/lib/data";
+import { closeRange } from "@/lib/demo";
 
 export const metadata: Metadata = { title: "Election night rehearsal (demo)", robots: { index: false, follow: false } };
 
 export default function Page() {
   const v = "fundamentals" as const;
   const compact = getRaces().map((r) => ({ id: r.id, state: r.state, title: r.title, margin: r.margin[v] ?? null, incumbent_party: r.incumbent_party, rules: r.rules, district: r.district }));
-  const schedule = (getSchedule()?.states ?? []).map((s) => ({ state: s.state, first: s.first, last: s.last }));
+  const schedule = (getSchedule()?.states ?? []).map((s) => { const r = closeRange(s.close); return { state: s.state, first: s.first ?? r?.first ?? null, last: s.last ?? r?.last ?? null }; });
   return (
     <div>
       <div className="demo-banner" role="note">

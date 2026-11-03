@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LiveNight from "@/components/demo/LiveNight";
 import { getRaces, getSchedule } from "@/lib/data";
+import { closeRange } from "@/lib/demo";
 
 export const metadata: Metadata = {
   title: "Election night live results",
@@ -12,7 +13,7 @@ export default function Page() {
   const compact = getRaces().map((r) => ({ id: r.id, state: r.state, title: r.title, margin: r.margin[v] ?? null, incumbent_party: r.incumbent_party, rules: r.rules, district: r.district }));
   const govs = getRaces().filter((r) => r.office === "governor" && r.kind === "two_party").map((r) => ({ id: r.id, state: r.state, title: r.title, margin: r.margin[v] ?? null, p: r.p[v], incumbent_party: r.incumbent_party, rules: r.rules, dn: r.dside.name, dp: r.dside.party, rn: r.rside.name, rp: r.rside.party }));
   const stateNames = Object.fromEntries(getRaces().map((r) => [r.state, r.state_name]));
-  const schedule = (getSchedule()?.states ?? []).map((s) => ({ state: s.state, first: s.first, last: s.last }));
+  const schedule = (getSchedule()?.states ?? []).map((s) => { const r = closeRange(s.close); return { state: s.state, first: s.first ?? r?.first ?? null, last: s.last ?? r?.last ?? null }; });
   return (
     <div>
       <header className="wrap masthead" style={{ paddingBottom: 0 }}>

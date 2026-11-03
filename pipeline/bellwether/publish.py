@@ -370,10 +370,10 @@ def export_whatif(fc: Forecast, out: Path):
 def _close_minutes(t: str) -> int | None:
     """'8:30pm' -> minutes after noon ET; '12am'/'1am' roll past midnight."""
     import re
-    m = re.match(r"(\d{1,2})(?::(\d{2}))?\s*(am|pm)", t.strip().lower())
+    m = re.match(r"(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?", t.strip().lower())   # "8pm", "8 p.m.", "12:30 a.m."
     if not m:
         return None
-    h, mi, ap = int(m.group(1)), int(m.group(2) or 0), m.group(3)
+    h, mi, ap = int(m.group(1)), int(m.group(2) or 0), m.group(3) + "m"
     h = h % 12 + (12 if ap == "pm" else 24)
     return (h - 12) * 60 + mi
 
@@ -402,11 +402,11 @@ def poll_schedule(rows) -> dict:
             by_state[st]["close_source"] = "fallback"
     out = []
     for e in by_state.values():
-        times = re.findall(r"\d{1,2}(?::\d{2})?\s*[ap]m", e["close"] or "")
+        times = re.findall(r"\d{1,2}(?::\d{2})?\s*[ap]\.?m\.?", e["close"] or "")
         mins = [m for m in (_close_minutes(t) for t in times) if m is not None]
         e["first"] = min(mins) if mins else None
         e["last"] = max(mins) if mins else None
-        e["times"] = times
+        e["times"] = [re.sub(r"[\s.]", "", t) for t in times]   # "8 p.m." -> "8pm"
         e["note"] = fb.get("notes", {}).get(e["state"])
         out.append(e)
     out.sort(key=lambda e: (e["first"] is None, e["first"] or 0, e["state_name"]))
