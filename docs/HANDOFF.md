@@ -108,6 +108,12 @@ Still open (not fixed, need a decision or a real feed):
 - `ScrollFX` (in the site layout): below-the-fold sections and card groups ease in as they scroll into view (staggered), the header becomes frosted glass once scrolled, "Back to top" button. Only things that start off-screen are hidden (no flash on refresh); reduced-motion users get none. Tokens/classes in `globals.css` ("motion and polish"). Elements inside `Reveal` are skipped to avoid double animation.
 - `QuickLinks` on the home page (six big doors: find my races, what-if, compare, states, election night, latest). Phone nav has an edge fade and bigger tap targets.
 
+## 1l. Election-day changes (Nov. 3)
+- Storage fallback: without Cloudflare R2, the worker commits `web/public/data/live/live.json` to main (10/30-minute cadence, to stay under Vercel's ~100 deploys/day); the site reads `/data/live/live.json`. With R2 (`NEXT_PUBLIC_LIVE_URL` + 4 secrets) it is ~15 s. Pushing a *branch* for live data is NOT an option: every branch push makes a Vercel preview build.
+- Worker now: reads all states in parallel, 75 s per-pass limit, never serves a stale cached copy as fresh, re-reads `live_overrides.json` and `live_sources.json` from main every cycle (a hand correction no longer needs a restart), resumes from the last published file when a chained part starts, `election` may be a list of ids to try. Alaska's site omits its intermediate certificate: `data/config/extra_ca.pem` supplies it for that host only (verification stays on).
+- `election-night.yml`: 4 chained parts, starts itself 15:00 UTC Nov. 3 (and by hand), job-level `contents: write`.
+- A stray branch `live-test` (one commit) exists from a test; it is harmless and can be deleted in GitHub (Branches).
+
 ## 2. Do first (today)
 
 1. **Confirm the scheduled workflow works.** GitHub → Actions → `forecast`. Expect a

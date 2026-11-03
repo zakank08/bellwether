@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FutTimeout
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
@@ -17,6 +18,7 @@ from typing import Callable
 from .model import Cand, RaceResult
 
 Reader = Callable[[], list[RaceResult]]
+READ_TIMEOUT_S = 75   # all feeds are read in parallel; anything slower than this counts as down for this pass
 
 
 def problems(new: RaceResult, old: RaceResult | None) -> list[str]:
@@ -85,7 +87,11 @@ def run_once(readers: dict[str, Reader], prev: dict | None = None, overrides: di
     states: dict[str, dict] = {}
     skip = set((overrides or {}).get("pause_states") or [])
 
-    for st, read in readers.items():
+    # Every state is read at the same time, so one slow or hung state site cannot hold up the rest.
+    pool = ThreadPoolExecutor(max_workers=max(1, min(16, len(readers))))
+    futures = {st: pool.submit(read) for st, read in readers.items() if st not in skip}
+    deadline = time.time() + READ_TIMEOUT_S
+    for st in readers:
         s = dict(old_status.get(st) or {"errors_in_a_row": 0, "last_success": None})
         s["rejected"] = []
         if st in skip:
@@ -93,7 +99,12 @@ def run_once(readers: dict[str, Reader], prev: dict | None = None, overrides: di
             states[st] = s
             continue
         try:
-            rows = read()
+            rows = futures[st].result(timeout=max(0.1, deadline - time.time()))
+        except FutTimeout:
+            s["errors_in_a_row"] = int(s.get("errors_in_a_row") or 0) + 1
+            s.update(state="stale" if s.get("last_success") else "down", message=f"Feed too slow (over {READ_TIMEOUT_S}s)")
+            states[st] = s
+            continue
         except Exception as ex:  # noqa: BLE001 - one broken feed must not stop the others
             s["errors_in_a_row"] = int(s.get("errors_in_a_row") or 0) + 1
             s.update(state="stale" if s.get("last_success") else "down", message=f"Feed error: {str(ex)[:160]}")
@@ -115,6 +126,7 @@ def run_once(readers: dict[str, Reader], prev: dict | None = None, overrides: di
                      message="" if not s["rejected"] else f"{len(s['rejected'])} race(s) rejected; last good numbers kept",
                      races=accepted)
         states[st] = s
+    pool.shutdown(wait=False, cancel_futures=True)
 
     hand, holds, ov_errors = check_overrides(overrides or {})
     for r in hand:
@@ -127,7 +139,8 @@ def run_once(readers: dict[str, Reader], prev: dict | None = None, overrides: di
 
 def write(results: dict, status: dict, out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
-    for name, obj in (("results.json", results), ("status.json", status)):
+    live = {"results": results, "status": status}   # one file for the website, so a visitor makes one request, not two
+    for name, obj in (("live.json", live), ("results.json", results), ("status.json", status)):
         tmp = out / (name + ".tmp")
         tmp.write_text(json.dumps(obj, separators=(",", ":")))
         tmp.replace(out / name)  # atomic, so a visitor never reads half a file

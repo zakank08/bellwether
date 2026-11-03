@@ -48,8 +48,8 @@ def parse(text: str, state: str, year: int = 2026, url: str = "") -> list[RaceRe
 def fetch(state: str, election_id: str, year: int = 2026) -> list[RaceResult]:
     from .. import http
     base = f"{SOURCES[state][0]}/{election_id}"
-    ver = http.fetch(f"{base}/current_ver.txt", max_age_s=20).decode().strip()
+    ver = http.fetch(f"{base}/current_ver.txt", max_age_s=20, allow_stale=False, retries=2, timeout=25).decode().strip()
     url = f"{base}/{ver}/reports/summary.zip"
-    z = zipfile.ZipFile(io.BytesIO(http.fetch(url, max_age_s=20)))
+    z = zipfile.ZipFile(io.BytesIO(http.fetch(url, max_age_s=20, allow_stale=False, retries=2, timeout=25)))
     text = z.read("summary.csv").decode("utf-8", errors="replace")
     return parse(text, state, year, f"{base}/")

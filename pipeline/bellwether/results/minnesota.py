@@ -49,7 +49,7 @@ def fetch(date: str, year: int = 2026) -> list[RaceResult]:
     for f in FILES:
         url = f"https://electionresultsfiles.sos.state.mn.us/{date}/{f}.txt"
         try:
-            out += parse(http.fetch(url, max_age_s=20).decode("utf-8", errors="replace"), year, url)
+            out += parse(http.fetch(url, max_age_s=20, allow_stale=False, retries=2, timeout=25).decode("utf-8", errors="replace"), year, url)
         except http.FetchError as ex:
             errors.append(str(ex))  # a contest group may not exist yet; the other files still count
     if errors and not out:

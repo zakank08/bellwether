@@ -54,4 +54,4 @@ def parse(data: dict, state: str, year: int = 2026, url: str = "") -> list[RaceR
 def fetch(state: str, election: str, year: int = 2026) -> list[RaceResult]:
     from .. import http
     url = SITES[state][1].format(election=election)
-    return parse(json.loads(http.fetch(url, max_age_s=25)), state, year, url)
+    return parse(json.loads(http.fetch(url, max_age_s=25, allow_stale=False, retries=2, timeout=25)), state, year, url)

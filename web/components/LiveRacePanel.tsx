@@ -28,7 +28,7 @@ export default function LiveRacePanel({ raceId, title, dside, rside, mu0, sd0, r
     return (
       <section className="block live-panel" aria-labelledby="live-h">
         <h2 id="live-h" className="display">Live results</h2>
-        <p className="muted">{results ? "No results for this race yet. They appear here as the state reports them, usually after polls close." : error ? "Can’t reach the live results right now. The forecast above is unchanged." : "Loading live results…"}</p>
+        <p className="muted">{results ? "No results for this race yet. They appear here as the state reports them, after polls close." : error ? "Can’t reach the live results right now. The forecast above is unchanged." : "Loading live results…"}</p>
       </section>
     );
   }

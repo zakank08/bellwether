@@ -1,7 +1,8 @@
 """Command line for election night.
 
   python -m bellwether.results.run --once --out /tmp/live            one pass, write the two files
-  python -m bellwether.results.run --loop --upload                   the election-night loop, pushing to storage
+  python -m bellwether.results.run --loop --upload                   the election-night loop; publishes to Cloudflare R2 when its
+                                                                     keys exist, otherwise into the site itself (web/public/data/live)
   python -m bellwether.results.run --rehearse --out /tmp/live        replay 2024 files in fast motion (no network)
 
 Which feeds to read comes from data/config/live_sources.json (a state is only read once its 2026 election exists)."""
@@ -10,7 +11,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import subprocess
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 from . import alaska, clarity, enhanced_voting, minnesota, north_carolina, worker
@@ -22,35 +25,128 @@ OVERRIDES = ROOT / "data" / "config" / "live_overrides.json"
 FIXTURES = ROOT / "pipeline" / "tests" / "fixtures" / "results"
 
 
-def readers_from_config() -> dict:
-    cfg = json.loads(SOURCES.read_text())
+REPO = os.environ.get("GITHUB_REPOSITORY", "zakank08/bellwether")
+LIVE_DIR = ROOT / "web" / "public" / "data" / "live"
+
+
+def remote_json(path: str):
+    """Read a file from the repository's main branch through the GitHub API, so a hand correction committed a minute ago is seen
+    without restarting the worker (the job's own checkout never changes). Returns None when it cannot be read."""
+    import requests
+    headers = {"Accept": "application/vnd.github.raw+json", "User-Agent": "bellwether-worker"}
+    if os.environ.get("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    try:
+        r = requests.get(f"https://api.github.com/repos/{REPO}/contents/{path}?ref=main", headers=headers, timeout=15)
+        r.raise_for_status()
+        return json.loads(r.text)
+    except Exception:  # noqa: BLE001 - fall back to the local copy
+        return None
+
+
+def local_json(path: Path):
+    try:
+        return json.loads(path.read_text())
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def current_config() -> tuple[dict, dict, list[str]]:
+    """(sources, overrides, problems). The newest copy on main wins; the checked-out copy is the fallback."""
+    problems = []
+    src = remote_json("data/config/live_sources.json") or local_json(SOURCES) or {"year": 2026, "states": {}}
+    ov = remote_json("data/config/live_overrides.json")
+    if ov is None:
+        ov = local_json(OVERRIDES)
+        if ov is None:
+            ov = {}
+            problems.append("live_overrides.json could not be read or is not valid JSON; hand corrections are NOT being applied")
+    return src, ov, problems
+
+
+def _try_each(fn, ids):
+    """`election` may be one id or a list of ids to try in order (the state's exact id is not always known beforehand)."""
+    ids = ids if isinstance(ids, list) else [ids]
+    err = None
+    for i in ids:
+        try:
+            return fn(i)
+        except Exception as ex:  # noqa: BLE001
+            err = ex
+    raise err  # type: ignore[misc]
+
+
+def readers_from_config(cfg: dict | None = None) -> dict:
+    cfg = cfg or json.loads(SOURCES.read_text())
+    y = cfg["year"]
     out = {}
     for st, c in cfg["states"].items():
         if not c.get("election"):
             continue  # not published yet
-        kind = c["reader"]
-        if kind == "alaska":
-            out[st] = lambda c=c: alaska.fetch(c["election"], cfg["year"])
-        elif kind == "north_carolina":
-            out[st] = lambda c=c: north_carolina.fetch(c["election"], cfg["year"])
-        elif kind == "minnesota":
-            out[st] = lambda c=c: minnesota.fetch(c["election"], cfg["year"])
-        elif kind == "clarity":
-            out[st] = lambda st=st, c=c: clarity.fetch(st, c["election"], cfg["year"])
-        elif kind == "enhanced_voting":
-            out[st] = lambda st=st, c=c: enhanced_voting.fetch(st, c["election"], cfg["year"])
+        k, e = c["reader"], c["election"]
+        if k == "alaska":
+            out[st] = lambda e=e: _try_each(lambda i: alaska.fetch(i, y), e)
+        elif k == "north_carolina":
+            out[st] = lambda e=e: _try_each(lambda i: north_carolina.fetch(i, y), e)
+        elif k == "minnesota":
+            out[st] = lambda e=e: _try_each(lambda i: minnesota.fetch(i, y), e)
+        elif k == "clarity":
+            out[st] = lambda st=st, e=e: _try_each(lambda i: clarity.fetch(st, i, y), e)
+        elif k == "enhanced_voting":
+            out[st] = lambda st=st, e=e: _try_each(lambda i: enhanced_voting.fetch(st, i, y), e)
     return out
 
 
 def upload(out: Path) -> None:
-    """Copy the two files to a Cloudflare R2 bucket (S3-compatible). Keys come from GitHub secrets, never from code."""
+    """Copy the files to a Cloudflare R2 bucket (S3-compatible). Keys come from GitHub secrets, never from code."""
     import boto3  # installed by the workflow
     s3 = boto3.client("s3", endpoint_url=f"https://{os.environ['R2_ACCOUNT_ID']}.r2.cloudflarestorage.com",
                       aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"], aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"],
                       region_name="auto")
-    for name in ("results.json", "status.json"):
+    for name in ("live.json", "results.json", "status.json"):
         s3.put_object(Bucket=os.environ["R2_BUCKET"], Key=f"live/{name}", Body=(out / name).read_bytes(),
                       ContentType="application/json", CacheControl="public, max-age=10")
+
+
+def r2_configured() -> bool:
+    return all(os.environ.get(k) for k in ("R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET"))
+
+
+def publish_to_site(out: Path) -> bool:
+    """No storage account needed: commit the live files to main, which redeploys the site with them (about a minute).
+    Used when Cloudflare R2 is not set up. Slower (minutes, not seconds) but needs nothing from anyone."""
+    LIVE_DIR.mkdir(parents=True, exist_ok=True)
+    for name in ("live.json",):
+        (LIVE_DIR / name).write_text((out / name).read_text())
+    git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True)  # noqa: E731
+    git("config", "user.name", "bellwether-bot"); git("config", "user.email", "bot@users.noreply.github.com")
+    git("add", "web/public/data/live/live.json")
+    if git("diff", "--cached", "--quiet").returncode == 0:
+        return False
+    git("commit", "-m", "Live results update (automatic)")
+    for attempt in range(4):
+        git("pull", "--rebase", "--autostash", "origin", "main")
+        if git("push", "origin", "HEAD:main").returncode == 0:
+            return True
+        time.sleep(3 * (attempt + 1))
+    print("could not push live results to main after 4 tries")
+    return False
+
+
+def publish_every_s(now: datetime | None = None) -> int:
+    """How often the site-publish fallback pushes. Every push is a site build; Vercel's free plan allows about 100 a day,
+    so it is quicker while results are pouring in (7 p.m. to 2 a.m. Eastern) and slower around that."""
+    h = (now or datetime.now(timezone.utc)).hour
+    return 600 if (h >= 23 or h < 7) else 1800
+
+
+def seed_previous() -> dict | None:
+    """When a later job in the chain starts, pick up where the last one stopped (so a state whose feed is down right now still shows
+    its last good numbers)."""
+    j = remote_json("web/public/data/live/live.json")
+    if j and j.get("results") and j.get("status"):
+        return {"results": j["results"], "status": j["status"]}
+    return None
 
 
 def rehearse(out: Path, steps: int = 12) -> None:
@@ -71,36 +167,40 @@ def main() -> None:
     ap.add_argument("--once", action="store_true")
     ap.add_argument("--loop", action="store_true")
     ap.add_argument("--rehearse", action="store_true")
-    ap.add_argument("--upload", action="store_true")
+    ap.add_argument("--upload", action="store_true", help="publish (R2 if configured, else into the site)")
     ap.add_argument("--every", type=int, default=45)
     ap.add_argument("--hours", type=float, default=5.5)
     a = ap.parse_args()
     if a.rehearse:
         return rehearse(a.out)
-    readers = readers_from_config()
     if a.once:
-        ov = json.loads(OVERRIDES.read_text()) if OVERRIDES.exists() else {}
-        res, st = worker.run_once(readers, None, ov)
+        src, ov, _ = current_config() if os.environ.get("GITHUB_ACTIONS") else (json.loads(SOURCES.read_text()), local_json(OVERRIDES) or {}, [])
+        res, st = worker.run_once(readers_from_config(src), None, ov)
         worker.write(res, st, a.out)
         print(json.dumps(st["states"], indent=1))
         if a.upload:
-            upload(a.out)
+            upload(a.out) if r2_configured() else publish_to_site(a.out)
         return
-    prev, end = None, time.time() + a.hours * 3600
+    prev, end, last_pub = seed_previous(), time.time() + a.hours * 3600, 0.0
+    use_r2 = r2_configured()
+    print("publishing to:", "Cloudflare R2" if use_r2 else "the site itself (web/public/data/live)")
     while time.time() < end:
         t = time.time()
-        try:
-            ov = json.loads(OVERRIDES.read_text()) if OVERRIDES.exists() else {}
-        except json.JSONDecodeError:
-            ov = {}
-        res, st = worker.run_once(readers, prev, ov)
+        src, ov, problems = current_config()
+        res, st = worker.run_once(readers_from_config(src), prev, ov)
+        st["override_errors"] = list(st.get("override_errors") or []) + problems
+        st["publish_every_s"] = 15 if use_r2 else publish_every_s()
         worker.write(res, st, a.out)
         prev = {"results": res, "status": st}
         if a.upload:
             try:
-                upload(a.out)
-            except Exception as ex:  # noqa: BLE001 - keep counting even if storage hiccups
-                print("upload failed:", ex)
+                if use_r2:
+                    upload(a.out)
+                elif time.time() - last_pub >= publish_every_s():
+                    publish_to_site(a.out)
+                    last_pub = time.time()
+            except Exception as ex:  # noqa: BLE001 - keep counting even if publishing hiccups
+                print("publish failed:", ex)
         time.sleep(max(1, a.every - (time.time() - t)))
 
 

@@ -9,7 +9,7 @@
   },
   "NC": {
    "reader": "north_carolina",
-   "election": null,
+   "election": "2026_11_03",
    "note": "date like 2026_11_03; 2024 was 2024_11_05"
   },
   "GA": {
@@ -19,7 +19,7 @@
   },
   "MN": {
    "reader": "minnesota",
-   "election": null,
+   "election": "20261103",
    "note": "date like 20261103; 2024 was 20241105"
   },
   "CO": {

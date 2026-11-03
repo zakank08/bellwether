@@ -1,4 +1,11 @@
-# Election night: where live results are stored (one-time setup, ~15 minutes)
+# Election night: where live results are stored (OPTIONAL speed-up, ~15 minutes)
+
+**Updated Nov. 3:** the site works without this. If the four secrets below do not exist, the election-night job saves the live numbers
+*into the site itself* and the site redeploys with them, so numbers refresh every **10 minutes** (7 p.m.-2 a.m. Eastern) or 30 minutes
+(otherwise). Doing the steps below makes it every **~15 seconds** and takes load off the site. You can do them at any point during the night:
+the next run of the worker picks the keys up (the job re-reads them only when a new chained part starts, about every 5 hours, or when you
+start the job again by hand).
+
 
 The website is a set of fixed pages, so live numbers are kept in a separate public "bucket" that the browser reads
 every 15 seconds. We use **Cloudflare R2**: free storage, **free downloads** (so a huge crowd cannot run up a bill or

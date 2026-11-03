@@ -51,6 +51,6 @@ def fetch(date: str, year: int = 2026) -> list[RaceResult]:
     """`date` is like 2026_11_03."""
     from .. import http
     url = f"https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/{date}/results_pct_{date.replace('_', '')}.zip"
-    z = zipfile.ZipFile(io.BytesIO(http.fetch(url, max_age_s=25)))
+    z = zipfile.ZipFile(io.BytesIO(http.fetch(url, max_age_s=25, allow_stale=False, retries=2, timeout=25)))
     text = z.read(z.namelist()[0]).decode("utf-8", errors="replace")
     return parse(text, year, url)

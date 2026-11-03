@@ -43,4 +43,4 @@ def parse(text: str, year: int = 2026, url: str = "") -> list[RaceResult]:
 def fetch(election_code: str, year: int = 2026) -> list[RaceResult]:
     from .. import http
     url = f"https://www.elections.alaska.gov/results/{election_code}/ENRbyPrecinct.csv"
-    return parse(http.fetch(url, max_age_s=25).decode("utf-8-sig"), year, url)
+    return parse(http.fetch(url, max_age_s=25, allow_stale=False, retries=2, timeout=25).decode("utf-8-sig"), year, url)

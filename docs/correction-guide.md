@@ -7,7 +7,7 @@ race held open. The site shows hand-entered numbers as **"Entered by hand from <
 1. Open https://github.com/zakank08/bellwether/blob/main/data/config/live_overrides.json
 2. Click the **pencil icon** (top right of the file) to edit.
 3. Make the change below, scroll down, click **Commit changes**, choose **Commit directly to the main branch**, click **Commit changes**.
-4. Within about a minute the worker picks it up (the site updates within another 15 seconds). No rebuild needed.
+4. The worker picks it up within about a minute (it reads the file from GitHub every cycle). The site shows it after the next publish: about 15 seconds with Cloudflare storage set up, otherwise at the next 10-minute (or 30-minute) site update. No rebuild needed by you.
    (This only works while the election-night job is running.)
 
 If you make a typo, the worker ignores that one entry and shows a "Hand-correction problem" line at the top of the site (visible to everyone, so fix it quickly). Nothing else breaks.

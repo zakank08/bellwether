@@ -19,6 +19,11 @@ from urllib.parse import urlparse
 
 import requests
 
+try:
+    import certifi
+except ImportError:  # pragma: no cover
+    certifi = None
+
 USER_AGENT = os.environ.get(
     "BELLWETHER_USER_AGENT",
     "BellwetherElectionTracker/0.1 (nonpartisan election forecast; set BELLWETHER_USER_AGENT to add contact info)",
@@ -64,6 +69,26 @@ def _retry_after(value: str | None, default: float, cap: float = 120.0) -> float
     return default
 
 
+# Hosts whose servers leave out an intermediate certificate (checked against GitHub's servers too: plain verification fails).
+# For these only, verify against the normal trusted roots PLUS the public intermediates in data/config/extra_ca.pem.
+# Verification is never turned off.
+EXTRA_CA_HOSTS = {"www.elections.alaska.gov", "elections.alaska.gov"}
+EXTRA_CA_FILE = Path(__file__).resolve().parents[2] / "data" / "config" / "extra_ca.pem"
+
+
+def _verify_for(host: str):
+    """The `verify=` argument for requests: True normally, or a combined bundle for hosts in EXTRA_CA_HOSTS."""
+    if host not in EXTRA_CA_HOSTS or not EXTRA_CA_FILE.exists():
+        return True
+    base = os.environ.get("REQUESTS_CA_BUNDLE") or os.environ.get("SSL_CERT_FILE") or (certifi.where() if certifi else None)
+    if not base or not Path(base).exists():
+        return True
+    out = CACHE_DIR / "ca-bundle-extra.pem"
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    out.write_text(Path(base).read_text() + "\n" + EXTRA_CA_FILE.read_text())
+    return str(out)
+
+
 class FetchError(RuntimeError):
     pass
 
@@ -89,7 +114,7 @@ def cache_age(url: str) -> float | None:
     return None
 
 
-def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retries: int = 3) -> bytes:
+def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retries: int = 3, timeout: float = 60) -> bytes:
     """Fetch a URL with caching, per-host throttling and backoff.
 
     If the network fetch fails and a cached copy exists, the cached copy is
@@ -111,7 +136,7 @@ def fetch(url: str, *, max_age_s: float = 3600, allow_stale: bool = True, retrie
             time.sleep(wait)
         _last_hit[throttle_key] = time.time()
         try:
-            r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=60)
+            r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout, verify=_verify_for(host))
             if r.status_code == 429:
                 time.sleep(_retry_after(r.headers.get("Retry-After"), 20 * (attempt + 1)))
                 last_err = FetchError(f"429 from {host}")

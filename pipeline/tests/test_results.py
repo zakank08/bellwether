@@ -128,3 +128,48 @@ def test_minnesota_2024_and_governor_2022():
     g = {r.race_id: r for r in minnesota.parse((FX / "mn_2022_governor.txt").read_text(), 2022)}
     top = g["2022-gov-MN"].cands[0]
     assert top.name == "Tim Walz" and top.party == "D"
+
+
+def test_worker_reads_states_in_parallel_and_one_slow_state_does_not_block():
+    import time
+    from bellwether.results import worker as w
+    old = w.READ_TIMEOUT_S
+    w.READ_TIMEOUT_S = 1
+    try:
+        def slow():
+            time.sleep(3)
+            return []
+        t = time.time()
+        res, st = w.run_once({"AA": slow, "GA": lambda: [rr("2026-sen-GA", 5, 4)]}, None, {}, "t")
+        assert time.time() - t < 2.5
+        assert st["states"]["GA"]["state"] == "ok" and st["states"]["AA"]["state"] == "down"
+        assert [r["race_id"] for r in res["races"]] == ["2026-sen-GA"]
+    finally:
+        w.READ_TIMEOUT_S = old
+
+
+def test_write_makes_one_file_for_the_website(tmp_path):
+    res, st = worker.run_once({"GA": lambda: [rr("2026-sen-GA", 5, 4)]}, None, {}, "t")
+    worker.write(res, st, tmp_path)
+    live = json.loads((tmp_path / "live.json").read_text())
+    assert set(live) == {"results", "status"} and live["results"]["races"][0]["race_id"] == "2026-sen-GA"
+
+
+def test_election_ids_can_be_a_list_and_first_working_one_wins():
+    from bellwether.results import run
+    seen = []
+
+    def fn(i):
+        seen.append(i)
+        if i != "b":
+            raise RuntimeError("404")
+        return ["ok"]
+    assert run._try_each(fn, ["a", "b", "c"]) == ["ok"] and seen == ["a", "b"]
+
+
+def test_extra_ca_only_for_listed_hosts(tmp_path, monkeypatch):
+    from bellwether import http
+    monkeypatch.setattr(http, "CACHE_DIR", tmp_path)
+    assert http._verify_for("example.com") is True
+    v = http._verify_for("www.elections.alaska.gov")
+    assert v is not True and "GlobalSign" in open(v).read()
