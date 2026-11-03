@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       rehearsal:
-        description: "Rehearsal: replay old 2024 files instead of reading live feeds"
+        description: "TEST RUN: publishes a clearly labeled rehearsal (old data) to /election-night/?rehearsal=1 only. The public board is not touched."
         type: boolean
         default: false
       hours:
@@ -24,7 +24,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: election-night
+  # a test run must never wait behind (or cancel) the real election-night run, so it gets its own group
+  group: ${{ inputs.rehearsal && 'election-night-test' || 'election-night' }}
   cancel-in-progress: false
 
 jobs:
@@ -52,7 +53,7 @@ jobs:
           R2_BUCKET: ${{ secrets.R2_BUCKET }}
         run: |
           if [ "${{ inputs.rehearsal }}" = "true" ]; then
-            python -m bellwether.results.run --rehearse --out live
+            python -m bellwether.results.run --rehearse --upload --out live
           else
             python -m bellwether.results.run --loop --upload --hours ${{ inputs.hours || 5.4 }} --out live
           fi

@@ -21,3 +21,6 @@ export function sideOf(c: LiveCand, d: { name: string | null; party: string | nu
   if (cl && cl === last(r.name)) return "r";
   return c.party === "D" ? "d" : c.party === "R" ? "r" : "o";
 }
+
+/** True when the page was opened with ?rehearsal=1: it then reads the labeled rehearsal file instead of the real one. The public board never does this on its own. */
+export const isRehearsal = () => typeof window !== "undefined" && new URLSearchParams(window.location.search).get("rehearsal") === "1";

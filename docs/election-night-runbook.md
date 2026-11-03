@@ -9,6 +9,13 @@ All times Eastern (ET). UTC = ET + 5 hours on Nov. 3.
   - **without it (the default today):** into the site itself, about every **12 minutes from 6 p.m. to 2 a.m. ET** and every 40 minutes outside that (each publish redeploys the site).
 - **Site pages:** `/election-night/` (Senate, House and governors scoreboards, a map you can click into by county or district, races), each race page's "Live results" box, a red "Election night" bar on every page, and a yellow banner that appears only if something is delayed.
 
+## Test run (safe, 2 minutes, any time before 6 p.m.)
+Proves the whole path works without showing anything fake to the public.
+1. GitHub -> Actions -> "election-night" -> **Run workflow** -> tick **TEST RUN** -> Run workflow.
+2. Wait about 3 minutes (the run, then the site rebuild). Open https://bellwether-zak.vercel.app/election-night/?rehearsal=1
+3. You should see a **REHEARSAL** banner and sample results for MN, NC, CO, GA and AK (AK shows "Delayed", and one race is marked "By hand"). The normal page, https://bellwether-zak.vercel.app/election-night/, must stay empty ("No votes are counted yet").
+A test run does not touch the real election-night run, and it does not change the public numbers.
+
 ## Things to check (2 minutes each)
 1. **~11:30 a.m. ET:** GitHub -> Actions -> "election-night": one run "in progress". If there is none, click **Run workflow** (leave the boxes as they are).
 2. **~4 p.m. ET:** open `/election-night/`: it should say "Results appear as polls close" and show no red banner.

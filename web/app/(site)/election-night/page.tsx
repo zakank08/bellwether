@@ -18,7 +18,7 @@ export default function Page() {
       <header className="wrap masthead" style={{ paddingBottom: 0 }}>
         <div className="kicker">Nov. 3, 2026</div>
         <h1>Election night</h1>
-        <p className="dek">Live results for the Senate, House and governors’ races as states report them. Numbers come from official state result sites. Winners marked “Projected” are Bellwether’s own projections, made by a cautious rule we publish; they are not calls by AP or anyone else. Odds are the share of simulations each side wins.</p>
+        <p className="dek">Live results for the Senate, House and governors’ races as states report them, straight from official state results sites. A winner marked “Projected” is Bellwether’s own projection, made by a cautious rule we publish. It is not a call by AP or anyone else.</p>
       </header>
       <LiveNight compact={compact} schedule={schedule} govs={govs} stateNames={stateNames} />
     </div>

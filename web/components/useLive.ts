@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { LIVE_BASE, LIVE_POLL_MS, type LiveResults, type LiveStatus } from "@/lib/livefeed";
+import { isRehearsal, LIVE_BASE, LIVE_POLL_MS, type LiveResults, type LiveStatus } from "@/lib/livefeed";
 
 type State = { results: LiveResults | null; status: LiveStatus | null; error: boolean; fetchedAt: number | null };
 const subs = new Set<(s: State) => void>();
@@ -9,7 +9,8 @@ let timer: ReturnType<typeof setInterval> | null = null;
 
 async function pull() {
   try {
-    const j = await fetch(`${LIVE_BASE}/live.json`, { cache: "no-store" }).then((x) => { if (!x.ok) throw new Error(String(x.status)); return x.json(); });
+    const url = isRehearsal() ? "/data/live/rehearsal.json" : `${LIVE_BASE}/live.json`;
+    const j = await fetch(url, { cache: "no-store" }).then((x) => { if (!x.ok) throw new Error(String(x.status)); return x.json(); });
     cur = { results: j.results, status: j.status, error: false, fetchedAt: Date.now() };
   } catch { cur = { ...cur, error: true }; }
   subs.forEach((f) => f(cur));

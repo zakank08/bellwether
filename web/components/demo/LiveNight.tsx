@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { buildGovRows, buildRows, candidateVotes, clock, partyOf, type CompactRace, type GovRace, type SchedRow, type Snap } from "@/lib/demo";
 import { in100, surname } from "@/lib/format";
 import { liveChamber, liveOdds } from "@/lib/live";
+import { isRehearsal } from "@/lib/livefeed";
 import { liveSnaps, minutesSinceStart } from "@/lib/livesnap";
 import type { WMeta } from "@/lib/whatif";
 import { TipProvider } from "@/components/Tooltip";
@@ -111,8 +112,10 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
   );
   const series = sel ? hist.current.get(sel.row.id) ?? [] : selDetail ? hist.current.get(selDetail.row.id) ?? [] : [];
 
+  const rehearsal = isRehearsal();
   return (
     <div>
+      {rehearsal && <div className="demo-banner" role="note"><div className="wrap"><strong>REHEARSAL. SIMULATED DATA, NOT REAL RESULTS.</strong> This is a test of the live pipeline using old 2022 and 2024 files. The public board does not show this.</div></div>}
       <div className="demo-controls">
         <div className="wrap row" style={{ gap: 14, flexWrap: "wrap", alignItems: "center" }}>
           <strong className="num demo-clock">{clock(tm)} ET<small>{dayLabel(tm)}</small></strong>
@@ -126,7 +129,17 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
           {nextClose ? <>Next polls close at <strong>{clock(nextClose.at)} ET</strong>{nextClose.inMin > 0 ? ` (in ${nextClose.inMin < 90 ? `${nextClose.inMin} min` : `${Math.round(nextClose.inMin / 60)} hours`})` : ""}: {nextClose.states.join(", ")}</> : <>All polls are closed. Counting continues in the slower states.</>}
         </div>
 
-        {!anyVotes && <p className="takeaway" style={{ margin: "14px 0 0" }}>Nothing has been counted yet. This board fills in on its own as each state reports. Until then the chances of control below are the forecast’s, from before the polls closed.</p>}
+        <details className="small" style={{ margin: "10px 0 0" }}>
+          <summary style={{ cursor: "pointer", fontWeight: 600 }}>New here? How to read this page</summary>
+          <ul className="plain" style={{ marginTop: 6 }}>
+            <li><strong>The three boxes</strong> show the Senate, the House and governors: how many seats each party has projected so far, who is leading, and how many haven’t reported.</li>
+            <li><strong>The map:</strong> light color means a candidate is leading; solid means we project a winner; striped means a runoff or ranked-choice count; gray means polls haven’t closed. Click anywhere to zoom in.</li>
+            <li><strong>“Projected”</strong> is our own cautious call. If a race is close or mostly uncounted, it stays “Counting.”</li>
+            <li><strong>Refreshing:</strong> the page updates by itself; the time at the top says how fresh the numbers are.</li>
+          </ul>
+        </details>
+
+        {!anyVotes && <p className="takeaway" style={{ margin: "14px 0 0" }}>No votes are counted yet. This page fills in by itself as states report. Until then, the chances shown are our forecast from before the polls closed.</p>}
 
         <section className="block" style={{ paddingTop: 12 }} aria-labelledby="board-h">
           <h2 id="board-h" className="sr-only">Balance of power</h2>
@@ -136,8 +149,8 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
             <GovBoard g={tg} />
           </div>
           <p className="small muted" style={{ marginTop: 8 }}>
-            {reading.length ? <>Numbers come straight from {reading.length} state result sites that we read automatically ({reading.join(", ")}); other states appear when their results are entered from official sources. </> : <>States appear here as their official results are read or entered. </>}
-            Seats not up this year are counted as held by their party. “Projected” is Bellwether’s own projection (see how below), not a call by AP or anyone else.
+            Votes come from official state results sites. {reading.length ? <>We read {reading.length} state{reading.length === 1 ? "" : "s"} automatically ({reading.join(", ")}); the rest appear when we enter their official results by hand. </> : <>States appear as we read or enter their official results. </>}
+            Seats not up this year count for the party that holds them. “Projected” means Bellwether’s own projection, not a call by AP or anyone else. <a href="#how-we-project">How we project</a>.
           </p>
         </section>
 
@@ -159,7 +172,7 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
                 <div>
                   {mapTab === "h" ? <DemoHexMap snaps={snaps} selId={selId} onPick={(id) => { const r = snaps.find((x) => x.row.id === id); if (r) openState(r.row.st, "h", id); }} /> : <DemoStateMap snaps={snaps} selState={sel?.row.st ?? null} onState={pickState} office={mapTab} />}
                   <MapLegend />
-                  <p className="small muted" style={{ marginTop: 6 }}><strong>Click a {mapTab === "h" ? "district" : "state"}</strong> to zoom in: {mapTab === "h" ? "its district outlines and numbers" : "its counties, with the numbers beside them, and a switch to its House districts"}. Light colors mean leading, not yet projected; solid means Bellwether projects a winner.</p>
+                  <p className="small muted" style={{ marginTop: 6 }}><strong>Click a {mapTab === "h" ? "district" : "state"}</strong> to zoom in{mapTab === "h" ? ": you’ll see the state’s district outlines" : ": you’ll see its counties, and can switch to its House districts"}. Light color = leading. Solid color = Bellwether projects a winner.</p>
                 </div>
                 <div>
                   {selDetail ? <Detail s={selDetail} t={tm} series={series.length > 1 ? series : []} onPick={setSelId} stateSnaps={byState.get(selDetail.row.st) && byState.get(selDetail.row.st)!.length < 12 ? byState.get(selDetail.row.st)! : []} preP={preP(selDetail.row)} />
@@ -223,9 +236,9 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
                 {unhealthy.map((s) => <li key={`u${s.st}`}><strong>{s.st}</strong>: {s.bad!.feed.note}</li>)}
               </ul>}
           <ul className="plain" style={{ marginTop: 14 }}>
-            <li><strong>Projected</strong> means Bellwether projects the winner: by our own calculation, the votes still uncounted cannot realistically overturn the lead. We require a clear lead (over one point), enough of the vote counted, and a safety margin for late ballots; mail-heavy states need more counted first. These are our projections, made by our own rule. They are not calls by AP or any other organization, and an official result can differ. A race that is not projected is still being counted.</li>
-            <li><strong>Live odds</strong> start from the pre-election forecast and move toward the count as more is in. <strong>In</strong> is the share of precincts or counties reporting.</li>
-            <li><strong>Georgia</strong> goes to a runoff if nobody tops 50%; <strong>Maine</strong> and <strong>Alaska</strong> show first-round counts, ranked-choice count later; <strong>Louisiana’s</strong> House races on Nov. 3 are an all-party primary.</li>
+            <li id="how-we-project"><strong>Projected</strong> means Bellwether projects the winner. It’s our own call, made by a published rule: enough of the vote is counted, the lead is clear (over one point), and the votes still to come can’t realistically close the gap. States that count many mail ballots late (AZ, CA, CO, NV, OR, UT, WA) need more counted first. These are not calls by AP or any other organization, and an official result can differ. A race that isn’t projected is still being counted.</li>
+            <li><strong>Live odds</strong> start from our pre-election forecast and move toward the count as more votes come in. <strong>In</strong> is the share of precincts or counties that have reported.</li>
+            <li><strong>Runoffs and special rules:</strong> Georgia goes to a runoff if nobody gets over 50%. Maine and Alaska show first-round counts; ranked-choice counts come later. Louisiana’s House races today are an all-party primary.</li>
           </ul>
         </section>
       </div>

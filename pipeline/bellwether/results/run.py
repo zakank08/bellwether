@@ -112,18 +112,17 @@ def r2_configured() -> bool:
     return all(os.environ.get(k) for k in ("R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET"))
 
 
-def publish_to_site(out: Path) -> bool:
+def publish_to_site(out: Path, name: str = "live.json") -> bool:
     """No storage account needed: commit the live files to main, which redeploys the site with them (about a minute).
     Used when Cloudflare R2 is not set up. Slower (minutes, not seconds) but needs nothing from anyone."""
     LIVE_DIR.mkdir(parents=True, exist_ok=True)
-    for name in ("live.json",):
-        (LIVE_DIR / name).write_text((out / name).read_text())
+    (LIVE_DIR / name).write_text((out / name).read_text())
     git = lambda *a: subprocess.run(["git", *a], cwd=ROOT, capture_output=True, text=True)  # noqa: E731
     git("config", "user.name", "bellwether-bot"); git("config", "user.email", "bot@users.noreply.github.com")
-    git("add", "web/public/data/live/live.json")
+    git("add", f"web/public/data/live/{name}")
     if git("diff", "--cached", "--quiet").returncode == 0:
         return False
-    git("commit", "-m", "Live results update (automatic)")
+    git("commit", "-m", "Live results update (automatic)" if name == "live.json" else f"Rehearsal feed ({name}), not real results")
     for attempt in range(4):
         git("pull", "--rebase", "--autostash", "origin", "main")
         if git("push", "origin", "HEAD:main").returncode == 0:
@@ -151,6 +150,40 @@ def seed_previous() -> dict | None:
     return None
 
 
+def rehearsal_feed(out: Path) -> None:
+    """A full dress rehearsal through the real worker code, written to rehearsal.json (NEVER live.json): several states part-counted, one
+    state whose feed goes down after working, and one result entered by hand, so every banner and label can be seen on
+    /election-night/?rehearsal=1. The numbers come from old 2022/2024 files and are not real 2026 results."""
+    from . import enhanced_voting
+    fx = FIXTURES
+    final = []
+    final += minnesota.parse((fx / "mn_2022_governor.txt").read_text(), 2026)
+    final += minnesota.parse((fx / "mn_2024_ussenate.txt").read_text(), 2026)
+    final += minnesota.parse((fx / "mn_2024_ushouse.txt").read_text(), 2026)
+    final += north_carolina.parse((fx / "nc_2024.tsv").read_text(), 2026)
+    final += alaska.parse((fx / "ak_2024.csv").read_text(), 2026)
+    final += clarity.parse((fx / "co_2024_summary.csv").read_text(), "CO", 2026)
+    final += enhanced_voting.parse(json.loads((fx / "ga_2024_ballot-items.json").read_text()), "GA", 2026)
+    rp = Replay(final)
+    by_state: dict[str, list] = {}
+    for r in final:
+        by_state.setdefault(r.state, []).append(r)
+    rp.at(150)
+    good = {st: (lambda st=st: [x for x in rp.read() if x.state == st]) for st in by_state}
+    res, st = worker.run_once(good, None, {}, None)
+    rp.at(180)
+    bad = dict(good)
+    bad["AK"] = lambda: (_ for _ in ()).throw(RuntimeError("HTTP 503 (rehearsal)"))
+    ov = {"results": [{"race_id": "2026-house-NC-13", "cands": [{"name": "Rehearsal candidate A", "party": "D", "votes": 171835}, {"name": "Rehearsal candidate B", "party": "R", "votes": 243655}],
+                       "units_reporting": 90, "units_total": 100, "source": "a rehearsal county page", "reason": "Rehearsal of a hand entry"}]}
+    res, st = worker.run_once(bad, {"results": res, "status": st}, ov, None)
+    st["publish_every_s"] = 60
+    st["rehearsal"] = True
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "rehearsal.json").write_text(json.dumps({"results": res, "status": st, "rehearsal": True}, separators=(",", ":")))
+    print(f"rehearsal feed: {len(res['races'])} races from {len(by_state)} states, AK feed down, 1 hand entry")
+
+
 def rehearse(out: Path, steps: int = 12) -> None:
     final = alaska.parse((FIXTURES / "ak_2024.csv").read_text(), 2024)
     rp = Replay(final)
@@ -161,6 +194,7 @@ def rehearse(out: Path, steps: int = 12) -> None:
         worker.write(res, st, out)
         prev = {"results": res, "status": st}
         print(f"minute {i * 240 // steps:>3}: {res['races'][0]['total']:,} votes counted")
+    rehearsal_feed(out)
 
 
 def main() -> None:
@@ -174,7 +208,10 @@ def main() -> None:
     ap.add_argument("--hours", type=float, default=5.5)
     a = ap.parse_args()
     if a.rehearse:
-        return rehearse(a.out)
+        rehearse(a.out)
+        if a.upload:
+            publish_to_site(a.out, "rehearsal.json")   # a separate file: the public board never shows it unless asked (?rehearsal=1)
+        return
     if a.once:
         src, ov, _ = current_config() if os.environ.get("GITHUB_ACTIONS") else (json.loads(SOURCES.read_text()), local_json(OVERRIDES) or {}, [])
         res, st = worker.run_once(readers_from_config(src), None, ov)
