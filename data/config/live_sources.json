@@ -4,8 +4,10 @@
  "states": {
   "AK": {
    "reader": "alaska",
-   "election": null,
-   "note": "2024 code was 24GENR; the 2026 general code is usually 26GENR"
+   "election": [
+    "26GENR"
+   ],
+   "note": "26GENR is the usual code; verified once the state publishes. Alaska needs data/config/extra_ca.pem (missing certificate on their server)."
   },
   "NC": {
    "reader": "north_carolina",
@@ -14,7 +16,10 @@
   },
   "GA": {
    "reader": "enhanced_voting",
-   "election": null,
+   "election": [
+    "2026NovGen",
+    "2026NovemberGeneral"
+   ],
    "note": "2024 id was 2024NovGen; expect 2026NovGen"
   },
   "MN": {
