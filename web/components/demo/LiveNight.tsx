@@ -17,11 +17,11 @@ type KeyTab = "s" | "g" | "h" | "proj" | "flips";
 const dayLabel = (t: number) => (t >= 360 ? " · Nov. 4" : "");
 
 /** The real election-night board: the rehearsal's scoreboard, maps and tables, fed by the worker's live file instead of a simulation. */
-export default function LiveNight({ compact, schedule, govs, stateNames }: { compact: CompactRace[]; schedule: SchedRow[]; govs: GovRace[]; stateNames: Record<string, string> }) {
-  return <TipProvider><Inner compact={compact} schedule={schedule} govs={govs} stateNames={stateNames} /></TipProvider>;
+export default function LiveNight({ compact, schedule, govs, stateNames, sites }: { compact: CompactRace[]; schedule: SchedRow[]; govs: GovRace[]; stateNames: Record<string, string>; sites: Record<string, string> }) {
+  return <TipProvider><Inner compact={compact} schedule={schedule} govs={govs} stateNames={stateNames} sites={sites} /></TipProvider>;
 }
 
-function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]; schedule: SchedRow[]; govs: GovRace[]; stateNames: Record<string, string> }) {
+function Inner({ compact, schedule, govs, stateNames, sites }: { compact: CompactRace[]; schedule: SchedRow[]; govs: GovRace[]; stateNames: Record<string, string>; sites: Record<string, string> }) {
   const { results, status, error, fetchedAt } = useLive();
   const [meta, setMeta] = useState<WMeta | null>(null);
   const [sims, setSims] = useState<Int8Array | null>(null);
@@ -127,6 +127,13 @@ function Inner({ compact, schedule, govs, stateNames }: { compact: CompactRace[]
       <div className="wrap">
         <div className="demo-next small" role="status">
           {nextClose ? <>Next polls close at <strong>{clock(nextClose.at)} ET</strong>{nextClose.inMin > 0 ? ` (in ${nextClose.inMin < 90 ? `${nextClose.inMin} min` : `${Math.round(nextClose.inMin / 60)} hours`})` : ""}: {nextClose.states.join(", ")}</> : <>All polls are closed. Counting continues in the slower states.</>}
+        </div>
+
+        <div className="small" role="note" style={{ margin: "10px 0 0", padding: "10px 14px", border: "1px solid var(--line)", borderRadius: "var(--radius-md)", background: "var(--surface-raised)" }}>
+          <strong>What this page covers:</strong> we read {reading.length ? `${reading.length} state${reading.length === 1 ? "" : "s"} (${reading.join(", ")})` : "no states yet"} automatically straight from the state’s own results site, so results here can start later than on news sites that buy a nationwide feed. For every other state, open its official results site: {" "}
+          <details style={{ display: "inline" }}><summary style={{ display: "inline", cursor: "pointer", textDecoration: "underline" }}>official state results sites</summary>
+            <ul className="plain" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: "4px 16px", marginTop: 8, paddingLeft: 0, listStyle: "none" }}>{Object.entries(sites).filter(([st]) => !reading.includes(st)).sort((a, b) => (stateNames[a[0]] ?? a[0]).localeCompare(stateNames[b[0]] ?? b[0])).map(([st, u]) => <li key={st}><a href={u} target="_blank" rel="noopener noreferrer">{stateNames[st] ?? st}</a></li>)}</ul>
+          </details>
         </div>
 
         <details className="small" style={{ margin: "10px 0 0" }}>

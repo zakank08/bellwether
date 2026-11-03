@@ -136,3 +136,13 @@ test("closing-time text is read with or without dots, so no state silently defau
   assert.deepEqual(closeRange("November 4, 12 a.m. and 1 a.m."), { first: 720, last: 780 });
   assert.equal(closeRange(null), null);
 });
+
+
+test("a feed row with every count at zero is treated as no results yet", async () => {
+  const { liveSnaps } = await import("./livesnap.ts");
+  const row = { id: "2026-sen-NC", o: "s", st: "NC", title: "North Carolina", dn: "A B", dp: "D", rn: "C D", rp: "R", c: 0, mu0: 0, sd0: 5, rule: "none", third: 2, holder: null, openAt: 90, lastClose: 90, expected: 1, actual: 1, start: 0, dur: 1, lean: 0, cadence: 1, offset: 0 } as never;
+  const res = { updated: "2026-11-04T00:30:00Z", holds: {}, races: [{ race_id: "2026-sen-NC", state: "NC", total: 0, units_reporting: 0, units_total: 2600, source: "x", cands: [{ name: "A B", party: "D", votes: 0 }, { name: "C D", party: "R", votes: 0 }] }] };
+  const [a] = liveSnaps([row], res as never, { updated: res.updated, states: { NC: { state: "ok", last_success: res.updated } } } as never, Date.parse("2026-11-04T00:31:00Z"));
+  assert.equal(a.margin, null);
+  assert.equal(a.decision.state, "waiting");
+});

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import LiveNight from "@/components/demo/LiveNight";
 import { getRaces, getSchedule } from "@/lib/data";
+import fs from "node:fs";
+import path from "node:path";
 import { closeRange } from "@/lib/demo";
 
 export const metadata: Metadata = {
@@ -13,6 +15,7 @@ export default function Page() {
   const compact = getRaces().map((r) => ({ id: r.id, state: r.state, title: r.title, margin: r.margin[v] ?? null, incumbent_party: r.incumbent_party, rules: r.rules, district: r.district }));
   const govs = getRaces().filter((r) => r.office === "governor" && r.kind === "two_party").map((r) => ({ id: r.id, state: r.state, title: r.title, margin: r.margin[v] ?? null, p: r.p[v], incumbent_party: r.incumbent_party, rules: r.rules, dn: r.dside.name, dp: r.dside.party, rn: r.rside.name, rp: r.rside.party }));
   const stateNames = Object.fromEntries(getRaces().map((r) => [r.state, r.state_name]));
+  const sites: Record<string, string> = JSON.parse(fs.readFileSync(path.join(process.cwd(), "content", "results_sites.json"), "utf8")).states;
   const schedule = (getSchedule()?.states ?? []).map((s) => { const r = closeRange(s.close); return { state: s.state, first: s.first ?? r?.first ?? null, last: s.last ?? r?.last ?? null }; });
   return (
     <div>
@@ -21,7 +24,7 @@ export default function Page() {
         <h1>Election night</h1>
         <p className="dek">Live results for the Senate, House and governors’ races as states report them, straight from official state results sites. A winner marked “Projected” is Bellwether’s own projection, made by a cautious rule we publish. It is not a call by AP or anyone else.</p>
       </header>
-      <LiveNight compact={compact} schedule={schedule} govs={govs} stateNames={stateNames} />
+      <LiveNight compact={compact} schedule={schedule} govs={govs} stateNames={stateNames} sites={sites} />
     </div>
   );
 }

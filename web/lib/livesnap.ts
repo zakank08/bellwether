@@ -15,7 +15,7 @@ export function liveSnaps(rows: DemoRow[], results: LiveResults | null, status: 
     const lr = byId.get(row.id);
     const st = status?.states[row.st];
     const hold = results?.holds?.[row.id];
-    if (!lr || !lr.cands.length) {
+    if (!lr || !lr.cands.length || lr.cands.every((c) => !c.votes)) {   // a feed row with every count at zero (polls just closed, nothing counted) is "no results yet"
       const o = liveOdds(row.mu0, row.sd0, null);
       const closed = now < row.openAt;
       return { row, feed: { tEff: null, status: closed ? "closed" : "waiting" }, f: 0, counted: 0, units: 0, margin: null,
