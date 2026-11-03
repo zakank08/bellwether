@@ -51,7 +51,21 @@ def parse(data: dict, state: str, year: int = 2026, url: str = "") -> list[RaceR
     return out
 
 
+def discover(state: str, date: str = "2026-11-03") -> str:
+    """The platform lists every election of the state at .../api/jurisdictions/<Name>; the id of the one held on `date` is the
+    publicElectionId (for Georgia on Nov. 3, 2026: 11032026GeneralAndSpecialElection)."""
+    from .. import http
+    ban = SITES[state][1].split("/api/")[0] + "/api/jurisdictions/" + SITES[state][1].split("/api/elections/")[1].split("/")[0]
+    j = json.loads(http.fetch(ban, max_age_s=300, allow_stale=False, retries=2, timeout=25))
+    hits = [e for e in j.get("elections") or [] if e.get("electionDate") == date and e.get("publicElectionId")]
+    if not hits:
+        raise RuntimeError(f"{state}: no election dated {date} is listed yet")
+    return hits[0]["publicElectionId"]
+
+
 def fetch(state: str, election: str, year: int = 2026) -> list[RaceResult]:
     from .. import http
+    if election in ("auto", "now", ""):
+        election = discover(state)
     url = SITES[state][1].format(election=election)
     return parse(json.loads(http.fetch(url, max_age_s=25, allow_stale=False, retries=2, timeout=25)), state, year, url)

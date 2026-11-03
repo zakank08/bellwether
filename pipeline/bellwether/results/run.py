@@ -16,7 +16,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from . import alaska, clarity, enhanced_voting, minnesota, north_carolina, worker
+from . import alaska, clarity, enhanced_voting, indiana, minnesota, north_carolina, worker
 from .replay import Replay
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -88,6 +88,8 @@ def readers_from_config(cfg: dict | None = None) -> dict:
             out[st] = lambda e=e: _try_each(lambda i: alaska.fetch(i, y), e)
         elif k == "north_carolina":
             out[st] = lambda e=e: _try_each(lambda i: north_carolina.fetch(i, y), e)
+        elif k == "indiana":
+            out[st] = lambda e=e: _try_each(lambda i: indiana.fetch(i, y), e)
         elif k == "minnesota":
             out[st] = lambda e=e: _try_each(lambda i: minnesota.fetch(i, y), e)
         elif k == "clarity":

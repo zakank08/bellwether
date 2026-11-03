@@ -173,3 +173,30 @@ def test_extra_ca_only_for_listed_hosts(tmp_path, monkeypatch):
     assert http._verify_for("example.com") is True
     v = http._verify_for("www.elections.alaska.gov")
     assert v is not True and "GlobalSign" in open(v).read()
+
+
+def test_indiana_house_feed_with_zero_counts_and_with_votes():
+    from bellwether.results import indiana
+    off = json.loads((FX / "in_2026_offcat_1005_zeros.json").read_text(encoding="utf-8-sig"))
+    tu = json.loads((FX / "in_2026_turnout_zeros.json").read_text(encoding="utf-8-sig"))
+    rows = {r.race_id: r for r in indiana.parse(off, tu, 2026)}
+    assert sorted(rows) == [f"2026-house-IN-0{i}" for i in range(1, 10)]
+    assert rows["2026-house-IN-01"].total == 0 and rows["2026-house-IN-01"].units_total == 92
+    race = off["Root"]["StatewideSummary"]["Race"][0]
+    race["Candidates"]["Candidate"][0]["TOTAL"] = 1234
+    race["Candidates"]["Candidate"][1]["TOTAL"] = 4321
+    tu["root"]["CountyTurnout"][0]["VotersVoting"] = 50
+    r = {x.race_id: x for x in indiana.parse(off, tu, 2026)}["2026-house-IN-01"]
+    assert r.cands[0].votes == 4321 and r.cands[0].party == "R" and r.units_reporting == 1
+
+
+def test_election_ids_are_discovered_from_the_platform_lists(monkeypatch):
+    from bellwether import http
+    from bellwether.results import clarity, enhanced_voting
+    lists = {
+        "elections.json": json.dumps([{"EID": "1", "Date": "6/30/2026 12:00:00 AM"}, {"EID": "127407", "Date": "11/3/2026 12:00:00 AM"}]),
+        "api/jurisdictions/Georgia": json.dumps({"elections": [{"electionDate": "2026-08-25", "publicElectionId": "old"}, {"electionDate": "2026-11-03", "publicElectionId": "11032026GeneralAndSpecialElection"}]}),
+    }
+    monkeypatch.setattr(http, "fetch", lambda url, **kw: next(v for k, v in lists.items() if url.endswith(k)).encode())
+    assert clarity.discover("CO") == "127407"
+    assert enhanced_voting.discover("GA") == "11032026GeneralAndSpecialElection"

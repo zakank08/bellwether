@@ -45,8 +45,21 @@ def parse(text: str, state: str, year: int = 2026, url: str = "") -> list[RaceRe
     return out
 
 
+def discover(state: str, date: str = "11/3/2026") -> str:
+    """Clarity sites list their elections at <site>/<STATE>/elections.json; the entry dated Nov. 3, 2026 holds the id (EID)."""
+    from .. import http
+    import json
+    els = json.loads(http.fetch(f"{SOURCES[state][0]}/elections.json", max_age_s=300, allow_stale=False, retries=2, timeout=25))
+    hits = [e for e in els if str(e.get("Date", "")).startswith(date)]
+    if not hits:
+        raise RuntimeError(f"{state}: no election dated {date} is listed yet")
+    return str(hits[0]["EID"])
+
+
 def fetch(state: str, election_id: str, year: int = 2026) -> list[RaceResult]:
     from .. import http
+    if election_id in ("auto", "now", ""):
+        election_id = discover(state)
     base = f"{SOURCES[state][0]}/{election_id}"
     ver = http.fetch(f"{base}/current_ver.txt", max_age_s=20, allow_stale=False, retries=2, timeout=25).decode().strip()
     url = f"{base}/{ver}/reports/summary.zip"

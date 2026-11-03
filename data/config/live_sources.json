@@ -17,10 +17,10 @@
   "GA": {
    "reader": "enhanced_voting",
    "election": [
-    "2026NovGen",
-    "2026NovemberGeneral"
+    "11032026GeneralAndSpecialElection",
+    "auto"
    ],
-   "note": "2024 id was 2024NovGen; expect 2026NovGen"
+   "note": "auto = look up the Nov. 3, 2026 election id from the state's list (11032026GeneralAndSpecialElection)"
   },
   "MN": {
    "reader": "minnesota",
@@ -29,8 +29,11 @@
   },
   "CO": {
    "reader": "clarity",
-   "election": null,
-   "note": "id from results.enr.clarityelections.com/CO/ once the 2026 general is listed (2024 was 122598)"
+   "election": [
+    "127407",
+    "auto"
+   ],
+   "note": "auto-discovered from elections.json (EID 127407)"
   },
   "SC": {
    "reader": "clarity",
@@ -54,18 +57,29 @@
   },
   "UT": {
    "reader": "enhanced_voting",
-   "election": null,
-   "note": "id from electionresults.utah.gov; same platform as Georgia, address pattern untested"
+   "election": [
+    "General11032026",
+    "auto"
+   ],
+   "note": "auto-discovered (General11032026)"
   },
   "WA": {
    "reader": "enhanced_voting",
-   "election": null,
-   "note": "id from results.votewa.gov; same platform as Georgia, address pattern untested"
+   "election": [
+    "20261103",
+    "auto"
+   ],
+   "note": "auto-discovered (20261103)"
   },
   "ID": {
    "reader": "enhanced_voting",
    "election": null,
    "note": "id from voteidaho.gov; unconfirmed platform; same platform as Georgia, address pattern untested"
+  },
+  "IN": {
+   "reader": "indiana",
+   "election": "now",
+   "note": "Indiana's own results app files (U.S. House); live since 6 p.m. Nov. 3"
   }
  }
 }
