@@ -256,8 +256,9 @@
   "MO": [
    {
     "url": "https://enr.sos.mo.gov/",
-    "result": "unreachable",
-    "error": "The read operation timed out"
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "MS": [
@@ -351,9 +352,8 @@
   "OH": [
    {
     "url": "https://liveresults.ohiosos.gov/",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "blocked",
+    "http": 429
    }
   ],
   "OK": [
@@ -485,9 +485,9 @@
   ]
  },
  "summary": {
-  "unreachable": 3,
+  "unreachable": 2,
   "ok": 36,
   "challenge": 8,
-  "blocked": 3
+  "blocked": 4
  }
 }
