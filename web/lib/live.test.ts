@@ -118,3 +118,11 @@ test("live page: results become snapshots with real vote counts, holds and stale
   const [d] = liveSnaps([row], null, null, Date.parse("2026-11-03T23:30:00Z"));
   assert.equal(d.feed.status, "closed");               // polls close at openAt=60 min after 6 pm = 7 pm ET
 });
+
+test("governor rows get a spread backed out of their win probability", async () => {
+  const { buildGovRows } = await import("./demo.ts");
+  const [r] = buildGovRows([{ id: "2026-gov-AZ", state: "AZ", title: "Arizona", margin: 4, p: 0.8, incumbent_party: "D", rules: {}, dn: "A B", dp: "D", rn: "C D", rp: "R" }], [{ state: "AZ", first: 540, last: 540 }]);
+  assert.equal(r.o, "g");
+  assert.ok(r.sd0 > 3 && r.sd0 < 7, String(r.sd0));      // a 4-point lead at 80 in 100 implies roughly a 4.7-point spread
+  assert.equal(r.openAt, 180);
+});

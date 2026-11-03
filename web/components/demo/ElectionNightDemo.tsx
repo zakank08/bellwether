@@ -14,7 +14,7 @@ export type Chamber = { D: number; R: number; C: number; ess: number };
 
 export function Status({ s }: { s: Snap }) {
   const d = s.decision, r = s.row;
-  if (d.state === "decided") return <span className="chip demo-decided">✓ Decided: {surname(d.winner === "dside" ? r.dn : r.rn)} ({partyOf(r, d.winner!)})</span>;
+  if (d.state === "decided") return <span className="chip demo-decided">✓ Projected: {surname(d.winner === "dside" ? r.dn : r.rn)} ({partyOf(r, d.winner!)})</span>;
   const label = { waiting: s.feed.status === "closed" ? "Polls not closed" : "No results yet", counting: "Counting", close: "Too close to decide", runoff: "Runoff possible", rcv: "Ranked-choice count later", primary: "All-party primary", decided: "" }[d.state];
   return <span className={`chip demo-${d.state}`}>{label}</span>;
 }
@@ -59,13 +59,54 @@ export function Scoreboard({ office, t, ch, base, tm }: { office: "s" | "h"; t: 
       <div className="kicker">{office === "s" ? "U.S. Senate" : "U.S. House"} · {t.maj} for control</div>
       <div className="score-row">
         <div className="score-d"><span className="num">{t.decD + t.nuD}</span><small>Democratic</small></div>
-        <div className="score-mid small muted">{t.leadD + t.leadR + Math.max(t.openN, 0)} undecided</div>
+        <div className="score-mid small muted">{t.leadD + t.leadR + Math.max(t.openN, 0)} not yet projected</div>
         <div className="score-r"><span className="num">{t.decR + t.nuR}</span><small>Republican</small></div>
       </div>
-      <SeatBar t={t} label={`${office === "s" ? "Senate" : "House"}: ${t.decD + t.nuD} Democratic decided, ${t.decR + t.nuR} Republican decided, ${t.leadD} leading for Democrats, ${t.leadR} for Republicans`} />
+      <SeatBar t={t} label={`${office === "s" ? "Senate" : "House"}: ${t.decD + t.nuD} Democratic projected, ${t.decR + t.nuR} Republican projected, ${t.leadD} leading for Democrats, ${t.leadR} for Republicans`} />
       <div className="small demo-legend"><span><strong className="num">{t.leadD}</strong> D leading</span><span><strong className="num">{t.openN}</strong> not in yet</span><span><strong className="num">{t.leadR}</strong> R leading</span></div>
       <div className="small">Chance of control: <strong className="num" style={{ color: "var(--dem)" }}>{in100(D.D)} D</strong> · <strong className="num" style={{ color: "var(--rep)" }}>{in100(D.R)} R</strong><span className="muted"> (before polls closed: {in100(base.D)} / {in100(base.R)}){ch && tm > 0 && ch.ess < 30 ? " · few simulations match the count so far" : ""}</span></div>
-      {office === "s" && <div className="small muted">A 50–50 Senate goes to the vice president, a Republican. “Decided” counts include seats not up this year ({t.nuD} D, {t.nuR} R).</div>}
+      {office === "s" && <div className="small muted">A 50–50 Senate goes to the vice president, a Republican. “Projected” counts include seats not up this year ({t.nuD} D, {t.nuR} R).</div>}
+    </div>
+  );
+}
+
+/** Governors: how many of the governorships on the ballot are projected for each side, and who leads the rest. No majority line: control of
+ * governorships is not a chamber vote, and the seats not up are not counted here. */
+export function tallyGov(snaps: Snap[]) {
+  let decD = 0, decR = 0, decO = 0, leadD = 0, leadR = 0, leadO = 0, total = 0, flipsToD = 0, flipsToR = 0, flipsToO = 0;
+  for (const s of snaps) {
+    if (s.row.o !== "g") continue;
+    total++;
+    if (s.decision.state === "decided") {
+      const p = partyOf(s.row, s.decision.winner!);
+      if (p === "D") decD++; else if (p === "R") decR++; else decO++;
+      if (s.row.holder && p !== s.row.holder) { if (p === "D") flipsToD++; else if (p === "R") flipsToR++; else flipsToO++; }
+    } else if (s.margin != null) {
+      const p = partyOf(s.row, s.margin >= 0 ? "dside" : "rside");
+      if (p === "D") leadD++; else if (p === "R") leadR++; else leadO++;
+    }
+  }
+  return { decD, decR, decO, leadD, leadR, leadO, total, open: total - decD - decR - decO - leadD - leadR - leadO, flipsToD, flipsToR, flipsToO };
+}
+export type GovTally = ReturnType<typeof tallyGov>;
+
+export function GovBoard({ g }: { g: GovTally }) {
+  const w = (n: number) => `${(Math.max(n, 0) / Math.max(g.total, 1)) * 100}%`;
+  return (
+    <div className="demo-panel">
+      <div className="kicker">Governors · {g.total} races on the ballot</div>
+      <div className="score-row">
+        <div className="score-d"><span className="num">{g.decD}</span><small>Democratic</small></div>
+        <div className="score-mid small muted">{g.total - g.decD - g.decR - g.decO} not yet projected{g.decO ? ` · ${g.decO} other` : ""}</div>
+        <div className="score-r"><span className="num">{g.decR}</span><small>Republican</small></div>
+      </div>
+      <div className="seatbar" role="img" aria-label={`Governors: ${g.decD} Democratic projected, ${g.decR} Republican projected, ${g.leadD} leading for Democrats, ${g.leadR} for Republicans`}>
+        <i style={{ width: w(g.decD), background: "var(--d-safe)" }} /><i style={{ width: w(g.leadD), background: "var(--d-likely)", opacity: 0.55 }} />
+        <i style={{ width: w(g.open + g.leadO + g.decO), background: "var(--uncalled)" }} />
+        <i style={{ width: w(g.leadR), background: "var(--r-likely)", opacity: 0.55 }} /><i style={{ width: w(g.decR), background: "var(--r-safe)" }} />
+      </div>
+      <div className="small demo-legend"><span><strong className="num">{g.leadD}</strong> D leading</span><span><strong className="num">{g.open}</strong> not in yet</span><span><strong className="num">{g.leadR}</strong> R leading</span></div>
+      <div className="small muted">Projected changes of party so far: {g.flipsToD + g.flipsToR + g.flipsToO === 0 ? "none" : `to D ${g.flipsToD} · to R ${g.flipsToR}${g.flipsToO ? ` · to other ${g.flipsToO}` : ""}`}. The other governorships, not up this year, are not counted here.</div>
     </div>
   );
 }
@@ -74,7 +115,7 @@ function CandidateTable({ s }: { s: Snap }) {
   const v = candidateVotes(s), r = s.row, dec = s.decision.winner;
   const rowFor = (name: string | null, party: string | null, votes: number, pct: number, side: "dside" | "rside") => (
     <tr className={dec === side ? "win" : undefined}>
-      <td><span className="check" aria-hidden="true">{dec === side ? "✓" : ""}</span><i className="pdot" style={{ background: party === "D" ? "var(--d-safe)" : party === "R" ? "var(--r-safe)" : "var(--ind-fill)" }} />{name ?? "—"} <span className="muted small">({party ?? "?"})</span>{dec === side && <span className="sr-only"> Decided</span>}</td>
+      <td><span className="check" aria-hidden="true">{dec === side ? "✓" : ""}</span><i className="pdot" style={{ background: party === "D" ? "var(--d-safe)" : party === "R" ? "var(--r-safe)" : "var(--ind-fill)" }} />{name ?? "—"} <span className="muted small">({party ?? "?"})</span>{dec === side && <span className="sr-only"> Projected</span>}</td>
       <td className="r num">{votes.toLocaleString("en-US")}</td><td className="r num">{pct.toFixed(1)}%</td>
     </tr>
   );
@@ -106,7 +147,7 @@ export function Detail({ s, t, series, onPick, stateSnaps, preP }: { s: Snap; t:
   return (
     <div className="demo-panel detail">
       <div className="row" style={{ justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
-        <span className="kicker">{r.o === "s" ? "Senate" : "House"} · polls close {clock(r.openAt)}</span>
+        <span className="kicker">{r.o === "s" ? "Senate" : r.o === "g" ? "Governor" : "House"} · polls close {clock(r.openAt)}</span>
         <span className="row" style={{ gap: 6 }}><FeedChip s={s} t={t} /><Status s={s} /></span>
       </div>
       <h3 style={{ margin: "6px 0 8px" }}>{r.title}</h3>
@@ -115,6 +156,7 @@ export function Detail({ s, t, series, onPick, stateSnaps, preP }: { s: Snap; t:
         <>
           <div className="meter" role="img" aria-label={`About ${Math.round(Math.min(s.f, 1) * 100)}% of the expected vote counted`}><div style={{ width: `${Math.min(s.f, 1) * 100}%` }} /></div>
           <div className="small muted">≈{Math.round(Math.min(s.f, 0.99) * 100)}% of the expected vote counted (an estimate) · updated {t - (s.tEff ?? t) <= 0 ? "just now" : `${t - (s.tEff ?? t)} min ago`}{lead != null ? ` · lead ${lead.toLocaleString("en-US")} votes` : ""}</div>
+          {s.units > 0 && s.units < 0.995 && <div className="small muted">About {Math.round((s.counted / s.units) - s.counted).toLocaleString("en-US")} votes still to count (an estimate from the share of precincts reporting)</div>}
           <div className="small" style={{ marginTop: 6 }}>{s.decision.why}</div>
         </>
       )}
@@ -260,7 +302,7 @@ function Inner({ compact, schedule }: { compact: CompactRace[]; schedule: SchedR
             <div>
               {mapTab === "s" ? <DemoStateMap snaps={snaps} selState={sel?.row.st ?? null} onState={pickState} /> : <DemoHexMap snaps={snaps} selId={selId} onPick={(id) => setSelId(id)} />}
               <MapLegend />
-              <p className="small muted" style={{ marginTop: 6 }}>Click a {mapTab === "s" ? "state" : "district"} for its numbers. Colors follow the count: nothing is “called” by anyone else, and light colors mean leading, not decided.</p>
+              <p className="small muted" style={{ marginTop: 6 }}>Click a {mapTab === "s" ? "state" : "district"} for its numbers. Colors follow the count. A solid color is a Bellwether projection; light colors mean leading, not yet projected.</p>
             </div>
             <div>
               {selDetail ? <Detail s={selDetail} t={tm} series={series.length && sel ? series : []} onPick={setSelId} stateSnaps={byState.get(selDetail.row.st) && byState.get(selDetail.row.st)!.length < 12 ? byState.get(selDetail.row.st)! : []} preP={preP(selDetail.row.id)} />
@@ -276,15 +318,15 @@ function Inner({ compact, schedule }: { compact: CompactRace[]; schedule: SchedR
               {([["s", "Senate"], ["h", "House"], ["flips", `Flips (${flips.length})`]] as const).map(([k, l]) => <button key={k} aria-pressed={keyTab === k} onClick={() => setKeyTab(k)}>{l}</button>)}
             </div>
           </div>
-          <p className="takeaway small">{keyTab === "flips" ? <><span className="flip-chip">{flips.length} decided flips</span> <span className="muted">to D {flipTo("D")} · to R {flipTo("R")}</span></> : "Races with results in, closest first (by live odds)."}</p>
-          {keyRows.length === 0 ? <p className="muted">{keyTab === "flips" ? "No decided flips yet." : "Nothing reporting yet."}</p> : (
+          <p className="takeaway small">{keyTab === "flips" ? <><span className="flip-chip">{flips.length} projected flips</span> <span className="muted">to D {flipTo("D")} · to R {flipTo("R")}</span></> : "Races with results in, closest first (by live odds)."}</p>
+          {keyRows.length === 0 ? <p className="muted">{keyTab === "flips" ? "No projected flips yet." : "Nothing reporting yet."}</p> : (
             <div className="table-wrap">
               <table className="data cards">
                 <thead><tr><th>Race</th><th>Democratic side</th><th>Republican side</th><th className="r">In</th><th>Status</th></tr></thead>
                 <tbody>{keyRows.slice(0, keyTab === "h" ? 40 : 60).map((s) => {
                   const v = candidateVotes(s), win = s.decision.winner;
                   return (
-                    <tr key={s.row.id} className={flipOfSnap(s) ? "flip" : undefined} onClick={() => { setSelId(s.row.id); setMapTab(s.row.o); }} style={{ cursor: "pointer" }}>
+                    <tr key={s.row.id} className={flipOfSnap(s) ? "flip" : undefined} onClick={() => { setSelId(s.row.id); setMapTab(s.row.o === "h" ? "h" : "s"); }} style={{ cursor: "pointer" }}>
                       <td data-label="Race"><strong>{s.row.title}</strong>{flipOfSnap(s) && <> <span className="flip-chip">flip</span></>}</td>
                       <td data-label="Democratic side">{win === "dside" ? "✓ " : ""}{surname(s.row.dn)} <strong className="num">{v.dPct.toFixed(1)}%</strong></td>
                       <td data-label="Republican side">{win === "rside" ? "✓ " : ""}{surname(s.row.rn)} <strong className="num">{v.rPct.toFixed(1)}%</strong></td>
@@ -305,7 +347,7 @@ function Inner({ compact, schedule }: { compact: CompactRace[]; schedule: SchedR
               <div key={h} className="demo-hour">
                 <div className="small muted">{clock(h * 60)}</div>
                 <div className="demo-states">{ss.map((s) => (
-                  <button key={s.st} className={`demo-state ${s.decided ? "done" : s.any ? "live" : tm >= s.openAt ? "wait" : ""}${s.bad ? " bad" : ""}`} onClick={() => pickState(s.st)} title={`${s.st}: ${s.nDec} of ${s.n} races decided`}>{s.st}</button>
+                  <button key={s.st} className={`demo-state ${s.decided ? "done" : s.any ? "live" : tm >= s.openAt ? "wait" : ""}${s.bad ? " bad" : ""}`} onClick={() => pickState(s.st)} title={`${s.st}: ${s.nDec} of ${s.n} races projected`}>{s.st}</button>
                 ))}</div>
               </div>
             ))}
@@ -339,9 +381,9 @@ function Inner({ compact, schedule }: { compact: CompactRace[]; schedule: SchedR
             </div>
           )}
           <ul className="plain" style={{ marginTop: 16 }}>
-            <li><strong>Decided</strong> appears only when the vote still uncounted, with generous safety margins, cannot overturn the lead. Under a third of the expected vote, or a lead under one point, is never Decided. It is our own rule, never attributed to anyone else, and it is not a “projected winner.”</li>
+            <li><strong>Projected</strong> (Bellwether’s own projection, never AP’s or anyone else’s) appears only when the vote still uncounted, with generous safety margins, cannot overturn the lead. Under a third of the expected vote, or a lead under one point, is never projected. It is our own calculation, and it is not a “projected winner.”</li>
             <li><strong>Live odds</strong> start from the pre-election forecast and move toward the count as more is in. <strong>% in</strong> is an estimate from expected turnout.</li>
-            <li>Governors’ races are not in this rehearsal. <strong>Georgia</strong> goes to a runoff if nobody tops 50%; <strong>Maine</strong> and <strong>Alaska</strong> show first-round counts, ranked-choice count later; <strong>Louisiana’s</strong> House races on Nov. 3 are an all-party primary.</li>
+            <li><strong>Georgia</strong> goes to a runoff if nobody tops 50%; <strong>Maine</strong> and <strong>Alaska</strong> show first-round counts, ranked-choice count later; <strong>Louisiana’s</strong> House races on Nov. 3 are an all-party primary.</li>
           </ul>
         </section>
       </div>

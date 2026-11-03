@@ -6,10 +6,12 @@ import { decide, liveOdds, reportingFraction, type Decision, type Rule } from ".
 import type { WMeta } from "./whatif.ts";
 
 export type CompactRace = { id: string; state: string; title: string; margin: number | null; incumbent_party: string | null; rules: Record<string, boolean>; district: number | null };
+/** A governor's race, taken from the forecast (governors are not in the correlated simulation draws, so they have no chamber-control math). */
+export type GovRace = { id: string; state: string; title: string; margin: number | null; p: number; incumbent_party: string | null; rules: Record<string, boolean>; dn: string | null; dp: string | null; rn: string | null; rp: string | null };
 export type SchedRow = { state: string; first: number | null; last: number | null };
 
 export type DemoRow = {
-  id: string; o: "s" | "h"; st: string; title: string; dn: string | null; dp: string | null; rn: string | null; rp: string | null;
+  id: string; o: "s" | "h" | "g"; st: string; title: string; dn: string | null; dp: string | null; rn: string | null; rp: string | null;
   c?: number; w?: string; mu0: number; sd0: number; rule: Rule; third: number; holder: "D" | "R" | null;
   openAt: number;          // polls close (first) in minutes after 6pm ET
   lastClose: number;       // last polls in the state close
@@ -201,4 +203,35 @@ export function mapStatus(s: Snap): MapStatus {
   if (st === "close") return "close";
   if (s.feed.tEff == null) return s.feed.status === "closed" ? "closed" : "waiting";
   return st === "waiting" ? "waiting" : "counting";
+}
+
+
+/** Inverse of the normal CDF (Acklam's approximation), used to read a forecast spread back out of a win probability. */
+function normInv(p: number): number {
+  const a = [-39.69683028665376, 220.9460984245205, -275.9285104469687, 138.357751867269, -30.66479806614716, 2.506628277459239];
+  const b = [-54.47609879822406, 161.5858368580409, -155.6989798598866, 66.80131188771972, -13.28068155288572];
+  const c = [-0.007784894002430293, -0.3223964580411365, -2.400758277161838, -2.549732539343734, 4.374664141464968, 2.938163982698783];
+  const d = [0.007784695709041462, 0.3224671290700398, 2.445134137142996, 3.754408661907416];
+  const lo = 0.02425, q = Math.min(Math.max(p, 1e-6), 1 - 1e-6);
+  if (q < lo) { const r = Math.sqrt(-2 * Math.log(q)); return (((((c[0] * r + c[1]) * r + c[2]) * r + c[3]) * r + c[4]) * r + c[5]) / ((((d[0] * r + d[1]) * r + d[2]) * r + d[3]) * r + 1); }
+  if (q > 1 - lo) { const r = Math.sqrt(-2 * Math.log(1 - q)); return -(((((c[0] * r + c[1]) * r + c[2]) * r + c[3]) * r + c[4]) * r + c[5]) / ((((d[0] * r + d[1]) * r + d[2]) * r + d[3]) * r + 1); }
+  const r = (q - 0.5) * (q - 0.5), t = (q - 0.5);
+  return ((((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * t) / (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+
+/** Rows for the governors' races. The forecast's spread for each is backed out of its margin and win probability. */
+export function buildGovRows(govs: GovRace[], schedule: SchedRow[]): DemoRow[] {
+  const sched = new Map(schedule.map((x) => [x.state, x]));
+  return govs.map((g) => {
+    const mu0 = g.margin ?? 0, z = Math.abs(normInv(Math.min(Math.max(g.p, 0.001), 0.999)));
+    const sd0 = z > 0.1 && Math.abs(mu0) > 0.2 ? Math.min(12, Math.max(3, Math.abs(mu0) / z)) : 7;
+    const rules = g.rules ?? {};
+    const rule: Rule = rules.rcv ? "rcv" : rules.runoff ? "runoff" : rules.jungle_nov ? "primary" : "none";
+    const third = rule === "primary" ? 35 : rule === "rcv" ? 8 : rule === "runoff" ? 3 : 2;
+    const sc = sched.get(g.state);
+    const first = (sc?.first ?? 480) - 360, last = (sc?.last ?? sc?.first ?? 480) - 360;
+    const holder = g.incumbent_party === "D" || g.incumbent_party === "R" ? g.incumbent_party : null;
+    return { id: g.id, o: "g", st: g.state, title: g.title, dn: g.dn, dp: g.dp, rn: g.rn, rp: g.rp, mu0, sd0, rule, third, holder,
+      openAt: first, lastClose: last, expected: 1, actual: 1, start: first, dur: 180, lean: 0, cadence: 5, offset: 0 } as DemoRow;
+  });
 }

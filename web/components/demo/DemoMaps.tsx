@@ -16,7 +16,7 @@ const states = (feature(topo, topo.objects.states) as any).features as { id: str
 const borders = path(mesh(topo, topo.objects.states, (a: unknown, b: unknown) => a !== b) as any) ?? "";
 
 /** Fill for a race right now. Colors: gray = polls not closed; hatched = closed, nothing in yet; light = leading;
- * solid = Decided; purple stripes = special rule (runoff, ranked-choice, all-party primary). */
+ * solid = Projected; purple stripes = special rule (runoff, ranked-choice, all-party primary). */
 export function fillFor(s: Snap | undefined): string {
   if (!s) return "var(--surface-raised)";
   const m = mapStatus(s);
@@ -42,11 +42,11 @@ export function TipBody({ s }: { s: Snap }) {
   const r = s.row;
   return (
     <>
-      <strong>{r.title}</strong> · {r.o === "s" ? "Senate" : "House"}<br />
+      <strong>{r.title}</strong> · {r.o === "s" ? "Senate" : r.o === "g" ? "Governor" : "House"}<br />
       {s.margin == null ? <span className="muted">{s.decision.why}</span> : (
         <>
           <span style={{ color: "var(--dem)" }}>{surname(r.dn)}</span> <strong className="num">{v.dPct.toFixed(1)}%</strong> · <span style={{ color: "var(--rep)" }}>{surname(r.rn)}</span> <strong className="num">{v.rPct.toFixed(1)}%</strong><br />
-          <span className="small">≈{Math.round(Math.min(s.f, 0.99) * 100)}% of expected vote · {s.decision.state === "decided" ? "Decided ✓" : s.decision.state === "counting" ? "counting" : s.decision.why}</span><br />
+          <span className="small">≈{Math.round(Math.min(s.f, 0.99) * 100)}% of expected vote · {s.decision.state === "decided" ? "Projected ✓" : s.decision.state === "counting" ? "counting" : s.decision.why}</span><br />
           <span className="small muted">Live odds: {surname(r.dn)} {in100(s.p)} in 100</span>
         </>
       )}
@@ -54,7 +54,7 @@ export function TipBody({ s }: { s: Snap }) {
   );
 }
 
-function Defs() {
+export function Defs() {
   return (
     <defs>
       <pattern id="nm-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -67,16 +67,16 @@ function Defs() {
   );
 }
 
-/** Senate: states colored by their Senate race. Click a state to open its races. */
-export function DemoStateMap({ snaps, selState, onState }: { snaps: Snap[]; selState: string | null; onState: (st: string) => void }) {
+/** States colored by their Senate (or governor) race. Click a state to open its races. */
+export function DemoStateMap({ snaps, selState, onState, office = "s" }: { snaps: Snap[]; selState: string | null; onState: (st: string) => void; office?: "s" | "g" }) {
   const { show, hide } = useTip();
   const byState = useMemo(() => {
     const m: Record<string, Snap[]> = {};
-    for (const s of snaps) if (s.row.o === "s") (m[s.row.st] ??= []).push(s);
+    for (const s of snaps) if (s.row.o === office) (m[s.row.st] ??= []).push(s);
     return m;
-  }, [snaps]);
+  }, [snaps, office]);
   return (
-    <svg viewBox="0 0 975 610" width="100%" role="img" aria-label="Map of the 2026 Senate races, colored by how counting is going" style={{ display: "block" }}>
+    <svg viewBox="0 0 975 610" width="100%" role="img" aria-label={`Map of the 2026 ${office === "g" ? "governor" : "Senate"} races, colored by how counting is going`} style={{ display: "block" }}>
       <Defs />
       {states.map((f) => {
         const st = FIPS[f.id];
@@ -84,7 +84,7 @@ export function DemoStateMap({ snaps, selState, onState }: { snaps: Snap[]; selS
         const main = its?.[0];
         return (
           <path key={f.id} d={path(f as any) ?? ""} style={{ fill: fillFor(main), cursor: its ? "pointer" : "default", transition: "fill .35s" }}
-            tabIndex={its ? 0 : -1} role={its ? "button" : undefined} aria-label={its ? its.map((i) => `${i.row.title}: ${i.decision.why}`).join("; ") : `${st}: no Senate race`}
+            tabIndex={its ? 0 : -1} role={its ? "button" : undefined} aria-label={its ? its.map((i) => `${i.row.title}: ${i.decision.why}`).join("; ") : `${st}: no ${office === "g" ? "governor" : "Senate"} race`}
             onMouseMove={its ? (e) => show(e, <>{its.map((i) => <div key={i.row.id} style={{ marginBottom: 4 }}><TipBody s={i} /></div>)}</>) : undefined} onMouseLeave={hide}
             onClick={its ? () => onState(st) : undefined} onKeyDown={its ? (e) => { if (e.key === "Enter") onState(st); } : undefined} />
         );
@@ -142,11 +142,11 @@ export function MapLegend() {
     <div className="small nm-legend" aria-label="Map legend">
       {sw("var(--uncalled)", "Polls not closed")}
       {sw("repeating-linear-gradient(45deg, var(--uncalled) 0 3px, color-mix(in srgb, var(--ink-muted) 45%, var(--uncalled)) 3px 5px)", "Closed, nothing in yet")}
-      <span className="nm-key"><i style={{ background: "var(--d-lean)" }} /><i style={{ background: "var(--r-lean)" }} />Leading (not decided)</span>
+      <span className="nm-key"><i style={{ background: "var(--d-lean)" }} /><i style={{ background: "var(--r-lean)" }} />Leading (not yet projected)</span>
       {sw("var(--tossup)", "Within 1 point")}
-      <span className="nm-key"><i style={{ background: "var(--d-safe)" }} /><i style={{ background: "var(--r-safe)" }} />Decided ✓</span>
+      <span className="nm-key"><i style={{ background: "var(--d-safe)" }} /><i style={{ background: "var(--r-safe)" }} />Projected ✓</span>
       {sw("repeating-linear-gradient(-45deg, var(--uncalled) 0 3px, var(--ind-fill) 3px 6px)", "Runoff / ranked-choice / all-party primary")}
-      <span className="nm-key"><i className="ring" />Decided flip</span>
+      <span className="nm-key"><i className="ring" />Projected flip</span>
     </div>
   );
 }

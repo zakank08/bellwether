@@ -83,6 +83,17 @@ export default function Methodology() {
         <p>Odds-over-time charts go back to September 2025. The site launched on Sept. 28, 2026, so earlier points are a <strong>backcast</strong>: the same model rerun with only the polls that had been released by each date (weekly, then daily for the last 60 days, using fewer simulations per point). They use today’s candidate list and district lines, so they show how the evidence evolved rather than what a forecast published at the time would have said. From launch on, each point is the live forecast as published. Polling-average charts go back to each race’s first poll; presidential approval starts with the second Trump term.</p>
         <p>Use the range buttons (1W to 1Y, All, or Custom dates) to zoom. There’s no one-day view: forecasts update three times a day and polls arrive a few times a week, so a day is too short to show movement. Election night will get its own minute-by-minute view.</p>
 
+        <h2 className="display" id="projections">Election night: Bellwether projections</h2>
+        <p>On election night the live board shows each race’s votes straight from the state’s official results site, and marks a winner as <strong>Projected</strong> when, by our own rule, the votes still uncounted cannot realistically overturn the lead. These are Bellwether’s own projections. They are not calls by the Associated Press or any other organization, and an official result can differ.</p>
+        <ul>
+          <li><strong>What must be true:</strong> at least 35% of the expected vote counted (and at least half of precincts or counties reporting); a lead of more than one point; and a lead larger than what the uncounted vote could shift, assuming the votes still out could favor the trailing candidate by up to 25 points and that the total vote could be 10% higher than estimated.</li>
+          <li><strong>Mail-heavy states</strong> (AZ, CA, CO, NV, OR, UT, WA) need half the expected vote and 80% of precincts first, because late ballots often lean differently from early counts.</li>
+          <li><strong>Special rules:</strong> a race that goes to a runoff if nobody tops 50% (Georgia), ranked-choice races (Maine, Alaska: first-round counts only) and Louisiana’s all-party House primary are not projected while the leader is under 50%.</li>
+          <li><strong>The share counted is an estimate</strong>: it comes from how many precincts or counties have reported, not from a turnout forecast. A race with no precinct figures is never projected early.</li>
+          <li><strong>Live odds</strong> start from the pre-election forecast and move toward the count as more is in. <strong>Chance of controlling a chamber</strong> keeps only the simulations consistent with the races already projected and weights the rest by how well they match the counts so far. Governors’ races are projected the same way but have no chamber-control odds.</li>
+          <li><strong>Corrections:</strong> if a state’s feed breaks or shows a count going backward, the last good numbers stay and the page says so. A person can hold a race open or enter numbers by hand from official sources; those are labeled “By hand.”</li>
+        </ul>
+
         <h2 className="display">8. Sources</h2>
         <ul>{f.sources.map((s) => <li key={s.name}><a href={s.url} rel="noopener noreferrer" target="_blank">{s.name}</a> — {s.use}</li>)}</ul>
         <p>We never invent polls, results or candidates. When a race has no polls, the page says so and the forecast rests on fundamentals.</p>
