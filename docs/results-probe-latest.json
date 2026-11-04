@@ -256,9 +256,8 @@
   "MO": [
    {
     "url": "https://enr.sos.mo.gov/",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "challenge",
+    "http": 403
    }
   ],
   "MS": [
@@ -309,8 +308,9 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "challenge",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NJ": [
@@ -352,8 +352,9 @@
   "OH": [
    {
     "url": "https://liveresults.ohiosos.gov/",
-    "result": "blocked",
-    "http": 429
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "OK": [
@@ -486,8 +487,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 36,
+  "ok": 37,
   "challenge": 8,
-  "blocked": 4
+  "blocked": 3
  }
 }
