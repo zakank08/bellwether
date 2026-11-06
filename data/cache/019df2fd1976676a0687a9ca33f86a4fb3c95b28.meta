@@ -1,1 +1,1 @@
-{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NM&district=02&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1793890686.2064717}
+{"url": "https://api.open.fec.gov/v1/elections/?api_key=REDACTED&cycle=2026&office=house&state=NM&district=02&election_full=true&per_page=50&sort=-total_receipts", "fetched_at": 1793935707.381286}
