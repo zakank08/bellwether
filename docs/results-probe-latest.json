@@ -156,9 +156,8 @@
   "IL": [
    {
     "url": "https://elections.il.gov/electionoperations/electionvotetotals.aspx",
-    "result": "ok",
-    "http": 200,
-    "type": "text/html"
+    "result": "blocked",
+    "http": 403
    }
   ],
   "IN": [
@@ -486,8 +485,8 @@
  },
  "summary": {
   "unreachable": 2,
-  "ok": 36,
+  "ok": 35,
   "challenge": 9,
-  "blocked": 3
+  "blocked": 4
  }
 }
