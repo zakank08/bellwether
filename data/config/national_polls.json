@@ -1,6 +1,6 @@
 {
  "_about": "National polls (presidential approval and the generic congressional ballot) collected by hand from each pollster's own release, because our main poll feed (VoteHub) stopped carrying most of these after June 2026. Every entry links to the release it was read from. Polls VoteHub also has are skipped automatically, so adding one here never double-counts it. question: 'approval' (Trump job approval) or 'generic' (which party's House candidate). population: lv, rv or a (all adults). Never add a poll without a working link to the pollster's release.",
- "collected": "2026-11-10",
+ "collected": "2026-11-17",
  "polls": [
   {
    "pollster": "YouGov",
@@ -1345,6 +1345,22 @@
    "url": "https://yougov.com/en-us/articles/55922-understanding-big-democratic-midterms-win-2026-election-november-4-6-2026-economist-yougov-poll",
    "auto": true,
    "document": "https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_SuXgTtZ.pdf"
+  },
+  {
+   "pollster": "Echelon Insights",
+   "sponsors": [],
+   "start_date": "2026-11-12",
+   "end_date": "2026-11-16",
+   "sample_size": 1027,
+   "population": "lv",
+   "question": "approval",
+   "answers": {
+    "Approve": 36.0,
+    "Disapprove": 63.0
+   },
+   "url": "https://echeloninsights.com/insights/november-2026-verified-voter-omnibus",
+   "auto": true,
+   "document": "https://echeloninsights.com/hubfs/_Media%20for%20Insights%20Blog/November%202026%20-%20Voter%20Omnibus%20Topline%20-%20External.pdf"
   }
  ]
 }
