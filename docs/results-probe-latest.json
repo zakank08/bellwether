@@ -37,8 +37,9 @@
    },
    {
     "url": "https://results.enr.clarityelections.com/AR/",
-    "result": "blocked",
-    "http": 403
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
    }
   ],
   "AZ": [
@@ -66,14 +67,14 @@
    {
     "url": "https://results.enr.clarityelections.com/CO/",
     "result": "ok",
-    "http": 200,
+    "http": 202,
     "type": "text/html"
    },
    {
     "url": "https://results.enr.clarityelections.com/CO/122598/current_ver.txt",
     "result": "ok",
-    "http": 200,
-    "type": "text/plain"
+    "http": 202,
+    "type": "text/html"
    }
   ],
   "CT": [
@@ -137,7 +138,7 @@
    {
     "url": "https://electionresults.iowa.gov/",
     "result": "ok",
-    "http": 200,
+    "http": 202,
     "type": "text/html"
    },
    {
@@ -181,8 +182,9 @@
   "KY": [
    {
     "url": "https://results.enr.clarityelections.com/KY/",
-    "result": "blocked",
-    "http": 403
+    "result": "ok",
+    "http": 202,
+    "type": "text/html"
    },
    {
     "url": "https://elect.ky.gov/Results/Pages/default.aspx",
@@ -308,8 +310,9 @@
   "NH": [
    {
     "url": "https://www.sos.nh.gov/2024-general-election-results",
-    "result": "challenge",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "NJ": [
@@ -351,8 +354,9 @@
   "OH": [
    {
     "url": "https://liveresults.ohiosos.gov/",
-    "result": "blocked",
-    "http": 403
+    "result": "ok",
+    "http": 200,
+    "type": "text/html"
    }
   ],
   "OK": [
@@ -390,7 +394,7 @@
    {
     "url": "https://www.enr-scvotes.org/SC/",
     "result": "ok",
-    "http": 200,
+    "http": 202,
     "type": "text/html"
    }
   ],
@@ -484,9 +488,9 @@
   ]
  },
  "summary": {
-  "ok": 36,
-  "challenge": 9,
-  "blocked": 4,
+  "ok": 38,
+  "challenge": 8,
+  "blocked": 3,
   "unreachable": 1
  }
 }
